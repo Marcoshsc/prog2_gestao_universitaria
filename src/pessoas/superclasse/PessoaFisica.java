@@ -20,12 +20,14 @@ public abstract class PessoaFisica {
     private String nome;
     private String rg;
     private String cpf;
+    private String sexo;
     private LocalDate dataNascimento;
     private Endereco endereco;
     private ContaBancaria contaBancaria;
 
     protected PessoaFisica(String nome, String rg, String cpf, LocalDate dataNascimento,
-    Endereco endereco, ContaBancaria contaBancaria) {
+    Endereco endereco, ContaBancaria contaBancaria, String sexo) {
+        this.sexo = sexo;
         this.nome = nome;
         this.rg = rg;
         this.cpf = cpf;
@@ -34,7 +36,8 @@ public abstract class PessoaFisica {
         this.contaBancaria = contaBancaria;
     }
 
-    protected PessoaFisica(String nome, String rg, String cpf, LocalDate dataNascimento, Endereco endereco) {
+    protected PessoaFisica(String nome, String rg, String cpf, LocalDate dataNascimento, Endereco endereco, String sexo) {
+        this.sexo = sexo;
         this.nome = nome;
         this.rg = rg;
         this.cpf = cpf;
@@ -42,7 +45,8 @@ public abstract class PessoaFisica {
         this.endereco = endereco;
     }
 
-    protected PessoaFisica(String nome, String rg, String cpf, LocalDate dataNascimento, ContaBancaria contaBancaria) {
+    protected PessoaFisica(String nome, String rg, String cpf, LocalDate dataNascimento, ContaBancaria contaBancaria, String sexo) {
+        this.sexo = sexo;
         this.nome = nome;
         this.rg = rg;
         this.cpf = cpf;
@@ -50,7 +54,8 @@ public abstract class PessoaFisica {
         this.contaBancaria = contaBancaria;
     }
 
-    protected PessoaFisica(String nome, String rg, String cpf, LocalDate dataNascimento) {
+    protected PessoaFisica(String nome, String rg, String cpf, LocalDate dataNascimento, String sexo) {
+        this.sexo = sexo;
         this.nome = nome;
         this.rg = rg;
         this.cpf = cpf;
@@ -59,8 +64,14 @@ public abstract class PessoaFisica {
 
     private String escreveOBasico() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return String.format("Nome: %s\nRG: %s\nCPF: %s\nData de Nascimento: %s\n", this.nome, this.rg, this.cpf,
+        return String.format("Nome: %s\nSexo: %s\nRG: %s\nCPF: %s\nData de Nascimento: %s\n", this.nome, this.sexo, this.rg, this.cpf,
         formatador.format(this.dataNascimento));
+    }
+
+    public String getStorageString() {
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return String.format("%s-%s-%s-%s-%s", this.nome, this.cpf, this.rg, this.sexo, formatador.format(this.dataNascimento)) + 
+        '-' + this.endereco.getStorageString() + '-' + this.contaBancaria.getStorageString();
     }
 
     @Override

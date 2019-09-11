@@ -14,6 +14,10 @@ public class Curso {
         this.cargaHoraria = cargaHoraria;
     }
 
+    public String getStorageString() {
+        return String.format("%s-%s-%d-%d", this.codigo, this.nome, this.tempoConclusao, this.cargaHoraria);
+    }
+
     @Override
     public String toString() {
         return String.format("\nCódigo: %s\nNome: %s\nTempo conclusão(Semestres): %d\nCarga Horária: %d\n", this.codigo,

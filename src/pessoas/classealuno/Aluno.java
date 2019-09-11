@@ -10,6 +10,7 @@ import complementares.ContaBancaria;
 import complementares.Endereco;
 import ensino.secaodisciplina.DisciplinaConcluida;
 import sistema.classes.Usuario;
+import excecoes.OperacaoNaoAutorizada;
 
 public class Aluno extends PessoaFisica {
 
@@ -24,33 +25,33 @@ public class Aluno extends PessoaFisica {
     private Usuario sistema;
     private boolean ativo = true;
     
-    public Aluno(String nome, String rg, String cpf, LocalDate dataNascimento,
+    public Aluno(String nome, String rg, String cpf, LocalDate dataNascimento, String sexo,
     Endereco endereco, ContaBancaria contaBancaria, String numeroMatricula, Curso curso, LocalDate dataIngresso) {
-        super(nome, rg, cpf, dataNascimento, endereco, contaBancaria);
+        super(nome, rg, cpf, dataNascimento, endereco, contaBancaria, sexo);
         this.numeroMatricula = numeroMatricula;
         this.curso = curso;
         this.dataIngresso = dataIngresso;
     }
 
-    public Aluno(String nome, String rg, String cpf, LocalDate dataNascimento,
+    public Aluno(String nome, String rg, String cpf, LocalDate dataNascimento, String sexo,
     Endereco endereco, String numeroMatricula, Curso curso, LocalDate dataIngresso) {
-        super(nome, rg, cpf, dataNascimento, endereco);
+        super(nome, rg, cpf, dataNascimento, endereco, sexo);
         this.numeroMatricula = numeroMatricula;
         this.curso = curso;
         this.dataIngresso = dataIngresso;
     }
 
-    public Aluno(String nome, String rg, String cpf, LocalDate dataNascimento,
+    public Aluno(String nome, String rg, String cpf, LocalDate dataNascimento, String sexo,
     ContaBancaria contaBancaria, String numeroMatricula, Curso curso, LocalDate dataIngresso) {
-        super(nome, rg, cpf, dataNascimento, contaBancaria);
+        super(nome, rg, cpf, dataNascimento, contaBancaria, sexo);
         this.numeroMatricula = numeroMatricula;
         this.curso = curso;
         this.dataIngresso = dataIngresso;
     }
 
-    public Aluno(String nome, String rg, String cpf, LocalDate dataNascimento,
+    public Aluno(String nome, String rg, String cpf, LocalDate dataNascimento, String sexo,
     String numeroMatricula, Curso curso, LocalDate dataIngresso) {
-        super(nome, rg, cpf, dataNascimento);
+        super(nome, rg, cpf, dataNascimento, sexo);
         this.numeroMatricula = numeroMatricula;
         this.curso = curso;
         this.dataIngresso = dataIngresso;
@@ -63,10 +64,45 @@ public class Aluno extends PessoaFisica {
         this.numeroMatricula, this.curso, formatador.format(this.dataIngresso)) + super.toString();
     }
 
+    public String getStorageString() {
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return super.getStorageString() + '-' + String.format("%s-%s", this.numeroMatricula,
+        formatador.format(this.dataIngresso)) + '-' + this.curso.getStorageString();
+    }
+
+    public void adicionaBolsa(BolsaVigente bolsa) throws OperacaoNaoAutorizada {
+        if(this.bolsas.stream().filter(a -> bolsa == a).toArray().length == 0) {
+            this.bolsas.add(bolsa);
+        }
+        else
+            throw new OperacaoNaoAutorizada();
+    }
+
+    public boolean temBolsa() {
+        if(this.bolsas.size() > 0)
+            return true;
+        else
+            return false;
+    }
+
+    public BolsaVigente returnBolsaPorCodigo(String codigo) throws Exception {
+        if(!this.temBolsa())
+            throw new Exception(String.format("O aluno %s não possui Bolsas cadastradas.\n", this.getNome()));
+        else {
+            for(BolsaVigente i: this.bolsas) {
+                if(i.getCodigo().equals(codigo))
+                    return i;
+            }
+            throw new Exception(String.format("Bolsa não encontrada."));
+        }
+    }
+
     /**
      * @return the bolsas
      */
-    public BolsaVigente[] getBolsas() {
+    public BolsaVigente[] getBolsasArray() {
+        if(!(this.bolsas.size() >= 0))
+            return null;
         BolsaVigente[] bolsas = new BolsaVigente[this.bolsas.size()];
         int cont = 0;
         for(BolsaVigente i : this.bolsas) {
@@ -77,11 +113,22 @@ public class Aluno extends PessoaFisica {
     }
 
     public String getBolsasString() {
+        if(this.bolsas.size() == 0)
+            return String.format("Não existem bolsas cadastradas para %s.\n",
+            this.getNome());
         String acumuladora = "";
+        acumuladora += String.format("Bolsas de %s:\n", this.getNome());
         for(BolsaVigente i : this.bolsas) {
             acumuladora += i.toString();
         }
         return acumuladora;
+    }
+
+    /**
+     * @return the bolsas
+     */
+    public ArrayList<BolsaVigente> getBolsas() {
+        return bolsas;
     }
     
     /**

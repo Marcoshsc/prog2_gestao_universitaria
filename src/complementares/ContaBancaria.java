@@ -20,6 +20,10 @@ public class ContaBancaria {
         this.nomeTitular = nomeTitular;
     }
 
+    public String getStorageString() {
+        return String.format("%s-%s-%s-%s", this.agencia, this.conta, this.cpfTitular, this.nomeTitular);
+    }
+
     @Override
     public String toString() {
         return String.format("\nAgência: %s\nConta: %s\nCPF Titular: %s\nNome Titular: %s\n", this.agencia, this.conta,

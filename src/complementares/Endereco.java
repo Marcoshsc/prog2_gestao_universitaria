@@ -24,6 +24,11 @@ public class Endereco {
         this.pais = pais;
     }
 
+    public String getStorageString() {
+        return String.format("%s-%d-%s-%s-%s-%s-%s", this.rua, this.numero, this.bairro, this.cep, this.cidade,
+        this.estado, this.pais);
+    }
+
     @Override
     public String toString() {
         return String.format("\nRua: %s\nNúmero: %s\nBairro: %s\nCEP: %s\nCidade: %s\nEstado: %s\nPais: %s\n", this.rua,
