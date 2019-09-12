@@ -4,9 +4,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import complementares.Endereco;
+import contratos.ClassesGeral;
 import complementares.ContaBancaria;
 
-public abstract class PessoaFisica {
+public class PessoaFisica implements ClassesGeral {
     
     /**
      * Não faz sentido que seja mudado nome, titulo
@@ -70,8 +71,21 @@ public abstract class PessoaFisica {
 
     public String getStorageString() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return String.format("%s-%s-%s-%s-%s", this.nome, this.cpf, this.rg, this.sexo, formatador.format(this.dataNascimento)) + 
-        '-' + this.endereco.getStorageString() + '-' + this.contaBancaria.getStorageString();
+        if(this.endereco != null && this.contaBancaria != null) {
+            return String.format("%s-%s-%s-%s-%s", this.nome, this.cpf, this.rg, this.sexo, formatador.format(this.dataNascimento)) + 
+            '-' + this.endereco.getStorageString() + '-' + this.contaBancaria.getStorageString();
+        }
+        else if(this.endereco != null) {
+            return String.format("%s-%s-%s-%s-%s", this.nome, this.cpf, this.rg, this.sexo, formatador.format(this.dataNascimento)) + 
+            '-' + this.endereco.getStorageString();
+        }
+        else if(this.contaBancaria != null) {
+            return String.format("%s-%s-%s-%s-%s", this.nome, this.cpf, this.rg, this.sexo, formatador.format(this.dataNascimento)) + 
+            '-' + this.contaBancaria.getStorageString();
+        }
+        else {
+            return String.format("%s-%s-%s-%s-%s", this.nome, this.cpf, this.rg, this.sexo, formatador.format(this.dataNascimento));
+        }
     }
 
     @Override

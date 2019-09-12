@@ -1,0 +1,5 @@
+Marcos-1234-1233-Masculino-01/12/2000-Rua aqui-12-bairro-cep-cidade-estado-pais-agencia-conta-cpfTitular-nomeTitular-numeroMatricula-13/02/2019-codigo-nome-10-3000
+Marcos-1234-1233-Masculino-01/12/2000-Rua aqui-12-bairro-cep-cidade-estado-pais-numeroMatricula-13/02/2019-codigo-nome-10-3000
+Marcos-1234-1233-Masculino-01/12/2000-agencia-conta-cpfTitular-nomeTitular-numeroMatricula-13/02/2019-codigo-nome-10-3000
+Marcos-1234-1233-Masculino-01/12/2000-numeroMatricula-13/02/2019-codigo-nome-10-3000
+Marcos-1234-1233-Masculino-01/12/2000-numeroMatricula-13/02/2019-codigo-nome-10-3000

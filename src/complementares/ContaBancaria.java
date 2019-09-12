@@ -1,6 +1,8 @@
 package complementares;
 
-public class ContaBancaria {
+import contratos.ClassesGeral;
+
+public class ContaBancaria implements ClassesGeral {
 
     /**
      * O único atributo possível de ser mudado é

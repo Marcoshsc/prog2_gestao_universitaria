@@ -1,6 +1,8 @@
 package complementares;
 
-public class Endereco {
+import contratos.ClassesGeral;
+
+public class Endereco implements ClassesGeral {
 
     /**
      * Um endereço só pode ser alterado criando outro.
@@ -27,6 +29,11 @@ public class Endereco {
     public String getStorageString() {
         return String.format("%s-%d-%s-%s-%s-%s-%s", this.rua, this.numero, this.bairro, this.cep, this.cidade,
         this.estado, this.pais);
+    }
+
+    public Endereco fromStorageString(String texto) {
+        String[] campos = texto.split("-");
+        return new Endereco(campos[0], Integer.parseInt(campos[1]), campos[2], campos[3], campos[4], campos[5], campos[6]);
     }
 
     @Override

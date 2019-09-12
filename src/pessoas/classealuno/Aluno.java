@@ -8,11 +8,13 @@ import ensino.classecurso.Curso;
 import assistenciaestudantil.BolsaVigente;
 import complementares.ContaBancaria;
 import complementares.Endereco;
+import contratos.Armazenavel;
+import contratos.ClassesGeral;
 import ensino.secaodisciplina.DisciplinaConcluida;
 import sistema.classes.Usuario;
 import excecoes.OperacaoNaoAutorizada;
 
-public class Aluno extends PessoaFisica {
+public class Aluno extends PessoaFisica implements ClassesGeral {
 
     public static final String ID = "aluno";
     private String numeroMatricula;
@@ -25,36 +27,64 @@ public class Aluno extends PessoaFisica {
     private Usuario sistema;
     private boolean ativo = true;
     
-    public Aluno(String nome, String rg, String cpf, LocalDate dataNascimento, String sexo,
-    Endereco endereco, ContaBancaria contaBancaria, String numeroMatricula, Curso curso, LocalDate dataIngresso) {
+    public Aluno(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
+    Endereco endereco, ContaBancaria contaBancaria, String numeroMatricula, LocalDate dataIngresso, Curso curso) {
         super(nome, rg, cpf, dataNascimento, endereco, contaBancaria, sexo);
         this.numeroMatricula = numeroMatricula;
         this.curso = curso;
         this.dataIngresso = dataIngresso;
     }
 
-    public Aluno(String nome, String rg, String cpf, LocalDate dataNascimento, String sexo,
-    Endereco endereco, String numeroMatricula, Curso curso, LocalDate dataIngresso) {
+    public Aluno(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
+    Endereco endereco, String numeroMatricula, LocalDate dataIngresso, Curso curso) {
         super(nome, rg, cpf, dataNascimento, endereco, sexo);
         this.numeroMatricula = numeroMatricula;
         this.curso = curso;
         this.dataIngresso = dataIngresso;
     }
 
-    public Aluno(String nome, String rg, String cpf, LocalDate dataNascimento, String sexo,
-    ContaBancaria contaBancaria, String numeroMatricula, Curso curso, LocalDate dataIngresso) {
+    public Aluno(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
+    ContaBancaria contaBancaria, String numeroMatricula, LocalDate dataIngresso, Curso curso) {
         super(nome, rg, cpf, dataNascimento, contaBancaria, sexo);
         this.numeroMatricula = numeroMatricula;
         this.curso = curso;
         this.dataIngresso = dataIngresso;
     }
 
-    public Aluno(String nome, String rg, String cpf, LocalDate dataNascimento, String sexo,
-    String numeroMatricula, Curso curso, LocalDate dataIngresso) {
+    public Aluno(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
+    String numeroMatricula, LocalDate dataIngresso, Curso curso) {
         super(nome, rg, cpf, dataNascimento, sexo);
         this.numeroMatricula = numeroMatricula;
         this.curso = curso;
         this.dataIngresso = dataIngresso;
+    }
+
+    public static Aluno fromStorageString(String texto) {
+        String[] campos = texto.split("-");
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        if(campos.length == 11) {
+            return new Aluno(campos[0], campos[1], campos[2], campos[3], LocalDate.parse(campos[4], formatador), campos[5],
+            LocalDate.parse(campos[6], formatador), new Curso(campos[7], campos[8], Integer.parseInt(campos[9]),
+            Integer.parseInt(campos[10])));
+        }
+        else if(campos.length == 15) {
+            return new Aluno(campos[0], campos[1], campos[2], campos[3], LocalDate.parse(campos[4], formatador), 
+            new ContaBancaria(campos[5], campos[6], campos[7], campos[8]), campos[9], LocalDate.parse(campos[10], formatador), 
+            new Curso(campos[11], campos[12], Integer.parseInt(campos[13]), Integer.parseInt(campos[14])));
+        }
+        else if(campos.length == 18) {
+            return new Aluno(campos[0], campos[1], campos[2], campos[3], LocalDate.parse(campos[4], formatador), 
+            new Endereco(campos[5], Integer.parseInt(campos[6]), campos[7], campos[8], campos[9], campos[10], campos[11]),
+            campos[12], LocalDate.parse(campos[13], formatador),
+            new Curso(campos[14], campos[15], Integer.parseInt(campos[16]), Integer.parseInt(campos[17])));
+        }
+        else {
+            return new Aluno(campos[0], campos[1], campos[2], campos[3], LocalDate.parse(campos[4], formatador), 
+            new Endereco(campos[5], Integer.parseInt(campos[6]), campos[7], campos[8], campos[9], campos[10], campos[11]),
+            new ContaBancaria(campos[12], campos[13], campos[14], campos[15]),campos[16], LocalDate.parse(campos[17], formatador),
+            new Curso(campos[18], campos[19], Integer.parseInt(campos[20]), Integer.parseInt(campos[21])));
+        }
+
     }
 
     @Override
