@@ -10,11 +10,15 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
+
+import ensino.classecurso.Curso;
+
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -22,6 +26,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+
+import sistema.classes.ServidorArmazenamento;
 
 public class JanelaPrincipal extends JFrame {
 
@@ -33,6 +39,7 @@ public class JanelaPrincipal extends JFrame {
     TelaCadastro telaCadastro = this.new TelaCadastro();
     TelaLogin telaLogin = this.new TelaLogin();
     CadastroAluno cadastroAluno = this.new CadastroAluno();
+    PainelOpcoes painelOpcoes = this.new PainelOpcoes();
 
     public JanelaPrincipal() {
         this.setSize(600, 600);
@@ -40,6 +47,8 @@ public class JanelaPrincipal extends JFrame {
         this.setTitle("Sistema de Gestão Universitária");
         this.setMinimumSize(new Dimension(600, 700));
         
+        this.add(this.painelOpcoes);
+        this.painelOpcoes.setVisible(true);
         this.add(this.cadastroAluno);
         // this.add(this.telaInicial);
         // this.telaInicial.setVisible(true);
@@ -359,15 +368,21 @@ public class JanelaPrincipal extends JFrame {
         private JTextField estadoField = geraField();
         private JLabel paisLabel = new JLabel("País: ");
         private JTextField paisField = geraField();
+        private JLabel cursoLabel = new JLabel("Curso: ");
+        private String[] cursoStrings = ServidorArmazenamento.getNomeCursos();
+        private JComboBox<String> cursoField = new JComboBox<String>(cursoStrings);
         private JButton botaoConfirma = new JButton("CONFIRMAR CADASTRO");
         private JButton botaoVolta = new JButton("VOLTAR");
 
         public CadastroAluno() {
             this.setLayout(new GridBagLayout());
             this.constantes.insets = new Insets(5, 5, 5, 5);
+            this.botaoConfirma.addActionListener(new AcaoCadastrarAluno(this));
 
             // campo das Informações gerais
             JanelaPrincipal.posicionaTitulo(this.informacoesGeraisLabel, this, this.constantes);
+            //// campo do curso
+            JanelaPrincipal.geraCampoCentral(this.cursoLabel, this.cursoField, this, this.constantes);
             //// campo do nome
             JanelaPrincipal.geraCampoVertical(this.nomeLabel, this.nomeField, this, this.constantes);
             //// campo do sexo
@@ -436,7 +451,7 @@ public class JanelaPrincipal extends JFrame {
             JanelaPrincipal.geraCampoCentral(this.botaoVolta, this.botaoConfirma,
              this, this.constantes);
 
-            this.setVisible(true);
+            this.setVisible(false);
         }
 
         private void direciona(int comando) {
@@ -447,6 +462,55 @@ public class JanelaPrincipal extends JFrame {
             else {
                 this.constantes.gridx = this.constantes.gridx + 1;
             }
+        }
+
+    }
+
+    public class PainelOpcoes extends JPanel {
+
+        private GridBagConstraints constantes = new GridBagConstraints();
+        private JButton cadastrarAluno = new JButton("CADASTRAR ALUNO");
+
+        public PainelOpcoes() {
+
+            this.cadastrarAluno.addActionListener(JanelaPrincipal.this.new ClicouCadastrarAlunoButton());
+            this.setLayout(new GridBagLayout());
+            this.constantes.gridx++;
+            this.add(cadastrarAluno, constantes);
+            this.setVisible(false);
+
+        }
+
+    }
+
+    public class AcaoCadastrarAluno implements ActionListener {
+
+        private CadastroAluno campos;
+
+        public AcaoCadastrarAluno(CadastroAluno campos) {
+            this.campos = campos;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            Curso cursoSelecionado = ServidorArmazenamento.pesquisaCursoNome(
+            (String)this.campos.cursoField.getSelectedItem());
+            if(cursoSelecionado == null) {
+                JOptionPane.showMessageDialog(JanelaPrincipal.this, "Curso inválido.");
+            }
+            else {
+                
+            }
+        }
+
+    }
+
+    public class ClicouCadastrarAlunoButton implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            JanelaPrincipal.this.painelOpcoes.setVisible(false);
+            JanelaPrincipal.this.cadastroAluno.setVisible(true);
         }
 
     }

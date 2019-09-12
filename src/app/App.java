@@ -6,6 +6,7 @@ import assistenciaestudantil.*;
 import complementares.*;
 import ensino.classecurso.*;
 import ensino.secaodisciplina.*;
+import interfacegrafica.JanelaPrincipal;
 import pessoas.classealuno.*;
 import pessoas.superclasse.*;
 import sistema.classes.ServidorArmazenamento;
@@ -13,13 +14,16 @@ import sistema.classes.ServidorArmazenamento;
 public class App {
     public static void main(String[] args) throws Exception {
         try {
-        ServidorArmazenamento.inicizalizaAlunos();
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        Endereco end1 = new Endereco("Rua aqui", 12, "bairro", "cep", "cidade", "estado", "pais");
-        ContaBancaria cont1 = new ContaBancaria("agencia", "conta", "cpfTitular", "nomeTitular");
-        Curso curso1 = new Curso("codigo", "nome", 10, 3000);
-        GerenciadorBolsas.novaBolsa("codigo", "nome", 400);
-        GerenciadorBolsas.novaBolsa("codigo2", "nome2", 300);
+            ServidorArmazenamento.inicializaTodos();
+        //     new JanelaPrincipal();
+        
+        // DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        // Endereco end1 = new Endereco("Rua aqui", 12, "complemento", "bairro", "cep", "cidade", "estado", "pais");
+        // ContaBancaria cont1 = new ContaBancaria("agencia", "conta", "cpfTitular", "nomeTitular");
+        // Curso curso1 = new Curso("codigo", "nome", 10, 3000);
+        // GerenciadorBolsas.novaBolsa("codigo", "nome", 400);
+        // GerenciadorBolsas.novaBolsa("codigo2", "nome2", 300);
+        // ServidorArmazenamento.adicionaCurso(curso1);
         // Aluno a1 = new Aluno("Marcos", "1234", "1233", "Masculino", LocalDate.parse("01/12/2000", formatador),
         //  end1, cont1, "numeroMatricula", LocalDate.parse("13/02/2019", formatador), curso1);
         //  GerenciadorBolsas.novoBolsista(GerenciadorBolsas.procuraBolsa("codigo"), a1,
@@ -49,6 +53,7 @@ public class App {
         // System.out.println(a4.getStorageString().split("-").length - curso1.getStorageString().split("-").length - 2);
         // ServidorArmazenamento.atualizaBancoAluno();
         ServidorArmazenamento.imprimeAlunosCadastrados();
+        ServidorArmazenamento.atualizaBancoCurso();
         ServidorArmazenamento.atualizaBancoAluno();
         } catch(Exception erro) {
             System.out.println("Fui eu que peguei essa exc.\n");

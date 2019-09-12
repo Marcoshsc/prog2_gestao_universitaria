@@ -1,6 +1,8 @@
 package ensino.classecurso;
 
-public class Curso {
+import contratos.ClassesGeral;
+
+public class Curso implements ClassesGeral {
 
     private String codigo;
     private String nome;
@@ -16,6 +18,11 @@ public class Curso {
 
     public String getStorageString() {
         return String.format("%s-%s-%d-%d", this.codigo, this.nome, this.tempoConclusao, this.cargaHoraria);
+    }
+
+    public static Curso fromStorageString(String texto) {
+        String[] campos = texto.split("-");
+        return new Curso(campos[0], campos[1], Integer.parseInt(campos[2]), Integer.parseInt(campos[3]));
     }
 
     @Override

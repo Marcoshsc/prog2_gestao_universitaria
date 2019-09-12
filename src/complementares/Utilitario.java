@@ -26,12 +26,12 @@ public interface Utilitario {
             return textoCompleto.split("\n");
         }
         else {
-            throw new Exception("Arquivo não encontrado");
+            return null;
         }
     }
 
     public static void atualizaBanco(Object[] objetos, String path) {
-        final File documento = new File("src\\arquivos\\registrosAlunos.txt");
+        final File documento = new File(path);
 		FileWriter printerBasico = null;
 		BufferedWriter printerArquivo = null;
 		if(!documento.exists()) {

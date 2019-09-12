@@ -59,30 +59,27 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         this.dataIngresso = dataIngresso;
     }
 
-    public static Aluno fromStorageString(String texto) {
-        String[] campos = texto.split("-");
+    public static Aluno fromStorageString(String[] campos, Curso curso) {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        if(campos.length == 11) {
+        if(campos.length == 8) {
             return new Aluno(campos[0], campos[1], campos[2], campos[3], LocalDate.parse(campos[4], formatador), campos[5],
-            LocalDate.parse(campos[6], formatador), new Curso(campos[7], campos[8], Integer.parseInt(campos[9]),
-            Integer.parseInt(campos[10])));
+            LocalDate.parse(campos[6], formatador), curso);
         }
-        else if(campos.length == 15) {
+        else if(campos.length == 12) {
             return new Aluno(campos[0], campos[1], campos[2], campos[3], LocalDate.parse(campos[4], formatador), 
             new ContaBancaria(campos[5], campos[6], campos[7], campos[8]), campos[9], LocalDate.parse(campos[10], formatador), 
-            new Curso(campos[11], campos[12], Integer.parseInt(campos[13]), Integer.parseInt(campos[14])));
+            curso);
         }
-        else if(campos.length == 18) {
+        else if(campos.length == 16) {
             return new Aluno(campos[0], campos[1], campos[2], campos[3], LocalDate.parse(campos[4], formatador), 
-            new Endereco(campos[5], Integer.parseInt(campos[6]), campos[7], campos[8], campos[9], campos[10], campos[11]),
-            campos[12], LocalDate.parse(campos[13], formatador),
-            new Curso(campos[14], campos[15], Integer.parseInt(campos[16]), Integer.parseInt(campos[17])));
+            new Endereco(campos[5], Integer.parseInt(campos[6]), campos[7], campos[8], campos[9], campos[10], campos[11], campos[12]),
+            campos[13], LocalDate.parse(campos[14], formatador), curso);
         }
         else {
             return new Aluno(campos[0], campos[1], campos[2], campos[3], LocalDate.parse(campos[4], formatador), 
-            new Endereco(campos[5], Integer.parseInt(campos[6]), campos[7], campos[8], campos[9], campos[10], campos[11]),
-            new ContaBancaria(campos[12], campos[13], campos[14], campos[15]),campos[16], LocalDate.parse(campos[17], formatador),
-            new Curso(campos[18], campos[19], Integer.parseInt(campos[20]), Integer.parseInt(campos[21])));
+            new Endereco(campos[5], Integer.parseInt(campos[6]), campos[7], campos[8], campos[9], campos[10], campos[11], campos[12]),
+            new ContaBancaria(campos[13], campos[14], campos[15], campos[16]),campos[17], LocalDate.parse(campos[18], formatador),
+            curso);
         }
 
     }
@@ -97,7 +94,7 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
     public String getStorageString() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return super.getStorageString() + '-' + String.format("%s-%s", this.numeroMatricula,
-        formatador.format(this.dataIngresso)) + '-' + this.curso.getStorageString();
+        formatador.format(this.dataIngresso)) + '-' + this.curso.getCodigo();
     }
 
     public void adicionaBolsa(BolsaVigente bolsa) throws OperacaoNaoAutorizada {
