@@ -4,10 +4,6 @@ import ensino.classecurso.Curso;
 import pessoas.classealuno.Aluno;
 import complementares.Utilitario;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -47,6 +43,18 @@ public class ServidorArmazenamento {
 
 	public static void atualizaBancoCurso() throws Exception {
 		Utilitario.atualizaBanco(ServidorArmazenamento.cursosCadastrados.toArray(), "src\\arquivos\\registrosCursos.txt");
+	}
+
+	public static Aluno pesquisarAlunoCPF(String cpf) {
+		if(ServidorArmazenamento.alunosCadastrados.size() == 0)
+			return null;
+		else {
+			for(Aluno i: ServidorArmazenamento.alunosCadastrados) {
+				if(i.getCpf().equals(cpf))
+					return i;
+			}
+			return null;
+		}
 	}
 
 	public static Curso pesquisaCursoCodigo(String codigo) {

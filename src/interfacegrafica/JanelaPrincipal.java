@@ -11,7 +11,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+import complementares.ContaBancaria;
+import complementares.Endereco;
+import complementares.Utilitario;
 import ensino.classecurso.Curso;
+import pessoas.classealuno.Aluno;
 
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;
@@ -59,6 +63,10 @@ public class JanelaPrincipal extends JFrame {
         this.setVisible(true);
     }
 
+    private void erroPreenchimento(String mensagem) {
+        JOptionPane.showMessageDialog(this, mensagem, "Erro de preenchimento", JOptionPane.ERROR_MESSAGE);
+    }
+
     private static JTextField geraField(String codigo) {
         JFormattedTextField previo;
         try {
@@ -69,7 +77,7 @@ public class JanelaPrincipal extends JFrame {
                     previo.setMinimumSize(JanelaPrincipal.TAMANHO);
                 } break;
                 case "matricula": {
-                    previo = new JFormattedTextField(new MaskFormatter("####"));
+                    previo = new JFormattedTextField();
                     previo.setColumns(20);
                     previo.setMinimumSize(JanelaPrincipal.TAMANHO);
                 } break;
@@ -89,12 +97,12 @@ public class JanelaPrincipal extends JFrame {
                     previo.setMinimumSize(JanelaPrincipal.TAMANHO);
                 } break;
                 case "conta": {
-                    previo = new JFormattedTextField(new MaskFormatter("########-#"));
+                    previo = new JFormattedTextField(new MaskFormatter("#####-#"));
                     previo.setColumns(20);
                     previo.setMinimumSize(JanelaPrincipal.TAMANHO);
                 } break;
                 case "numeroCasa": {
-                    previo = new JFormattedTextField(new MaskFormatter("#####"));
+                    previo = new JFormattedTextField();
                     previo.setColumns(20);
                     previo.setMinimumSize(JanelaPrincipal.TAMANHO);
                 } break;
@@ -499,7 +507,171 @@ public class JanelaPrincipal extends JFrame {
                 JOptionPane.showMessageDialog(JanelaPrincipal.this, "Curso inválido.");
             }
             else {
-                
+                DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                boolean preencheuConta = true;
+                boolean preencheuEndereco = true;
+                String agenciaPrevia = Utilitario.formataCampo(this.campos.agenciaField);
+                String contaPrevia = Utilitario.formataCampo(this.campos.contaField);
+                String nomeTitularPrevio = this.campos.nomeTitularField.getText();
+                String cpfTitularPrevio = Utilitario.formataCampo(this.campos.cpfTitularField);
+                if(agenciaPrevia.equals("") && contaPrevia.equals("") && nomeTitularPrevio.equals("") &&
+                cpfTitularPrevio.equals("")) {
+                    preencheuConta = false;
+                }
+                String ruaPrevia = this.campos.ruaField.getText();
+                String numeroPrevio = this.campos.numeroField.getText();
+                String complementoPrevio = this.campos.complementoField.getText();
+                String cepPrevio = Utilitario.formataCampo(this.campos.cepField);
+                String bairroPrevio = this.campos.bairroField.getText();
+                String cidadePrevio = this.campos.cidadeField.getText();
+                String estadoPrevio = this.campos.estadoField.getText();
+                String paisPrevio = this.campos.paisField.getText();
+                if(!Utilitario.validaCPF(Utilitario.formataCampo(this.campos.cpfField))) {
+                    JanelaPrincipal.this.erroPreenchimento("Digite um CPF válido!");
+                    return;
+                }
+                if(Utilitario.formataCampo(this.campos.identidadeField).equals("")) {
+                    JanelaPrincipal.this.erroPreenchimento("Digite um RG válido");
+                    return;
+                }
+                try {
+                    LocalDate.parse(this.campos.dataNascimentoField.getText(), formatador);
+                } catch(Exception exc) {
+                    JanelaPrincipal.this.erroPreenchimento("Data de Nascimento Inválida.");
+                    return;
+                }
+                try {
+                    LocalDate.parse(this.campos.dataIngressoField.getText(), formatador);
+                } catch(Exception exc) {
+                    JanelaPrincipal.this.erroPreenchimento("Data de Ingresso Inválida.");
+                    return;
+                }
+                try {
+                    Integer.parseInt(Utilitario.formataCampo(this.campos.matriculaField));
+                } catch(Exception exc) {
+                    JanelaPrincipal.this.erroPreenchimento("Digite apenas valores númericos no campo (Matrícula).");
+                    return;
+                }
+                if(ruaPrevia.equals("") && numeroPrevio.equals("") && complementoPrevio.equals("") && cepPrevio.equals("")
+                && bairroPrevio.equals("") && cidadePrevio.equals("") && estadoPrevio.equals("") && paisPrevio.equals("")) {
+                    preencheuEndereco = false;
+                }
+                // aqui foi preenchido tudo
+                if(preencheuEndereco && preencheuConta) {
+                    if(!Utilitario.validaCPF(Utilitario.formataCampo(this.campos.cpfTitularField))) {
+                        JanelaPrincipal.this.erroPreenchimento("Digite um CPF do Titular válido! (Conta Bancaria)");
+                        return;
+                    }
+                    try {
+                        Integer.parseInt(numeroPrevio);
+                    } catch(Exception exc) {
+                        JanelaPrincipal.this.erroPreenchimento("Apenas valores númericos em número(Endereço)");
+                        return;
+                    }
+                    Aluno supostoExistente = ServidorArmazenamento.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
+                    if(supostoExistente == null) {
+                        ServidorArmazenamento.adicionaAluno(new Aluno(this.campos.nomeField.getText(),
+                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
+                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
+                        formatador), new Endereco(ruaPrevia, Integer.parseInt(numeroPrevio), complementoPrevio, cepPrevio, bairroPrevio,
+                        cidadePrevio, estadoPrevio, paisPrevio), new ContaBancaria((String)this.campos.bancoField.getSelectedItem(), 
+                        agenciaPrevia, contaPrevia, cpfTitularPrevio, nomeTitularPrevio), 
+                        Utilitario.formataCampo(this.campos.matriculaField), LocalDate.parse(this.campos.dataIngressoField.getText(), 
+                        formatador), ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
+                        ServidorArmazenamento.imprimeAlunosCadastrados();
+                    }
+                    else {
+                        supostoExistente.alterar(this.campos.nomeField.getText(),
+                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
+                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
+                        formatador), new Endereco(ruaPrevia, Integer.parseInt(numeroPrevio), complementoPrevio, cepPrevio, bairroPrevio,
+                        cidadePrevio, estadoPrevio, paisPrevio), new ContaBancaria((String)this.campos.bancoField.getSelectedItem(), 
+                        agenciaPrevia, contaPrevia, cpfTitularPrevio, nomeTitularPrevio), 
+                        Utilitario.formataCampo(this.campos.matriculaField), LocalDate.parse(this.campos.dataIngressoField.getText(), 
+                        formatador), ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
+                        ServidorArmazenamento.imprimeAlunosCadastrados();
+                    }
+                }
+                // aqui ele preenche o basico + contabancaria;
+                else if(preencheuConta) {
+                    if(!Utilitario.validaCPF(Utilitario.formataCampo(this.campos.cpfTitularField))) {
+                        JanelaPrincipal.this.erroPreenchimento("Digite um CPF do Titular válido! (Conta Bancaria)");
+                        return;
+                    }
+                    Aluno supostoExistente = ServidorArmazenamento.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
+                    if(supostoExistente == null) {
+                        ServidorArmazenamento.adicionaAluno(new Aluno(this.campos.nomeField.getText(),
+                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
+                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
+                        formatador), new ContaBancaria((String)this.campos.bancoField.getSelectedItem(), agenciaPrevia, 
+                        contaPrevia, cpfTitularPrevio, nomeTitularPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
+                        LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
+                        ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
+                        ServidorArmazenamento.imprimeAlunosCadastrados();
+                    }
+                    else {
+                        supostoExistente.alterar(this.campos.nomeField.getText(),
+                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
+                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
+                        formatador), new ContaBancaria((String)this.campos.bancoField.getSelectedItem(), agenciaPrevia, 
+                        contaPrevia, cpfTitularPrevio, nomeTitularPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
+                        LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
+                        ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
+                        ServidorArmazenamento.imprimeAlunosCadastrados();
+                    }
+                }
+                // aqui foi preenchido o basico + endereco
+                else if(preencheuEndereco) {
+                    try {
+                        Integer.parseInt(numeroPrevio);
+                    } catch(Exception exc) {
+                        JanelaPrincipal.this.erroPreenchimento("Apenas valores númericos em número(Endereço)");
+                        return;
+                    }
+                    Aluno supostoExistente = ServidorArmazenamento.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
+                    if(supostoExistente == null) {
+                        ServidorArmazenamento.adicionaAluno(new Aluno(this.campos.nomeField.getText(),
+                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
+                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
+                        formatador), new Endereco(ruaPrevia, Integer.parseInt(numeroPrevio), complementoPrevio, cepPrevio, bairroPrevio,
+                        cidadePrevio, estadoPrevio, paisPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
+                        LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
+                        ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
+                        ServidorArmazenamento.imprimeAlunosCadastrados();
+                    }
+                    else {
+                        supostoExistente.alterar(this.campos.nomeField.getText(),
+                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
+                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
+                        formatador), new Endereco(ruaPrevia, Integer.parseInt(numeroPrevio), complementoPrevio, cepPrevio, bairroPrevio,
+                        cidadePrevio, estadoPrevio, paisPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
+                        LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
+                        ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
+                        ServidorArmazenamento.imprimeAlunosCadastrados();
+                    }
+                }
+                // aqui só foi preenchido o basico mesmo
+                else {
+                    Aluno supostoExistente = ServidorArmazenamento.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
+                    if(supostoExistente == null) {
+                        ServidorArmazenamento.adicionaAluno(new Aluno(this.campos.nomeField.getText(),
+                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
+                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
+                        formatador), Utilitario.formataCampo(this.campos.matriculaField), 
+                        LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
+                        ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
+                        ServidorArmazenamento.imprimeAlunosCadastrados();
+                    }
+                    else {
+                        supostoExistente.alterar(this.campos.nomeField.getText(),
+                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
+                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
+                        formatador), Utilitario.formataCampo(this.campos.matriculaField), 
+                        LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
+                        ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
+                        ServidorArmazenamento.imprimeAlunosCadastrados();
+                    }
+                }
             }
         }
 

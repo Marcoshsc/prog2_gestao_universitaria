@@ -10,12 +10,14 @@ public class ContaBancaria implements ClassesGeral {
      * deve gerar um novo objeto.
      */
 
+    private String nomeBanco;
     private String agencia;
     private String conta;
     private String cpfTitular;
     private String nomeTitular;
 
-    public ContaBancaria(String agencia, String conta, String cpfTitular, String nomeTitular) {
+    public ContaBancaria(String nomeBanco, String agencia, String conta, String cpfTitular, String nomeTitular) {
+        this.nomeBanco = nomeBanco;
         this.agencia = agencia;
         this.conta = conta;
         this.cpfTitular = cpfTitular;
@@ -23,13 +25,20 @@ public class ContaBancaria implements ClassesGeral {
     }
 
     public String getStorageString() {
-        return String.format("%s-%s-%s-%s", this.agencia, this.conta, this.cpfTitular, this.nomeTitular);
+        return String.format("%s-%s-%s-%s-%s", this.nomeBanco, this.agencia, this.conta, this.cpfTitular, this.nomeTitular);
     }
 
     @Override
     public String toString() {
-        return String.format("\nAgência: %s\nConta: %s\nCPF Titular: %s\nNome Titular: %s\n", this.agencia, this.conta,
+        return String.format("\nNome Banco: %s\nAgência: %s\nConta: %s\nCPF Titular: %s\nNome Titular: %s\n", this.nomeBanco, this.agencia, this.conta,
         this.cpfTitular, this.nomeTitular);
+    }
+
+    /**
+     * @return the nomeBanco
+     */
+    public String getNomeBanco() {
+        return nomeBanco;
     }
 
     /**

@@ -150,4 +150,53 @@ public class PessoaFisica implements ClassesGeral {
         return rg;
     }
 
+    /**
+     * @param contaBancaria the contaBancaria to set
+     */
+    protected void setContaBancaria(ContaBancaria contaBancaria) {
+        this.contaBancaria = contaBancaria;
+    }
+
+    /**
+     * @param cpf the cpf to set
+     */
+    protected void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    /**
+     * @param dataNascimento the dataNascimento to set
+     */
+    protected void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    /**
+     * @param endereco the endereco to set
+     */
+    protected void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    protected void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @param rg the rg to set
+     */
+    protected void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    /**
+     * @param sexo the sexo to set
+     */
+    protected void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
 }

@@ -15,11 +15,12 @@ public class App {
     public static void main(String[] args) throws Exception {
         try {
             ServidorArmazenamento.inicializaTodos();
-        //     new JanelaPrincipal();
+            new JanelaPrincipal();
+            // System.out.println(Utilitario.validaCPF("10732807645"));
         
         // DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         // Endereco end1 = new Endereco("Rua aqui", 12, "complemento", "bairro", "cep", "cidade", "estado", "pais");
-        // ContaBancaria cont1 = new ContaBancaria("agencia", "conta", "cpfTitular", "nomeTitular");
+        // ContaBancaria cont1 = new ContaBancaria("nomeBanco", "agencia", "conta", "cpfTitular", "nomeTitular");
         // Curso curso1 = new Curso("codigo", "nome", 10, 3000);
         // GerenciadorBolsas.novaBolsa("codigo", "nome", 400);
         // GerenciadorBolsas.novaBolsa("codigo2", "nome2", 300);

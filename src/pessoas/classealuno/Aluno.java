@@ -59,15 +59,67 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         this.dataIngresso = dataIngresso;
     }
 
+    public void alterar(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
+    Endereco endereco, ContaBancaria contaBancaria, String numeroMatricula, LocalDate dataIngresso, Curso curso) {
+        super.setNome(nome);
+        super.setRg(rg);
+        super.setCpf(cpf);
+        super.setDataNascimento(dataNascimento);
+        super.setEndereco(endereco);
+        super.setContaBancaria(contaBancaria);
+        this.numeroMatricula = numeroMatricula;
+        this.curso = curso;
+        this.dataIngresso = dataIngresso;
+    }
+
+    public void alterar(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
+    Endereco endereco, String numeroMatricula, LocalDate dataIngresso, Curso curso) {
+        super.setNome(nome);
+        super.setRg(rg);
+        super.setCpf(cpf);
+        super.setDataNascimento(dataNascimento);
+        super.setEndereco(endereco);
+        super.setContaBancaria(null);
+        this.numeroMatricula = numeroMatricula;
+        this.curso = curso;
+        this.dataIngresso = dataIngresso;
+    }
+
+    public void alterar(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
+    ContaBancaria contaBancaria, String numeroMatricula, LocalDate dataIngresso, Curso curso) {
+        super.setNome(nome);
+        super.setRg(rg);
+        super.setCpf(cpf);
+        super.setDataNascimento(dataNascimento);
+        super.setContaBancaria(contaBancaria);
+        super.setEndereco(null);
+        this.numeroMatricula = numeroMatricula;
+        this.curso = curso;
+        this.dataIngresso = dataIngresso;
+    }
+
+    public void alterar(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
+    String numeroMatricula, LocalDate dataIngresso, Curso curso) {
+        super.setNome(nome);
+        super.setRg(rg);
+        super.setCpf(cpf);
+        super.setDataNascimento(dataNascimento);
+        super.setEndereco(null);
+        super.setContaBancaria(null);
+        this.numeroMatricula = numeroMatricula;
+        this.curso = curso;
+        this.dataIngresso = dataIngresso;
+    }
+
     public static Aluno fromStorageString(String[] campos, Curso curso) {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         if(campos.length == 8) {
             return new Aluno(campos[0], campos[1], campos[2], campos[3], LocalDate.parse(campos[4], formatador), campos[5],
             LocalDate.parse(campos[6], formatador), curso);
         }
-        else if(campos.length == 12) {
+        else if(campos.length == 13) {
             return new Aluno(campos[0], campos[1], campos[2], campos[3], LocalDate.parse(campos[4], formatador), 
-            new ContaBancaria(campos[5], campos[6], campos[7], campos[8]), campos[9], LocalDate.parse(campos[10], formatador), 
+            new ContaBancaria(campos[5], campos[6], campos[7], campos[8], campos[9]), campos[10], LocalDate.parse(campos[11], formatador), 
             curso);
         }
         else if(campos.length == 16) {
@@ -78,7 +130,7 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         else {
             return new Aluno(campos[0], campos[1], campos[2], campos[3], LocalDate.parse(campos[4], formatador), 
             new Endereco(campos[5], Integer.parseInt(campos[6]), campos[7], campos[8], campos[9], campos[10], campos[11], campos[12]),
-            new ContaBancaria(campos[13], campos[14], campos[15], campos[16]),campos[17], LocalDate.parse(campos[18], formatador),
+            new ContaBancaria(campos[13], campos[14], campos[15], campos[16], campos[17]),campos[18], LocalDate.parse(campos[19], formatador),
             curso);
         }
 
