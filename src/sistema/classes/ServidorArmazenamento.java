@@ -7,6 +7,9 @@ import complementares.Utilitario;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 public class ServidorArmazenamento {
 	
 	private static ArrayList<Curso> cursosCadastrados = new ArrayList<Curso>();
@@ -31,10 +34,20 @@ public class ServidorArmazenamento {
 	 */
 	public static void adicionaAluno(Aluno aluno) {
 		ServidorArmazenamento.alunosCadastrados.add(aluno);
+		try {
+			ServidorArmazenamento.atualizaBancoAluno();
+		} catch(Exception exc) {
+			System.out.println("Não foi possível atualizar o banco de dados dos Alunos");
+		}
 	}
 
 	public static void adicionaCurso(Curso curso) {
 		ServidorArmazenamento.cursosCadastrados.add(curso);
+		try {
+			ServidorArmazenamento.atualizaBancoCurso();
+		} catch(Exception exc) {
+			System.out.println("Não foi possível atualizar o banco de dados dos Cursos");
+		}
 	}
 
 	public static void atualizaBancoAluno() throws IOException {
@@ -133,4 +146,52 @@ public class ServidorArmazenamento {
 		ServidorArmazenamento.inicializaAlunos();
 	}
 	
+	public static TableModel getAlunosTable() {
+		String[] header = {
+			"Nome", "Curso", "CPF", "Matrícula", "RG", "Data Nascimento", "Data Ingresso"
+		};
+		String[][] data;
+		if(ServidorArmazenamento.alunosCadastrados.size() > 0) {
+			data = new String[ServidorArmazenamento.alunosCadastrados.size()][7];
+			for(int i = 0; i < ServidorArmazenamento.alunosCadastrados.size(); i++) {
+				data[i] = ServidorArmazenamento.alunosCadastrados.get(i).getInfoBasicasArray();
+			}
+		}
+		else {
+			data = null;
+		}
+		return new DefaultTableModel(data, header) {
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+
+		};
+	}
+
+	public static TableModel getAlunosTable(String cpf) {
+		String[] header = {
+			"Nome", "Curso", "CPF", "Matrícula", "RG", "Data Nascimento", "Data Ingresso"
+		};
+		boolean existe;
+		Aluno alunoProcurado = ServidorArmazenamento.pesquisarAlunoCPF(cpf);
+		existe = (alunoProcurado != null) ? true : false;
+		String[][] data;
+		if(existe) {
+			data = new String[1][7];
+			data[0] = alunoProcurado.getInfoBasicasArray();
+		}
+		else 
+			data = null;
+		return new DefaultTableModel(data, header) {
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+
+		};
+	}
+
 }

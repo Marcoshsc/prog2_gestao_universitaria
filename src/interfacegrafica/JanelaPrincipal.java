@@ -35,22 +35,24 @@ import sistema.classes.ServidorArmazenamento;
 
 public class JanelaPrincipal extends JFrame {
 
-    private static final int PROXIMA_LINHA = 1;
-    private static final int PROXIMA_COLUNA = 0;
-    private static final Dimension TAMANHO = new Dimension(120, 20);
-    private static final Insets ESPACAMENTO_PADRAO = new Insets(5, 5, 5, 5);
-    TelaInicial telaInicial = this.new TelaInicial();
-    TelaCadastro telaCadastro = this.new TelaCadastro();
-    TelaLogin telaLogin = this.new TelaLogin();
-    CadastroAluno cadastroAluno = this.new CadastroAluno();
-    PainelOpcoes painelOpcoes = this.new PainelOpcoes();
+    public static final int PROXIMA_LINHA = 1;
+    public static final int PROXIMA_COLUNA = 0;
+    public static final Dimension TAMANHO = new Dimension(120, 20);
+    public static final Insets ESPACAMENTO_PADRAO = new Insets(5, 5, 5, 5);
+    protected TelaInicial telaInicial = this.new TelaInicial();
+    protected TelaCadastro telaCadastro = this.new TelaCadastro();
+    protected TelaLogin telaLogin = this.new TelaLogin();
+    protected PainelOpcoes painelOpcoes = new PainelOpcoes(this);
+    protected CadastroAluno cadastroAluno = new CadastroAluno(this, this.painelOpcoes);
+    protected PesquisaAluno pesquisaAluno = new PesquisaAluno(this, this.painelOpcoes, this.cadastroAluno);
 
     public JanelaPrincipal() {
-        this.setSize(600, 600);
+        this.setSize(800, 700);
         this.setLayout(new GridBagLayout());
         this.setTitle("Sistema de Gestão Universitária");
-        this.setMinimumSize(new Dimension(600, 700));
+        this.setMinimumSize(new Dimension(800, 700));
         
+        this.add(this.pesquisaAluno);
         this.add(this.painelOpcoes);
         this.painelOpcoes.setVisible(true);
         this.add(this.cadastroAluno);
@@ -63,115 +65,115 @@ public class JanelaPrincipal extends JFrame {
         this.setVisible(true);
     }
 
-    private void erroPreenchimento(String mensagem) {
+    protected void erroPreenchimento(String mensagem) {
         JOptionPane.showMessageDialog(this, mensagem, "Erro de preenchimento", JOptionPane.ERROR_MESSAGE);
     }
 
-    private static JTextField geraField(String codigo) {
-        JFormattedTextField previo;
-        try {
-            switch(codigo) {
-                case "cpf": {
-                    previo = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
-                    previo.setColumns(20);
-                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-                } break;
-                case "matricula": {
-                    previo = new JFormattedTextField();
-                    previo.setColumns(20);
-                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-                } break;
-                case "data": {
-                    previo = new JFormattedTextField(new MaskFormatter("##/##/####"));
-                    previo.setColumns(20);
-                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-                } break;
-                case "rg": {
-                    previo = new JFormattedTextField(new MaskFormatter("UU-##########"));
-                    previo.setColumns(20);
-                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-                } break;
-                case "agencia": {
-                    previo = new JFormattedTextField(new MaskFormatter("####-#"));
-                    previo.setColumns(20);
-                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-                } break;
-                case "conta": {
-                    previo = new JFormattedTextField(new MaskFormatter("#####-#"));
-                    previo.setColumns(20);
-                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-                } break;
-                case "numeroCasa": {
-                    previo = new JFormattedTextField();
-                    previo.setColumns(20);
-                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-                } break;
-                case "cep": {
-                    previo = new JFormattedTextField(new MaskFormatter("#####-###"));
-                    previo.setColumns(20);
-                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-                } break;
-                default: {
-                    throw new Exception("Não foi possível criar o Campo.");
-                }
-            }
-            return previo;
-        } catch(Exception exc) {
-            System.out.println("Não foi possível criar o campo.");
-            return null;
-        }
-    }
+    // protected static JTextField geraField(String codigo) {
+    //     JFormattedTextField previo;
+    //     try {
+    //         switch(codigo) {
+    //             case "cpf": {
+    //                 previo = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+    //                 previo.setColumns(20);
+    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+    //             } break;
+    //             case "matricula": {
+    //                 previo = new JFormattedTextField();
+    //                 previo.setColumns(20);
+    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+    //             } break;
+    //             case "data": {
+    //                 previo = new JFormattedTextField(new MaskFormatter("##/##/####"));
+    //                 previo.setColumns(20);
+    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+    //             } break;
+    //             case "rg": {
+    //                 previo = new JFormattedTextField(new MaskFormatter("UU-##########"));
+    //                 previo.setColumns(20);
+    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+    //             } break;
+    //             case "agencia": {
+    //                 previo = new JFormattedTextField(new MaskFormatter("####-#"));
+    //                 previo.setColumns(20);
+    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+    //             } break;
+    //             case "conta": {
+    //                 previo = new JFormattedTextField(new MaskFormatter("#####-#"));
+    //                 previo.setColumns(20);
+    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+    //             } break;
+    //             case "numeroCasa": {
+    //                 previo = new JFormattedTextField();
+    //                 previo.setColumns(20);
+    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+    //             } break;
+    //             case "cep": {
+    //                 previo = new JFormattedTextField(new MaskFormatter("#####-###"));
+    //                 previo.setColumns(20);
+    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+    //             } break;
+    //             default: {
+    //                 throw new Exception("Não foi possível criar o Campo.");
+    //             }
+    //         }
+    //         return previo;
+    //     } catch(Exception exc) {
+    //         System.out.println("Não foi possível criar o campo.");
+    //         return null;
+    //     }
+    // }
 
-    private static JTextField geraField() {
-        try {
-            JTextField previo = new JTextField(20);
-            previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-            return previo;
-        } catch(Exception exc) {
-            System.out.println("Não foi possível criar o campo.");
-            return null;
-        }
-    }
+    // protected static JTextField geraField() {
+    //     try {
+    //         JTextField previo = new JTextField(20);
+    //         previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+    //         return previo;
+    //     } catch(Exception exc) {
+    //         System.out.println("Não foi possível criar o campo.");
+    //         return null;
+    //     }
+    // }
     
-    private static JLabel geraTitulo(String texto) {
-        JLabel previo = new JLabel(texto);
-        previo.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
-            BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        return previo;
-    }
+    // protected static JLabel geraTitulo(String texto) {
+    //     JLabel previo = new JLabel(texto);
+    //     previo.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+    //         BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+    //     return previo;
+    // }
 
-    private static void geraCampoVertical(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
-        constantes.gridy++;
-        constantes.gridx = 0;
-        alvo.add(label, constantes);
-        constantes.gridx++;
-        alvo.add(campo, constantes);
-    }
+    // protected static void geraCampoVertical(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
+    //     constantes.gridy++;
+    //     constantes.gridx = 0;
+    //     alvo.add(label, constantes);
+    //     constantes.gridx++;
+    //     alvo.add(campo, constantes);
+    // }
 
-    private static void geraCampoHorizontal(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
-        constantes.gridx++;
-        alvo.add(label, constantes);
-        constantes.gridx++;
-        alvo.add(campo, constantes);
-    }
+    // protected static void geraCampoHorizontal(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
+    //     constantes.gridx++;
+    //     alvo.add(label, constantes);
+    //     constantes.gridx++;
+    //     alvo.add(campo, constantes);
+    // }
 
-    private static void geraCampoCentral(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
-        constantes.gridy++;
-        constantes.gridx = 1;
-        alvo.add(label, constantes);
-        constantes.gridx++;
-        alvo.add(campo, constantes);
-    }
+    // protected static void geraCampoCentral(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
+    //     constantes.gridy++;
+    //     constantes.gridx = 1;
+    //     alvo.add(label, constantes);
+    //     constantes.gridx++;
+    //     alvo.add(campo, constantes);
+    // }
 
-    private static void posicionaTitulo(Component titulo, JPanel alvo, GridBagConstraints constantes) {
-        constantes.gridwidth = 4;
-        constantes.gridy++;
-        constantes.gridx = 0;
-        constantes.insets = new Insets(20, 0, 20, 0);
-        alvo.add(titulo, constantes);
-        constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
-        constantes.gridwidth = 1;
-    }
+    // protected static void posicionaTitulo(Component titulo, JPanel alvo, GridBagConstraints constantes) {
+    //     constantes.gridwidth = 4;
+    //     constantes.gridy++;
+    //     constantes.gridx = 0;
+    //     constantes.insets = new Insets(20, 0, 20, 0);
+    //     alvo.add(titulo, constantes);
+    //     constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
+    //     constantes.gridwidth = 1;
+    // }
 
     public class TelaInicial extends JPanel {
 
@@ -187,8 +189,8 @@ public class JanelaPrincipal extends JFrame {
             direciona(JanelaPrincipal.PROXIMA_LINHA);
             add(this.mensagemBoasVindas, constantes);
             direciona(JanelaPrincipal.PROXIMA_LINHA);
-            this.botaoCadastro.addActionListener(new ClicouBotaoCadastro());
-            this.botaoLogin.addActionListener(new ClicouBotaoLogin());
+            this.botaoCadastro.addActionListener(new TrocaTela(this, JanelaPrincipal.this.telaCadastro));
+            this.botaoLogin.addActionListener(new TrocaTela(this, JanelaPrincipal.this.telaLogin));
             add(this.botaoCadastro, constantes);
             direciona(JanelaPrincipal.PROXIMA_LINHA);
             add(this.botaoLogin, constantes);
@@ -256,7 +258,7 @@ public class JanelaPrincipal extends JFrame {
             this.add(this.passwordField, this.constantes);
 
             direciona(JanelaPrincipal.PROXIMA_LINHA);
-            this.retornar.addActionListener(new ClicouBotaoVoltar("cadastro"));
+            this.retornar.addActionListener(new TrocaTela(this, JanelaPrincipal.this.telaInicial));
             this.add(this.retornar, this.constantes);
 
             direciona(JanelaPrincipal.PROXIMA_COLUNA);
@@ -304,7 +306,7 @@ public class JanelaPrincipal extends JFrame {
             this.add(this.passwordField, this.constantes);
 
             direciona(JanelaPrincipal.PROXIMA_LINHA);
-            this.retornar.addActionListener(new ClicouBotaoVoltar("login"));
+            this.retornar.addActionListener(new TrocaTela(this, JanelaPrincipal.this.telaInicial));
             this.add(this.retornar, this.constantes);
 
             direciona(JanelaPrincipal.PROXIMA_COLUNA);
@@ -325,531 +327,65 @@ public class JanelaPrincipal extends JFrame {
 
     }
 
-    public class CadastroAluno extends JPanel {
+    // public class PainelOpcoes extends JPanel {
 
-        private GridBagConstraints constantes = new GridBagConstraints();
-        private JLabel dataIngressoLabel = new JLabel("Data de Ingresso: ");
-        private JTextField dataIngressoField = geraField("data");
-        private JLabel ativoLabel = new JLabel("Ativo: ");
-        private String[] ativoString = {"SIM", "NÃO"};
-        private JComboBox<String> ativoField = new JComboBox<String>(ativoString);
-        private JLabel nomeLabel = new JLabel("Nome: ");
-        private JTextField nomeField = geraField();
-        private JLabel sexoLabel = new JLabel("Sexo: ");
-        private String[] sexoString = {"Masculino", "Feminino"};
-        private JComboBox<String> sexoField = new JComboBox<String>(sexoString);
-        private JLabel informacoesGeraisLabel = geraTitulo("INFORMAÇÕES GERAIS");
-        private JLabel cpfLabel = new JLabel("CPF: ");
-        private JTextField cpfField = geraField("cpf");
-        private JLabel matriculaLabel = new JLabel("Matrícula: ");
-        private JTextField matriculaField = geraField();
-        private JLabel dataNascimentoLabel = new JLabel("Data de Nascimento: ");
-        private JTextField dataNascimentoField = geraField("data");
-        private JLabel identidadeLabel = new JLabel("RG: ");
-        private JTextField identidadeField = geraField();
-        private JLabel contaBancariaLabel = geraTitulo("INFORMAÇÕES DE CONTA BANCÁRIA");
-        private JLabel agenciaLabel = new JLabel("Agência: ");
-        private JTextField agenciaField = geraField();
-        private JLabel contaLabel = new JLabel("Conta: ");
-        private JTextField contaField = geraField();
-        private JLabel cpfTitularLabel = new JLabel("CPF do Titular: ");
-        private JTextField cpfTitularField = geraField();
-        private JLabel nomeTitularLabel = new JLabel("Nome do Titular: ");
-        private JTextField nomeTitularField = geraField();
-        private JLabel bancoLabel = new JLabel("Nome do Banco: ");
-        private String[] bancoString = {"BANCO DO BRASIL", "ITAÚ", "BRADESCO", "SANTANDER"};
-        private JComboBox<String> bancoField = new JComboBox<String>(this.bancoString);
-        private JLabel enderecoLabel = geraTitulo("INFORMAÇÕES DE ENDERECO");
-        private JLabel ruaLabel = new JLabel("Rua: ");
-        private JTextField ruaField = geraField();
-        private JLabel numeroLabel = new JLabel("Número: ");
-        private JTextField numeroField = geraField();
-        private JLabel complementoLabel = new JLabel("Complemento: ");
-        private JTextField complementoField = geraField();
-        private JLabel bairroLabel = new JLabel("Bairro: ");
-        private JTextField bairroField = geraField();
-        private JLabel cepLabel = new JLabel("CEP: ");
-        private JTextField cepField = geraField();
-        private JLabel cidadeLabel = new JLabel("Cidade: ");
-        private JTextField cidadeField = geraField();
-        private JLabel estadoLabel = new JLabel("Estado: ");
-        private JTextField estadoField = geraField();
-        private JLabel paisLabel = new JLabel("País: ");
-        private JTextField paisField = geraField();
-        private JLabel cursoLabel = new JLabel("Curso: ");
-        private String[] cursoStrings = ServidorArmazenamento.getNomeCursos();
-        private JComboBox<String> cursoField = new JComboBox<String>(cursoStrings);
-        private JButton botaoConfirma = new JButton("CONFIRMAR CADASTRO");
-        private JButton botaoVolta = new JButton("VOLTAR");
-        private AcaoCadastrarAluno acaoBotaoConfirma = new AcaoCadastrarAluno(this);
+    //     private GridBagConstraints constantes = new GridBagConstraints();
+    //     private JButton cadastrarAluno = new JButton("CADASTRAR ALUNO");
+    //     private JButton visualizarAluno = new JButton("VISUALIZAR ALUNO");
 
-        public CadastroAluno() {
-            this.setLayout(new GridBagLayout());
-            this.constantes.insets = new Insets(5, 5, 5, 5);
-            this.botaoConfirma.addActionListener(this.acaoBotaoConfirma);
-            this.botaoVolta.addActionListener(JanelaPrincipal.this.new ClicouBotaoVoltar("opcoesAluno"));
+    //     public PainelOpcoes() {
+    //         this.visualizarAluno.addActionListener(new TrocaTela(this, JanelaPrincipal.this.pesquisaAluno));
+    //         this.cadastrarAluno.addActionListener(new ClicouCadastrarAlterarAlunoButton("cadastrar", JanelaPrincipal.this));
+    //         this.setLayout(new GridBagLayout());
+    //         this.constantes.gridx++;
+    //         this.add(this.cadastrarAluno, this.constantes);
+    //         this.constantes.gridx++;
+    //         this.add(this.visualizarAluno, this.constantes);
+    //         this.setVisible(false);
 
-            // campo das Informações gerais
-            JanelaPrincipal.posicionaTitulo(this.informacoesGeraisLabel, this, this.constantes);
-            //// campo do curso
-            JanelaPrincipal.geraCampoCentral(this.cursoLabel, this.cursoField, this, this.constantes);
-            //// campo do nome
-            JanelaPrincipal.geraCampoVertical(this.nomeLabel, this.nomeField, this, this.constantes);
-            //// campo do sexo
-            JanelaPrincipal.geraCampoHorizontal(this.sexoLabel, this.sexoField, this, this.constantes);
-            //// campo do dataIngresso
-            JanelaPrincipal.geraCampoVertical(this.dataIngressoLabel, this.dataIngressoField, this, this.constantes);
-            //// campo do ativo
-            JanelaPrincipal.geraCampoHorizontal(this.ativoLabel, this.ativoField, this, this.constantes);
-            //// campo do CPF
-            JanelaPrincipal.geraCampoVertical(this.cpfLabel, this.cpfField,
-             this, this.constantes);
-            //// campo da matricula
-            JanelaPrincipal.geraCampoHorizontal(this.matriculaLabel, this.matriculaField,
-             this, this.constantes);
-            //// campo da data de nascimento
-            JanelaPrincipal.geraCampoVertical(this.dataNascimentoLabel, this.dataNascimentoField,
-             this, this.constantes);
-            //// campo do RG
-            JanelaPrincipal.geraCampoHorizontal(this.identidadeLabel, this.identidadeField,
-             this, this.constantes);
+    //     }
 
-            // campo da Conta Bancária
-            JanelaPrincipal.posicionaTitulo(this.contaBancariaLabel, this, this.constantes);
-            //// campo da escolha do banco
-            JanelaPrincipal.geraCampoCentral(this.bancoLabel, this.bancoField, this, this.constantes);
-            //// campo da agencia
-            JanelaPrincipal.geraCampoVertical(this.agenciaLabel, this.agenciaField,
-             this, this.constantes);
-            //// campo da conta
-            JanelaPrincipal.geraCampoHorizontal(this.contaLabel, this.contaField,
-             this, this.constantes);
-            //// campo do CPF do Titular
-            JanelaPrincipal.geraCampoVertical(this.cpfTitularLabel, this.cpfTitularField,
-             this, this.constantes);
-            //// campo do Nome do Titular
-            JanelaPrincipal.geraCampoHorizontal(this.nomeTitularLabel, this.nomeTitularField,
-             this, this.constantes);
+    // }
 
-            // campo do Endereço
-            JanelaPrincipal.posicionaTitulo(this.enderecoLabel, this, this.constantes);
-            //// campo da rua
-            JanelaPrincipal.geraCampoVertical(this.ruaLabel, this.ruaField,
-             this, this.constantes);
-            //// campo do numero
-            JanelaPrincipal.geraCampoHorizontal(this.numeroLabel, this.numeroField,
-             this, this.constantes);
-             //// campo do complemento
-            JanelaPrincipal.geraCampoVertical(this.complementoLabel, this.complementoField,
-            this, this.constantes);
-           //// campo do cep
-           JanelaPrincipal.geraCampoHorizontal(this.cepLabel, this.cepField,
-            this, this.constantes);
-            //// campo da bairro
-            JanelaPrincipal.geraCampoVertical(this.bairroLabel, this.bairroField,
-             this, this.constantes);
-            //// campo do cidade
-            JanelaPrincipal.geraCampoHorizontal(this.cidadeLabel, this.cidadeField,
-             this, this.constantes);
-             //// campo da estado
-            JanelaPrincipal.geraCampoVertical(this.estadoLabel, this.estadoField,
-            this, this.constantes);
-           //// campo do pais
-           JanelaPrincipal.geraCampoHorizontal(this.paisLabel, this.paisField,
-            this, this.constantes);
-            // campo botao de voltar e de confirmar
-            JanelaPrincipal.geraCampoCentral(this.botaoVolta, this.botaoConfirma,
-             this, this.constantes);
-
-            this.setVisible(false);
-        }
-
-        /**
-         * @return the botaoConfirma
-         */
-        public JButton getBotaoConfirma() {
-            return botaoConfirma;
-        }
-
-        private void direciona(int comando) {
-            if(comando == JanelaPrincipal.PROXIMA_LINHA) {
-                this.constantes.gridy = this.constantes.gridy + 1;
-                this.constantes.gridx = 0;
-            }
-            else {
-                this.constantes.gridx = this.constantes.gridx + 1;
-            }
-        }
-
-    }
-
-    public class PesquisaAluno extends JPanel {
-
-        private GridBagConstraints constantes = new GridBagConstraints();
-        private JTextField cpfAluno = geraField();
-
-    }
-
-    public class PainelOpcoes extends JPanel {
-
-        private GridBagConstraints constantes = new GridBagConstraints();
-        private JButton cadastrarAluno = new JButton("CADASTRAR ALUNO");
-        private JButton visualizarAluno = new JButton("VISUALIZAR ALUNO");
-
-        public PainelOpcoes() {
-
-            this.cadastrarAluno.addActionListener(JanelaPrincipal.this.new ClicouCadastrarAlunoButton());
-            this.setLayout(new GridBagLayout());
-            this.constantes.gridx++;
-            this.add(this.cadastrarAluno, this.constantes);
-            this.constantes.gridx++;
-            this.add(this.visualizarAluno, this.constantes);
-            this.setVisible(false);
-
-        }
-
-    }
-
-    /**
-     * Classe que implementa o botão de CONFIRMAR CADASTRO/ALTERAÇÃO
-     * -----VARIAVEIS INICIO-----
-     * CadastroAluno campos: Classe CadastroAluno que será usada.
-     * String acao: Pode ser "cadastrar" e "alterar", determina como será feita a leitura.
-     * -----VARIAVEIS FIM-----
-     * 
-     * -----FUNCIONAMENTO INICIO-----
-     * CADASTRO
-     * Caso os campos de Endereco ou Conta Bancaria (ou ambos) sejam deixados em branco, 
-     * será criado um Aluno sem tais campos. Porém, um único campo preenchido já faz com que
-     * o programa reconheça como uma tentativa de criação de aluno COM Endereco ou ContaBancaria
-     * (ou ambos).
-     * ALTERACAO
-     * Qualquer aluno pode ser alterado, com exceção do campo CPF, que é único.
-     * Ao apagar TODOS os campos de Endereco ou de ContaBancaria (ou ambos), o aluno selecionado
-     * terá seus dados alterados da mesma forma. Porém, um único campo preenchido de um dos dois
-     * significa uma tentativa de alteração desses campos, sem sua exclusão.
-     * -----FUNCIONAMENTO FIM-----
-     * 
-     * -----VALIDACOES INICIO-----
-     * CADASTRO
-     * Não é permitido o cadastro de dois alunos com o mesmo CPF.
-     * ALTERACAO
-     * Não é permitido a "alteração" de um aluno caso o CPF digitado não exista no sistema.
-     * GERAL
-     * Validação de CPF
-     * Validacao de Datas
-     * Nenhum campo pode estar vazio (A menos que TODOS os campos de Endereço ou TODOS os campos
-     * de ContaBancaria estejam vazios, como é dito acima)
-     * Todos esses erros mostrarão um JOptionPane de erro, não permitindo o cadastro.
-     * -----VALIDACOES FIM------
-     */
-    public class AcaoCadastrarAluno implements ActionListener {
-
-        private CadastroAluno campos;
-        private String acao;
-
-        public AcaoCadastrarAluno(CadastroAluno campos) {
-            this.campos = campos;
-        }
-
-        /**
-         * @param acao the acao to set
-         */
-        public void setAcao(String acao) {
-            this.acao = acao;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent evento) {
-            Curso cursoSelecionado = ServidorArmazenamento.pesquisaCursoNome(
-            (String)this.campos.cursoField.getSelectedItem());
-            if(cursoSelecionado == null) {
-                JOptionPane.showMessageDialog(JanelaPrincipal.this, "Curso inválido.");
-            }
-            else {
-                DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                boolean preencheuConta = true;
-                boolean preencheuEndereco = true;
-                String agenciaPrevia = Utilitario.formataCampo(this.campos.agenciaField);
-                String contaPrevia = Utilitario.formataCampo(this.campos.contaField);
-                String nomeTitularPrevio = this.campos.nomeTitularField.getText();
-                String cpfTitularPrevio = Utilitario.formataCampo(this.campos.cpfTitularField);
-                if(agenciaPrevia.equals("") && contaPrevia.equals("") && nomeTitularPrevio.equals("") &&
-                cpfTitularPrevio.equals("")) {
-                    preencheuConta = false;
-                }
-                String ruaPrevia = this.campos.ruaField.getText();
-                String numeroPrevio = this.campos.numeroField.getText();
-                String complementoPrevio = this.campos.complementoField.getText();
-                String cepPrevio = Utilitario.formataCampo(this.campos.cepField);
-                String bairroPrevio = this.campos.bairroField.getText();
-                String cidadePrevio = this.campos.cidadeField.getText();
-                String estadoPrevio = this.campos.estadoField.getText();
-                String paisPrevio = this.campos.paisField.getText();
-                if(Utilitario.formataCampo(this.campos.nomeField).equals("")) {
-                    JanelaPrincipal.this.erroPreenchimento("Campo NOME vazio.");
-                    return;
-                }
-                if(!Utilitario.validaCPF(Utilitario.formataCampo(this.campos.cpfField))) {
-                    JanelaPrincipal.this.erroPreenchimento("Digite um CPF válido!");
-                    return;
-                }
-                if(Utilitario.formataCampo(this.campos.identidadeField).equals("")) {
-                    JanelaPrincipal.this.erroPreenchimento("Digite um RG válido");
-                    return;
-                }
-                try {
-                    LocalDate.parse(this.campos.dataNascimentoField.getText(), formatador);
-                } catch(Exception exc) {
-                    JanelaPrincipal.this.erroPreenchimento("Data de Nascimento Inválida.");
-                    return;
-                }
-                try {
-                    LocalDate.parse(this.campos.dataIngressoField.getText(), formatador);
-                } catch(Exception exc) {
-                    JanelaPrincipal.this.erroPreenchimento("Data de Ingresso Inválida.");
-                    return;
-                }
-                try {
-                    Integer.parseInt(Utilitario.formataCampo(this.campos.matriculaField));
-                } catch(Exception exc) {
-                    JanelaPrincipal.this.erroPreenchimento("Digite apenas valores númericos no campo (Matrícula).");
-                    return;
-                }
-                try {
-                    Integer.parseInt(Utilitario.formataCampo(this.campos.identidadeField));
-                } catch(Exception exc) {
-                    JanelaPrincipal.this.erroPreenchimento("Digite apenas valores númericos no campo (RG).");
-                    return;
-                }
-                if(ruaPrevia.equals("") && numeroPrevio.equals("") && complementoPrevio.equals("") && cepPrevio.equals("")
-                && bairroPrevio.equals("") && cidadePrevio.equals("") && estadoPrevio.equals("") && paisPrevio.equals("")) {
-                    preencheuEndereco = false;
-                }
-                // aqui foi preenchido tudo
-                if(preencheuEndereco && preencheuConta) {
-                    if(agenciaPrevia.equals("") || contaPrevia.equals("") || nomeTitularPrevio.equals("") ||
-                    cpfTitularPrevio.equals("")) {
-                        JanelaPrincipal.this.erroPreenchimento("Preencha campos vazios em (Conta Bancaria).");
-                        return;
-                    }
-                    if(ruaPrevia.equals("") || numeroPrevio.equals("") || complementoPrevio.equals("") || cepPrevio.equals("")
-                    || bairroPrevio.equals("") || cidadePrevio.equals("") || estadoPrevio.equals("") || paisPrevio.equals("")) {
-                        JanelaPrincipal.this.erroPreenchimento("Preencha campos vazios em (Endereco).");
-                        return;
-                    }
-                    if(!Utilitario.validaCPF(Utilitario.formataCampo(this.campos.cpfTitularField))) {
-                        JanelaPrincipal.this.erroPreenchimento("Digite um CPF do Titular válido! (Conta Bancaria)");
-                        return;
-                    }
-                    try {
-                        Integer.parseInt(numeroPrevio);
-                    } catch(Exception exc) {
-                        JanelaPrincipal.this.erroPreenchimento("Apenas valores númericos em número(Endereço)");
-                        return;
-                    }
-                    Aluno supostoExistente = ServidorArmazenamento.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
-                    if(this.acao.equals("cadastrar")) {
-                        if(supostoExistente != null) {
-                            JanelaPrincipal.this.erroPreenchimento("Aluno já cadastrado.");
-                            return;
-                        }
-                        ServidorArmazenamento.adicionaAluno(new Aluno(this.campos.nomeField.getText(),
-                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
-                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
-                        formatador), new Endereco(ruaPrevia, Integer.parseInt(numeroPrevio), complementoPrevio, cepPrevio, bairroPrevio,
-                        cidadePrevio, estadoPrevio, paisPrevio), new ContaBancaria((String)this.campos.bancoField.getSelectedItem(), 
-                        agenciaPrevia, contaPrevia, cpfTitularPrevio, nomeTitularPrevio), 
-                        Utilitario.formataCampo(this.campos.matriculaField), LocalDate.parse(this.campos.dataIngressoField.getText(), 
-                        formatador), ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
-                        ServidorArmazenamento.imprimeAlunosCadastrados();
-                    }
-                    else if(this.acao.equals("alterar")) {
-                        if(supostoExistente == null) {
-                            JanelaPrincipal.this.erroPreenchimento("Aluno não está cadastrado.");
-                            return;
-                        }
-                        supostoExistente.alterar(this.campos.nomeField.getText(),
-                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
-                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
-                        formatador), new Endereco(ruaPrevia, Integer.parseInt(numeroPrevio), complementoPrevio, cepPrevio, bairroPrevio,
-                        cidadePrevio, estadoPrevio, paisPrevio), new ContaBancaria((String)this.campos.bancoField.getSelectedItem(), 
-                        agenciaPrevia, contaPrevia, cpfTitularPrevio, nomeTitularPrevio), 
-                        Utilitario.formataCampo(this.campos.matriculaField), LocalDate.parse(this.campos.dataIngressoField.getText(), 
-                        formatador), ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
-                        ServidorArmazenamento.imprimeAlunosCadastrados();
-                    }
-                }
-                // aqui ele preenche o basico + contabancaria;
-                else if(preencheuConta) {
-                    if(agenciaPrevia.equals("") || contaPrevia.equals("") || nomeTitularPrevio.equals("") ||
-                    cpfTitularPrevio.equals("")) {
-                        JanelaPrincipal.this.erroPreenchimento("Preencha campos vazios em (Conta Bancaria).");
-                        return;
-                    }
-                    if(!Utilitario.validaCPF(Utilitario.formataCampo(this.campos.cpfTitularField))) {
-                        JanelaPrincipal.this.erroPreenchimento("Digite um CPF do Titular válido! (Conta Bancaria)");
-                        return;
-                    }
-                    Aluno supostoExistente = ServidorArmazenamento.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
-                    if(this.acao.equals("cadastrar")) {
-                        if(supostoExistente != null) {
-                            JanelaPrincipal.this.erroPreenchimento("Aluno já cadastrado.");
-                            return;
-                        }
-                        ServidorArmazenamento.adicionaAluno(new Aluno(this.campos.nomeField.getText(),
-                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
-                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
-                        formatador), new ContaBancaria((String)this.campos.bancoField.getSelectedItem(), agenciaPrevia, 
-                        contaPrevia, cpfTitularPrevio, nomeTitularPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
-                        LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
-                        ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
-                        ServidorArmazenamento.imprimeAlunosCadastrados();
-                    }
-                    else if(this.acao.equals("alterar")) {
-                        if(supostoExistente == null) {
-                            JanelaPrincipal.this.erroPreenchimento("Aluno não está cadastrado.");
-                            return;
-                        }
-                        supostoExistente.alterar(this.campos.nomeField.getText(),
-                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
-                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
-                        formatador), new ContaBancaria((String)this.campos.bancoField.getSelectedItem(), agenciaPrevia, 
-                        contaPrevia, cpfTitularPrevio, nomeTitularPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
-                        LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
-                        ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
-                        ServidorArmazenamento.imprimeAlunosCadastrados();
-                    }
-                }
-                // aqui foi preenchido o basico + endereco
-                else if(preencheuEndereco) {
-                    if(ruaPrevia.equals("") || numeroPrevio.equals("") || complementoPrevio.equals("") || cepPrevio.equals("")
-                    || bairroPrevio.equals("") || cidadePrevio.equals("") || estadoPrevio.equals("") || paisPrevio.equals("")) {
-                        JanelaPrincipal.this.erroPreenchimento("Preencha campos vazios em (Endereco).");
-                        return;
-                    }
-                    try {
-                        Integer.parseInt(numeroPrevio);
-                    } catch(Exception exc) {
-                        JanelaPrincipal.this.erroPreenchimento("Apenas valores númericos em número(Endereço)");
-                        return;
-                    }
-                    Aluno supostoExistente = ServidorArmazenamento.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
-                    if(this.acao.equals("cadastrar")) {
-                        if(supostoExistente != null) {
-                            JanelaPrincipal.this.erroPreenchimento("Aluno já cadastrado.");
-                            return;
-                        }
-                        ServidorArmazenamento.adicionaAluno(new Aluno(this.campos.nomeField.getText(),
-                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
-                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
-                        formatador), new Endereco(ruaPrevia, Integer.parseInt(numeroPrevio), complementoPrevio, cepPrevio, bairroPrevio,
-                        cidadePrevio, estadoPrevio, paisPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
-                        LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
-                        ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
-                        ServidorArmazenamento.imprimeAlunosCadastrados();
-                    }
-                    else if(this.acao.equals("alterar")) {
-                        if(supostoExistente == null) {
-                            JanelaPrincipal.this.erroPreenchimento("Aluno não está cadastrado.");
-                            return;
-                        }
-                        supostoExistente.alterar(this.campos.nomeField.getText(),
-                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
-                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
-                        formatador), new Endereco(ruaPrevia, Integer.parseInt(numeroPrevio), complementoPrevio, cepPrevio, bairroPrevio,
-                        cidadePrevio, estadoPrevio, paisPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
-                        LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
-                        ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
-                        ServidorArmazenamento.imprimeAlunosCadastrados();
-                    }
-                }
-                // aqui só foi preenchido o basico mesmo
-                else {
-                    Aluno supostoExistente = ServidorArmazenamento.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
-                    if(this.acao.equals("cadastrar")) {
-                        if(supostoExistente != null) {
-                            JanelaPrincipal.this.erroPreenchimento("Aluno já cadastrado.");
-                            return;
-                        }
-                        ServidorArmazenamento.adicionaAluno(new Aluno(this.campos.nomeField.getText(),
-                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
-                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
-                        formatador), Utilitario.formataCampo(this.campos.matriculaField), 
-                        LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
-                        ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
-                        ServidorArmazenamento.imprimeAlunosCadastrados();
-                    }
-                    else if(this.acao.equals("alterar")) {
-                        if(supostoExistente == null) {
-                            JanelaPrincipal.this.erroPreenchimento("Aluno não está cadastrado.");
-                            return;
-                        }
-                        supostoExistente.alterar(this.campos.nomeField.getText(),
-                        Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
-                        (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
-                        formatador), Utilitario.formataCampo(this.campos.matriculaField), 
-                        LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
-                        ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
-                        ServidorArmazenamento.imprimeAlunosCadastrados();
-                    }
-                }
-            }
-        }
-
-    }
-
-    public class ClicouCadastrarAlunoButton implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent evento) {
-            JanelaPrincipal.this.painelOpcoes.setVisible(false);
-            JanelaPrincipal.this.cadastroAluno.setVisible(true);
-            JanelaPrincipal.this.cadastroAluno.acaoBotaoConfirma.setAcao("cadastrar");
-            JanelaPrincipal.this.cadastroAluno.botaoConfirma.setText("CONFIRMAR CADASTRO");
-        }
-
-    }
-
-    public class ClicouBotaoCadastro implements ActionListener {
+    // public class ClicouBotaoCadastro implements ActionListener {
     
-        @Override
-        public void actionPerformed(ActionEvent evento) {
-            JanelaPrincipal.this.telaInicial.setVisible(false);
-            JanelaPrincipal.this.telaCadastro.setVisible(true);
-        }
+    //     @Override
+    //     public void actionPerformed(ActionEvent evento) {
+    //         JanelaPrincipal.this.telaInicial.setVisible(false);
+    //         JanelaPrincipal.this.telaCadastro.setVisible(true);
+    //     }
     
-    }
+    // }
 
-    public class ClicouBotaoLogin implements ActionListener {
+    // public class ClicouBotaoLogin implements ActionListener {
         
-        @Override
-        public void actionPerformed(ActionEvent evento) {
-            JanelaPrincipal.this.telaInicial.setVisible(false);
-            JanelaPrincipal.this.telaLogin.setVisible(true);
-        }
+    //     @Override
+    //     public void actionPerformed(ActionEvent evento) {
+    //         JanelaPrincipal.this.telaInicial.setVisible(false);
+    //         JanelaPrincipal.this.telaLogin.setVisible(true);
+    //     }
 
-    }
+    // }
 
-    public class ClicouBotaoVoltar implements ActionListener {
+    // public class ClicouBotaoVoltar implements ActionListener {
         
-        private String mudanca;
+    //     private String mudanca;
 
-        public ClicouBotaoVoltar(String codigo) {
-            this.mudanca = codigo;
-        }
+    //     public ClicouBotaoVoltar(String codigo) {
+    //         this.mudanca = codigo;
+    //     }
 
-        @Override
-        public void actionPerformed(ActionEvent evento) {
-            if(this.mudanca == "login") {
-                JanelaPrincipal.this.telaLogin.setVisible(false);
-                JanelaPrincipal.this.telaInicial.setVisible(true);
-            }
-            else if(this.mudanca == "opcoesAluno") {
-                JanelaPrincipal.this.cadastroAluno.setVisible(false);
-                JanelaPrincipal.this.painelOpcoes.setVisible(true);
-            }
-        }
+    //     @Override
+    //     public void actionPerformed(ActionEvent evento) {
+    //         if(this.mudanca == "login") {
+    //             JanelaPrincipal.this.telaLogin.setVisible(false);
+    //             JanelaPrincipal.this.telaInicial.setVisible(true);
+    //         }
+    //         else if(this.mudanca == "opcoesAluno") {
+    //             JanelaPrincipal.this.cadastroAluno.setVisible(false);
+    //             JanelaPrincipal.this.painelOpcoes.setVisible(true);
+    //         }
+    //     }
 
-    }
+    //}
 }

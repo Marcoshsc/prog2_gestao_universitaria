@@ -1,5 +1,9 @@
 package complementares;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,9 +12,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.text.MaskFormatter;
 
 import contratos.ClassesGeral;
+import interfacegrafica.JanelaPrincipal;
 
 public interface Utilitario {
 
@@ -118,6 +131,128 @@ public interface Utilitario {
                 }
 			}
 		}
+    }
+
+    public static JTextField geraField(String codigo) {
+        JFormattedTextField previo;
+        try {
+            switch(codigo) {
+                case "cpf": {
+                    previo = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+                    previo.setColumns(20);
+                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+                } break;
+                case "matricula": {
+                    previo = new JFormattedTextField();
+                    previo.setColumns(20);
+                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+                } break;
+                case "data": {
+                    previo = new JFormattedTextField(new MaskFormatter("##/##/####"));
+                    previo.setColumns(20);
+                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+                } break;
+                case "rg": {
+                    previo = new JFormattedTextField(new MaskFormatter("UU-##########"));
+                    previo.setColumns(20);
+                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+                } break;
+                case "agencia": {
+                    previo = new JFormattedTextField(new MaskFormatter("####-#"));
+                    previo.setColumns(20);
+                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+                } break;
+                case "conta": {
+                    previo = new JFormattedTextField(new MaskFormatter("#####-#"));
+                    previo.setColumns(20);
+                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+                } break;
+                case "numeroCasa": {
+                    previo = new JFormattedTextField();
+                    previo.setColumns(20);
+                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+                } break;
+                case "cep": {
+                    previo = new JFormattedTextField(new MaskFormatter("#####-###"));
+                    previo.setColumns(20);
+                    previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+                } break;
+                default: {
+                    throw new Exception("Não foi possível criar o Campo.");
+                }
+            }
+            return previo;
+        } catch(Exception exc) {
+            System.out.println("Não foi possível criar o campo.");
+            return null;
+        }
+    }
+
+    public static JTextField geraField() {
+        try {
+            JTextField previo = new JTextField(20);
+            previo.setMinimumSize(JanelaPrincipal.TAMANHO);
+            return previo;
+        } catch(Exception exc) {
+            System.out.println("Não foi possível criar o campo.");
+            return null;
+        }
+    }
+    
+    public static JLabel geraTitulo(String texto) {
+        JLabel previo = new JLabel(texto);
+        previo.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
+            BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        return previo;
+    }
+
+    public static void geraCampoVertical(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
+        constantes.gridy++;
+        constantes.gridx = 0;
+        alvo.add(label, constantes);
+        constantes.gridx++;
+        alvo.add(campo, constantes);
+    }
+
+    public static void geraCampoHorizontal(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
+        constantes.gridx++;
+        alvo.add(label, constantes);
+        constantes.gridx++;
+        alvo.add(campo, constantes);
+    }
+
+    public static void geraCampoCentral(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
+        constantes.gridy++;
+        constantes.gridx = 1;
+        alvo.add(label, constantes);
+        constantes.gridx++;
+        alvo.add(campo, constantes);
+    }
+
+    public static void posicionaTitulo(Component titulo, JPanel alvo, GridBagConstraints constantes) {
+        constantes.gridwidth = 4;
+        constantes.gridy++;
+        constantes.gridx = 0;
+        constantes.insets = new Insets(20, 0, 20, 0);
+        alvo.add(titulo, constantes);
+        constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
+        constantes.gridwidth = 1;
+    }
+
+    public static void formataEspacamentoTabela(JTable tabela) {
+        for(int i = 0; i < 7; i++) {
+            TableColumn coluna = tabela.getColumnModel().getColumn(i);
+            String maior = (String)coluna.getHeaderValue();
+            for(int j = 0; j < tabela.getRowCount(); j++) {
+                if(maior.length() < ((String)tabela.getValueAt(j, i)).length()) {
+                    maior = (String)tabela.getValueAt(j, i);
+                }
+            }
+            coluna.setMinWidth(8*maior.length());
+            DefaultTableCellRenderer renderizador = new DefaultTableCellRenderer();
+            renderizador.setHorizontalAlignment(JLabel.CENTER);
+            coluna.setCellRenderer(renderizador);
+        }
     }
 
 }

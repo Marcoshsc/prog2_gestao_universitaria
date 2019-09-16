@@ -136,6 +136,19 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
 
     }
 
+    public String[] getInfoBasicasArray() {
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String[] infos = new String[7];
+        infos[0] = this.getNome();
+        infos[1] = this.curso.getNome();
+        infos[2] = this.getCpf();
+        infos[3] = this.numeroMatricula;
+        infos[4] = this.getRg();
+        infos[5] = formatador.format(this.getDataNascimento());
+        infos[6] = formatador.format(this.dataIngresso);
+        return infos;
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -201,6 +214,13 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
             acumuladora += i.toString();
         }
         return acumuladora;
+    }
+
+    /**
+     * @return the curso
+     */
+    public Curso getCurso() {
+        return curso;
     }
 
     /**
