@@ -29,10 +29,10 @@ public class ClicouCelula extends MouseAdapter {
         if(a.getClickCount() == 2 && !a.isConsumed()) {
             a.consume();
             int linha = this.tabela.rowAtPoint(a.getPoint());
-            String cpfSelecionado = (String)this.tabela.getValueAt(linha, 1);
+            String cpfSelecionado = (String)this.tabela.getValueAt(linha, 2);
             Aluno alunoSelecionado = ServidorArmazenamento.pesquisarAlunoCPF(cpfSelecionado);
             // this.proximo.setCursoField(alunoSelecionado.getCurso().getNome());
-            CadastroAluno.alteraNome(this.proximo);
+            this.proximo.setaCampos(alunoSelecionado);
             this.anterior.setVisible(false);
             this.proximo.setVisible(true);
         }

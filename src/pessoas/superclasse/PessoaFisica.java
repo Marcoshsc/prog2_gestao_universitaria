@@ -116,6 +116,13 @@ public class PessoaFisica implements ClassesGeral {
     }
 
     /**
+     * @return the sexo
+     */
+    public String getSexo() {
+        return sexo;
+    }
+
+    /**
      * @return the cpf
      */
     public String getCpf() {

@@ -268,8 +268,11 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
             throw new Exception("Tentativa não permitida de modificação de usuário.");
     }
 
-    public boolean getAtivo() {
-        return this.ativo;
+    public String getAtivo() {
+        if(this.ativo)
+            return String.format("SIM");
+        else
+            return String.format("NÃO");
     }
 
     /**

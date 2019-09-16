@@ -45,6 +45,13 @@ public class Endereco implements ClassesGeral {
     }
 
     /**
+     * @return the complemento
+     */
+    public String getComplemento() {
+        return complemento;
+    }
+
+    /**
      * @return the bairro
      */
     public String getBairro() {

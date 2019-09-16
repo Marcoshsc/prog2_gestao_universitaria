@@ -102,6 +102,10 @@ public class AcaoCadastrarAluno implements ActionListener {
                 this.campos.patern.erroPreenchimento("Digite um RG válido");
                 return;
             }
+            if(this.campos.sexoField.getSelectedItem() == null) {
+                this.campos.patern.erroPreenchimento("Selecione um Sexo.");
+                return;
+            }
             try {
                 LocalDate.parse(this.campos.dataNascimentoField.getText(), formatador);
             } catch(Exception exc) {
@@ -132,8 +136,8 @@ public class AcaoCadastrarAluno implements ActionListener {
             }
             // aqui foi preenchido tudo
             if(preencheuEndereco && preencheuConta) {
-                if(agenciaPrevia.equals("") || contaPrevia.equals("") || nomeTitularPrevio.equals("") ||
-                cpfTitularPrevio.equals("")) {
+                if(this.campos.bancoField.getSelectedItem() == null || agenciaPrevia.equals("") || contaPrevia.equals("") || 
+                nomeTitularPrevio.equals("") || cpfTitularPrevio.equals("")) {
                     this.campos.patern.erroPreenchimento("Preencha campos vazios em (Conta Bancaria).");
                     return;
                 }
@@ -184,8 +188,8 @@ public class AcaoCadastrarAluno implements ActionListener {
             }
             // aqui ele preenche o basico + contabancaria;
             else if(preencheuConta) {
-                if(agenciaPrevia.equals("") || contaPrevia.equals("") || nomeTitularPrevio.equals("") ||
-                cpfTitularPrevio.equals("")) {
+                if(this.campos.bancoField.getSelectedItem() == null || agenciaPrevia.equals("") || contaPrevia.equals("") || 
+                nomeTitularPrevio.equals("") || cpfTitularPrevio.equals("")) {
                     this.campos.patern.erroPreenchimento("Preencha campos vazios em (Conta Bancaria).");
                     return;
                 }

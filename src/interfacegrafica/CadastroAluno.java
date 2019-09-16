@@ -3,6 +3,7 @@ package interfacegrafica;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -11,8 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import sistema.classes.ServidorArmazenamento;
+import complementares.ContaBancaria;
+import complementares.Endereco;
 import complementares.Utilitario;
 import interfacegrafica.PainelOpcoes;
+import pessoas.classealuno.Aluno;
 
 public class CadastroAluno extends JPanel {
 
@@ -26,7 +30,7 @@ public class CadastroAluno extends JPanel {
     protected String[] ativoString = {"SIM", "NÃO"};
     protected JComboBox<String> ativoField = new JComboBox<String>(ativoString);
     protected JLabel nomeLabel = new JLabel("Nome: ");
-    protected JTextField nomeField = Utilitario.geraField();
+    public JTextField nomeField = Utilitario.geraField();
     protected JLabel sexoLabel = new JLabel("Sexo: ");
     protected String[] sexoString = {"Masculino", "Feminino"};
     protected JComboBox<String> sexoField = new JComboBox<String>(sexoString);
@@ -83,6 +87,7 @@ public class CadastroAluno extends JPanel {
         this.constantes.insets = new Insets(5, 5, 5, 5);
         this.botaoConfirma.addActionListener(this.acaoBotaoConfirma);
         this.botaoVolta.addActionListener(new TrocaTela(this, this.origem));
+        this.ativoField.setEnabled(false);
 
         // campo das Informações gerais
         Utilitario.posicionaTitulo(this.informacoesGeraisLabel, this, this.constantes);
@@ -166,8 +171,108 @@ public class CadastroAluno extends JPanel {
         return botaoConfirma;
     }
 
-    public static void alteraNome(CadastroAluno ca) {
-        ca.nomeField.setText("DALE");
+    public void setaCampos(Aluno aluno) {
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        if(aluno != null) {
+            this.nomeField.setText(aluno.getNome());
+            this.cursoField.setSelectedItem(aluno.getCurso().getNome());
+            this.sexoField.setSelectedItem(aluno.getSexo());
+            this.dataIngressoField.setText(formatador.format(aluno.getDataIngresso()));
+            this.ativoField.setSelectedItem(aluno.getAtivo());
+            this.cpfField.setText(aluno.getCpf());
+            this.matriculaField.setText(aluno.getNumeroMatricula());
+            this.dataNascimentoField.setText(formatador.format(aluno.getDataNascimento()));
+            this.identidadeField.setText(aluno.getRg());
+            this.botaoConfirma.setVisible(false);
+            if(aluno.getContaBancaria() != null && aluno.getEndereco() != null) {
+                ContaBancaria contaDoAluno = aluno.getContaBancaria();
+                this.bancoField.setSelectedItem(contaDoAluno.getNomeBanco());
+                this.agenciaField.setText(contaDoAluno.getAgencia());
+                this.contaField.setText(contaDoAluno.getConta());
+                this.cpfTitularField.setText(contaDoAluno.getCpfTitular());
+                this.nomeTitularField.setText(contaDoAluno.getNomeTitular());
+                Endereco enderecoDoAluno = aluno.getEndereco();
+                this.ruaField.setText(enderecoDoAluno.getRua());
+                this.numeroField.setText(String.valueOf(enderecoDoAluno.getNumero()));
+                this.complementoField.setText(enderecoDoAluno.getComplemento());
+                this.cepField.setText(enderecoDoAluno.getCep());
+                this.bairroField.setText(enderecoDoAluno.getBairro());
+                this.cidadeField.setText(enderecoDoAluno.getCidade());
+                this.estadoField.setText(enderecoDoAluno.getEstado());
+                this.paisField.setText(enderecoDoAluno.getPais());
+            }
+            else if(aluno.getContaBancaria() != null) {
+                ContaBancaria contaDoAluno = aluno.getContaBancaria();
+                this.bancoField.setSelectedItem(contaDoAluno.getNomeBanco());
+                this.agenciaField.setText(contaDoAluno.getAgencia());
+                this.contaField.setText(contaDoAluno.getConta());
+                this.cpfTitularField.setText(contaDoAluno.getCpfTitular());
+                this.nomeTitularField.setText(contaDoAluno.getNomeTitular());
+                this.ruaField.setText(null);
+                this.numeroField.setText(null);
+                this.complementoField.setText(null);
+                this.cepField.setText(null);
+                this.bairroField.setText(null);
+                this.cidadeField.setText(null);
+                this.estadoField.setText(null);
+                this.paisField.setText(null);
+            }
+            else if(aluno.getEndereco() != null) {
+                Endereco enderecoDoAluno = aluno.getEndereco();
+                this.ruaField.setText(enderecoDoAluno.getRua());
+                this.numeroField.setText(String.valueOf(enderecoDoAluno.getNumero()));
+                this.complementoField.setText(enderecoDoAluno.getComplemento());
+                this.cepField.setText(enderecoDoAluno.getCep());
+                this.bairroField.setText(enderecoDoAluno.getBairro());
+                this.cidadeField.setText(enderecoDoAluno.getCidade());
+                this.estadoField.setText(enderecoDoAluno.getEstado());
+                this.paisField.setText(enderecoDoAluno.getPais());
+                this.bancoField.setSelectedItem(null);
+                this.agenciaField.setText(null);
+                this.contaField.setText(null);
+                this.cpfTitularField.setText(null);
+                this.nomeTitularField.setText(null);
+            }
+            else {
+                this.bancoField.setSelectedItem(null);
+                this.agenciaField.setText(null);
+                this.contaField.setText(null);
+                this.cpfTitularField.setText(null);
+                this.nomeTitularField.setText(null);
+                this.ruaField.setText(null);
+                this.numeroField.setText(null);
+                this.complementoField.setText(null);
+                this.cepField.setText(null);
+                this.bairroField.setText(null);
+                this.cidadeField.setText(null);
+                this.estadoField.setText(null);
+                this.paisField.setText(null);
+            }
+        }
+        else {
+            this.nomeField.setText(null);
+            this.cursoField.setSelectedItem(null);
+            this.sexoField.setSelectedItem(null);
+            this.dataIngressoField.setText(null);
+            this.ativoField.setSelectedItem("SIM");
+            this.cpfField.setText(null);
+            this.matriculaField.setText(null);
+            this.dataNascimentoField.setText(null);
+            this.identidadeField.setText(null);
+            this.bancoField.setSelectedItem(null);
+            this.agenciaField.setText(null);
+            this.contaField.setText(null);
+            this.cpfTitularField.setText(null);
+            this.nomeTitularField.setText(null);
+            this.ruaField.setText(null);
+            this.numeroField.setText(null);
+            this.complementoField.setText(null);
+            this.cepField.setText(null);
+            this.bairroField.setText(null);
+            this.cidadeField.setText(null);
+            this.estadoField.setText(null);
+            this.paisField.setText(null);
+        }
     }
 
     private void direciona(int comando) {

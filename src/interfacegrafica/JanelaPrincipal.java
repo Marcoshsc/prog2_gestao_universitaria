@@ -1,37 +1,18 @@
 package interfacegrafica;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.text.MaskFormatter;
-
-import complementares.ContaBancaria;
-import complementares.Endereco;
-import complementares.Utilitario;
-import ensino.classecurso.Curso;
-import pessoas.classealuno.Aluno;
 
 import javax.swing.JLabel;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-
-import sistema.classes.ServidorArmazenamento;
 
 public class JanelaPrincipal extends JFrame {
 
@@ -52,6 +33,7 @@ public class JanelaPrincipal extends JFrame {
         this.setTitle("Sistema de Gestão Universitária");
         this.setMinimumSize(new Dimension(800, 700));
         
+        this.painelOpcoes.visualizarAluno.addActionListener(new AcaoPesquisarAluno(this.painelOpcoes, this.pesquisaAluno));
         this.add(this.pesquisaAluno);
         this.add(this.painelOpcoes);
         this.painelOpcoes.setVisible(true);

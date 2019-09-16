@@ -16,7 +16,7 @@ public class PainelOpcoes extends JPanel {
 
     public PainelOpcoes(JanelaPrincipal parent) {
         this.parent = parent;
-        this.visualizarAluno.addActionListener(new ClicouCadastrarAlterarAlunoButton("normal", this.parent));
+        // this.visualizarAluno.addActionListener(new AcaoPesquisarAluno(this, this.relacionado1));
         this.cadastrarAluno.addActionListener(new ClicouCadastrarAlterarAlunoButton("cadastrar", this.parent));
         this.setLayout(new GridBagLayout());
         this.constantes.gridx++;
