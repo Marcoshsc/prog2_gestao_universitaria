@@ -73,7 +73,7 @@ public class CadastroAluno extends JPanel {
     protected JLabel paisLabel = new JLabel("País: ");
     protected JTextField paisField = Utilitario.geraField();
     protected JLabel cursoLabel = new JLabel("Curso: ");
-    protected String[] cursoStrings = ServidorArmazenamento.getNomeCursos();
+    protected String[] cursoStrings = ServidorArmazenamento.gerenciadorCursos.getNomeCursos();
     protected JComboBox<String> cursoField = new JComboBox<String>(cursoStrings);
     protected JButton botaoConfirma = new JButton("CONFIRMAR CADASTRO");
     protected JButton botaoVolta = new JButton("VOLTAR");

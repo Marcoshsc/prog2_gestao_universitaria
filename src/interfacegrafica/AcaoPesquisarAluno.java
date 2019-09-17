@@ -18,8 +18,9 @@ public class AcaoPesquisarAluno implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.next.alunosPesquisados.setModel(ServidorArmazenamento.getAlunosTable());
+        this.next.alunosPesquisados.setModel(ServidorArmazenamento.gerenciadorAlunos.getAlunosTable());
         Utilitario.formataEspacamentoTabela(this.next.alunosPesquisados);
+        this.next.opcaoCurso.setSelectedItem(null);
         this.origem.setVisible(false);
         this.next.setVisible(true);
     }

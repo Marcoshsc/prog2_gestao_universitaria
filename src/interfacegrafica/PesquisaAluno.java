@@ -30,7 +30,7 @@ public class PesquisaAluno extends JPanel {
     protected JLabel cpfLabel = new JLabel("CPF Aluno: ");
     protected JTextField cpfAluno = Utilitario.geraField();
     protected JLabel cursoLabel = new JLabel("Curso: ");
-    protected String[] cursoStrings = ServidorArmazenamento.getNomeCursos();
+    protected String[] cursoStrings = ServidorArmazenamento.gerenciadorCursos.getNomeCursos();
     protected JComboBox<String> opcaoCurso = new JComboBox<String>(this.cursoStrings);
     protected JTable alunosPesquisados = new JTable();
     protected JScrollPane alunosContainer = new JScrollPane(this.alunosPesquisados);
@@ -49,11 +49,13 @@ public class PesquisaAluno extends JPanel {
         this.alunosContainer.setBorder(BorderFactory.createEmptyBorder(10, 0, 0 , 0));
 
         this.alunosPesquisados.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        this.alunosPesquisados.setModel(ServidorArmazenamento.getAlunosTable());
+        this.alunosPesquisados.setModel(ServidorArmazenamento.gerenciadorAlunos.getAlunosTable());
         this.alunosPesquisados.addMouseListener(new ClicouCelula(this.alunosPesquisados, this.patern, this, this.relacionado1));
         Utilitario.formataEspacamentoTabela(this.alunosPesquisados);
 
         this.painelSegurador.setLayout(new GridBagLayout());
+        this.botaoPesquisar.addActionListener(new ClicouBotaoPesquisaAluno(this));
+        this.botaoVoltar.addActionListener(new TrocaTela(this, this.origem));
         this.constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
         Utilitario.geraCampoHorizontal(this.cpfLabel, this.cpfAluno, this.painelSegurador, this.constantes);
         Utilitario.geraCampoHorizontal(this.cursoLabel, this.opcaoCurso, this.painelSegurador, this.constantes);
@@ -61,7 +63,6 @@ public class PesquisaAluno extends JPanel {
         Utilitario.geraCampoCentral(this.botaoVoltar, this.botaoPesquisar, this.painelSegurador, this.constantes);
         // this.setLayout(new GridBagLayout());
         this.setVisible(false);
-        this.opcaoCurso.addItem("Nenhum");
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(this.painelSegurador);
         // Utilitario.geraCampoVertical(this.cpfLabel, this.cpfAluno, this, this.constantes);

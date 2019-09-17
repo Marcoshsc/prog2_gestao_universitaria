@@ -11,6 +11,7 @@ import complementares.ContaBancaria;
 import complementares.Endereco;
 import complementares.Utilitario;
 import ensino.classecurso.Curso;
+import ensino.classecurso.GerenciadorCursos;
 import pessoas.classealuno.Aluno;
 import sistema.classes.ServidorArmazenamento;
 
@@ -65,7 +66,7 @@ public class AcaoCadastrarAluno implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-        Curso cursoSelecionado = ServidorArmazenamento.pesquisaCursoNome(
+        Curso cursoSelecionado = ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome(
         (String)this.campos.cursoField.getSelectedItem());
         if(cursoSelecionado == null) {
             JOptionPane.showMessageDialog(this.campos.patern, "Curso inválido.");
@@ -156,20 +157,20 @@ public class AcaoCadastrarAluno implements ActionListener {
                     this.campos.patern.erroPreenchimento("Apenas valores númericos em número(Endereço)");
                     return;
                 }
-                Aluno supostoExistente = ServidorArmazenamento.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
+                Aluno supostoExistente = ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
                 if(this.acao.equals("cadastrar")) {
                     if(supostoExistente != null) {
                         this.campos.patern.erroPreenchimento("Aluno já cadastrado.");
                         return;
                     }
-                    ServidorArmazenamento.adicionaAluno(new Aluno(this.campos.nomeField.getText(),
+                    ServidorArmazenamento.gerenciadorAlunos.adiciona(new Aluno(this.campos.nomeField.getText(),
                     Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
                     (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
                     formatador), new Endereco(ruaPrevia, Integer.parseInt(numeroPrevio), complementoPrevio, cepPrevio, bairroPrevio,
                     cidadePrevio, estadoPrevio, paisPrevio), new ContaBancaria((String)this.campos.bancoField.getSelectedItem(), 
                     agenciaPrevia, contaPrevia, cpfTitularPrevio, nomeTitularPrevio), 
                     Utilitario.formataCampo(this.campos.matriculaField), LocalDate.parse(this.campos.dataIngressoField.getText(), 
-                    formatador), ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
+                    formatador), ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
@@ -183,7 +184,7 @@ public class AcaoCadastrarAluno implements ActionListener {
                     cidadePrevio, estadoPrevio, paisPrevio), new ContaBancaria((String)this.campos.bancoField.getSelectedItem(), 
                     agenciaPrevia, contaPrevia, cpfTitularPrevio, nomeTitularPrevio), 
                     Utilitario.formataCampo(this.campos.matriculaField), LocalDate.parse(this.campos.dataIngressoField.getText(), 
-                    formatador), ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
+                    formatador), ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
                 }
             }
             // aqui ele preenche o basico + contabancaria;
@@ -197,19 +198,19 @@ public class AcaoCadastrarAluno implements ActionListener {
                     this.campos.patern.erroPreenchimento("Digite um CPF do Titular válido! (Conta Bancaria)");
                     return;
                 }
-                Aluno supostoExistente = ServidorArmazenamento.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
+                Aluno supostoExistente = ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
                 if(this.acao.equals("cadastrar")) {
                     if(supostoExistente != null) {
                         this.campos.patern.erroPreenchimento("Aluno já cadastrado.");
                         return;
                     }
-                    ServidorArmazenamento.adicionaAluno(new Aluno(this.campos.nomeField.getText(),
+                    ServidorArmazenamento.gerenciadorAlunos.adiciona(new Aluno(this.campos.nomeField.getText(),
                     Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
                     (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
                     formatador), new ContaBancaria((String)this.campos.bancoField.getSelectedItem(), agenciaPrevia, 
                     contaPrevia, cpfTitularPrevio, nomeTitularPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
                     LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
-                    ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
+                    ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
@@ -222,7 +223,7 @@ public class AcaoCadastrarAluno implements ActionListener {
                     formatador), new ContaBancaria((String)this.campos.bancoField.getSelectedItem(), agenciaPrevia, 
                     contaPrevia, cpfTitularPrevio, nomeTitularPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
                     LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
-                    ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
+                    ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
                 }
             }
             // aqui foi preenchido o basico + endereco
@@ -238,19 +239,20 @@ public class AcaoCadastrarAluno implements ActionListener {
                     this.campos.patern.erroPreenchimento("Apenas valores númericos em número(Endereço)");
                     return;
                 }
-                Aluno supostoExistente = ServidorArmazenamento.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
+                Aluno supostoExistente = ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF(
+                    Utilitario.formataCampo(this.campos.cpfField));
                 if(this.acao.equals("cadastrar")) {
                     if(supostoExistente != null) {
                         this.campos.patern.erroPreenchimento("Aluno já cadastrado.");
                         return;
                     }
-                    ServidorArmazenamento.adicionaAluno(new Aluno(this.campos.nomeField.getText(),
+                    ServidorArmazenamento.gerenciadorAlunos.adiciona(new Aluno(this.campos.nomeField.getText(),
                     Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
                     (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
                     formatador), new Endereco(ruaPrevia, Integer.parseInt(numeroPrevio), complementoPrevio, cepPrevio, bairroPrevio,
                     cidadePrevio, estadoPrevio, paisPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
                     LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
-                    ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
+                    ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
@@ -263,23 +265,24 @@ public class AcaoCadastrarAluno implements ActionListener {
                     formatador), new Endereco(ruaPrevia, Integer.parseInt(numeroPrevio), complementoPrevio, cepPrevio, bairroPrevio,
                     cidadePrevio, estadoPrevio, paisPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
                     LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
-                    ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
+                    ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
                 }
             }
             // aqui só foi preenchido o basico mesmo
             else {
-                Aluno supostoExistente = ServidorArmazenamento.pesquisarAlunoCPF(Utilitario.formataCampo(this.campos.cpfField));
+                Aluno supostoExistente = ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF(
+                    Utilitario.formataCampo(this.campos.cpfField));
                 if(this.acao.equals("cadastrar")) {
                     if(supostoExistente != null) {
                         this.campos.patern.erroPreenchimento("Aluno já cadastrado.");
                         return;
                     }
-                    ServidorArmazenamento.adicionaAluno(new Aluno(this.campos.nomeField.getText(),
+                    ServidorArmazenamento.gerenciadorAlunos.adiciona(new Aluno(this.campos.nomeField.getText(),
                     Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
                     (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
                     formatador), Utilitario.formataCampo(this.campos.matriculaField), 
                     LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
-                    ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
+                    ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
@@ -291,7 +294,7 @@ public class AcaoCadastrarAluno implements ActionListener {
                     (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
                     formatador), Utilitario.formataCampo(this.campos.matriculaField), 
                     LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
-                    ServidorArmazenamento.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
+                    ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
                 }
             }
         }
