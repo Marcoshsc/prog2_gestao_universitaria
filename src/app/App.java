@@ -53,7 +53,7 @@ public class App {
         // System.out.println(a3.getStorageString().split("-").length - curso1.getStorageString().split("-").length - 2);
         // System.out.println(a4.getStorageString().split("-").length - curso1.getStorageString().split("-").length - 2);
         // ServidorArmazenamento.atualizaBancoAluno();
-        ServidorArmazenamento.gerenciadorAlunos.imprimeTodos();
+        //ServidorArmazenamento.gerenciadorAlunos.imprimeTodos();
         // ServidorArmazenamento.gerenciadorAlunos.atualizaBanco();
         } catch(Exception erro) {
             System.out.println("Fui eu que peguei essa exc.\n");

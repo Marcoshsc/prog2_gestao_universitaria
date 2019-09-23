@@ -171,7 +171,7 @@ public class CadastroAluno extends JPanel {
         return botaoConfirma;
     }
 
-    public void setaCampos(Aluno aluno) {
+    public void setaCampos(String acao, Aluno aluno) {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         if(aluno != null) {
             this.nomeField.setText(aluno.getNome());
@@ -183,7 +183,15 @@ public class CadastroAluno extends JPanel {
             this.matriculaField.setText(aluno.getNumeroMatricula());
             this.dataNascimentoField.setText(formatador.format(aluno.getDataNascimento()));
             this.identidadeField.setText(aluno.getRg());
-            this.botaoConfirma.setVisible(false);
+            if(acao.equals("view")) {
+                this.botaoConfirma.setVisible(false);
+            }
+            else if(acao.equals("change")) {
+                this.botaoConfirma.setText("ALTERAR ALUNO");
+                this.acaoBotaoConfirma.setAcao("alterar");
+                this.acaoBotaoConfirma.cpfPrevio = aluno.getCpf();
+                this.botaoConfirma.setVisible(true);
+            }
             if(aluno.getContaBancaria() != null && aluno.getEndereco() != null) {
                 ContaBancaria contaDoAluno = aluno.getContaBancaria();
                 this.bancoField.setSelectedItem(contaDoAluno.getNomeBanco());

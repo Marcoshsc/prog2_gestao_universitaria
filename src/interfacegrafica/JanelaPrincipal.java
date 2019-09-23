@@ -33,7 +33,8 @@ public class JanelaPrincipal extends JFrame {
         this.setTitle("Sistema de Gestão Universitária");
         this.setMinimumSize(new Dimension(800, 700));
         
-        this.painelOpcoes.visualizarAluno.addActionListener(new AcaoPesquisarAluno(this.painelOpcoes, this.pesquisaAluno));
+        this.painelOpcoes.visualizarAluno.addActionListener(new AcaoPesquisarAluno("view", this.painelOpcoes, this.pesquisaAluno));
+        this.painelOpcoes.alterarAluno.addActionListener(new AcaoPesquisarAluno("change", this.painelOpcoes, this.pesquisaAluno));
         this.add(this.pesquisaAluno);
         this.add(this.painelOpcoes);
         this.painelOpcoes.setVisible(true);

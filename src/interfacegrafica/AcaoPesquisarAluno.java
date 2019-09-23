@@ -10,8 +10,10 @@ public class AcaoPesquisarAluno implements ActionListener {
 
     private PainelOpcoes origem;
     private PesquisaAluno next;
+    private String acao;
 
-    public AcaoPesquisarAluno(PainelOpcoes origem, PesquisaAluno next) {
+    public AcaoPesquisarAluno(String acao, PainelOpcoes origem, PesquisaAluno next) {
+        this.acao = acao;
         this.origem = origem;
         this.next = next;
     }
@@ -21,6 +23,8 @@ public class AcaoPesquisarAluno implements ActionListener {
         this.next.alunosPesquisados.setModel(ServidorArmazenamento.gerenciadorAlunos.getAlunosTable());
         Utilitario.formataEspacamentoTabela(this.next.alunosPesquisados);
         this.next.opcaoCurso.setSelectedItem(null);
+        this.next.cpfAluno.setText(null);
+        this.next.clicouCelula.setAcao(this.acao);
         this.origem.setVisible(false);
         this.next.setVisible(true);
     }

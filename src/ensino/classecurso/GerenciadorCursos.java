@@ -24,8 +24,8 @@ public class GerenciadorCursos implements OperacoesBasicas {
     private void atualizaBanco() {
         Utilitario.atualizaBanco(GerenciadorCursos.cursosCadastrados.toArray(), GerenciadorCursos.PATH);
 
-    }
-
+	}
+	
     @Override
     public void imprimeTodos() {
         // TODO Auto-generated method stub

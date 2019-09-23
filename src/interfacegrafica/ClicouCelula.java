@@ -16,12 +16,21 @@ public class ClicouCelula extends MouseAdapter {
     protected JanelaPrincipal janelaPrincipal;
     protected PesquisaAluno anterior;
     protected CadastroAluno proximo;
+    protected String acao;
 
-    public ClicouCelula(JTable tabela, JanelaPrincipal janelaPrincipal, PesquisaAluno anterior, CadastroAluno proximo) {
+    public ClicouCelula(String acao, JTable tabela, JanelaPrincipal janelaPrincipal, PesquisaAluno anterior, CadastroAluno proximo) {
+        this.acao = acao;
         this.tabela = tabela;
         this.janelaPrincipal = janelaPrincipal;
         this.anterior = anterior;
         this.proximo = proximo;
+    }
+
+    /**
+     * @param acao the acao to set
+     */
+    public void setAcao(String acao) {
+        this.acao = acao;
     }
 
     @Override
@@ -32,7 +41,7 @@ public class ClicouCelula extends MouseAdapter {
             String cpfSelecionado = (String)this.tabela.getValueAt(linha, 2);
             Aluno alunoSelecionado = ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF(cpfSelecionado);
             // this.proximo.setCursoField(alunoSelecionado.getCurso().getNome());
-            this.proximo.setaCampos(alunoSelecionado);
+            this.proximo.setaCampos(this.acao, alunoSelecionado);
             this.anterior.setVisible(false);
             this.proximo.setVisible(true);
         }

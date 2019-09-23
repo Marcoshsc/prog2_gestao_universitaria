@@ -23,7 +23,7 @@ public class GerenciadorAluno implements OperacoesBasicas {
 		} catch(Exception exc) {
 			System.out.println("Não foi possível atualizar o banco de dados dos Alunos");
 		}
-    }
+	}
 
     private void atualizaBanco() throws Exception {
         Utilitario.atualizaBanco(GerenciadorAluno.alunosCadastrados.toArray(), GerenciadorAluno.PATH);
@@ -51,15 +51,15 @@ public class GerenciadorAluno implements OperacoesBasicas {
 				}
 			}
 		}
-    }
+	}
 
     public Aluno pesquisarAlunoCPF(String cpf) {
 		if(GerenciadorAluno.alunosCadastrados.size() == 0)
 			return null;
 		else {
-			for(Aluno i: GerenciadorAluno.alunosCadastrados) {
-				if(i.getCpf().equals(cpf))
-					return i;
+			for(int i = 0; i < GerenciadorAluno.alunosCadastrados.size(); i++) {
+				if(GerenciadorAluno.alunosCadastrados.get(i).getCpf().equals(cpf))
+					return GerenciadorAluno.alunosCadastrados.get(i);
 			}
 			return null;
 		}

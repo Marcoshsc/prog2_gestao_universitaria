@@ -52,6 +52,7 @@ public class AcaoCadastrarAluno implements ActionListener {
 
     private CadastroAluno campos;
     private String acao;
+    protected String cpfPrevio;
 
     public AcaoCadastrarAluno(CadastroAluno campos) {
         this.campos = campos;
@@ -174,7 +175,11 @@ public class AcaoCadastrarAluno implements ActionListener {
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
-                        this.campos.patern.erroPreenchimento("Aluno não está cadastrado.");
+                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
+                        return;
+                    }
+                    else if(!supostoExistente.getCpf().equals(this.cpfPrevio)) {
+                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
                         return;
                     }
                     supostoExistente.alterar(this.campos.nomeField.getText(),
@@ -214,7 +219,11 @@ public class AcaoCadastrarAluno implements ActionListener {
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
-                        this.campos.patern.erroPreenchimento("Aluno não está cadastrado.");
+                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
+                        return;
+                    }
+                    else if(!supostoExistente.getCpf().equals(this.cpfPrevio)) {
+                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
                         return;
                     }
                     supostoExistente.alterar(this.campos.nomeField.getText(),
@@ -256,7 +265,11 @@ public class AcaoCadastrarAluno implements ActionListener {
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
-                        this.campos.patern.erroPreenchimento("Aluno não está cadastrado.");
+                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
+                        return;
+                    }
+                    else if(!supostoExistente.getCpf().equals(this.cpfPrevio)) {
+                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
                         return;
                     }
                     supostoExistente.alterar(this.campos.nomeField.getText(),
@@ -286,7 +299,11 @@ public class AcaoCadastrarAluno implements ActionListener {
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
-                        this.campos.patern.erroPreenchimento("Aluno não está cadastrado.");
+                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
+                        return;
+                    }
+                    else if(!supostoExistente.getCpf().equals(this.cpfPrevio)) {
+                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
                         return;
                     }
                     supostoExistente.alterar(this.campos.nomeField.getText(),
@@ -295,6 +312,8 @@ public class AcaoCadastrarAluno implements ActionListener {
                     formatador), Utilitario.formataCampo(this.campos.matriculaField), 
                     LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
                     ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
+                    System.out.println(supostoExistente);
+                    ServidorArmazenamento.gerenciadorAlunos.imprimeTodos();
                 }
             }
         }

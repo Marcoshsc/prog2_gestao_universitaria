@@ -12,6 +12,13 @@ public class ClicouCadastrarAlterarAlunoButton implements ActionListener {
         this.acao = acao;
         this.patern = patern;
     }
+    
+    /**
+     * @param acao the acao to set
+     */
+    public void setAcao(String acao) {
+        this.acao = acao;
+    }
 
     @Override
     public void actionPerformed(ActionEvent evento) {
@@ -25,7 +32,7 @@ public class ClicouCadastrarAlterarAlunoButton implements ActionListener {
         this.patern.cadastroAluno.acaoBotaoConfirma.setAcao((this.acao.equals("cadastrar")) ? "cadastrar" : "alterar");
         this.patern.cadastroAluno.botaoConfirma.setText(
         (this.acao.equals("cadastrar")) ? "CONFIRMAR CADASTRO" : "CONFIRMAR ALTERAÇÃO");
-        this.patern.cadastroAluno.setaCampos(null);
+        this.patern.cadastroAluno.setaCampos(null, null);
         this.patern.cadastroAluno.botaoConfirma.setVisible(true);
     }
 

@@ -36,6 +36,7 @@ public class PesquisaAluno extends JPanel {
     protected JScrollPane alunosContainer = new JScrollPane(this.alunosPesquisados);
     protected JButton botaoVoltar = new JButton("VOLTAR");
     protected JButton botaoPesquisar = new JButton("PESQUISAR");
+    protected ClicouCelula clicouCelula;
 
     protected PesquisaAluno(JanelaPrincipal patern, PainelOpcoes origem, CadastroAluno relacionado1) {
         
@@ -50,7 +51,8 @@ public class PesquisaAluno extends JPanel {
 
         this.alunosPesquisados.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         this.alunosPesquisados.setModel(ServidorArmazenamento.gerenciadorAlunos.getAlunosTable());
-        this.alunosPesquisados.addMouseListener(new ClicouCelula(this.alunosPesquisados, this.patern, this, this.relacionado1));
+        this.clicouCelula = new ClicouCelula("cadastrar", this.alunosPesquisados, this.patern, this, this.relacionado1);
+        this.alunosPesquisados.addMouseListener(this.clicouCelula);
         Utilitario.formataEspacamentoTabela(this.alunosPesquisados);
 
         this.painelSegurador.setLayout(new GridBagLayout());
