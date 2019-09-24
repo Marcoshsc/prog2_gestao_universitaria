@@ -24,6 +24,7 @@ public class JanelaPrincipal extends JFrame {
     protected TelaCadastro telaCadastro = this.new TelaCadastro();
     protected TelaLogin telaLogin = this.new TelaLogin();
     protected PainelOpcoes painelOpcoes = new PainelOpcoes(this);
+    protected HubPrincipal hubPrincipal = new HubPrincipal(this.painelOpcoes);
     protected CadastroAluno cadastroAluno = new CadastroAluno(this, this.painelOpcoes);
     protected PesquisaAluno pesquisaAluno = new PesquisaAluno(this, this.painelOpcoes, this.cadastroAluno);
 
@@ -37,7 +38,8 @@ public class JanelaPrincipal extends JFrame {
         this.painelOpcoes.alterarAluno.addActionListener(new AcaoPesquisarAluno("change", this.painelOpcoes, this.pesquisaAluno));
         this.add(this.pesquisaAluno);
         this.add(this.painelOpcoes);
-        this.painelOpcoes.setVisible(true);
+        this.add(this.hubPrincipal);
+        this.hubPrincipal.setVisible(true);
         this.add(this.cadastroAluno);
         // this.add(this.telaInicial);
         // this.telaInicial.setVisible(true);

@@ -14,6 +14,7 @@ public class PainelOpcoes extends JPanel {
     protected JButton cadastrarAluno = new JButton("CADASTRAR ALUNO");
     protected JButton visualizarAluno = new JButton("VISUALIZAR ALUNO");
     protected JButton alterarAluno = new JButton("ALTERAR ALUNO");
+    protected JButton botaoVoltar = new JButton("VOLTAR");
 
     public PainelOpcoes(JanelaPrincipal parent) {
         this.parent = parent;
@@ -28,6 +29,9 @@ public class PainelOpcoes extends JPanel {
         this.constantes.gridy++;
         this.add(this.alterarAluno, this.constantes);
         this.setVisible(false);
+
+        this.constantes.gridy++;
+        this.add(this.botaoVoltar, this.constantes);
 
     }
 

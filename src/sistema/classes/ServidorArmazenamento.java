@@ -1,16 +1,10 @@
 package sistema.classes;
 
-import ensino.classecurso.Curso;
 import ensino.classecurso.GerenciadorCursos;
-import pessoas.classealuno.Aluno;
 import pessoas.classealuno.GerenciadorAluno;
-import complementares.Utilitario;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 public class ServidorArmazenamento {
 

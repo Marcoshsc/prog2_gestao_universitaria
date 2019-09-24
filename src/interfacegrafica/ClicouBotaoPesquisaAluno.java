@@ -3,10 +3,7 @@ package interfacegrafica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JTable;
-
 import complementares.Utilitario;
-import ensino.classecurso.Curso;
 import sistema.classes.ServidorArmazenamento;
 
 public class ClicouBotaoPesquisaAluno implements ActionListener {
