@@ -34,6 +34,7 @@ public class ClicouCadastrarAlterarAlunoButton implements ActionListener {
         (this.acao.equals("cadastrar")) ? "CONFIRMAR CADASTRO" : "CONFIRMAR ALTERAÇÃO");
         this.patern.cadastroAluno.setaCampos(null, null);
         this.patern.cadastroAluno.botaoConfirma.setVisible(true);
+        this.patern.cadastroAluno.botaoExcluir.setVisible(false);
     }
 
 }

@@ -13,6 +13,7 @@ import complementares.Utilitario;
 import ensino.classecurso.Curso;
 import ensino.classecurso.GerenciadorCursos;
 import pessoas.classealuno.Aluno;
+import pessoas.classealuno.GerenciadorAluno;
 import sistema.classes.ServidorArmazenamento;
 
 /**
@@ -172,6 +173,10 @@ public class AcaoCadastrarAluno implements ActionListener {
                     agenciaPrevia, contaPrevia, cpfTitularPrevio, nomeTitularPrevio), 
                     Utilitario.formataCampo(this.campos.matriculaField), LocalDate.parse(this.campos.dataIngressoField.getText(), 
                     formatador), ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
+                    JOptionPane.showMessageDialog(this.campos.patern, "Aluno Cadastrado com sucesso.", "CONFIRMAÇÃO", 
+                    JOptionPane.INFORMATION_MESSAGE);
+                    this.campos.setVisible(false);
+                    this.campos.origem.setVisible(true);
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
@@ -190,6 +195,16 @@ public class AcaoCadastrarAluno implements ActionListener {
                     agenciaPrevia, contaPrevia, cpfTitularPrevio, nomeTitularPrevio), 
                     Utilitario.formataCampo(this.campos.matriculaField), LocalDate.parse(this.campos.dataIngressoField.getText(), 
                     formatador), ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
+                    try {
+                        GerenciadorAluno.atualizaBanco();
+                    } catch(Exception exc) {
+                        System.out.println(exc.getMessage());
+                        exc.printStackTrace();
+                    }
+                    JOptionPane.showMessageDialog(this.campos.patern, "Aluno Alterado com sucesso.", "CONFIRMAÇÃO", 
+                    JOptionPane.INFORMATION_MESSAGE);
+                    this.campos.setVisible(false);
+                    this.campos.origem.setVisible(true);
                 }
             }
             // aqui ele preenche o basico + contabancaria;
@@ -216,6 +231,10 @@ public class AcaoCadastrarAluno implements ActionListener {
                     contaPrevia, cpfTitularPrevio, nomeTitularPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
                     LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
                     ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
+                    JOptionPane.showMessageDialog(this.campos.patern, "Aluno Cadastrado com sucesso.", "CONFIRMAÇÃO", 
+                    JOptionPane.INFORMATION_MESSAGE);
+                    this.campos.setVisible(false);
+                    this.campos.origem.setVisible(true);
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
@@ -233,6 +252,16 @@ public class AcaoCadastrarAluno implements ActionListener {
                     contaPrevia, cpfTitularPrevio, nomeTitularPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
                     LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
                     ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
+                    try {
+                        GerenciadorAluno.atualizaBanco();
+                    } catch(Exception exc) {
+                        System.out.println(exc.getMessage());
+                        exc.printStackTrace();
+                    }
+                    JOptionPane.showMessageDialog(this.campos.patern, "Aluno Alterado com sucesso.", "CONFIRMAÇÃO", 
+                    JOptionPane.INFORMATION_MESSAGE);
+                    this.campos.setVisible(false);
+                    this.campos.origem.setVisible(true);
                 }
             }
             // aqui foi preenchido o basico + endereco
@@ -262,6 +291,10 @@ public class AcaoCadastrarAluno implements ActionListener {
                     cidadePrevio, estadoPrevio, paisPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
                     LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
                     ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
+                    JOptionPane.showMessageDialog(this.campos.patern, "Aluno Cadastrado com sucesso.", "CONFIRMAÇÃO", 
+                    JOptionPane.INFORMATION_MESSAGE);
+                    this.campos.setVisible(false);
+                    this.campos.origem.setVisible(true);
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
@@ -279,6 +312,16 @@ public class AcaoCadastrarAluno implements ActionListener {
                     cidadePrevio, estadoPrevio, paisPrevio), Utilitario.formataCampo(this.campos.matriculaField), 
                     LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
                     ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
+                    try {
+                        GerenciadorAluno.atualizaBanco();
+                    } catch(Exception exc) {
+                        System.out.println(exc.getMessage());
+                        exc.printStackTrace();
+                    }
+                    JOptionPane.showMessageDialog(this.campos.patern, "Aluno Alterado com sucesso.", "CONFIRMAÇÃO", 
+                    JOptionPane.INFORMATION_MESSAGE);
+                    this.campos.setVisible(false);
+                    this.campos.origem.setVisible(true);
                 }
             }
             // aqui só foi preenchido o basico mesmo
@@ -296,6 +339,10 @@ public class AcaoCadastrarAluno implements ActionListener {
                     formatador), Utilitario.formataCampo(this.campos.matriculaField), 
                     LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
                     ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem())));
+                    JOptionPane.showMessageDialog(this.campos.patern, "Aluno Cadastrado com sucesso.", "CONFIRMAÇÃO", 
+                    JOptionPane.INFORMATION_MESSAGE);
+                    this.campos.setVisible(false);
+                    this.campos.origem.setVisible(true);
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
@@ -312,8 +359,16 @@ public class AcaoCadastrarAluno implements ActionListener {
                     formatador), Utilitario.formataCampo(this.campos.matriculaField), 
                     LocalDate.parse(this.campos.dataIngressoField.getText(), formatador), 
                     ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.campos.cursoField.getSelectedItem()));
-                    System.out.println(supostoExistente);
-                    ServidorArmazenamento.gerenciadorAlunos.imprimeTodos();
+                    try {
+                    GerenciadorAluno.atualizaBanco();
+                    } catch(Exception exc) {
+                        System.out.println(exc.getMessage());
+                        exc.printStackTrace();
+                    }
+                    JOptionPane.showMessageDialog(this.campos.patern, "Aluno Alterado com sucesso.", "CONFIRMAÇÃO", 
+                    JOptionPane.INFORMATION_MESSAGE);
+                    this.campos.setVisible(false);
+                    this.campos.origem.setVisible(true);
                 }
             }
         }

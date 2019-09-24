@@ -19,13 +19,22 @@ public class GerenciadorAluno implements OperacoesBasicas {
     public void adiciona(Object objeto) {
         GerenciadorAluno.alunosCadastrados.add((Aluno)objeto);
 		try {
-			this.atualizaBanco();
+			GerenciadorAluno.atualizaBanco();
 		} catch(Exception exc) {
 			System.out.println("Não foi possível atualizar o banco de dados dos Alunos");
 		}
 	}
 
-    private void atualizaBanco() throws Exception {
+	public static void excluir(Aluno aluno) {
+		GerenciadorAluno.alunosCadastrados.remove(aluno);
+		try {
+			GerenciadorAluno.atualizaBanco();
+		} catch(Exception exc) {
+			System.out.println("Não foi possível atualizar o banco de dados dos Alunos");
+		}
+	}
+
+    public static void atualizaBanco() throws Exception {
         Utilitario.atualizaBanco(GerenciadorAluno.alunosCadastrados.toArray(), GerenciadorAluno.PATH);
     }
 

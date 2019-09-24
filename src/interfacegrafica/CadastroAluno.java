@@ -78,6 +78,7 @@ public class CadastroAluno extends JPanel {
     protected JButton botaoConfirma = new JButton("CONFIRMAR CADASTRO");
     protected JButton botaoVolta = new JButton("VOLTAR");
     protected AcaoCadastrarAluno acaoBotaoConfirma = new AcaoCadastrarAluno(this);
+    protected JButton botaoExcluir = new JButton("EXCLUIR ALUNO");
 
     public CadastroAluno(JanelaPrincipal patern, PainelOpcoes origem) {
 
@@ -154,12 +155,16 @@ public class CadastroAluno extends JPanel {
          //// campo da estado
         Utilitario.geraCampoVertical(this.estadoLabel, this.estadoField,
         this, this.constantes);
-       //// campo do pais
-       Utilitario.geraCampoHorizontal(this.paisLabel, this.paisField,
+        //// campo do pais
+        Utilitario.geraCampoHorizontal(this.paisLabel, this.paisField,
         this, this.constantes);
         // campo botao de voltar e de confirmar
         Utilitario.geraCampoCentral(this.botaoVolta, this.botaoConfirma,
          this, this.constantes);
+        
+        this.constantes.gridx++;
+        this.botaoExcluir.addActionListener(new AcaoExcluirAluno(this.patern, this.cpfField));
+        this.add(this.botaoExcluir, this.constantes);        
 
         this.setVisible(false);
     }
@@ -185,11 +190,13 @@ public class CadastroAluno extends JPanel {
             this.identidadeField.setText(aluno.getRg());
             if(acao.equals("view")) {
                 this.botaoConfirma.setVisible(false);
+                this.botaoExcluir.setVisible(false);
             }
             else if(acao.equals("change")) {
                 this.botaoConfirma.setText("ALTERAR ALUNO");
                 this.acaoBotaoConfirma.setAcao("alterar");
                 this.acaoBotaoConfirma.cpfPrevio = aluno.getCpf();
+                this.botaoExcluir.setVisible(true);
                 this.botaoConfirma.setVisible(true);
             }
             if(aluno.getContaBancaria() != null && aluno.getEndereco() != null) {
