@@ -23,24 +23,32 @@ public class JanelaPrincipal extends JFrame {
     protected TelaInicial telaInicial = this.new TelaInicial();
     protected TelaCadastro telaCadastro = this.new TelaCadastro();
     protected TelaLogin telaLogin = this.new TelaLogin();
-    protected PainelOpcoes painelOpcoes = new PainelOpcoes(this);
-    protected HubPrincipal hubPrincipal = new HubPrincipal(this.painelOpcoes);
-    protected CadastroAluno cadastroAluno = new CadastroAluno(this, this.painelOpcoes);
-    protected PesquisaAluno pesquisaAluno = new PesquisaAluno(this, this.painelOpcoes, this.cadastroAluno);
+    protected PainelOpcoesAluno painelOpcoesAluno = new PainelOpcoesAluno(this);
+    protected PainelOpcoesCurso painelOpcoesCurso = new PainelOpcoesCurso(this);
+    protected HubPrincipal hubPrincipal = new HubPrincipal(this.painelOpcoesAluno, this.painelOpcoesCurso);
+    protected CadastroAluno cadastroAluno = new CadastroAluno(this, this.painelOpcoesAluno);
+    protected CadastroCurso cadastroCurso = new CadastroCurso(this, this.painelOpcoesCurso);
+    protected PesquisaAluno pesquisaAluno = new PesquisaAluno(this, this.painelOpcoesAluno, this.cadastroAluno);
 
     public JanelaPrincipal() {
-        this.setSize(800, 700);
+        this.setSize(850, 700);
         this.setLayout(new GridBagLayout());
         this.setTitle("Sistema de Gestão Universitária");
-        this.setMinimumSize(new Dimension(800, 700));
+        this.setMinimumSize(new Dimension(850, 700));
         
-        this.painelOpcoes.visualizarAluno.addActionListener(new AcaoPesquisarAluno("view", this.painelOpcoes, this.pesquisaAluno));
-        this.painelOpcoes.alterarAluno.addActionListener(new AcaoPesquisarAluno("change", this.painelOpcoes, this.pesquisaAluno));
+        this.cadastroCurso.botaoVolta.addActionListener(new TrocaTela(this.cadastroCurso, this.painelOpcoesCurso));
+        this.painelOpcoesCurso.botaoVolta.addActionListener(new TrocaTela(this.painelOpcoesCurso, this.hubPrincipal));
+
+        this.painelOpcoesAluno.visualizarAluno.addActionListener(new AcaoPesquisarAluno("view", this.painelOpcoesAluno, this.pesquisaAluno));
+        this.painelOpcoesAluno.alterarAluno.addActionListener(new AcaoPesquisarAluno("change", this.painelOpcoesAluno, this.pesquisaAluno));
+        
         this.add(this.pesquisaAluno);
-        this.add(this.painelOpcoes);
+        this.add(this.painelOpcoesAluno);
+        this.add(this.painelOpcoesCurso);
         this.add(this.hubPrincipal);
         this.hubPrincipal.setVisible(true);
         this.add(this.cadastroAluno);
+        this.add(this.cadastroCurso);
         // this.add(this.telaInicial);
         // this.telaInicial.setVisible(true);
         // this.add(this.telaCadastro);

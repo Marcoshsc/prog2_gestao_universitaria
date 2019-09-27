@@ -6,7 +6,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class PainelOpcoes extends JPanel {
+public class PainelOpcoesAluno extends JPanel {
 
     protected JanelaPrincipal parent;
 
@@ -16,7 +16,7 @@ public class PainelOpcoes extends JPanel {
     protected JButton alterarAluno = new JButton("ALTERAR ALUNO");
     protected JButton botaoVoltar = new JButton("VOLTAR");
 
-    public PainelOpcoes(JanelaPrincipal parent) {
+    public PainelOpcoesAluno(JanelaPrincipal parent) {
         this.parent = parent;
         // this.visualizarAluno.addActionListener(new AcaoPesquisarAluno(this, this.relacionado1));
         this.cadastrarAluno.addActionListener(new ClicouCadastrarAlterarAlunoButton("cadastrar", this.parent));

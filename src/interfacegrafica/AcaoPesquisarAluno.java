@@ -8,11 +8,11 @@ import sistema.classes.ServidorArmazenamento;
 
 public class AcaoPesquisarAluno implements ActionListener {
 
-    private PainelOpcoes origem;
+    private PainelOpcoesAluno origem;
     private PesquisaAluno next;
     private String acao;
 
-    public AcaoPesquisarAluno(String acao, PainelOpcoes origem, PesquisaAluno next) {
+    public AcaoPesquisarAluno(String acao, PainelOpcoesAluno origem, PesquisaAluno next) {
         this.acao = acao;
         this.origem = origem;
         this.next = next;

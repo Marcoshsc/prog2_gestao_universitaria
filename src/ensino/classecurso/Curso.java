@@ -16,6 +16,12 @@ public class Curso implements ClassesGeral {
         this.cargaHoraria = cargaHoraria;
     }
 
+    public void alterar(String nome, int tempoConclusao, int cargaHoraria) {
+        this.nome = nome;
+        this.tempoConclusao = tempoConclusao;
+        this.cargaHoraria = cargaHoraria;
+    }
+
     public String getStorageString() {
         return String.format("%s-%s-%d-%d", this.codigo, this.nome, this.tempoConclusao, this.cargaHoraria);
     }

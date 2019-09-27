@@ -15,12 +15,12 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import complementares.Utilitario;
-import interfacegrafica.PainelOpcoes;
+import interfacegrafica.PainelOpcoesAluno;
 import sistema.classes.ServidorArmazenamento;
 
 public class PesquisaAluno extends JPanel {
 
-    protected PainelOpcoes origem;
+    protected PainelOpcoesAluno origem;
     protected JanelaPrincipal patern;
     protected CadastroAluno relacionado1;
 
@@ -37,7 +37,7 @@ public class PesquisaAluno extends JPanel {
     protected JButton botaoPesquisar = new JButton("PESQUISAR");
     protected ClicouCelula clicouCelula;
 
-    protected PesquisaAluno(JanelaPrincipal patern, PainelOpcoes origem, CadastroAluno relacionado1) {
+    protected PesquisaAluno(JanelaPrincipal patern, PainelOpcoesAluno origem, CadastroAluno relacionado1) {
         
         this.patern = patern;
         this.origem = origem;

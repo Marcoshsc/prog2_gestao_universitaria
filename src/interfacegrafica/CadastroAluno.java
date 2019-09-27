@@ -15,12 +15,12 @@ import sistema.classes.ServidorArmazenamento;
 import complementares.ContaBancaria;
 import complementares.Endereco;
 import complementares.Utilitario;
-import interfacegrafica.PainelOpcoes;
+import interfacegrafica.PainelOpcoesAluno;
 import pessoas.classealuno.Aluno;
 
 public class CadastroAluno extends JPanel {
 
-    protected PainelOpcoes origem;
+    protected PainelOpcoesAluno origem;
     protected JanelaPrincipal patern;
 
     protected GridBagConstraints constantes = new GridBagConstraints();
@@ -80,7 +80,7 @@ public class CadastroAluno extends JPanel {
     protected AcaoCadastrarAluno acaoBotaoConfirma = new AcaoCadastrarAluno(this);
     protected JButton botaoExcluir = new JButton("EXCLUIR ALUNO");
 
-    public CadastroAluno(JanelaPrincipal patern, PainelOpcoes origem) {
+    public CadastroAluno(JanelaPrincipal patern, PainelOpcoesAluno origem) {
 
         this.patern = patern;
         this.origem = origem;
@@ -287,16 +287,6 @@ public class CadastroAluno extends JPanel {
             this.cidadeField.setText(null);
             this.estadoField.setText(null);
             this.paisField.setText(null);
-        }
-    }
-
-    private void direciona(int comando) {
-        if(comando == JanelaPrincipal.PROXIMA_LINHA) {
-            this.constantes.gridy = this.constantes.gridy + 1;
-            this.constantes.gridx = 0;
-        }
-        else {
-            this.constantes.gridx = this.constantes.gridx + 1;
         }
     }
 

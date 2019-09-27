@@ -14,16 +14,15 @@ public class GerenciadorCursos implements OperacoesBasicas {
     public void adiciona(Object objeto) {
         GerenciadorCursos.cursosCadastrados.add((Curso)objeto);
 		try {
-			this.atualizaBanco();
+			GerenciadorCursos.atualizaBanco();
 		} catch(Exception exc) {
 			System.out.println("Não foi possível atualizar o banco de dados dos Cursos");
         }
-        this.atualizaBanco();
+        GerenciadorCursos.atualizaBanco();
     }
 
-    private void atualizaBanco() {
+    public static void atualizaBanco() {
         Utilitario.atualizaBanco(GerenciadorCursos.cursosCadastrados.toArray(), GerenciadorCursos.PATH);
-
 	}
 	
     @Override

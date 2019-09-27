@@ -28,12 +28,12 @@ public class AcaoExcluirAluno implements ActionListener {
             GerenciadorAluno.excluir(alunoPrevio);
             JOptionPane.showMessageDialog(this.parent, "Aluno excluído com sucesso.", "INFO", JOptionPane.INFORMATION_MESSAGE);
             this.parent.cadastroAluno.setVisible(false);
-            this.parent.painelOpcoes.setVisible(true);
+            this.parent.painelOpcoesAluno.setVisible(true);
         }
         else {
             this.parent.erroPreenchimento("ALUNO NÃO EXISTE. IMPOSSÍVEL EXCLUIR.");
             this.parent.cadastroAluno.setVisible(false);
-            this.parent.painelOpcoes.setVisible(true);
+            this.parent.painelOpcoesAluno.setVisible(true);
         }
     }
 }
