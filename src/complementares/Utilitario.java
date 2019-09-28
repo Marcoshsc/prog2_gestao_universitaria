@@ -237,8 +237,8 @@ public interface Utilitario {
         constantes.gridwidth = 1;
     }
 
-    public static void formataEspacamentoTabela(JTable tabela) {
-        for(int i = 0; i < 7; i++) {
+    public static void formataEspacamentoTabela(JTable tabela, int tamanho) {
+        for(int i = 0; i < tamanho; i++) {
             TableColumn coluna = tabela.getColumnModel().getColumn(i);
             String maior = (String)coluna.getHeaderValue();
             for(int j = 0; j < tabela.getRowCount(); j++) {

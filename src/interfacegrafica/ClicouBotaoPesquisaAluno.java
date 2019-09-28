@@ -21,13 +21,13 @@ public class ClicouBotaoPesquisaAluno implements ActionListener {
                 this.principal.cpfAluno.getText()
             ));
             this.principal.opcaoCurso.setSelectedItem(null);
-            Utilitario.formataEspacamentoTabela(this.principal.alunosPesquisados);
+            Utilitario.formataEspacamentoTabela(this.principal.alunosPesquisados, 7);
         }
         else {
             this.principal.alunosPesquisados.setModel(ServidorArmazenamento.gerenciadorAlunos.getAlunosTable(
                 ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)principal.opcaoCurso.getSelectedItem())
             ));
-            Utilitario.formataEspacamentoTabela(this.principal.alunosPesquisados);
+            Utilitario.formataEspacamentoTabela(this.principal.alunosPesquisados, 7);
         }
     }
 

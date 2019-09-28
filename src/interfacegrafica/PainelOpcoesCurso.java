@@ -14,6 +14,8 @@ public class PainelOpcoesCurso extends JPanel {
 
     protected GridBagConstraints constantes = new GridBagConstraints();
     protected JButton cadastrarCurso = new JButton("CADASTRAR CURSO");
+    protected JButton visualizarCurso = new JButton("PESQUISAR CURSO");
+    protected JButton alterarCurso = new JButton("ALTERAR CURSO");
     protected JButton botaoVolta = new JButton("VOLTAR");
 
     public PainelOpcoesCurso(JanelaPrincipal parent) {
@@ -25,6 +27,12 @@ public class PainelOpcoesCurso extends JPanel {
         this.constantes.gridy++;
         this.cadastrarCurso.addActionListener(new ClicouCadastrarAlterarCursoButton("cadastrar", this.parent));
         this.add(this.cadastrarCurso, this.constantes);
+
+        this.constantes.gridy++;
+        this.add(this.visualizarCurso, this.constantes);
+
+        this.constantes.gridy++;
+        this.add(this.alterarCurso, this.constantes);
 
         this.constantes.gridy++;
         this.add(this.botaoVolta, this.constantes);

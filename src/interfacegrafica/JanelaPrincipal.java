@@ -29,6 +29,7 @@ public class JanelaPrincipal extends JFrame {
     protected CadastroAluno cadastroAluno = new CadastroAluno(this, this.painelOpcoesAluno);
     protected CadastroCurso cadastroCurso = new CadastroCurso(this, this.painelOpcoesCurso);
     protected PesquisaAluno pesquisaAluno = new PesquisaAluno(this, this.painelOpcoesAluno, this.cadastroAluno);
+    protected PesquisaCurso pesquisaCurso = new PesquisaCurso(this, this.painelOpcoesCurso, this.cadastroCurso);
 
     public JanelaPrincipal() {
         this.setSize(850, 700);
@@ -38,11 +39,14 @@ public class JanelaPrincipal extends JFrame {
         
         this.cadastroCurso.botaoVolta.addActionListener(new TrocaTela(this.cadastroCurso, this.painelOpcoesCurso));
         this.painelOpcoesCurso.botaoVolta.addActionListener(new TrocaTela(this.painelOpcoesCurso, this.hubPrincipal));
+        this.painelOpcoesCurso.visualizarCurso.addActionListener(new AcaoPesquisarCurso("view", this.painelOpcoesCurso, this.pesquisaCurso));
+        this.painelOpcoesCurso.alterarCurso.addActionListener(new AcaoPesquisarCurso("change", this.painelOpcoesCurso, this.pesquisaCurso));
 
         this.painelOpcoesAluno.visualizarAluno.addActionListener(new AcaoPesquisarAluno("view", this.painelOpcoesAluno, this.pesquisaAluno));
         this.painelOpcoesAluno.alterarAluno.addActionListener(new AcaoPesquisarAluno("change", this.painelOpcoesAluno, this.pesquisaAluno));
         
         this.add(this.pesquisaAluno);
+        this.add(this.pesquisaCurso);
         this.add(this.painelOpcoesAluno);
         this.add(this.painelOpcoesCurso);
         this.add(this.hubPrincipal);

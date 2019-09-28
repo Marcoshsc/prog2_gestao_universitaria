@@ -1,4 +1,1 @@
-codigo-nome-10-3000
-codigo2-nome2-10-3000
-codigo3-Engenharia-10-3600
-codigo4-Sistemas-8-3000
+codigo4-Sistemas-10-3000

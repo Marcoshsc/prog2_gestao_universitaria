@@ -37,6 +37,15 @@ public class Curso implements ClassesGeral {
         this.nome, this.tempoConclusao, this.cargaHoraria);
     }
 
+    public String[] getInfoBasicasArray() {
+        String[] infos = new String[4];
+        infos[0] = this.codigo;
+        infos[1] = this.nome;
+        infos[2] = Integer.toString(this.cargaHoraria);
+        infos[3] = Integer.toString(this.tempoConclusao);
+        return infos;
+    }
+
     /**
      * @return the cargaHoraria
      */

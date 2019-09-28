@@ -2,6 +2,9 @@ package ensino.classecurso;
 
 import java.util.ArrayList;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 import complementares.Utilitario;
 import contratos.OperacoesBasicas;
 
@@ -23,6 +26,15 @@ public class GerenciadorCursos implements OperacoesBasicas {
 
     public static void atualizaBanco() {
         Utilitario.atualizaBanco(GerenciadorCursos.cursosCadastrados.toArray(), GerenciadorCursos.PATH);
+	}
+
+	public static void excluir(Curso curso) {
+		GerenciadorCursos.cursosCadastrados.remove(curso);
+		try {
+			GerenciadorCursos.atualizaBanco();
+		} catch(Exception exc) {
+			System.out.println("Não foi possível atualizar o banco de dados dos Cursos");
+		}
 	}
 	
     @Override
@@ -84,5 +96,53 @@ public class GerenciadorCursos implements OperacoesBasicas {
 			return nomes;
 		}
 	}
+
+	public TableModel getCursosTable() {
+		String[] header = {
+			"Código", "Nome", "Carga Horária", "Tempo de Conclusão"
+		};
+		String[][] data;
+		if(GerenciadorCursos.cursosCadastrados.size() > 0) {
+			data = new String[GerenciadorCursos.cursosCadastrados.size()][7];
+			for(int i = 0; i < GerenciadorCursos.cursosCadastrados.size(); i++) {
+				data[i] = GerenciadorCursos.cursosCadastrados.get(i).getInfoBasicasArray();
+			}
+		}
+		else {
+			data = null;
+		}
+		return new DefaultTableModel(data, header) {
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+
+		};
+	}
+
+	public TableModel getCursosTable(String codigo) {
+		String[] header = {
+			"Código", "Nome", "Carga Horária", "Tempo de Conclusão"
+		};
+		boolean existe;
+		Curso cursoProcurado = GerenciadorCursos.pesquisaCursoCodigo(codigo);
+		existe = (cursoProcurado != null) ? true : false;
+		String[][] data;
+		if(existe) {
+			data = new String[1][7];
+			data[0] = cursoProcurado.getInfoBasicasArray();
+		}
+		else 
+			data = null;
+		return new DefaultTableModel(data, header) {
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+
+		};
+    }
     
 }

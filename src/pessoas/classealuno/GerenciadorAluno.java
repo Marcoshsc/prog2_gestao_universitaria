@@ -25,6 +25,18 @@ public class GerenciadorAluno implements OperacoesBasicas {
 		}
 	}
 
+	public static boolean verificaVinculoCurso(Curso curso) {
+		if(GerenciadorAluno.alunosCadastrados.size() == 0) {
+			return false;
+		}
+		for(Aluno i: GerenciadorAluno.alunosCadastrados) {
+			if(i.getCurso() == curso) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public static void excluir(Aluno aluno) {
 		GerenciadorAluno.alunosCadastrados.remove(aluno);
 		try {

@@ -8,7 +8,7 @@ import javax.swing.JTable;
 import pessoas.classealuno.Aluno;
 import sistema.classes.ServidorArmazenamento;
 
-public class ClicouCelula extends MouseAdapter {
+public class ClicouCelulaAluno extends MouseAdapter {
     
     protected JTable tabela;
     protected JanelaPrincipal janelaPrincipal;
@@ -16,7 +16,7 @@ public class ClicouCelula extends MouseAdapter {
     protected CadastroAluno proximo;
     protected String acao;
 
-    public ClicouCelula(String acao, JTable tabela, JanelaPrincipal janelaPrincipal, PesquisaAluno anterior, CadastroAluno proximo) {
+    public ClicouCelulaAluno(String acao, JTable tabela, JanelaPrincipal janelaPrincipal, PesquisaAluno anterior, CadastroAluno proximo) {
         this.acao = acao;
         this.tabela = tabela;
         this.janelaPrincipal = janelaPrincipal;

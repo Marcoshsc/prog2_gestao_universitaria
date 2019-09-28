@@ -78,7 +78,7 @@ public class AcaoCadastrarAluno implements ActionListener {
             boolean preencheuEndereco = true;
             String agenciaPrevia = Utilitario.formataCampo(this.campos.agenciaField);
             String contaPrevia = Utilitario.formataCampo(this.campos.contaField);
-            String nomeTitularPrevio = this.campos.nomeTitularField.getText();
+            String nomeTitularPrevio = this.campos.nomeTitularField.getText().replace("-", "");
             String cpfTitularPrevio = Utilitario.formataCampo(this.campos.cpfTitularField);
             if(agenciaPrevia.equals("") && contaPrevia.equals("") && nomeTitularPrevio.equals("") &&
             cpfTitularPrevio.equals("")) {
@@ -88,10 +88,10 @@ public class AcaoCadastrarAluno implements ActionListener {
             String numeroPrevio = this.campos.numeroField.getText();
             String complementoPrevio = this.campos.complementoField.getText();
             String cepPrevio = Utilitario.formataCampo(this.campos.cepField);
-            String bairroPrevio = this.campos.bairroField.getText();
-            String cidadePrevio = this.campos.cidadeField.getText();
-            String estadoPrevio = this.campos.estadoField.getText();
-            String paisPrevio = this.campos.paisField.getText();
+            String bairroPrevio = this.campos.bairroField.getText().replace("-", "");
+            String cidadePrevio = this.campos.cidadeField.getText().replace("-", "");
+            String estadoPrevio = this.campos.estadoField.getText().replace("-", "");
+            String paisPrevio = this.campos.paisField.getText().replace("-", "");
             if(Utilitario.formataCampo(this.campos.nomeField).equals("")) {
                 this.campos.patern.erroPreenchimento("Campo NOME vazio.");
                 return;

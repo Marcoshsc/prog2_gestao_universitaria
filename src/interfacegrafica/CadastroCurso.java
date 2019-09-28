@@ -37,6 +37,7 @@ public class CadastroCurso extends JPanel {
         this.setLayout(new GridBagLayout());
         this.constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
 
+        this.botaoExcluir.addActionListener(new AcaoExcluirCurso(this.parent, this.codigoField));
         this.botaoConfirma.addActionListener(this.acaoBotaoConfirma);
         Utilitario.geraCampoVertical(this.codigoLabel, this.codigoField, this, this.constantes);
         Utilitario.geraCampoHorizontal(this.nomeLabel, this.nomeField, this, this.constantes);
@@ -64,7 +65,7 @@ public class CadastroCurso extends JPanel {
                 this.botaoExcluir.setVisible(false);
             }
             else if(acao.equals("change")) {
-                this.botaoConfirma.setText("ALTERAR ALUNO");
+                this.botaoConfirma.setText("ALTERAR CURSO");
                 this.acaoBotaoConfirma.setAcao("alterar");
                 this.acaoBotaoConfirma.codigoAnterior = curso.getCodigo();
                 this.botaoExcluir.setVisible(true);

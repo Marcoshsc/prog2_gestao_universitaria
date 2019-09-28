@@ -30,8 +30,8 @@ public class AcaoCadastrarCurso implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent evento) {
 
-        String nomePrevio = Utilitario.formataCampo(campos.nomeField);
-        String codigoPrevio = Utilitario.formataCampo(campos.codigoField);
+        String nomePrevio = campos.nomeField.getText().replace("-", "");
+        String codigoPrevio = Utilitario.formataCampo(this.campos.codigoField);
         int tempoConclusaoPrevio;
         int cargaHorariaPrevia;
         if(nomePrevio.equals("") || codigoPrevio.equals("") || Utilitario.formataCampo(campos.tempoConclusaoField).equals("") ||
@@ -68,8 +68,12 @@ public class AcaoCadastrarCurso implements ActionListener {
             this.campos.origem.setVisible(true);
         }
         else if(acao.equals("alterar")) {
-            if(!cursoPrevio.getCodigo().equals(this.codigoAnterior)) {
-                System.out.println("Impossível alterar código de curso. Caso o deseje, crie um novo curso.");
+            if(cursoPrevio == null) {
+                this.campos.parent.erroPreenchimento("Impossível alterar código de curso. Caso o deseje, crie um novo curso.");
+                return;
+            }
+            else if(!cursoPrevio.getCodigo().equals(this.codigoAnterior)) {
+                this.campos.parent.erroPreenchimento("Impossível alterar código de curso. Caso o deseje, crie um novo curso.");
                 return;
             }
             cursoPrevio.alterar(nomePrevio, tempoConclusaoPrevio, cargaHorariaPrevia);
