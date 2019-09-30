@@ -1,0 +1,85 @@
+Date : 2019-09-28 03:17:06
+Directory : d:\JAVA\prog2_gestao_universitaria\src
+Total : 45 files,  2726 codes, 498 comments, 526 blanks, all 3750 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| Java       |         43 |      2,724 |        498 |        524 |      3,746 |
+| Django txt |          2 |          2 |          0 |          2 |          4 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                    | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                       |         45 |      2,726 |        498 |        526 |      3,750 |
+| interfacegrafica                                        |         21 |      1,402 |        255 |        262 |      1,919 |
+| pessoas                                                 |          3 |        512 |         77 |         84 |        673 |
+| pessoas\classealuno                                     |          2 |        381 |         28 |         55 |        464 |
+| complementares                                          |          3 |        339 |         50 |         49 |        438 |
+| ensino                                                  |          5 |        277 |         49 |         66 |        392 |
+| ensino\classecurso                                      |          2 |        177 |         13 |         35 |        225 |
+| pessoas\superclasse                                     |          1 |        131 |         49 |         29 |        209 |
+| assistenciaestudantil                                   |          3 |        124 |         24 |         31 |        179 |
+| ensino\secaodisciplina                                  |          3 |        100 |         36 |         31 |        167 |
+| app                                                     |          1 |         22 |         38 |          4 |         64 |
+| sistema\classes                                         |          2 |         19 |          5 |         12 |         36 |
+| sistema                                                 |          2 |         19 |          5 |         12 |         36 |
+| contratos                                               |          3 |         15 |          0 |         10 |         25 |
+| excecoes                                                |          2 |         14 |          0 |          6 |         20 |
+| arquivos                                                |          2 |          2 |          0 |          2 |          4 |
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------+------------+------------+------------+------------+------------+
+| app\App.java                                            | Java       |         22 |         38 |          4 |         64 |
+| arquivos\registrosAlunos.txt                            | Django txt |          1 |          0 |          1 |          2 |
+| arquivos\registrosCursos.txt                            | Django txt |          1 |          0 |          1 |          2 |
+| assistenciaestudantil\Bolsa.java                        | Java       |         24 |         13 |          9 |         46 |
+| assistenciaestudantil\BolsaVigente.java                 | Java       |         23 |          6 |          8 |         37 |
+| assistenciaestudantil\GerenciadorBolsas.java            | Java       |         77 |          5 |         14 |         96 |
+| complementares\ContaBancaria.java                       | Java       |         42 |         23 |         14 |         79 |
+| complementares\Endereco.java                            | Java       |         59 |         27 |         16 |        102 |
+| complementares\Utilitario.java                          | Java       |        238 |          0 |         19 |        257 |
+| contratos\Armazenavel.java                              | Java       |          5 |          0 |          3 |          8 |
+| contratos\ClassesGeral.java                             | Java       |          4 |          0 |          4 |          8 |
+| contratos\OperacoesBasicas.java                         | Java       |          6 |          0 |          3 |          9 |
+| ensino\classecurso\Curso.java                           | Java       |         51 |         12 |         14 |         77 |
+| ensino\classecurso\GerenciadorCursos.java               | Java       |        126 |          1 |         21 |        148 |
+| ensino\secaodisciplina\Disciplina.java                  | Java       |         42 |         18 |         12 |         72 |
+| ensino\secaodisciplina\DisciplinaAplicada.java          | Java       |         49 |         18 |         14 |         81 |
+| ensino\secaodisciplina\DisciplinaConcluida.java         | Java       |          9 |          0 |          5 |         14 |
+| excecoes\ItemNaoEncontrado.java                         | Java       |          7 |          0 |          3 |         10 |
+| excecoes\OperacaoNaoAutorizada.java                     | Java       |          7 |          0 |          3 |         10 |
+| interfacegrafica\AcaoCadastrarAluno.java                | Java       |        327 |         40 |          9 |        376 |
+| interfacegrafica\AcaoCadastrarCurso.java                | Java       |         74 |          3 |         11 |         88 |
+| interfacegrafica\AcaoExcluirAluno.java                  | Java       |         32 |          0 |          7 |         39 |
+| interfacegrafica\AcaoExcluirCurso.java                  | Java       |         38 |          0 |          7 |         45 |
+| interfacegrafica\AcaoPesquisarAluno.java                | Java       |         25 |          0 |          7 |         32 |
+| interfacegrafica\AcaoPesquisarCurso.java                | Java       |         24 |          0 |          7 |         31 |
+| interfacegrafica\CadastroAluno.java                     | Java       |        248 |         29 |         16 |        293 |
+| interfacegrafica\CadastroCurso.java                     | Java       |         73 |          0 |         12 |         85 |
+| interfacegrafica\ClicouBotaoPesquisaAluno.java          | Java       |         27 |          0 |          9 |         36 |
+| interfacegrafica\ClicouBotaoPesquisaCurso.java          | Java       |         24 |          0 |          9 |         33 |
+| interfacegrafica\ClicouCadastrarAlterarAlunoButton.java | Java       |         33 |          3 |          9 |         45 |
+| interfacegrafica\ClicouCadastrarAlterarCursoButton.java | Java       |         23 |          8 |          7 |         38 |
+| interfacegrafica\ClicouCelulaAluno.java                 | Java       |         35 |          4 |          9 |         48 |
+| interfacegrafica\ClicouCelulaCurso.java                 | Java       |         37 |          4 |          9 |         50 |
+| interfacegrafica\HubPrincipal.java                      | Java       |         26 |          0 |         11 |         37 |
+| interfacegrafica\JanelaPrincipal.java                   | Java       |        166 |        155 |         67 |        388 |
+| interfacegrafica\PainelOpcoesAluno.java                 | Java       |         28 |          1 |          9 |         38 |
+| interfacegrafica\PainelOpcoesCurso.java                 | Java       |         29 |          0 |         16 |         45 |
+| interfacegrafica\PesquisaAluno.java                     | Java       |         60 |          4 |         11 |         75 |
+| interfacegrafica\PesquisaCurso.java                     | Java       |         56 |          4 |         13 |         73 |
+| interfacegrafica\TrocaTela.java                         | Java       |         17 |          0 |          7 |         24 |
+| pessoas\classealuno\Aluno.java                          | Java       |        230 |         28 |         32 |        290 |
+| pessoas\classealuno\GerenciadorAluno.java               | Java       |        151 |          0 |         23 |        174 |
+| pessoas\superclasse\PessoaFisica.java                   | Java       |        131 |         49 |         29 |        209 |
+| sistema\classes\ServidorArmazenamento.java              | Java       |         13 |          5 |          8 |         26 |
+| sistema\classes\Usuario.java                            | Java       |          6 |          0 |          4 |         10 |
+| Total                                                   |            |      2,726 |        498 |        526 |      3,750 |
++---------------------------------------------------------+------------+------------+------------+------------+------------+
