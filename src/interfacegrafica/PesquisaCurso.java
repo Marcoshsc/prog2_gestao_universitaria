@@ -46,7 +46,7 @@ public class PesquisaCurso extends JPanel {
         this.cursosContainer.setBorder(BorderFactory.createEmptyBorder(10, 0, 0 , 0));
 
         this.cursosPesquisados.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        this.cursosPesquisados.setModel(ServidorArmazenamento.gerenciadorAlunos.getAlunosTable());
+        this.cursosPesquisados.setModel(ServidorArmazenamento.gerenciadorCursos.getCursosTable());
         this.clicouCelula = new ClicouCelulaCurso("cadastrar", this.cursosPesquisados, this.patern, this, this.relacionado1);
         this.cursosPesquisados.addMouseListener(this.clicouCelula);
         Utilitario.formataEspacamentoTabela(this.cursosPesquisados, 4);

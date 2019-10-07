@@ -38,8 +38,8 @@ public class AcaoExcluirCurso implements ActionListener {
         }
         else {
             this.parent.erroPreenchimento("CURSO NÃO EXISTE. IMPOSSÍVEL EXCLUIR.");
-            this.parent.cadastroAluno.setVisible(false);
-            this.parent.painelOpcoesAluno.setVisible(true);
+            this.parent.cadastroCurso.setVisible(false);
+            this.parent.painelOpcoesCurso.setVisible(true);
         }
     }
 }

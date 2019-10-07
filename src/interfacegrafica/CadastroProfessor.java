@@ -15,6 +15,7 @@ import sistema.classes.ServidorArmazenamento;
 import complementares.ContaBancaria;
 import complementares.Endereco;
 import complementares.Utilitario;
+import pessoas.classeprofessor.Professor;
 
 public class CadastroProfessor extends JPanel {
 
@@ -72,8 +73,9 @@ public class CadastroProfessor extends JPanel {
     protected JTextField paisField = Utilitario.geraField();
     protected JButton botaoConfirma = new JButton("CONFIRMAR CADASTRO");
     protected JButton botaoVolta = new JButton("VOLTAR");
-    //protected AcaoCadastrarAluno acaoBotaoConfirma = new AcaoCadastrarAluno(this);
+    //protected AcaoCadastrarProfessor acaoBotaoConfirma = new AcaoCadastrarProfessor(this);
     protected JButton botaoExcluir = new JButton("EXCLUIR PROFESSOR");
+    protected AcaoCadastrarProfessor acaoBotaoConfirma = new AcaoCadastrarProfessor(this);
 
     public CadastroProfessor(JanelaPrincipal patern, PainelOpcoesProfessor origem) {
 
@@ -84,6 +86,7 @@ public class CadastroProfessor extends JPanel {
         // this.botaoConfirma.addActionListener(this.acaoBotaoConfirma);
         this.botaoVolta.addActionListener(new TrocaTela(this, this.origem));
         this.ativoField.setEnabled(false);
+        this.botaoConfirma.addActionListener(this.acaoBotaoConfirma);
 
         // campo das Informações gerais
         Utilitario.posicionaTitulo(this.informacoesGeraisLabel, this, this.constantes);
@@ -156,10 +159,122 @@ public class CadastroProfessor extends JPanel {
          this, this.constantes);
         
         this.constantes.gridx++;
-        // this.botaoExcluir.addActionListener(new AcaoExcluirAluno(this.patern, this.cpfField));
-        // this.add(this.botaoExcluir, this.constantes);        
+        this.botaoExcluir.addActionListener(new AcaoExcluirProfessor(this.patern, this.cpfField));
+        this.add(this.botaoExcluir, this.constantes);        
 
         this.setVisible(false);
+    }
+
+    public void setaCampos(String acao, Professor professor) {
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        if(professor != null) {
+            this.nomeField.setText(professor.getNome());
+            this.sexoField.setSelectedItem(professor.getSexo());
+            this.dataIngressoField.setText(formatador.format(professor.getDataIngresso()));
+            this.ativoField.setSelectedItem("SIM");
+            this.cpfField.setText(professor.getCpf());
+            this.salarioField.setText(Float.toString(professor.getSalario()));
+            this.dataNascimentoField.setText(formatador.format(professor.getDataNascimento()));
+            this.identidadeField.setText(professor.getRg());
+            if(acao.equals("view")) {
+                this.botaoConfirma.setVisible(false);
+                this.botaoExcluir.setVisible(false);
+            }
+            else if(acao.equals("change")) {
+                this.botaoConfirma.setText("ALTERAR PROFESSOR");
+                this.acaoBotaoConfirma.setAcao("alterar");
+                this.acaoBotaoConfirma.cpfPrevio = professor.getCpf();
+                this.botaoExcluir.setVisible(true);
+                this.botaoConfirma.setVisible(true);
+            }
+            if(professor.getContaBancaria() != null && professor.getEndereco() != null) {
+                ContaBancaria contaDoProfessor = professor.getContaBancaria();
+                this.bancoField.setSelectedItem(contaDoProfessor.getNomeBanco());
+                this.agenciaField.setText(contaDoProfessor.getAgencia());
+                this.contaField.setText(contaDoProfessor.getConta());
+                this.cpfTitularField.setText(contaDoProfessor.getCpfTitular());
+                this.nomeTitularField.setText(contaDoProfessor.getNomeTitular());
+                Endereco enderecoDoProfessor = professor.getEndereco();
+                this.ruaField.setText(enderecoDoProfessor.getRua());
+                this.numeroField.setText(String.valueOf(enderecoDoProfessor.getNumero()));
+                this.complementoField.setText(enderecoDoProfessor.getComplemento());
+                this.cepField.setText(enderecoDoProfessor.getCep());
+                this.bairroField.setText(enderecoDoProfessor.getBairro());
+                this.cidadeField.setText(enderecoDoProfessor.getCidade());
+                this.estadoField.setText(enderecoDoProfessor.getEstado());
+                this.paisField.setText(enderecoDoProfessor.getPais());
+            }
+            else if(professor.getContaBancaria() != null) {
+                ContaBancaria contaDoProfessor = professor.getContaBancaria();
+                this.bancoField.setSelectedItem(contaDoProfessor.getNomeBanco());
+                this.agenciaField.setText(contaDoProfessor.getAgencia());
+                this.contaField.setText(contaDoProfessor.getConta());
+                this.cpfTitularField.setText(contaDoProfessor.getCpfTitular());
+                this.nomeTitularField.setText(contaDoProfessor.getNomeTitular());
+                this.ruaField.setText(null);
+                this.numeroField.setText(null);
+                this.complementoField.setText(null);
+                this.cepField.setText(null);
+                this.bairroField.setText(null);
+                this.cidadeField.setText(null);
+                this.estadoField.setText(null);
+                this.paisField.setText(null);
+            }
+            else if(professor.getEndereco() != null) {
+                Endereco enderecoDoProfessor = professor.getEndereco();
+                this.ruaField.setText(enderecoDoProfessor.getRua());
+                this.numeroField.setText(String.valueOf(enderecoDoProfessor.getNumero()));
+                this.complementoField.setText(enderecoDoProfessor.getComplemento());
+                this.cepField.setText(enderecoDoProfessor.getCep());
+                this.bairroField.setText(enderecoDoProfessor.getBairro());
+                this.cidadeField.setText(enderecoDoProfessor.getCidade());
+                this.estadoField.setText(enderecoDoProfessor.getEstado());
+                this.paisField.setText(enderecoDoProfessor.getPais());
+                this.bancoField.setSelectedItem(null);
+                this.agenciaField.setText(null);
+                this.contaField.setText(null);
+                this.cpfTitularField.setText(null);
+                this.nomeTitularField.setText(null);
+            }
+            else {
+                this.bancoField.setSelectedItem(null);
+                this.agenciaField.setText(null);
+                this.contaField.setText(null);
+                this.cpfTitularField.setText(null);
+                this.nomeTitularField.setText(null);
+                this.ruaField.setText(null);
+                this.numeroField.setText(null);
+                this.complementoField.setText(null);
+                this.cepField.setText(null);
+                this.bairroField.setText(null);
+                this.cidadeField.setText(null);
+                this.estadoField.setText(null);
+                this.paisField.setText(null);
+            }
+        }
+        else {
+            this.nomeField.setText(null);
+            this.sexoField.setSelectedItem(null);
+            this.dataIngressoField.setText(null);
+            this.ativoField.setSelectedItem("SIM");
+            this.cpfField.setText(null);
+            this.salarioField.setText(null);
+            this.dataNascimentoField.setText(null);
+            this.identidadeField.setText(null);
+            this.bancoField.setSelectedItem(null);
+            this.agenciaField.setText(null);
+            this.contaField.setText(null);
+            this.cpfTitularField.setText(null);
+            this.nomeTitularField.setText(null);
+            this.ruaField.setText(null);
+            this.numeroField.setText(null);
+            this.complementoField.setText(null);
+            this.cepField.setText(null);
+            this.bairroField.setText(null);
+            this.cidadeField.setText(null);
+            this.estadoField.setText(null);
+            this.paisField.setText(null);
+        }
     }
 
 }

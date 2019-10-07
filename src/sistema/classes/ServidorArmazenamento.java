@@ -2,6 +2,7 @@ package sistema.classes;
 
 import ensino.classecurso.GerenciadorCursos;
 import pessoas.classealuno.GerenciadorAluno;
+import pessoas.classeprofessor.GerenciadorProfessor;
 
 import java.util.ArrayList;
 
@@ -16,8 +17,10 @@ public class ServidorArmazenamento {
 	private static ArrayList<Usuario> usuariosCadastrados = new ArrayList<Usuario>();
 	public static GerenciadorCursos gerenciadorCursos = new GerenciadorCursos();
 	public static GerenciadorAluno gerenciadorAlunos = new GerenciadorAluno();
+	public static GerenciadorProfessor gerenciadorProfessores = new GerenciadorProfessor();
 
 	public static void inicializaTodos() throws Exception {
+		ServidorArmazenamento.gerenciadorProfessores.inicializa();
 		ServidorArmazenamento.gerenciadorCursos.inicializa();
 		ServidorArmazenamento.gerenciadorAlunos.inicializa();
 	}

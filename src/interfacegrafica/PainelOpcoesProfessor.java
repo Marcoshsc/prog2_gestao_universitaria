@@ -20,6 +20,7 @@ public class PainelOpcoesProfessor extends JPanel {
         this.parent = parent;
         // this.visualizarProfessor.addActionListener(new AcaoPesquisarProfessor(this, this.relacionado1));
         // this.cadastrarProfessor.addActionListener(new ClicouCadastrarAlterarProfessorButton("cadastrar", this.parent));
+        this.cadastrarProfessor.addActionListener(new ClicouCadastrarAlterarProfessorButton("cadastrar", this.parent));
         this.constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
         this.setLayout(new GridBagLayout());
         this.constantes.gridy++;

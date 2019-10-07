@@ -5,25 +5,28 @@ import java.time.format.DateTimeFormatter;
 
 import complementares.ContaBancaria;
 import complementares.Endereco;
+import interfacegrafica.JanelaPrincipal;
 import pessoas.classeprofessor.*;
 //import pessoas.superclasse.*;
 //import sistema.classes.ServidorArmazenamento;
+import sistema.classes.ServidorArmazenamento;
 
 public class App {
     public static void main(String[] args) throws Exception {
         try {
-            //ServidorArmazenamento.inicializaTodos();
-            //new JanelaPrincipal();
+            ServidorArmazenamento.inicializaTodos();
+            new JanelaPrincipal();
             // System.out.println(Utilitario.validaCPF("10732807645"));
         
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        Endereco end1 = new Endereco("Rua aqui", 12, "complemento", "bairro", "cep", "cidade", "estado", "pais");
-        ContaBancaria cont1 = new ContaBancaria("nomeBanco", "agencia", "conta", "cpfTitular", "nomeTitular");
-        Professor a = new Professor("nome", "cpf", "rg", "sexo", LocalDate.parse("01/12/2000", formatador), end1, cont1,
-        "departamento", LocalDate.parse("01/12/2015", formatador), 5600.55f);
-        String[] campos = a.getStorageString().split("-");
-        Professor b = Professor.fromStorageString(campos);
-        System.out.println(b.getStorageString());
+        // DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        // Endereco end1 = new Endereco("Rua aqui", 12, "complemento", "bairro", "cep", "cidade", "estado", "pais");
+        // ContaBancaria cont1 = new ContaBancaria("nomeBanco", "agencia", "conta", "cpfTitular", "nomeTitular");
+        // Professor a = new Professor("nome", "cpf", "rg", "sexo", LocalDate.parse("01/12/2000", formatador), end1, cont1,
+        // LocalDate.parse("01/12/2015", formatador), 5600.55f);
+        // String[] campos = a.getStorageString().split("-");
+        // Professor b = Professor.fromStorageString(campos);
+        // System.out.println(b.getStorageString());
+        // System.out.println(b.getStorageString());
         // Curso curso1 = new Curso("codigo", "nome", 10, 3000);
         // GerenciadorBolsas.novaBolsa("codigo", "nome", 400);
         // GerenciadorBolsas.novaBolsa("codigo2", "nome2", 300);
