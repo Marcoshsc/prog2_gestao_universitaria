@@ -13,12 +13,12 @@ public class DisciplinaAplicada extends Disciplina {
 	private LocalDate dataFim;
 	private int turma;
 	private int vagasDisponiveis;
-	private ArrayList<Aluno> alunosMatriculados = new ArrayList<Aluno>();
+	private ArrayList<Boletim> alunosMatriculados = new ArrayList<Boletim>();
 	private int semestre;
 
 	public DisciplinaAplicada(Disciplina disciplina, String professor, LocalDate dataInicio, 
 	LocalDate dataFim, int turma, int vagasDisponiveis, int semestre) {
-		super(disciplina.getCodigo(), disciplina.getCargaHoraria(), disciplina.getMaximoFaltas(), disciplina.getDepartamento());
+		super(disciplina.getCodigo(), disciplina.getNome(), disciplina.getCargaHoraria(), disciplina.getMaximoFaltas());
 		this.professor = professor;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;

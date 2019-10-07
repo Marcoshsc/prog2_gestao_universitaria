@@ -9,9 +9,7 @@ import javax.swing.JTextField;
 import complementares.Utilitario;
 import ensino.classecurso.Curso;
 import ensino.classecurso.GerenciadorCursos;
-import pessoas.classealuno.Aluno;
 import pessoas.classealuno.GerenciadorAluno;
-import sistema.classes.ServidorArmazenamento;
 
 public class AcaoExcluirCurso implements ActionListener {
 

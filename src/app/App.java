@@ -1,14 +1,6 @@
 package app;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-import complementares.ContaBancaria;
-import complementares.Endereco;
 import interfacegrafica.JanelaPrincipal;
-import pessoas.classeprofessor.*;
-//import pessoas.superclasse.*;
-//import sistema.classes.ServidorArmazenamento;
 import sistema.classes.ServidorArmazenamento;
 
 public class App {

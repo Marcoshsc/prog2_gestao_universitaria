@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import sistema.classes.ServidorArmazenamento;
 import complementares.ContaBancaria;
 import complementares.Endereco;
 import complementares.Utilitario;

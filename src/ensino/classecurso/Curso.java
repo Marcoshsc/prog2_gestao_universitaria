@@ -1,6 +1,9 @@
 package ensino.classecurso;
 
+import java.util.ArrayList;
+
 import contratos.ClassesGeral;
+import ensino.secaodisciplina.Disciplina;
 
 public class Curso implements ClassesGeral {
 
@@ -8,6 +11,7 @@ public class Curso implements ClassesGeral {
     private String nome;
     private int tempoConclusao;
     private int cargaHoraria;
+    private ArrayList<Disciplina> disciplinasRelacionadas = new ArrayList<Disciplina>();
 
     public Curso(String codigo, String nome, int tempoConclusao, int cargaHoraria) {
         this.codigo = codigo;
@@ -72,6 +76,19 @@ public class Curso implements ClassesGeral {
      */
     public int getTempoConclusao() {
         return tempoConclusao;
+    }
+
+    public boolean isDisciplinaInside(Disciplina disciplina) {
+        if(this.disciplinasRelacionadas.contains(disciplina)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void adicionaDisciplina(Disciplina disciplina) {
+        this.disciplinasRelacionadas.add(disciplina);
     }
 
 }

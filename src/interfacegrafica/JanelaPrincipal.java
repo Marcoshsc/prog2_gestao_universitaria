@@ -26,10 +26,13 @@ public class JanelaPrincipal extends JFrame {
     protected PainelOpcoesAluno painelOpcoesAluno = new PainelOpcoesAluno(this);
     protected PainelOpcoesCurso painelOpcoesCurso = new PainelOpcoesCurso(this);
     protected PainelOpcoesProfessor painelOpcoesProfessor = new PainelOpcoesProfessor(this);
-    protected HubPrincipal hubPrincipal = new HubPrincipal(this.painelOpcoesAluno, this.painelOpcoesCurso, this.painelOpcoesProfessor);
+    protected PainelOpcoesDisciplina painelOpcoesDisciplina = new PainelOpcoesDisciplina(this);
+    protected HubPrincipal hubPrincipal = new HubPrincipal(this.painelOpcoesAluno, this.painelOpcoesCurso, 
+    this.painelOpcoesProfessor, this.painelOpcoesDisciplina);
     protected CadastroAluno cadastroAluno = new CadastroAluno(this, this.painelOpcoesAluno);
     protected CadastroCurso cadastroCurso = new CadastroCurso(this, this.painelOpcoesCurso);
     protected CadastroProfessor cadastroProfessor = new CadastroProfessor(this, this.painelOpcoesProfessor);
+    protected CadastroDisciplina cadastroDisciplina = new CadastroDisciplina(this, this.painelOpcoesDisciplina);
     protected PesquisaAluno pesquisaAluno = new PesquisaAluno(this, this.painelOpcoesAluno, this.cadastroAluno);
     protected PesquisaCurso pesquisaCurso = new PesquisaCurso(this, this.painelOpcoesCurso, this.cadastroCurso);
     protected PesquisaProfessor pesquisaProfessor = new PesquisaProfessor(this, this.painelOpcoesProfessor, this.cadastroProfessor);
@@ -52,17 +55,23 @@ public class JanelaPrincipal extends JFrame {
         this.painelOpcoesProfessor.visualizarProfessor.addActionListener(new AcaoPesquisarProfessor("view", this.painelOpcoesProfessor, this.pesquisaProfessor));
         this.painelOpcoesProfessor.alterarProfessor.addActionListener(new AcaoPesquisarProfessor("change", this.painelOpcoesProfessor, this.pesquisaProfessor));
 
+        this.painelOpcoesDisciplina.botaoVolta.addActionListener(new TrocaTela(this.painelOpcoesDisciplina, this.hubPrincipal));
+
         this.add(this.pesquisaAluno);
         this.add(this.pesquisaCurso);
         this.add(this.pesquisaProfessor);
+
         this.add(this.painelOpcoesAluno);
         this.add(this.painelOpcoesCurso);
         this.add(this.painelOpcoesProfessor);
+        this.add(this.painelOpcoesDisciplina);
+
         this.add(this.hubPrincipal);
         this.hubPrincipal.setVisible(true);
         this.add(this.cadastroAluno);
         this.add(this.cadastroCurso);
         this.add(this.cadastroProfessor);
+        this.add(this.cadastroDisciplina);
         // this.add(this.telaInicial);
         // this.telaInicial.setVisible(true);
         // this.add(this.telaCadastro);

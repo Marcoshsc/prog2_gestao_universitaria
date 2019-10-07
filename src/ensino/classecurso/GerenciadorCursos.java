@@ -7,6 +7,7 @@ import javax.swing.table.TableModel;
 
 import complementares.Utilitario;
 import contratos.OperacoesBasicas;
+import ensino.secaodisciplina.Disciplina;
 
 public class GerenciadorCursos implements OperacoesBasicas {
 
@@ -68,7 +69,7 @@ public class GerenciadorCursos implements OperacoesBasicas {
 		}
 		else
 			return null;
-    }
+	}
     
     public Curso pesquisaCursoNome(String nome) {
 		if(GerenciadorCursos.cursosCadastrados.size() >= 0) {

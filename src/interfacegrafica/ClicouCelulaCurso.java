@@ -7,8 +7,6 @@ import javax.swing.JTable;
 
 import ensino.classecurso.Curso;
 import ensino.classecurso.GerenciadorCursos;
-import pessoas.classealuno.Aluno;
-import sistema.classes.ServidorArmazenamento;
 
 public class ClicouCelulaCurso extends MouseAdapter {
     

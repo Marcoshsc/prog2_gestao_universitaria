@@ -8,7 +8,6 @@ import ensino.classecurso.Curso;
 import assistenciaestudantil.BolsaVigente;
 import complementares.ContaBancaria;
 import complementares.Endereco;
-import contratos.Armazenavel;
 import contratos.ClassesGeral;
 import ensino.secaodisciplina.DisciplinaConcluida;
 import sistema.classes.Usuario;
