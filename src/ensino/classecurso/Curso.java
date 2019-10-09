@@ -51,6 +51,13 @@ public class Curso implements ClassesGeral {
     }
 
     /**
+     * @return the disciplinasRelacionadas
+     */
+    public ArrayList<Disciplina> getDisciplinasRelacionadas() {
+        return disciplinasRelacionadas;
+    }
+
+    /**
      * @return the cargaHoraria
      */
     public int getCargaHoraria() {

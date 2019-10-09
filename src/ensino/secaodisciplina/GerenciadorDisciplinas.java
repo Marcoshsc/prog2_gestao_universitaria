@@ -2,7 +2,12 @@ package ensino.secaodisciplina;
 
 import java.util.ArrayList;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 import complementares.Utilitario;
+import ensino.classecurso.Curso;
+import ensino.classecurso.GerenciadorCursos;
 
 public class GerenciadorDisciplinas {
 
@@ -67,6 +72,67 @@ public class GerenciadorDisciplinas {
             System.out.println(exc.getMessage());
             exc.printStackTrace();
         }
+    }
+
+    public ArrayList<Disciplina> pesquisarDisciplinaCurso(Curso curso) {
+        ArrayList<Disciplina> procurados = new ArrayList<Disciplina>();
+        // RESOLVER ISSO AQUI PQ TEM QUE PEGAR DO CURSO
+        if(GerenciadorDisciplinas.disciplinasCadastradas.size() == 0)
+            return null;
+        for(Disciplina i: curso.getDisciplinasRelacionadas()) {
+            procurados.add(i);
+        }
+        return (procurados.size() == 0) ? null : procurados;
+    }
+
+    public TableModel getDisciplinasTable() {
+		String[] header = {
+			"Codigo", "Nome", "Carga Horária", "Maximo Faltas"
+		};
+		String[][] data;
+		if(GerenciadorDisciplinas.disciplinasCadastradas.size() > 0) {
+			data = new String[GerenciadorDisciplinas.disciplinasCadastradas.size()][7];
+			for(int i = 0; i < GerenciadorDisciplinas.disciplinasCadastradas.size(); i++) {
+				data[i] = GerenciadorDisciplinas.disciplinasCadastradas.get(i).getInfoBasicasArray();
+			}
+		}
+		else {
+			data = null;
+		}
+		return new DefaultTableModel(data, header) {
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+
+		};
+    }
+    
+    public TableModel getDisciplinasTable(Curso curso) {
+		String[] header = {
+			"Codigo", "Nome", "Carga Horária", "Maximo Faltas"
+		};
+		boolean existe;
+		ArrayList<Disciplina> disciplinasProcuradas = this.pesquisarDisciplinaCurso(curso);
+		existe = (disciplinasProcuradas != null) ? true : false;
+		String[][] data;
+		if(existe) {
+            data = new String[disciplinasProcuradas.size()][7];
+            for(int i = 0; i < disciplinasProcuradas.size(); i++) {
+                data[i] = disciplinasProcuradas.get(i).getInfoBasicasArray();
+            }
+		}
+		else 
+			data = null;
+		return new DefaultTableModel(data, header) {
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+
+		};
     }
 
 }
