@@ -45,6 +45,7 @@ public class CadastroDisciplina extends JPanel {
         this.botaoExcluir.addActionListener(new AcaoExcluirCurso(this.parent, this.codigoField));
         this.botaoConfirma.addActionListener(this.acaoBotaoConfirma);
         this.botaoVolta.addActionListener(new TrocaTela(this, this.origem));
+        Utilitario.geraCampoCentral(this.cursoLabel, this.cursoField, this, this.constantes);
         Utilitario.geraCampoVertical(this.codigoLabel, this.codigoField, this, this.constantes);
         Utilitario.geraCampoHorizontal(this.nomeLabel, this.nomeField, this, this.constantes);
         Utilitario.geraCampoVertical(this.maximoFaltasLabel, this.maximoFaltasField, this, this.constantes);

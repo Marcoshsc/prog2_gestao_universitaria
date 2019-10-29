@@ -12,6 +12,8 @@ import ensino.secaodisciplina.Disciplina;
 import ensino.secaodisciplina.GerenciadorDisciplinas;
 import sistema.classes.ServidorArmazenamento;
 
+// FALTA ALTERAR AINDA QUE QUANDO ALTERA A DISCIPLINA TEM QUE VER SE O CURSO AINDA É O MESMO OU NAO
+
 public class AcaoCadastrarDisciplina implements ActionListener {
 
     private CadastroDisciplina campos;
@@ -69,9 +71,10 @@ public class AcaoCadastrarDisciplina implements ActionListener {
                 return;
             }
             Disciplina seraAdicionada = new Disciplina(codigoPrevio, nomePrevio, maximoFaltasPrevio, cargaHorariaPrevia);
-            ServidorArmazenamento.gerenciadorDisciplinas.adicionaDisciplina(seraAdicionada);
             cursoPrevio.adicionaDisciplina(seraAdicionada);
              JOptionPane.showMessageDialog(this.campos.parent, "Disciplina cadastrada com sucesso.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+            seraAdicionada.setCodigoCurso(cursoPrevio.getCodigo());
+            ServidorArmazenamento.gerenciadorDisciplinas.adicionaDisciplina(seraAdicionada);
             this.campos.setVisible(false);
             this.campos.origem.setVisible(true);
         }

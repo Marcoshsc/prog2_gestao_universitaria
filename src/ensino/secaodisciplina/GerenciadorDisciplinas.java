@@ -11,7 +11,7 @@ import ensino.classecurso.GerenciadorCursos;
 
 public class GerenciadorDisciplinas {
 
-    private static String PATH_DISC_BASE = "src\\arquivos\\registrosDisciplinas.txt";
+    private static String PATH_DISC_BASE = "src/arquivos/registrosDisciplinas.txt";
     private static ArrayList<Disciplina> disciplinasCadastradas = new ArrayList<Disciplina>();
     private static ArrayList<DisciplinaAplicada> disciplinasVigentes = new ArrayList<DisciplinaAplicada>();
 
@@ -59,7 +59,9 @@ public class GerenciadorDisciplinas {
 		if(objetos.length > 0) {
 			if(objetos[0] != "") {
 				for(String i: objetos) {
-					GerenciadorDisciplinas.disciplinasCadastradas.add(Disciplina.fromStorageString(i));
+					Disciplina a = Disciplina.fromStorageString(i);
+					GerenciadorDisciplinas.disciplinasCadastradas.add(a);
+					GerenciadorCursos.pesquisaCursoCodigo(a.getCodigoCurso()).adicionaDisciplina(a);;
 				}
 			}
 		}
@@ -77,12 +79,12 @@ public class GerenciadorDisciplinas {
     public ArrayList<Disciplina> pesquisarDisciplinaCurso(Curso curso) {
         ArrayList<Disciplina> procurados = new ArrayList<Disciplina>();
         // RESOLVER ISSO AQUI PQ TEM QUE PEGAR DO CURSO
-        if(GerenciadorDisciplinas.disciplinasCadastradas.size() == 0)
-            return null;
-        for(Disciplina i: curso.getDisciplinasRelacionadas()) {
-            procurados.add(i);
-        }
-        return (procurados.size() == 0) ? null : procurados;
+//        if(curso.getDisciplinasRelacionadas().size() == 0)
+//            return null;
+//        for(Disciplina i: curso.getDisciplinasRelacionadas()) {
+//            procurados.add(i);
+//        }
+        return (curso.getDisciplinasRelacionadas().size() == 0) ? null : curso.getDisciplinasRelacionadas();
     }
 
     public TableModel getDisciplinasTable() {

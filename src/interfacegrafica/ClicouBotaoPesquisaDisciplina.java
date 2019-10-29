@@ -17,15 +17,16 @@ public class ClicouBotaoPesquisaDisciplina implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(!(this.principal.opcaoCurso.getSelectedItem() == null)) {
+        	System.out.println(ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.principal.opcaoCurso.getSelectedItem()).getDisciplinasRelacionadas());
             this.principal.disciplinasPesquisadas.setModel(ServidorArmazenamento.gerenciadorDisciplinas.getDisciplinasTable(
                 ServidorArmazenamento.gerenciadorCursos.pesquisaCursoNome((String)this.principal.opcaoCurso.getSelectedItem())
             ));
-            this.principal.opcaoCurso.setSelectedItem(null);
             Utilitario.formataEspacamentoTabela(this.principal.disciplinasPesquisadas, 4);
         }
         else {
             this.principal.disciplinasPesquisadas.setModel(ServidorArmazenamento.gerenciadorDisciplinas.getDisciplinasTable());
             Utilitario.formataEspacamentoTabela(this.principal.disciplinasPesquisadas, 4);
+            this.principal.opcaoCurso.setSelectedItem(null);
         }
     }
 

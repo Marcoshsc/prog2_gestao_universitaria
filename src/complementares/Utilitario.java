@@ -246,7 +246,7 @@ public interface Utilitario {
                     maior = (String)tabela.getValueAt(j, i);
                 }
             }
-            coluna.setMinWidth(8*maior.length());
+            coluna.setMinWidth(9*maior.length());
             DefaultTableCellRenderer renderizador = new DefaultTableCellRenderer();
             renderizador.setHorizontalAlignment(JLabel.CENTER);
             coluna.setCellRenderer(renderizador);

@@ -11,7 +11,7 @@ import contratos.OperacoesBasicas;
 public class GerenciadorProfessor implements OperacoesBasicas {
 
     private static ArrayList<Professor> professoresCadastrados = new ArrayList<Professor>();
-    private static final String PATH = "src\\arquivos\\registrosProfessores.txt";
+    private static final String PATH = "src/arquivos/registrosProfessores.txt";
 
     @Override
     public void adiciona(Object objeto) {

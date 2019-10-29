@@ -8,6 +8,7 @@ public class Disciplina implements ClassesGeral {
 	private String nome;
 	private int cargaHoraria;
 	private int maximoFaltas;
+	private String codigoCurso;
 	
 	public Disciplina(String codigo, String nome, int cargaHoraria, int maximoFaltas) {
 		this.codigo = codigo;
@@ -31,12 +32,15 @@ public class Disciplina implements ClassesGeral {
 
 	@Override
 	public String getStorageString() {
-		return String.format("%s-%s-%d-%d", this.codigo, this.nome, this.cargaHoraria, this.maximoFaltas);
+		return String.format("%s-%s-%d-%d-%s", this.codigo, this.nome, this.cargaHoraria, this.maximoFaltas, this.codigoCurso);
 	}
 
 	public static Disciplina fromStorageString(String texto) {
         String[] campos = texto.split("-");
-        return new Disciplina(campos[0], campos[1], Integer.parseInt(campos[2]), Integer.parseInt(campos[3]));
+        Disciplina a = new Disciplina(campos[0], campos[1], Integer.parseInt(campos[2]), Integer.parseInt(campos[3]));
+        a.setCodigoCurso(campos[4]);
+        return a;
+        
 	}
 	
 	public String[] getInfoBasicasArray() {
@@ -47,6 +51,14 @@ public class Disciplina implements ClassesGeral {
         infos[3] = Integer.toString(this.maximoFaltas);
         return infos;
     }
+	
+	public void setCodigoCurso(String codigoCurso) {
+		this.codigoCurso = codigoCurso;
+	}
+	
+	public String getCodigoCurso() {
+		return this.codigoCurso;
+	}
 
 	/**
 	 * @return the nome

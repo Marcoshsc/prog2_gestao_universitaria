@@ -12,7 +12,7 @@ import ensino.secaodisciplina.Disciplina;
 public class GerenciadorCursos implements OperacoesBasicas {
 
     private static ArrayList<Curso> cursosCadastrados = new ArrayList<Curso>();
-    private static final String PATH = "src\\arquivos\\registrosCursos.txt";
+    private static final String PATH = "src/arquivos/registrosCursos.txt";
 
     @Override
     public void adiciona(Object objeto) {

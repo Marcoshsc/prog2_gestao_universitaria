@@ -3,6 +3,8 @@ package interfacegrafica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
+
 import complementares.Utilitario;
 import sistema.classes.ServidorArmazenamento;
 
@@ -22,7 +24,7 @@ public class AcaoPesquisarDisciplina implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         this.next.disciplinasPesquisadas.setModel(ServidorArmazenamento.gerenciadorDisciplinas.getDisciplinasTable());
         Utilitario.formataEspacamentoTabela(this.next.disciplinasPesquisadas, 4);
-        this.next.opcaoCurso.setSelectedItem(null);
+        this.next.opcaoCurso.setModel(new DefaultComboBoxModel<String>(ServidorArmazenamento.gerenciadorCursos.getNomeCursos()));;
         this.next.opcaoCurso.setSelectedItem(null);
         this.next.clicouCelula.setAcao(this.acao);
         this.origem.setVisible(false);

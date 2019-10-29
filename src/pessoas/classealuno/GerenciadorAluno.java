@@ -13,7 +13,7 @@ import ensino.classecurso.GerenciadorCursos;
 public class GerenciadorAluno implements OperacoesBasicas {
 
     private static ArrayList<Aluno> alunosCadastrados = new ArrayList<Aluno>();
-    private static final String PATH = "src\\arquivos\\registrosAlunos.txt";
+    private static final String PATH = "src/arquivos/registrosAlunos.txt";
 
     @Override
     public void adiciona(Object objeto) {
