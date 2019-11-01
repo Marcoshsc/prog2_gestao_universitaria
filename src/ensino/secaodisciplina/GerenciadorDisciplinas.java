@@ -11,7 +11,7 @@ import ensino.classecurso.GerenciadorCursos;
 
 public class GerenciadorDisciplinas {
 
-    private static String PATH_DISC_BASE = "src/arquivos/registrosDisciplinas.txt";
+    private static String PATH_DISC_BASE = "src\\arquivos\\registrosDisciplinas.txt";
     private static ArrayList<Disciplina> disciplinasCadastradas = new ArrayList<Disciplina>();
     private static ArrayList<DisciplinaAplicada> disciplinasVigentes = new ArrayList<DisciplinaAplicada>();
 

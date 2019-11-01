@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import complementares.Utilitario;
+import ensino.classecurso.GerenciadorCursos;
 import ensino.secaodisciplina.Disciplina;
 import sistema.classes.ServidorArmazenamento;
 
@@ -31,7 +32,7 @@ public class CadastroDisciplina extends JPanel {
     protected JTextField cargaHorariaField = Utilitario.geraField();
     protected JButton botaoConfirma = new JButton("CONFIRMAR CADASTRO");
     protected JButton botaoVolta = new JButton("VOLTAR");
-    protected JButton botaoExcluir = new JButton("EXCLUIR CURSO");
+    protected JButton botaoExcluir = new JButton("EXCLUIR DISCIPLINA");
     protected AcaoCadastrarDisciplina acaoBotaoConfirma = new AcaoCadastrarDisciplina(this);
 
     public CadastroDisciplina(JanelaPrincipal parent, PainelOpcoesDisciplina origem) {
@@ -42,7 +43,7 @@ public class CadastroDisciplina extends JPanel {
         this.setLayout(new GridBagLayout());
         this.constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
 
-        this.botaoExcluir.addActionListener(new AcaoExcluirCurso(this.parent, this.codigoField));
+        this.botaoExcluir.addActionListener(new AcaoExcluirDisciplina(this.parent, this.codigoField));
         this.botaoConfirma.addActionListener(this.acaoBotaoConfirma);
         this.botaoVolta.addActionListener(new TrocaTela(this, this.origem));
         Utilitario.geraCampoCentral(this.cursoLabel, this.cursoField, this, this.constantes);
@@ -67,12 +68,13 @@ public class CadastroDisciplina extends JPanel {
             this.nomeField.setText(disciplina.getNome());
             this.cargaHorariaField.setText(Integer.toString(disciplina.getCargaHoraria()));
             this.maximoFaltasField.setText(Integer.toString(disciplina.getMaximoFaltas()));
+            this.cursoField.setSelectedItem(GerenciadorCursos.pesquisaCursoCodigo(disciplina.getCodigoCurso()).getNome());
             if(acao.equals("view")) {
                 this.botaoConfirma.setVisible(false);
                 this.botaoExcluir.setVisible(false);
             }
             else if(acao.equals("change")) {
-                this.botaoConfirma.setText("ALTERAR CURSO");
+                this.botaoConfirma.setText("ALTERAR DISCIPLINA");
                 this.acaoBotaoConfirma.setAcao("alterar");
                 this.acaoBotaoConfirma.codigoAnterior = disciplina.getCodigo();
                 this.botaoExcluir.setVisible(true);

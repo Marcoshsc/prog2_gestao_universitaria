@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import complementares.Utilitario;
 import ensino.classecurso.Curso;
 import ensino.classecurso.GerenciadorCursos;
+import ensino.secaodisciplina.GerenciadorDisciplinas;
 import pessoas.classealuno.GerenciadorAluno;
 
 public class AcaoExcluirCurso implements ActionListener {
@@ -25,8 +26,8 @@ public class AcaoExcluirCurso implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Curso cursoPrevio = GerenciadorCursos.pesquisaCursoCodigo(Utilitario.formataCampo(this.codigoCurso));
         if(cursoPrevio != null) {
-            if(GerenciadorAluno.verificaVinculoCurso(cursoPrevio)) {
-                this.parent.erroPreenchimento("Há Vínculos de alunos com este curso. Impossível Excluir.");
+            if(GerenciadorAluno.verificaVinculoCurso(cursoPrevio) || cursoPrevio.getDisciplinasRelacionadas().size() != 0) {
+                this.parent.erroPreenchimento("Há Vínculos de alunos e/ou disciplinas com este curso. Impossível Excluir.");
                 return;
             }
             GerenciadorCursos.excluir(cursoPrevio);

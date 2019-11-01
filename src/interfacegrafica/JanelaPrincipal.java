@@ -58,6 +58,7 @@ public class JanelaPrincipal extends JFrame {
 
         this.painelOpcoesDisciplina.botaoVolta.addActionListener(new TrocaTela(this.painelOpcoesDisciplina, this.hubPrincipal));
         this.painelOpcoesDisciplina.visualizarDisciplina.addActionListener(new AcaoPesquisarDisciplina("view", this.painelOpcoesDisciplina, this.pesquisaDisciplina));
+        this.painelOpcoesDisciplina.alterarDisciplina.addActionListener(new AcaoPesquisarDisciplina("change", this.painelOpcoesDisciplina, this.pesquisaDisciplina));
 
         this.add(this.pesquisaAluno);
         this.add(this.pesquisaCurso);

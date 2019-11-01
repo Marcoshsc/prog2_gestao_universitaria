@@ -88,6 +88,13 @@ public class AcaoCadastrarDisciplina implements ActionListener {
                 return;
             }
             disciplinaPrevia.alterar(codigoPrevio, nomePrevio, maximoFaltasPrevio, cargaHorariaPrevia);
+            if(!disciplinaPrevia.getCodigoCurso().equals(cursoPrevio.getCodigo())) {
+                Curso cursoAtual = GerenciadorCursos.pesquisaCursoCodigo(disciplinaPrevia.getCodigoCurso());
+                cursoAtual.getDisciplinasRelacionadas().remove(disciplinaPrevia);
+                disciplinaPrevia.setCodigoCurso(cursoPrevio.getCodigo());
+                cursoPrevio.getDisciplinasRelacionadas().add(disciplinaPrevia);
+
+            }
             try {
             GerenciadorDisciplinas.atualizaBancoDisciplina();
             } catch(Exception exc) {
