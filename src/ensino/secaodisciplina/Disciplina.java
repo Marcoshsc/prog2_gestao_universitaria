@@ -35,7 +35,7 @@ public class Disciplina implements ClassesGeral {
 		return String.format("%s-%s-%d-%d-%s", this.codigo, this.nome, this.cargaHoraria, this.maximoFaltas, this.codigoCurso);
 	}
 
-	public static Disciplina fromStorageString(String texto) {
+	public static Disciplina fromStorageString(String texto) throws Exception {
         String[] campos = texto.split("-");
         Disciplina a = new Disciplina(campos[0], campos[1], Integer.parseInt(campos[2]), Integer.parseInt(campos[3]));
         a.setCodigoCurso(campos[4]);

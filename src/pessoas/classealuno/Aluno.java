@@ -148,6 +148,15 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         return infos;
     }
 
+    public String[] getInfoBasicasArrayTurma() {
+        String[] infos = new String[4];
+        infos[0] = this.getNome();
+        infos[1] = this.curso.getNome();
+        infos[2] = this.getCpf();
+        infos[3] = this.numeroMatricula;
+        return infos;
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");

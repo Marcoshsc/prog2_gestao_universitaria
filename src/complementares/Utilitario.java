@@ -63,7 +63,9 @@ public interface Utilitario {
     }
 
 	public static String formataCampo(JTextField componente) {
-		return componente.getText().replace("-", "").replace(" ", "").replace(".", "");
+		return componente.getText().replace("-", "")
+                .replace(" ", "").replace(".", "").replace(";", "")
+                .replace("#", "");
 	}
 
     public static String[] leArquivo(String path) throws Exception {
