@@ -20,13 +20,14 @@ public class DisciplinaAplicada extends Disciplina {
 	private int semestre;
 
 	public DisciplinaAplicada(Disciplina disciplina, String professor, LocalDate dataInicio, 
-	LocalDate dataFim, int vagasDisponiveis, int semestre, String codigo) {
+	LocalDate dataFim, int vagasDisponiveis, int semestre, String codigoVigente) {
 		super(disciplina.getCodigo(), disciplina.getNome(), disciplina.getCargaHoraria(), disciplina.getMaximoFaltas());
 		this.professor = professor;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
 		this.vagasDisponiveis = vagasDisponiveis;
 		this.semestre = semestre;
+		this.codigoVigente = codigoVigente;
 	}
 
 	@Override
@@ -43,10 +44,18 @@ public class DisciplinaAplicada extends Disciplina {
 		else {
 			StringBuilder a = new StringBuilder();
 			for(Boletim i: this.alunosMatriculados) {
-				a.append(String.format("%s;%f#", i.getAluno().getCpf(), i.getNota()));
+				a.append(String.format("%s;%s#", i.getAluno().getCpf(), Float.toString(i.getNota())));
 			}
 			return a.toString();
 		}
+	}
+
+	public ArrayList<Aluno> getArrayListAlunosMatriculados() {
+		ArrayList<Aluno> current = new ArrayList<Aluno>();
+		for(Boletim i: this.alunosMatriculados) {
+			current.add(i.getAluno());
+		}
+		return current;
 	}
 
 	@Override
@@ -66,11 +75,12 @@ public class DisciplinaAplicada extends Disciplina {
 		}
 	}
 
-	public Boletim pesquisaAluno(Aluno aluno) {
-		if(this.alunosMatriculados.size() == 0) return null;
+	public Boletim pesquisaAluno(String aluno) {
+		if(this.alunosMatriculados.size() == 0)
+			return null;
 		else {
 			for(Boletim i: this.alunosMatriculados) {
-				if(i.getAluno() == aluno) return i;
+				if(i.getAluno().getCpf().equals(aluno)) return i;
 			}
 			return null;
 		}
@@ -84,11 +94,14 @@ public class DisciplinaAplicada extends Disciplina {
 			DisciplinaAplicada a =  new DisciplinaAplicada(b, campos[1], LocalDate.parse(campos[2], formatador),
 					LocalDate.parse(campos[3], formatador), Integer.parseInt(campos[4]), Integer.parseInt(campos[6]),
 					campos[7]);
-			for(String i: campos[5].split("#")) {
-				String[] dados = i.split(";");
-				Boletim actual = new Boletim(ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF(campos[0]));
-				actual.setNota(Float.parseFloat(campos[1]));
-				a.adicionaAluno(actual);
+			String[] teste = campos[5].split("#");
+			if(!teste[0].equals("none")) {
+				for (String i : campos[5].split("#")) {
+					String[] dados = i.split(";");
+					Boletim actual = new Boletim(ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF(dados[0]));
+					actual.setNota(Float.parseFloat(dados[1]));
+					a.adicionaAluno(actual);
+				}
 			}
 			return a;
 		}

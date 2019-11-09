@@ -158,12 +158,15 @@ public class GerenciadorDisciplinas {
                 "Nome", "Curso", "CPF", "Matrícula", "Notas"
         };
         String[][] data;
-        if(arr.size() == 0 && disc == null) data = null;
+        if(arr.size() == 0 && disc == null) {
+            data = null;
+        }
         else {
             data = new String[arr.size()][5];
             for(int i = 0; i < arr.size(); i++) {
                 data[i] = arr.get(i).getInfoBasicasArray();
-                data[i][4] = (disc != null) ? Float.toString(disc.pesquisaAluno(arr.get(i)).getNota()) : "0";
+                data[i][4] = (disc != null && disc.getArrayListAlunosMatriculados().contains(arr.get(i)))
+                        ? Float.toString(disc.pesquisaAluno(arr.get(i).getCpf()).getNota()) : "0";
             }
         }
         return new DefaultTableModel(data, header) {

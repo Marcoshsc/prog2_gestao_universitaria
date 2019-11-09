@@ -5,16 +5,18 @@ import javax.swing.*;
 import complementares.Utilitario;
 import ensino.classecurso.GerenciadorCursos;
 import ensino.secaodisciplina.Disciplina;
+import ensino.secaodisciplina.DisciplinaAplicada;
 import ensino.secaodisciplina.GerenciadorDisciplinas;
 import pessoas.classealuno.Aluno;
 import sistema.classes.ServidorArmazenamento;
 
 import java.awt.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class CadastroTurma extends JPanel {
 
-        protected PainelOpcoesDisciplina origem;
+        protected PainelOpcoesTurma origem;
         protected JanelaPrincipal parent;
 
         protected GridBagConstraints constantes = new GridBagConstraints();
@@ -44,9 +46,9 @@ public class CadastroTurma extends JPanel {
         protected JButton botaoConfirma = new JButton("CONFIRMAR CADASTRO");
         protected JButton botaoVolta = new JButton("VOLTAR");
         protected JButton botaoExcluir = new JButton("EXCLUIR DISCIPLINA");
-        //protected AcaoCadastrarDisciplinaVigente acaoBotaoConfirma = new AcaoCadastrarDisciplina(this);
+        protected AcaoCadastrarDisciplinaVigente acaoBotaoConfirma = new AcaoCadastrarDisciplinaVigente(this);
 
-        public CadastroTurma(JanelaPrincipal parent, PainelOpcoesDisciplina origem) {
+        public CadastroTurma(JanelaPrincipal parent, PainelOpcoesTurma origem) {
 
             this.parent = parent;
             this.origem = origem;
@@ -64,8 +66,11 @@ public class CadastroTurma extends JPanel {
             //this.botaoExcluir.addActionListener(new AcaoExcluirDisciplinaVigente(this.parent, this.codigoField));
             //this.botaoConfirma.addActionListener(this.acaoBotaoConfirma);
             this.botaoVolta.addActionListener(new TrocaTela(this, this.origem));
+            this.botaoConfirma.addActionListener(acaoBotaoConfirma);
             this.adicionarAlunoButton.addActionListener(new AdicionarAlunoNaTabela(this.alunosPesquisados, this.alunosField,
                     this.codigoField, this.alunosAdicionados, this));
+            this.excluirAlunoButton.addActionListener(new ExcluirAlunoDaTabela(this.alunosPesquisados,
+                    this.alunosAdicionados, this, this.codigoField));
             this.alunosPesquisados.setModel(ServidorArmazenamento.gerenciadorDisciplinas.getTableFromArray(
                     this.alunosAdicionados, null));
             Utilitario.formataEspacamentoTabela(this.alunosPesquisados, 5);
@@ -112,34 +117,47 @@ public class CadastroTurma extends JPanel {
             this.setVisible(false);
         }
 
-//        public void setaCampos(String acao, DisciplinaVigente disciplina) {
-//            if(disciplina != null) {
-//                this.codigoField.setText(disciplina.getCodigo());
-//                this.nomeField.setText(disciplina.getNome());
-//                this.cargaHorariaField.setText(Integer.toString(disciplina.getCargaHoraria()));
-//                this.maximoFaltasField.setText(Integer.toString(disciplina.getMaximoFaltas()));
-//                this.cursoField.setSelectedItem(GerenciadorCursos.pesquisaCursoCodigo(disciplina.getCodigoCurso()).getNome());
-//                if(acao.equals("view")) {
-//                    this.botaoConfirma.setVisible(false);
-//                    this.botaoExcluir.setVisible(false);
-//                }
-//                else if(acao.equals("change")) {
-//                    this.botaoConfirma.setText("ALTERAR DISCIPLINA");
-//                    this.acaoBotaoConfirma.setAcao("alterar");
-//                    this.acaoBotaoConfirma.codigoAnterior = disciplina.getCodigo();
-//                    this.botaoExcluir.setVisible(true);
-//                    this.botaoConfirma.setVisible(true);
-//                }
-//            }
-//            else {
-//                this.codigoField.setText(null);
-//                this.nomeField.setText(null);
-//                this.cargaHorariaField.setText(null);
-//                this.maximoFaltasField.setText(null);
-//                this.botaoConfirma.setVisible(true);
-//                this.botaoExcluir.setVisible(false);
-//            }
-//        }
+        public void setaCampos(String acao, DisciplinaAplicada disciplina) {
+            DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            if(disciplina != null) {
+                this.codigoField.setText(disciplina.getCodigoVigente());
+                this.cpfProfessorField.setText(disciplina.getProfessor());
+                this.dataInicioField.setText(formatador.format(disciplina.getDataInicio()));
+                this.dataFimField.setText(formatador.format(disciplina.getDataFim()));
+                this.vagasDisponiveisField.setText(Integer.toString(disciplina.getVagasDisponiveis()));
+                this.semestreField.setText(Integer.toString(disciplina.getSemestre()));
+                this.disciplinaField.setSelectedItem(disciplina.getCodigo());
+                this.alunosAdicionados = disciplina.getArrayListAlunosMatriculados();
+                this.alunosPesquisados.setModel(
+                        ServidorArmazenamento.gerenciadorDisciplinas.getTableFromArray(
+                                this.alunosAdicionados, disciplina));
+                if(acao.equals("view")) {
+                    this.botaoConfirma.setVisible(false);
+                    this.botaoExcluir.setVisible(false);
+                }
+                else if(acao.equals("change")) {
+                    this.botaoConfirma.setText("ALTERAR DISCIPLINA");
+                    this.acaoBotaoConfirma.setAcao("alterar");
+                    this.acaoBotaoConfirma.codigoAnterior = disciplina.getCodigoVigente();
+                    this.botaoExcluir.setVisible(true);
+                    this.botaoConfirma.setVisible(true);
+                }
+            }
+            else {
+                this.codigoField.setText(null);
+                this.cpfProfessorField.setText(null);
+                this.disciplinaField.setSelectedItem(null);
+                this.vagasDisponiveisField.setText(null);
+                this.semestreField.setText(null);
+                this.dataInicioField.setText(null);
+                this.dataFimField.setText(null);
+                this.alunosAdicionados.clear();
+                this.alunosPesquisados.setModel(
+                        ServidorArmazenamento.gerenciadorDisciplinas.getTableFromArray(
+                                this.alunosAdicionados, disciplina));
+                this.botaoConfirma.setVisible(true);
+                this.botaoExcluir.setVisible(false);
+            }
+        }
 
-   // }
-}
+    }

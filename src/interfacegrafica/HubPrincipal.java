@@ -12,7 +12,7 @@ public class HubPrincipal extends JPanel {
     private PainelOpcoesCurso nextCurso;
     private PainelOpcoesProfessor nextProfessor;
     private PainelOpcoesDisciplina nextDisciplina;
-    private CadastroTurma nextTurma;
+    private PainelOpcoesTurma nextTurma;
     private GridBagConstraints constantes = new GridBagConstraints();
     private JButton opcoesAluno = new JButton("MODULO ALUNO");
     private JButton opcoesCurso = new JButton("MODULO CURSO");
@@ -21,7 +21,7 @@ public class HubPrincipal extends JPanel {
     private JButton opcoesTurma = new JButton("MODULO TURMA");
 
     protected HubPrincipal(PainelOpcoesAluno nextAluno, PainelOpcoesCurso nextCurso, 
-    PainelOpcoesProfessor nextProfessor, PainelOpcoesDisciplina nextDisciplina, CadastroTurma nextTurma) {
+    PainelOpcoesProfessor nextProfessor, PainelOpcoesDisciplina nextDisciplina, PainelOpcoesTurma nextTurma) {
         this.nextAluno = nextAluno;
         this.nextCurso = nextCurso;
         this.nextProfessor = nextProfessor;
@@ -50,6 +50,7 @@ public class HubPrincipal extends JPanel {
 
         this.constantes.gridy++;
         this.opcoesTurma.addActionListener(new TrocaTela(this, this.nextTurma));
+        this.nextTurma.botaoVoltar.addActionListener(new TrocaTela(this.nextTurma, this));
         this.add(this.opcoesTurma, this.constantes);
 
     }

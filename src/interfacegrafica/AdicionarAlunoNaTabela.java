@@ -36,24 +36,42 @@ public class AdicionarAlunoNaTabela implements ActionListener {
         Aluno current = ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF(Utilitario.formataCampo(campoCPF));
         if(disc == null) {
             if(current == null) {
-                this.pai.parent.erroPreenchimento("Aluno não encontrado");
+                this.pai.parent.erroPreenchimento("Aluno não encontrado.");
+                this.campoCPF.setText(null);
                 return;
             }
             else {
-                array.add(current);
-                this.tabela.setModel(ServidorArmazenamento.gerenciadorDisciplinas.getTableFromArray(array, disc));
-                Utilitario.formataEspacamentoTabela(this.tabela, 5);
+                if(!array.contains(current)) {
+                    array.add(current);
+                    this.tabela.setModel(ServidorArmazenamento.gerenciadorDisciplinas.getTableFromArray(array, disc));
+                    Utilitario.formataEspacamentoTabela(this.tabela, 5);
+                    this.campoCPF.setText(null);
+                }
+                else {
+                    this.pai.parent.erroPreenchimento("Aluno já está na lista.");
+                    this.campoCPF.setText(null);
+                    return;
+                }
             }
         }
         else {
             if(current == null) {
-                this.pai.parent.erroPreenchimento("Aluno não encontrado");
+                this.pai.parent.erroPreenchimento("Aluno não encontrado.");
+                this.campoCPF.setText(null);
                 return;
             }
             else {
-                array.add(current);
-                this.tabela.setModel(ServidorArmazenamento.gerenciadorDisciplinas.getTableFromArray(array, disc));
-                Utilitario.formataEspacamentoTabela(this.tabela, 5);
+                if(!array.contains(current)) {
+                    array.add(current);
+                    this.tabela.setModel(ServidorArmazenamento.gerenciadorDisciplinas.getTableFromArray(array, disc));
+                    Utilitario.formataEspacamentoTabela(this.tabela, 5);
+                    this.campoCPF.setText(null);
+                }
+                else {
+                    this.pai.parent.erroPreenchimento("Aluno já está na lista.");
+                    this.campoCPF.setText(null);
+                    return;
+                }
             }
         }
     }

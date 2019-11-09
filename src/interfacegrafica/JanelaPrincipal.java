@@ -27,9 +27,10 @@ public class JanelaPrincipal extends JFrame {
     protected PainelOpcoesCurso painelOpcoesCurso = new PainelOpcoesCurso(this);
     protected PainelOpcoesProfessor painelOpcoesProfessor = new PainelOpcoesProfessor(this);
     protected PainelOpcoesDisciplina painelOpcoesDisciplina = new PainelOpcoesDisciplina(this);
-    protected CadastroTurma cadastroTurma = new CadastroTurma(this, this.painelOpcoesDisciplina);
+    protected PainelOpcoesTurma painelOpcoesTurma = new PainelOpcoesTurma(this);
+    protected CadastroTurma cadastroTurma = new CadastroTurma(this, this.painelOpcoesTurma);
     protected HubPrincipal hubPrincipal = new HubPrincipal(this.painelOpcoesAluno, this.painelOpcoesCurso, 
-    this.painelOpcoesProfessor, this.painelOpcoesDisciplina, this.cadastroTurma);
+    this.painelOpcoesProfessor, this.painelOpcoesDisciplina, this.painelOpcoesTurma);
     protected CadastroAluno cadastroAluno = new CadastroAluno(this, this.painelOpcoesAluno);
     protected CadastroCurso cadastroCurso = new CadastroCurso(this, this.painelOpcoesCurso);
     protected CadastroProfessor cadastroProfessor = new CadastroProfessor(this, this.painelOpcoesProfessor);
@@ -60,7 +61,7 @@ public class JanelaPrincipal extends JFrame {
         this.painelOpcoesDisciplina.botaoVolta.addActionListener(new TrocaTela(this.painelOpcoesDisciplina, this.hubPrincipal));
         this.painelOpcoesDisciplina.visualizarDisciplina.addActionListener(new AcaoPesquisarDisciplina("view", this.painelOpcoesDisciplina, this.pesquisaDisciplina));
         this.painelOpcoesDisciplina.alterarDisciplina.addActionListener(new AcaoPesquisarDisciplina("change", this.painelOpcoesDisciplina, this.pesquisaDisciplina));
-        this.add(this.cadastroTurma);
+
         this.add(this.pesquisaAluno);
         this.add(this.pesquisaCurso);
         this.add(this.pesquisaProfessor);
@@ -70,6 +71,7 @@ public class JanelaPrincipal extends JFrame {
         this.add(this.painelOpcoesCurso);
         this.add(this.painelOpcoesProfessor);
         this.add(this.painelOpcoesDisciplina);
+        this.add(this.painelOpcoesTurma);
 
         this.add(this.hubPrincipal);
         this.hubPrincipal.setVisible(true);
@@ -77,6 +79,7 @@ public class JanelaPrincipal extends JFrame {
         this.add(this.cadastroCurso);
         this.add(this.cadastroProfessor);
         this.add(this.cadastroDisciplina);
+        this.add(this.cadastroTurma);
         // this.add(this.telaInicial);
         // this.telaInicial.setVisible(true);
         // this.add(this.telaCadastro);
