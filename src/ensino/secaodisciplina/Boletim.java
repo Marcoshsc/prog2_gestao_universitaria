@@ -15,7 +15,7 @@ public class Boletim implements ClassesGeral {
     /**
      * @param nota the nota to set
      */
-    protected void setNota(float nota) {
+    public void setNota(float nota) {
         this.nota = nota;
     }
     

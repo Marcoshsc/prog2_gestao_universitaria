@@ -153,6 +153,16 @@ public class GerenciadorDisciplinas {
         }
     }
 
+    private ArrayList<DisciplinaAplicada> pesquisaDisciplinaVigenteCodigoArrayList(String codigo) {
+        ArrayList<DisciplinaAplicada> achados = new ArrayList<>();
+        for(DisciplinaAplicada i: GerenciadorDisciplinas.disciplinasVigentes) {
+            if(i.getCodigo().equals(codigo)) {
+                achados.add(i);
+            }
+        }
+        return achados;
+    }
+
     public TableModel getTableFromArray(ArrayList<Aluno> arr, DisciplinaAplicada disc) {
         String[] header = {
                 "Nome", "Curso", "CPF", "Matrícula", "Notas"
@@ -203,6 +213,30 @@ public class GerenciadorDisciplinas {
 
 		};
     }
+
+    public TableModel getDisciplinasVigentesTable() {
+        String[] header = {
+                "Codigo", "Semestre", "Professor", "Data Inicio", "Data Fim"
+        };
+        String[][] data;
+        if(GerenciadorDisciplinas.disciplinasVigentes.size() > 0) {
+            data = new String[GerenciadorDisciplinas.disciplinasVigentes.size()][5];
+            for(int i = 0; i < GerenciadorDisciplinas.disciplinasVigentes.size(); i++) {
+                data[i] = GerenciadorDisciplinas.disciplinasVigentes.get(i).getInfoBasicasArray();
+            }
+        }
+        else {
+            data = null;
+        }
+        return new DefaultTableModel(data, header) {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+    }
     
     public TableModel getDisciplinasTable(Curso curso) {
 		String[] header = {
@@ -228,6 +262,32 @@ public class GerenciadorDisciplinas {
 			}
 
 		};
+    }
+
+    public TableModel getDisciplinasVigentesTable(String disc) {
+        String[] header = {
+                "Codigo", "Semestre", "Professor", "Data Inicio", "Data Fim"
+        };
+        boolean existe;
+        ArrayList<DisciplinaAplicada> disciplinasProcuradas = this.pesquisaDisciplinaVigenteCodigoArrayList(disc);
+        existe = disciplinasProcuradas.size() != 0;
+        String[][] data;
+        if(existe) {
+            data = new String[disciplinasProcuradas.size()][5];
+            for(int i = 0; i < disciplinasProcuradas.size(); i++) {
+                data[i] = disciplinasProcuradas.get(i).getInfoBasicasArray();
+            }
+        }
+        else
+            data = null;
+        return new DefaultTableModel(data, header) {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
     }
 
 }

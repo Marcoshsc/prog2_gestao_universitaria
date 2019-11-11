@@ -25,7 +25,8 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
 
     private CadastroTurma campos;
     private String acao;
-    protected String codigoAnterior;
+    protected String codigoAnteriorTurma;
+    protected String codigoAnteriorDisc;
 
     public AcaoCadastrarDisciplinaVigente(CadastroTurma campos) {
         this.campos = campos;
@@ -91,48 +92,81 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
             }
             DisciplinaAplicada seraAdicionada = new DisciplinaAplicada(
                     disciplinaMae, professorPrevio, dataInicio, dataFim, vagasPrevias, semestrePrevio, codigoPrevio);
-            for(Aluno i: campos.alunosAdicionados) {
+            for(int i = 0; i < campos.alunosAdicionados.size(); i++) {
                 try {
-                    seraAdicionada.adicionaAluno(new Boletim(i));
+                    Boletim previo = new Boletim(campos.alunosAdicionados.get(i));
+                    seraAdicionada.adicionaAluno(previo);
+                    float notaPrevia = Float.parseFloat((String)campos.alunosPesquisados.getValueAt(i, 4));
+                    if(notaPrevia < 0 || notaPrevia > 10) {
+                        this.campos.parent.erroPreenchimento("Digite somente notas entre 0 e 10.");
+                        return;
+                    }
+                    if(notaPrevia > 0) {
+                        previo.setNota(notaPrevia);
+                    }
                 } catch(TamanhoIncompativel exc) {
+                    System.out.println("entrou aqui");
                     this.campos.parent.erroPreenchimento("Limite de capacidade da turma excedido.");
+                    return;
+                } catch(Exception exc) {
+                    this.campos.parent.erroPreenchimento("Erro de preenchimento nas notas.");
                     return;
                 }
             }
-
+            ServidorArmazenamento.gerenciadorProfessores.pesquisarProfessorCPF(seraAdicionada.getProfessor())
+                    .getDisciplinasMinistradas().add(seraAdicionada.getCodigoVigente());
             JOptionPane.showMessageDialog(this.campos.parent, "Turma cadastrada com sucesso.", "INFO",
                     JOptionPane.INFORMATION_MESSAGE);
             ServidorArmazenamento.gerenciadorDisciplinas.adicionaDisciplinaVigente(seraAdicionada);
             this.campos.setVisible(false);
             this.campos.origem.setVisible(true);
         }
-//        else if(acao.equals("alterar")) {
-//            if(disciplinaPrevia == null) {
-//                this.campos.parent.erroPreenchimento("Impossível alterar código de Disciplina. Caso o deseje, crie uma nova Disciplina.");
-//                return;
-//            }
-//            else if(!disciplinaPrevia.getCodigo().equals(this.codigoAnterior)) {
-//                this.campos.parent.erroPreenchimento("Impossível alterar código de Disciplina. Caso o deseje, crie uma nova Disciplina.");
-//                return;
-//            }
-//            disciplinaPrevia.alterar(codigoPrevio, nomePrevio, maximoFaltasPrevio, cargaHorariaPrevia);
-//            if(!disciplinaPrevia.getCodigoCurso().equals(cursoPrevio.getCodigo())) {
-//                Curso cursoAtual = GerenciadorCursos.pesquisaCursoCodigo(disciplinaPrevia.getCodigoCurso());
-//                cursoAtual.getDisciplinasRelacionadas().remove(disciplinaPrevia);
-//                disciplinaPrevia.setCodigoCurso(cursoPrevio.getCodigo());
-//                cursoPrevio.getDisciplinasRelacionadas().add(disciplinaPrevia);
-//
-//            }
-//            try {
-//                GerenciadorDisciplinas.atualizaBancoDisciplina();
-//            } catch(Exception exc) {
-//                System.out.println(exc.getMessage());
-//                exc.printStackTrace();
-//            }
-//            JOptionPane.showMessageDialog(this.campos.parent, "Disciplina alterada com sucesso.", "INFO", JOptionPane.INFORMATION_MESSAGE);
-//            this.campos.setVisible(false);
-//            this.campos.origem.setVisible(true);
-//        }
+        else if(acao.equals("alterar")) {
+            if(disciplinaPrevia == null) {
+                this.campos.parent.erroPreenchimento("Impossível alterar código de Turma. Caso o deseje, crie uma nova Turma.");
+                return;
+            }
+            else if(!disciplinaPrevia.getCodigoVigente().equals(this.codigoAnteriorTurma)) {
+                this.campos.parent.erroPreenchimento("Impossível alterar código de Turma. Caso o deseje, crie uma nova Turma.");
+                return;
+            }
+            if(!((String)this.campos.disciplinaField.getSelectedItem()).equals(this.codigoAnteriorDisc)) {
+                this.campos.parent.erroPreenchimento("Não é possível trocar a disciplina de uma turma. Se necessário, crie uma nova turma.");
+                return;
+            }
+            disciplinaPrevia.alterar(professorPrevio, dataInicio, dataFim, vagasPrevias, semestrePrevio, codigoPrevio);
+            disciplinaPrevia.getArrayListAlunosMatriculados().clear();
+            for(int i = 0; i < campos.alunosAdicionados.size(); i++) {
+                try {
+                    disciplinaPrevia.getArrayListAlunosMatriculados().clear();
+                    Boletim previo = new Boletim(campos.alunosAdicionados.get(i));
+                    disciplinaPrevia.adicionaAluno(previo);
+                    float notaPrevia = Float.parseFloat((String)campos.alunosPesquisados.getValueAt(i, 4));
+                    if(notaPrevia < 0 || notaPrevia > 10) {
+                        this.campos.parent.erroPreenchimento("Digite somente notas entre 0 e 10.");
+                        return;
+                    }
+                    if(notaPrevia > 0) {
+                        previo.setNota(notaPrevia);
+                    }
+                } catch(TamanhoIncompativel exc) {
+                    this.campos.parent.erroPreenchimento("Limite de capacidade da turma excedido.");
+                    return;
+                } catch(Exception exc) {
+                    this.campos.parent.erroPreenchimento("Erro de preenchimento nas notas.");
+                    return;
+                }
+            }
+            try {
+                GerenciadorDisciplinas.atualizaBancoDisciplina();
+            } catch(Exception exc) {
+                System.out.println(exc.getMessage());
+                exc.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this.campos.parent, "Disciplina alterada com sucesso.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+            this.campos.setVisible(false);
+            this.campos.origem.setVisible(true);
+        }
 
     }
 

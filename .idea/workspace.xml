@@ -3,13 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="b956ee20-0d1d-46b3-b669-c28ae838050a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosAlunos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosAlunos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinas.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosDisciplinas.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasVigentes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/Boletim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/Boletim.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/Disciplina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/Disciplina.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/DisciplinaAplicada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/DisciplinaAplicada.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/GerenciadorDisciplinas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/GerenciadorDisciplinas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/AdicionarAlunoNaTabela.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/AdicionarAlunoNaTabela.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/AcaoCadastrarDisciplinaVigente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/AcaoCadastrarDisciplinaVigente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfacegrafica/CadastroTurma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/CadastroTurma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/HubPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/HubPrincipal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfacegrafica/JanelaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/JanelaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pessoas/classealuno/Aluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pessoas/classealuno/Aluno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pessoas/classealuno/GerenciadorAluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pessoas/classealuno/GerenciadorAluno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pessoas/classeprofessor/Professor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pessoas/classeprofessor/Professor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sistema/classes/ServidorArmazenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sistema/classes/ServidorArmazenamento.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +98,9 @@
       <workItem from="1572631678884" duration="3377000" />
       <workItem from="1573219574637" duration="12290000" />
       <workItem from="1573312135134" duration="580000" />
-      <workItem from="1573314053107" duration="7659000" />
+      <workItem from="1573314053107" duration="7727000" />
+      <workItem from="1573332337300" duration="8439000" />
+      <workItem from="1573481038687" duration="2733000" />
     </task>
     <servers />
   </component>

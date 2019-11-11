@@ -24,8 +24,8 @@ public class ServidorArmazenamento {
 	public static void inicializaTodos() throws Exception {
 		ServidorArmazenamento.gerenciadorProfessores.inicializa();
 		ServidorArmazenamento.gerenciadorCursos.inicializa();
-		ServidorArmazenamento.gerenciadorDisciplinas.inicializa();
 		ServidorArmazenamento.gerenciadorAlunos.inicializa();
+		ServidorArmazenamento.gerenciadorDisciplinas.inicializa();
 	}
 
 }

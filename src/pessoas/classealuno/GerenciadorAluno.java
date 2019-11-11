@@ -170,5 +170,8 @@ public class GerenciadorAluno implements OperacoesBasicas {
 
 		};
     }
-    
+
+	public static ArrayList<Aluno> getAlunosCadastrados() {
+		return alunosCadastrados;
+	}
 }

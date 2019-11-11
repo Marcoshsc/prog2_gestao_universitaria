@@ -133,14 +133,8 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         formatador.format(this.dataIngresso), Float.toString(this.salario));
     }
 
-    public String[] getDisciplinasMinistradas() {
-        if(this.disciplinasMinistradas.size() == 0)
-            return null;
-        String[] disciplinas = new String[this.disciplinasMinistradas.size()];
-        for(int i = 0; i < this.disciplinasMinistradas.size(); i++) {
-            disciplinas[i] = this.disciplinasMinistradas.get(i);
-        }
-        return disciplinas;
+    public ArrayList<String> getDisciplinasMinistradas() {
+        return this.disciplinasMinistradas;
     }
 
     public String[] getInfoBasicasArray() {

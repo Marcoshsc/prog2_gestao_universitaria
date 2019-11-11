@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 import excecoes.TamanhoIncompativel;
 import pessoas.classealuno.Aluno;
+import pessoas.classealuno.GerenciadorAluno;
 import sistema.classes.ServidorArmazenamento;
 
 import java.util.ArrayList;
@@ -30,6 +31,16 @@ public class DisciplinaAplicada extends Disciplina {
 		this.codigoVigente = codigoVigente;
 	}
 
+	public void alterar(String professor, LocalDate dataInicio,
+                        LocalDate dataFim, int vagasDisponiveis, int semestre, String codigoVigente) {
+        this.professor = professor;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+        this.vagasDisponiveis = vagasDisponiveis;
+        this.semestre = semestre;
+        this.codigoVigente = codigoVigente;
+    }
+
 	@Override
 	public String toString() {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -48,6 +59,17 @@ public class DisciplinaAplicada extends Disciplina {
 			}
 			return a.toString();
 		}
+	}
+
+	public String[] getInfoBasicasArray() {
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String[] infos = new String[5];
+		infos[0] = this.codigoVigente;
+		infos[1] = Integer.toString(this.semestre);
+		infos[2] = this.professor;
+		infos[3] = formatador.format(this.dataInicio);
+		infos[4] = formatador.format(this.dataFim);
+		return infos;
 	}
 
 	public ArrayList<Aluno> getArrayListAlunosMatriculados() {
@@ -69,6 +91,7 @@ public class DisciplinaAplicada extends Disciplina {
 	public void adicionaAluno(Boletim aluno) throws TamanhoIncompativel {
 		if(this.alunosMatriculados.size() < this.vagasDisponiveis) {
 			this.alunosMatriculados.add(aluno);
+			aluno.getAluno().getCursando().add(this.getCodigoVigente());
 		}
 		else {
 			throw new TamanhoIncompativel();
@@ -103,6 +126,8 @@ public class DisciplinaAplicada extends Disciplina {
 					a.adicionaAluno(actual);
 				}
 			}
+			ServidorArmazenamento.gerenciadorProfessores.pesquisarProfessorCPF(a.getProfessor())
+					.getDisciplinasMinistradas().add(a.getCodigoVigente());
 			return a;
 		}
 		else

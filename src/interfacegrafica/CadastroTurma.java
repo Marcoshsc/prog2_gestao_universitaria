@@ -131,6 +131,10 @@ public class CadastroTurma extends JPanel {
                 this.alunosPesquisados.setModel(
                         ServidorArmazenamento.gerenciadorDisciplinas.getTableFromArray(
                                 this.alunosAdicionados, disciplina));
+                Utilitario.formataEspacamentoTabela(this.alunosPesquisados, 5);
+                this.nomeProfessor.setText(ServidorArmazenamento.gerenciadorProfessores.pesquisarProfessorCPF(
+                        this.cpfProfessorField.getText()
+                ).getNome());
                 if(acao.equals("view")) {
                     this.botaoConfirma.setVisible(false);
                     this.botaoExcluir.setVisible(false);
@@ -138,7 +142,8 @@ public class CadastroTurma extends JPanel {
                 else if(acao.equals("change")) {
                     this.botaoConfirma.setText("ALTERAR DISCIPLINA");
                     this.acaoBotaoConfirma.setAcao("alterar");
-                    this.acaoBotaoConfirma.codigoAnterior = disciplina.getCodigoVigente();
+                    this.acaoBotaoConfirma.codigoAnteriorTurma = disciplina.getCodigoVigente();
+                    this.acaoBotaoConfirma.codigoAnteriorDisc = disciplina.getCodigo();
                     this.botaoExcluir.setVisible(true);
                     this.botaoConfirma.setVisible(true);
                 }
@@ -146,6 +151,7 @@ public class CadastroTurma extends JPanel {
             else {
                 this.codigoField.setText(null);
                 this.cpfProfessorField.setText(null);
+                this.nomeProfessor.setText(null);
                 this.disciplinaField.setSelectedItem(null);
                 this.vagasDisponiveisField.setText(null);
                 this.semestreField.setText(null);

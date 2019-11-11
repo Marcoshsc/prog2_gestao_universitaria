@@ -293,6 +293,10 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
             throw new Exception("Ação não autorizada.");
     }
 
+    public ArrayList<String> getCursando() {
+        return cursando;
+    }
+
     // fazer getters e setters no visualstudiocode
 
 }

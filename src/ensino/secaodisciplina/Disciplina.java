@@ -55,7 +55,23 @@ public class Disciplina implements ClassesGeral {
 	public void setCodigoCurso(String codigoCurso) {
 		this.codigoCurso = codigoCurso;
 	}
-	
+
+	public void setCargaHoraria(int cargaHoraria) {
+		this.cargaHoraria = cargaHoraria;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public void setMaximoFaltas(int maximoFaltas) {
+		this.maximoFaltas = maximoFaltas;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	public String getCodigoCurso() {
 		return this.codigoCurso;
 	}

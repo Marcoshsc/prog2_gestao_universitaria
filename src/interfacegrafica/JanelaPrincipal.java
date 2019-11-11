@@ -39,6 +39,7 @@ public class JanelaPrincipal extends JFrame {
     protected PesquisaCurso pesquisaCurso = new PesquisaCurso(this, this.painelOpcoesCurso, this.cadastroCurso);
     protected PesquisaProfessor pesquisaProfessor = new PesquisaProfessor(this, this.painelOpcoesProfessor, this.cadastroProfessor);
     protected PesquisaDisciplina pesquisaDisciplina = new PesquisaDisciplina(this, this.painelOpcoesDisciplina, this.cadastroDisciplina);
+    protected PesquisaTurma pesquisaTurma = new PesquisaTurma(this, this.painelOpcoesTurma, this.cadastroTurma);
 
     public JanelaPrincipal() {
         this.setSize(850, 700);
@@ -62,10 +63,13 @@ public class JanelaPrincipal extends JFrame {
         this.painelOpcoesDisciplina.visualizarDisciplina.addActionListener(new AcaoPesquisarDisciplina("view", this.painelOpcoesDisciplina, this.pesquisaDisciplina));
         this.painelOpcoesDisciplina.alterarDisciplina.addActionListener(new AcaoPesquisarDisciplina("change", this.painelOpcoesDisciplina, this.pesquisaDisciplina));
 
+        this.painelOpcoesTurma.visualizarTurma.addActionListener(new AcaoPesquisarTurma("view", this.painelOpcoesTurma, this.pesquisaTurma));
+
         this.add(this.pesquisaAluno);
         this.add(this.pesquisaCurso);
         this.add(this.pesquisaProfessor);
         this.add(this.pesquisaDisciplina);
+        this.add(this.pesquisaTurma);
 
         this.add(this.painelOpcoesAluno);
         this.add(this.painelOpcoesCurso);
