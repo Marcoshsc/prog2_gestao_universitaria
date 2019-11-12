@@ -96,6 +96,8 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
                 try {
                     Boletim previo = new Boletim(campos.alunosAdicionados.get(i));
                     seraAdicionada.adicionaAluno(previo);
+                    System.out.println(seraAdicionada.getArrayListAlunosMatriculados().size());
+                    System.out.println(seraAdicionada.getVagasDisponiveis());
                     float notaPrevia = Float.parseFloat((String)campos.alunosPesquisados.getValueAt(i, 4));
                     if(notaPrevia < 0 || notaPrevia > 10) {
                         this.campos.parent.erroPreenchimento("Digite somente notas entre 0 e 10.");

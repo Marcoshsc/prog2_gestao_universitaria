@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b956ee20-0d1d-46b3-b669-c28ae838050a" name="Default Changelist" comment="" />
+    <list default="true" id="b956ee20-0d1d-46b3-b669-c28ae838050a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasVigentes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/AcaoCadastrarDisciplinaVigente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/AcaoCadastrarDisciplinaVigente.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +90,7 @@
       <workItem from="1573314053107" duration="7727000" />
       <workItem from="1573332337300" duration="8439000" />
       <workItem from="1573481038687" duration="3356000" />
+      <workItem from="1573601025055" duration="948000" />
     </task>
     <servers />
   </component>
