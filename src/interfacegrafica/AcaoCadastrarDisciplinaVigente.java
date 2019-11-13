@@ -96,8 +96,6 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
                 try {
                     Boletim previo = new Boletim(campos.alunosAdicionados.get(i));
                     seraAdicionada.adicionaAluno(previo);
-                    System.out.println(seraAdicionada.getArrayListAlunosMatriculados().size());
-                    System.out.println(seraAdicionada.getVagasDisponiveis());
                     float notaPrevia = Float.parseFloat((String)campos.alunosPesquisados.getValueAt(i, 4));
                     if(notaPrevia < 0 || notaPrevia > 10) {
                         this.campos.parent.erroPreenchimento("Digite somente notas entre 0 e 10.");
@@ -137,10 +135,20 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
                 return;
             }
             disciplinaPrevia.alterar(professorPrevio, dataInicio, dataFim, vagasPrevias, semestrePrevio, codigoPrevio);
-            disciplinaPrevia.getArrayListAlunosMatriculados().clear();
+            for(int i = 0; i < campos.alunosAdicionados.size(); i++) {
+                float notaPrevia = Float.parseFloat((String)campos.alunosPesquisados.getValueAt(i, 4));
+                if(notaPrevia < 0 || notaPrevia > 10) {
+                    this.campos.parent.erroPreenchimento("Digite somente notas entre 0 e 10.");
+                    return;
+                }
+            }
+            if(disciplinaPrevia.getVagasDisponiveis() < this.campos.alunosAdicionados.size()) {
+                this.campos.parent.erroPreenchimento("Limite de capacidade da turma excedido.");
+                return;
+            }
+            disciplinaPrevia.zerarMatriculados();
             for(int i = 0; i < campos.alunosAdicionados.size(); i++) {
                 try {
-                    disciplinaPrevia.getArrayListAlunosMatriculados().clear();
                     Boletim previo = new Boletim(campos.alunosAdicionados.get(i));
                     disciplinaPrevia.adicionaAluno(previo);
                     float notaPrevia = Float.parseFloat((String)campos.alunosPesquisados.getValueAt(i, 4));
@@ -160,7 +168,7 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
                 }
             }
             try {
-                GerenciadorDisciplinas.atualizaBancoDisciplina();
+                GerenciadorDisciplinas.atualizaBancoDisciplinaVigente();
             } catch(Exception exc) {
                 System.out.println(exc.getMessage());
                 exc.printStackTrace();

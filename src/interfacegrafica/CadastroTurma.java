@@ -45,7 +45,8 @@ public class CadastroTurma extends JPanel {
         protected ArrayList<Aluno> alunosAdicionados = new ArrayList<Aluno>();
         protected JButton botaoConfirma = new JButton("CONFIRMAR CADASTRO");
         protected JButton botaoVolta = new JButton("VOLTAR");
-        protected JButton botaoExcluir = new JButton("EXCLUIR DISCIPLINA");
+        protected JButton botaoExcluir = new JButton("EXCLUIR TURMA");
+        protected JButton botaoFinalizar = new JButton("FINALIZAR TURMA (ALTERAÇÕES NÃO SERÃO SALVAS)");
         protected AcaoCadastrarDisciplinaVigente acaoBotaoConfirma = new AcaoCadastrarDisciplinaVigente(this);
 
         public CadastroTurma(JanelaPrincipal parent, PainelOpcoesTurma origem) {
@@ -63,8 +64,8 @@ public class CadastroTurma extends JPanel {
 
             this.constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
             this.nomeProfessor.setEditable(false);
-            //this.botaoExcluir.addActionListener(new AcaoExcluirDisciplinaVigente(this.parent, this.codigoField));
-            //this.botaoConfirma.addActionListener(this.acaoBotaoConfirma);
+            this.botaoExcluir.addActionListener(new AcaoExcluirTurma(this.parent, this.codigoField));
+            this.botaoFinalizar.addActionListener(new AcaoFinalizarTurma(this));
             this.botaoVolta.addActionListener(new TrocaTela(this, this.origem));
             this.botaoConfirma.addActionListener(acaoBotaoConfirma);
             this.adicionarAlunoButton.addActionListener(new AdicionarAlunoNaTabela(this.alunosPesquisados, this.alunosField,
@@ -107,12 +108,14 @@ public class CadastroTurma extends JPanel {
             this.constantes.gridwidth = 1;
 
             this.constantes.gridy++;
-            this.constantes.gridx = 1;
+            this.constantes.gridx = 0;
             this.add(this.botaoVolta, this.constantes);
             this.constantes.gridx++;
             this.add(this.botaoExcluir, this.constantes);
             this.constantes.gridx++;
             this.add(this.botaoConfirma, this.constantes);
+            this.constantes.gridx++;
+            this.add(this.botaoFinalizar, this.constantes);
 
             this.setVisible(false);
         }
@@ -127,7 +130,8 @@ public class CadastroTurma extends JPanel {
                 this.vagasDisponiveisField.setText(Integer.toString(disciplina.getVagasDisponiveis()));
                 this.semestreField.setText(Integer.toString(disciplina.getSemestre()));
                 this.disciplinaField.setSelectedItem(disciplina.getCodigo());
-                this.alunosAdicionados = disciplina.getArrayListAlunosMatriculados();
+                this.alunosAdicionados.clear();
+                this.alunosAdicionados.addAll(disciplina.getArrayListAlunosMatriculados());
                 this.alunosPesquisados.setModel(
                         ServidorArmazenamento.gerenciadorDisciplinas.getTableFromArray(
                                 this.alunosAdicionados, disciplina));
@@ -138,14 +142,16 @@ public class CadastroTurma extends JPanel {
                 if(acao.equals("view")) {
                     this.botaoConfirma.setVisible(false);
                     this.botaoExcluir.setVisible(false);
+                    this.botaoFinalizar.setVisible(false);
                 }
                 else if(acao.equals("change")) {
-                    this.botaoConfirma.setText("ALTERAR DISCIPLINA");
+                    this.botaoConfirma.setText("ALTERAR TURMA");
                     this.acaoBotaoConfirma.setAcao("alterar");
                     this.acaoBotaoConfirma.codigoAnteriorTurma = disciplina.getCodigoVigente();
                     this.acaoBotaoConfirma.codigoAnteriorDisc = disciplina.getCodigo();
                     this.botaoExcluir.setVisible(true);
                     this.botaoConfirma.setVisible(true);
+                    this.botaoFinalizar.setVisible(true);
                 }
             }
             else {
@@ -163,6 +169,7 @@ public class CadastroTurma extends JPanel {
                                 this.alunosAdicionados, disciplina));
                 this.botaoConfirma.setVisible(true);
                 this.botaoExcluir.setVisible(false);
+                this.botaoFinalizar.setVisible(false);
             }
         }
 

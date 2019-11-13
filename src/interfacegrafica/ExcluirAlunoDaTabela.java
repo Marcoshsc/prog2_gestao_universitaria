@@ -35,7 +35,9 @@ public class ExcluirAlunoDaTabela implements ActionListener {
         DisciplinaAplicada disc = GerenciadorDisciplinas.pesquisaDisciplinaVigenteCodigo(Utilitario.formataCampo(campoDisc));
         Aluno selected = ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF((String)tabela.getValueAt(
                 tabela.getSelectedRow(), 2));
+        System.out.println(array.size());
         array.remove(selected);
+        System.out.println(array.size());
         tabela.setModel(ServidorArmazenamento.gerenciadorDisciplinas.getTableFromArray(array, disc));
         Utilitario.formataEspacamentoTabela(tabela, 5);
     }

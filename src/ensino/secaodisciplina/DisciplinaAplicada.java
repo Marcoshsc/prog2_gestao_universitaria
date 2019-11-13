@@ -90,13 +90,17 @@ public class DisciplinaAplicada extends Disciplina {
 
 	public void adicionaAluno(Boletim aluno) throws TamanhoIncompativel {
 		if(this.alunosMatriculados.size() < this.vagasDisponiveis) {
-			this.alunosMatriculados.add(aluno);
-			aluno.getAluno().getCursando().add(this.getCodigoVigente());
+                this.alunosMatriculados.add(aluno);
+                aluno.getAluno().getCursando().add(this.getCodigoVigente());
 		}
 		else {
 			throw new TamanhoIncompativel();
 		}
 	}
+
+	public void zerarMatriculados() {
+	    this.alunosMatriculados.clear();
+    }
 
 	public Boletim pesquisaAluno(String aluno) {
 		if(this.alunosMatriculados.size() == 0)
@@ -172,5 +176,9 @@ public class DisciplinaAplicada extends Disciplina {
 
 	public String getCodigoVigente() {
 		return this.codigoVigente;
+	}
+
+	public ArrayList<Boletim> getAlunosMatriculados() {
+		return alunosMatriculados;
 	}
 }

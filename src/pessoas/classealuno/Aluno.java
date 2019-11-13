@@ -170,6 +170,10 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         formatador.format(this.dataIngresso)) + '-' + this.curso.getCodigo();
     }
 
+    public void adicionaDisciplinaConcluida(DisciplinaConcluida disc) {
+        this.disciplinasConcluidas.add(disc);
+    }
+
     public void adicionaBolsa(BolsaVigente bolsa) throws OperacaoNaoAutorizada {
         if(this.bolsas.stream().filter(a -> bolsa == a).toArray().length == 0) {
             this.bolsas.add(bolsa);
@@ -295,6 +299,10 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
 
     public ArrayList<String> getCursando() {
         return cursando;
+    }
+
+    public ArrayList<DisciplinaConcluida> getDisciplinasConcluidas() {
+        return disciplinasConcluidas;
     }
 
     // fazer getters e setters no visualstudiocode

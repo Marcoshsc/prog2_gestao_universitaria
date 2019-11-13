@@ -13,7 +13,7 @@ public class PainelOpcoesTurma extends JPanel {
     protected GridBagConstraints constantes = new GridBagConstraints();
     protected JButton cadastrarTurma = new JButton("CADASTRAR TURMA");
     protected JButton visualizarTurma = new JButton("VISUALIZAR TURMA");
-    protected JButton alterarTurma = new JButton("ALTERAR TURMA");
+    protected JButton alterarTurma = new JButton("ALTERAR/ LANÇAR NOTAS/ FINALIZAR TURMA");
     protected JButton botaoVoltar = new JButton("VOLTAR");
 
     public PainelOpcoesTurma(JanelaPrincipal parent) {

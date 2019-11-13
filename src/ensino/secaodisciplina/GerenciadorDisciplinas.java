@@ -9,11 +9,14 @@ import complementares.Utilitario;
 import ensino.classecurso.Curso;
 import ensino.classecurso.GerenciadorCursos;
 import pessoas.classealuno.Aluno;
+import pessoas.classealuno.GerenciadorAluno;
+import sistema.classes.ServidorArmazenamento;
 
 public class GerenciadorDisciplinas {
 
     private static final String PATH_DISC_BASE = "src\\arquivos\\registrosDisciplinas.txt";
     private static final String PATH_DISC_APLICADA = "src\\arquivos\\registrosDisciplinasVigentes.txt";
+    private static final String PATH_DISC_CONCLUIDA = "src\\arquivos\\registrosDisciplinasConcluidas.txt";
     private static ArrayList<Disciplina> disciplinasCadastradas = new ArrayList<Disciplina>();
     private static ArrayList<DisciplinaAplicada> disciplinasVigentes = new ArrayList<DisciplinaAplicada>();
 
@@ -63,6 +66,14 @@ public class GerenciadorDisciplinas {
 
     public static void atualizaBancoDisciplinaVigente() throws Exception {
         Utilitario.atualizaBanco(GerenciadorDisciplinas.disciplinasVigentes.toArray(), GerenciadorDisciplinas.PATH_DISC_APLICADA);
+    }
+
+    public static void atualizaBancoDisciplinaConcluida() throws Exception {
+        ArrayList<DisciplinaConcluida> discs = new ArrayList<>();
+        for(Aluno i: GerenciadorAluno.getAlunosCadastrados()) {
+            discs.addAll(i.getDisciplinasConcluidas());
+        }
+        Utilitario.atualizaBanco(discs.toArray(), GerenciadorDisciplinas.PATH_DISC_CONCLUIDA);
     }
 
     public static Disciplina pesquisaDisciplinaCodigo(String codigo) {
@@ -120,10 +131,26 @@ public class GerenciadorDisciplinas {
         }
     }
 
+    private void inicializaDisciplinaConcluida() throws Exception {
+        String[] objetos = Utilitario.leArquivo(GerenciadorDisciplinas.PATH_DISC_CONCLUIDA);
+        if(objetos == null)
+            return;
+        if(objetos.length > 0) {
+            if(objetos[0] != "") {
+                for(String i: objetos) {
+                    DisciplinaConcluida a = DisciplinaConcluida.fromStorageString(i);
+                    Aluno aluno = ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF(a.getCpfAluno());
+                    aluno.adicionaDisciplinaConcluida(a);
+                }
+            }
+        }
+    }
+
     public void inicializa() {
         try {
             inicializaDisciplina();
             inicializaDisciplinaVigente();
+            inicializaDisciplinaConcluida();
         } catch(Exception exc) {
             System.out.println(exc.getMessage());
             exc.printStackTrace();
