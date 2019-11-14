@@ -30,7 +30,4 @@ public class ClicouBotaoPesquisaAluno implements ActionListener {
             Utilitario.formataEspacamentoTabela(this.principal.alunosPesquisados, 7);
         }
     }
-
-
-
 }

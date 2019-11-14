@@ -6,6 +6,7 @@ import pessoas.classealuno.Aluno;
 public class Boletim implements ClassesGeral {
 
     private Aluno aluno;
+    private int faltas = 0;
     private float nota = 0f;
 
     public Boletim(Aluno aluno) {
@@ -18,12 +19,20 @@ public class Boletim implements ClassesGeral {
     public void setNota(float nota) {
         this.nota = nota;
     }
-    
-    public boolean isAprovado() {
-        if(nota >= 60)
+
+    public void setFaltas(int faltas) {
+        this.faltas = faltas;
+    }
+
+    public boolean isAprovado(Disciplina disc) {
+        if(nota >= 60 && faltas <= disc.getMaximoFaltas())
             return true;
         else
             return false;
+    }
+
+    public int getFaltas() {
+        return faltas;
     }
 
     @Override

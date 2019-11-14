@@ -135,7 +135,7 @@ public class CadastroTurma extends JPanel {
                 this.alunosPesquisados.setModel(
                         ServidorArmazenamento.gerenciadorDisciplinas.getTableFromArray(
                                 this.alunosAdicionados, disciplina));
-                Utilitario.formataEspacamentoTabela(this.alunosPesquisados, 5);
+                Utilitario.formataEspacamentoTabela(this.alunosPesquisados, 6);
                 this.nomeProfessor.setText(ServidorArmazenamento.gerenciadorProfessores.pesquisarProfessorCPF(
                         this.cpfProfessorField.getText()
                 ).getNome());

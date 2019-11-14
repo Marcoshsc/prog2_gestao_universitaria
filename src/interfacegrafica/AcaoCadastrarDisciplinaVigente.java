@@ -97,19 +97,27 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
                     Boletim previo = new Boletim(campos.alunosAdicionados.get(i));
                     seraAdicionada.adicionaAluno(previo);
                     float notaPrevia = Float.parseFloat((String)campos.alunosPesquisados.getValueAt(i, 4));
+                    int faltasPrevias = Integer.parseInt((String)campos.alunosPesquisados.getValueAt(i, 5));
                     if(notaPrevia < 0 || notaPrevia > 10) {
                         this.campos.parent.erroPreenchimento("Digite somente notas entre 0 e 10.");
                         return;
                     }
+                    if(faltasPrevias < 0) {
+                        this.campos.parent.erroPreenchimento("Digite somente um número positivo de faltas.");
+                        return;
+                    }
                     if(notaPrevia > 0) {
                         previo.setNota(notaPrevia);
+                    }
+                    if(faltasPrevias > 0) {
+                        previo.setFaltas(faltasPrevias);
                     }
                 } catch(TamanhoIncompativel exc) {
                     System.out.println("entrou aqui");
                     this.campos.parent.erroPreenchimento("Limite de capacidade da turma excedido.");
                     return;
                 } catch(Exception exc) {
-                    this.campos.parent.erroPreenchimento("Erro de preenchimento nas notas.");
+                    this.campos.parent.erroPreenchimento("Erro de preenchimento nas notas/faltas.");
                     return;
                 }
             }
@@ -137,8 +145,13 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
             disciplinaPrevia.alterar(professorPrevio, dataInicio, dataFim, vagasPrevias, semestrePrevio, codigoPrevio);
             for(int i = 0; i < campos.alunosAdicionados.size(); i++) {
                 float notaPrevia = Float.parseFloat((String)campos.alunosPesquisados.getValueAt(i, 4));
+                int faltasPrevias = Integer.parseInt((String)campos.alunosPesquisados.getValueAt(i, 5));
                 if(notaPrevia < 0 || notaPrevia > 10) {
                     this.campos.parent.erroPreenchimento("Digite somente notas entre 0 e 10.");
+                    return;
+                }
+                if(faltasPrevias < 0) {
+                    this.campos.parent.erroPreenchimento("Digite somente um número positivo de faltas.");
                     return;
                 }
             }
@@ -152,12 +165,16 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
                     Boletim previo = new Boletim(campos.alunosAdicionados.get(i));
                     disciplinaPrevia.adicionaAluno(previo);
                     float notaPrevia = Float.parseFloat((String)campos.alunosPesquisados.getValueAt(i, 4));
+                    int faltasPrevias = Integer.parseInt((String)campos.alunosPesquisados.getValueAt(i, 5));
                     if(notaPrevia < 0 || notaPrevia > 10) {
                         this.campos.parent.erroPreenchimento("Digite somente notas entre 0 e 10.");
                         return;
                     }
                     if(notaPrevia > 0) {
                         previo.setNota(notaPrevia);
+                    }
+                    if(faltasPrevias > 0) {
+                        previo.setFaltas(faltasPrevias);
                     }
                 } catch(TamanhoIncompativel exc) {
                     this.campos.parent.erroPreenchimento("Limite de capacidade da turma excedido.");

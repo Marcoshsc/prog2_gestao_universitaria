@@ -13,6 +13,9 @@ import ensino.secaodisciplina.DisciplinaConcluida;
 import sistema.classes.Usuario;
 import excecoes.OperacaoNaoAutorizada;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 public class Aluno extends PessoaFisica implements ClassesGeral {
 
     public static final String ID = "aluno";
@@ -226,6 +229,30 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
             acumuladora += i.toString();
         }
         return acumuladora;
+    }
+
+    public TableModel getDisciplinasConcluidasTable() {
+        String[] header = {
+                "Disciplina", "Data Conclusão", "Semestre", "Nota", "Aprovado"
+        };
+        String[][] data;
+        if(this.disciplinasConcluidas.size() > 0) {
+            data = new String[this.disciplinasConcluidas.size()][5];
+            for(int i = 0; i < this.disciplinasConcluidas.size(); i++) {
+                data[i] = this.disciplinasConcluidas.get(i).getInfoBasicasArray();
+            }
+        }
+        else {
+            data = null;
+        }
+        return new DefaultTableModel(data, header) {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
     }
 
     /**

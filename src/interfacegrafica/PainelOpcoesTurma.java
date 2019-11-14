@@ -14,6 +14,7 @@ public class PainelOpcoesTurma extends JPanel {
     protected JButton cadastrarTurma = new JButton("CADASTRAR TURMA");
     protected JButton visualizarTurma = new JButton("VISUALIZAR TURMA");
     protected JButton alterarTurma = new JButton("ALTERAR/ LANÇAR NOTAS/ FINALIZAR TURMA");
+    protected JButton historico = new JButton("HISTÓRICO ALUNO");
     protected JButton botaoVoltar = new JButton("VOLTAR");
 
     public PainelOpcoesTurma(JanelaPrincipal parent) {
@@ -28,6 +29,8 @@ public class PainelOpcoesTurma extends JPanel {
         this.add(this.visualizarTurma, this.constantes);
         this.constantes.gridy++;
         this.add(this.alterarTurma, this.constantes);
+        this.constantes.gridy++;
+        this.add(this.historico, this.constantes);
         this.setVisible(false);
 
         this.constantes.gridy++;

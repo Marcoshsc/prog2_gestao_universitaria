@@ -28,7 +28,7 @@ public class AcaoFinalizarTurma implements ActionListener {
         }
         for(Boletim i: turma.getAlunosMatriculados()) {
             i.getAluno().adicionaDisciplinaConcluida(new DisciplinaConcluida((Disciplina)turma, i.getAluno().getCpf(),
-                    turma.getSemestre(), i.getNota(), LocalDate.now()));
+                    turma.getSemestre(), i.getNota(), i.getFaltas(), LocalDate.now()));
         }
         try {
             GerenciadorDisciplinas.atualizaBancoDisciplinaConcluida();

@@ -40,12 +40,15 @@ public class JanelaPrincipal extends JFrame {
     protected PesquisaProfessor pesquisaProfessor = new PesquisaProfessor(this, this.painelOpcoesProfessor, this.cadastroProfessor);
     protected PesquisaDisciplina pesquisaDisciplina = new PesquisaDisciplina(this, this.painelOpcoesDisciplina, this.cadastroDisciplina);
     protected PesquisaTurma pesquisaTurma = new PesquisaTurma(this, this.painelOpcoesTurma, this.cadastroTurma);
+    protected HistoricoAluno historicoAluno = new HistoricoAluno(this, this.painelOpcoesAluno, this.cadastroAluno);
 
     public JanelaPrincipal() {
         this.setSize(1000, 700);
         this.setLayout(new GridBagLayout());
         this.setTitle("Sistema de Gestão Universitária");
         this.setMinimumSize(new Dimension(1000, 700));
+
+        this.painelOpcoesTurma.historico.addActionListener(new TrocaTela(this.painelOpcoesTurma, this.historicoAluno));
         
         this.cadastroCurso.botaoVolta.addActionListener(new TrocaTela(this.cadastroCurso, this.painelOpcoesCurso));
         this.painelOpcoesCurso.botaoVolta.addActionListener(new TrocaTela(this.painelOpcoesCurso, this.hubPrincipal));
@@ -71,6 +74,8 @@ public class JanelaPrincipal extends JFrame {
         this.add(this.pesquisaProfessor);
         this.add(this.pesquisaDisciplina);
         this.add(this.pesquisaTurma);
+
+        this.add(this.historicoAluno);
 
         this.add(this.painelOpcoesAluno);
         this.add(this.painelOpcoesCurso);

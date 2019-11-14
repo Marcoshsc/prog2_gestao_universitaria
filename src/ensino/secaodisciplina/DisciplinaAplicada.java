@@ -55,7 +55,7 @@ public class DisciplinaAplicada extends Disciplina {
 		else {
 			StringBuilder a = new StringBuilder();
 			for(Boletim i: this.alunosMatriculados) {
-				a.append(String.format("%s;%s#", i.getAluno().getCpf(), Float.toString(i.getNota())));
+				a.append(String.format("%s;%s;%d#", i.getAluno().getCpf(), Float.toString(i.getNota()), i.getFaltas()));
 			}
 			return a.toString();
 		}
@@ -127,6 +127,7 @@ public class DisciplinaAplicada extends Disciplina {
 					String[] dados = i.split(";");
 					Boletim actual = new Boletim(ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF(dados[0]));
 					actual.setNota(Float.parseFloat(dados[1]));
+					actual.setFaltas(Integer.parseInt(dados[2]));
 					a.adicionaAluno(actual);
 				}
 			}

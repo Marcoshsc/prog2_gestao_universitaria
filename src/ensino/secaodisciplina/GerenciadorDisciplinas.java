@@ -192,25 +192,27 @@ public class GerenciadorDisciplinas {
 
     public TableModel getTableFromArray(ArrayList<Aluno> arr, DisciplinaAplicada disc) {
         String[] header = {
-                "Nome", "Curso", "CPF", "Matrícula", "Notas"
+                "Nome", "Curso", "CPF", "Matrícula", "Notas", "Faltas"
         };
         String[][] data;
         if(arr.size() == 0 && disc == null) {
             data = null;
         }
         else {
-            data = new String[arr.size()][5];
+            data = new String[arr.size()][6];
             for(int i = 0; i < arr.size(); i++) {
                 data[i] = arr.get(i).getInfoBasicasArray();
                 data[i][4] = (disc != null && disc.getArrayListAlunosMatriculados().contains(arr.get(i)))
                         ? Float.toString(disc.pesquisaAluno(arr.get(i).getCpf()).getNota()) : "0";
+                data[i][5] = (disc != null && disc.getArrayListAlunosMatriculados().contains(arr.get(i)))
+                        ? Integer.toString(disc.pesquisaAluno(arr.get(i).getCpf()).getFaltas()) : "0";
             }
         }
         return new DefaultTableModel(data, header) {
 
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 4;
+                return column == 4 || column == 5;
             }
 
         };
