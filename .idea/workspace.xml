@@ -5,16 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasConcluidas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasConcluidas.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasVigentes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/DisciplinaAplicada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/DisciplinaAplicada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/DisciplinaConcluida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/DisciplinaConcluida.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/GerenciadorDisciplinas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/GerenciadorDisciplinas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/AcaoCadastrarDisciplinaVigente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/AcaoCadastrarDisciplinaVigente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/CadastroTurma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/CadastroTurma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/ExcluirAlunoDaTabela.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/ExcluirAlunoDaTabela.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/JanelaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/JanelaPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/PainelOpcoesTurma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/PainelOpcoesTurma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pessoas/classealuno/Aluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pessoas/classealuno/Aluno.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,6 +92,7 @@
       <workItem from="1573481038687" duration="3356000" />
       <workItem from="1573601025055" duration="948000" />
       <workItem from="1573654950913" duration="8789000" />
+      <workItem from="1573689854644" duration="391000" />
     </task>
     <servers />
   </component>
