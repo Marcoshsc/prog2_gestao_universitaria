@@ -1,10 +1,6 @@
 package interfacegrafica;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import complementares.Utilitario;
 import ensino.classecurso.GerenciadorCursos;
@@ -68,6 +64,7 @@ public class CadastroDisciplina extends JPanel {
             this.nomeField.setText(disciplina.getNome());
             this.cargaHorariaField.setText(Integer.toString(disciplina.getCargaHoraria()));
             this.maximoFaltasField.setText(Integer.toString(disciplina.getMaximoFaltas()));
+            this.cursoField.setModel(new DefaultComboBoxModel<String>(ServidorArmazenamento.gerenciadorCursos.getNomeCursos()));
             this.cursoField.setSelectedItem(GerenciadorCursos.pesquisaCursoCodigo(disciplina.getCodigoCurso()).getNome());
             if(acao.equals("view")) {
                 this.botaoConfirma.setVisible(false);
@@ -82,6 +79,7 @@ public class CadastroDisciplina extends JPanel {
             }
         }
         else {
+            this.cursoField.setModel(new DefaultComboBoxModel<String>(ServidorArmazenamento.gerenciadorCursos.getNomeCursos()));
             this.codigoField.setText(null);
             this.nomeField.setText(null);
             this.cargaHorariaField.setText(null);

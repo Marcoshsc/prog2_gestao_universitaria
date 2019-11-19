@@ -70,7 +70,7 @@ public class AcaoCadastrarDisciplina implements ActionListener {
                 this.campos.parent.erroPreenchimento("Disciplina já existe.");
                 return;
             }
-            Disciplina seraAdicionada = new Disciplina(codigoPrevio, nomePrevio, maximoFaltasPrevio, cargaHorariaPrevia);
+            Disciplina seraAdicionada = new Disciplina(codigoPrevio, nomePrevio, cargaHorariaPrevia, maximoFaltasPrevio);
             cursoPrevio.adicionaDisciplina(seraAdicionada);
              JOptionPane.showMessageDialog(this.campos.parent, "Disciplina cadastrada com sucesso.", "INFO", JOptionPane.INFORMATION_MESSAGE);
             seraAdicionada.setCodigoCurso(cursoPrevio.getCodigo());
@@ -87,7 +87,7 @@ public class AcaoCadastrarDisciplina implements ActionListener {
                 this.campos.parent.erroPreenchimento("Impossível alterar código de Disciplina. Caso o deseje, crie uma nova Disciplina.");
                 return;
             }
-            disciplinaPrevia.alterar(codigoPrevio, nomePrevio, maximoFaltasPrevio, cargaHorariaPrevia);
+            disciplinaPrevia.alterar(codigoPrevio, nomePrevio, cargaHorariaPrevia, maximoFaltasPrevio);
             if(!disciplinaPrevia.getCodigoCurso().equals(cursoPrevio.getCodigo())) {
                 Curso cursoAtual = GerenciadorCursos.pesquisaCursoCodigo(disciplinaPrevia.getCodigoCurso());
                 cursoAtual.getDisciplinasRelacionadas().remove(disciplinaPrevia);

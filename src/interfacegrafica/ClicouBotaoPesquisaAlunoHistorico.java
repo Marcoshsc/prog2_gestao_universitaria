@@ -34,7 +34,7 @@ public class ClicouBotaoPesquisaAlunoHistorico implements ActionListener {
             this.principal.cursoAluno.setText(procurado.getCurso().getNome());
             this.principal.matriculaAluno.setText(procurado.getNumeroMatricula());
             this.principal.alunosPesquisados.setModel(procurado.getDisciplinasConcluidasTable());
-            Utilitario.formataEspacamentoTabela(this.principal.alunosPesquisados, 5);
+            Utilitario.formataEspacamentoTabela(this.principal.alunosPesquisados, 6);
         }
         else {
             this.principal.patern.erroPreenchimento("Aluno não encontrado");
@@ -42,7 +42,7 @@ public class ClicouBotaoPesquisaAlunoHistorico implements ActionListener {
             this.principal.cursoAluno.setText(null);
             this.principal.matriculaAluno.setText(null);
             this.principal.alunosPesquisados.setModel(this.principal.retornaTabelaVazia());
-            Utilitario.formataEspacamentoTabela(this.principal.alunosPesquisados, 5);
+            Utilitario.formataEspacamentoTabela(this.principal.alunosPesquisados, 6);
         }
     }
 }

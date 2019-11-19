@@ -122,6 +122,7 @@ public class CadastroTurma extends JPanel {
 
         public void setaCampos(String acao, DisciplinaAplicada disciplina) {
             DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            this.disciplinaField.setModel(new DefaultComboBoxModel<String>(ServidorArmazenamento.gerenciadorDisciplinas.getCodigoDisciplinas()));
             if(disciplina != null) {
                 this.codigoField.setText(disciplina.getCodigoVigente());
                 this.cpfProfessorField.setText(disciplina.getProfessor());

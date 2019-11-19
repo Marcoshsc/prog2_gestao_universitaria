@@ -55,7 +55,7 @@ public class HistoricoAluno extends JPanel {
 
         this.alunosPesquisados.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         this.alunosPesquisados.setModel(this.retornaTabelaVazia());
-        Utilitario.formataEspacamentoTabela(this.alunosPesquisados, 5);
+        Utilitario.formataEspacamentoTabela(this.alunosPesquisados, 6);
 
         this.painelSegurador.setLayout(new GridBagLayout());
         this.botaoPesquisar.addActionListener(new ClicouBotaoPesquisaAlunoHistorico(this));
@@ -79,7 +79,7 @@ public class HistoricoAluno extends JPanel {
 
     protected TableModel retornaTabelaVazia() {
         String[] header = {
-                "Disciplina", "Data Conclusão", "Semestre", "Nota", "Aprovado"
+                "Disciplina", "Data Conclusão", "Semestre", "Nota", "Frequência", "Aprovado"
         };
         return new DefaultTableModel(null, header) {
 
@@ -89,6 +89,14 @@ public class HistoricoAluno extends JPanel {
             }
 
         };
+    }
+
+    public void setaCampos() {
+        this.alunosPesquisados.setModel(this.retornaTabelaVazia());
+        this.cpfAluno.setText(null);
+        this.nomeAluno.setText(null);
+        this.matriculaAluno.setText(null);
+        this.cursoAluno.setText(null);
     }
 
 }

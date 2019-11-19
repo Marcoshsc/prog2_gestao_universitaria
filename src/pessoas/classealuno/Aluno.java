@@ -233,11 +233,11 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
 
     public TableModel getDisciplinasConcluidasTable() {
         String[] header = {
-                "Disciplina", "Data Conclusão", "Semestre", "Nota", "Aprovado"
+                "Disciplina", "Data Conclusão", "Semestre", "Nota", "Frequência", "Aprovado"
         };
         String[][] data;
         if(this.disciplinasConcluidas.size() > 0) {
-            data = new String[this.disciplinasConcluidas.size()][5];
+            data = new String[this.disciplinasConcluidas.size()][6];
             for(int i = 0; i < this.disciplinasConcluidas.size(); i++) {
                 data[i] = this.disciplinasConcluidas.get(i).getInfoBasicasArray();
             }

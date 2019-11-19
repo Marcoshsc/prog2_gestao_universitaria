@@ -48,7 +48,7 @@ public class JanelaPrincipal extends JFrame {
         this.setTitle("Sistema de Gestão Universitária");
         this.setMinimumSize(new Dimension(1000, 700));
 
-        this.painelOpcoesTurma.historico.addActionListener(new TrocaTela(this.painelOpcoesTurma, this.historicoAluno));
+        this.painelOpcoesTurma.historico.addActionListener(new EntrarInterfaceHistorico(this.historicoAluno, this.painelOpcoesTurma));
         
         this.cadastroCurso.botaoVolta.addActionListener(new TrocaTela(this.cadastroCurso, this.painelOpcoesCurso));
         this.painelOpcoesCurso.botaoVolta.addActionListener(new TrocaTela(this.painelOpcoesCurso, this.hubPrincipal));

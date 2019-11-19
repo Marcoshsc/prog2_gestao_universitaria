@@ -40,7 +40,7 @@ public class DisciplinaConcluida implements ClassesGeral {
 		DisciplinaConcluida a = new DisciplinaConcluida(GerenciadorDisciplinas.pesquisaDisciplinaCodigo(campos[0]),
 				campos[1], Integer.parseInt(campos[2]), Float.parseFloat(campos[3]), Integer.parseInt(campos[6]),
                 LocalDate.parse(campos[4], formatador));
-		a.setAprovado(a.getNota(), a.faltas, a.disciplina);
+		a.aprovado = Boolean.parseBoolean(campos[5]);
 		return a;
 	}
 
