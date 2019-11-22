@@ -2,23 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b956ee20-0d1d-46b3-b669-c28ae838050a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosAlunos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosAlunos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosCursos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosCursos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosAlunos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosAlunos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosCursos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosCursos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinas.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosDisciplinas.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasConcluidas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasConcluidas.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasVigentes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/DisciplinaAplicada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/DisciplinaAplicada.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/DisciplinaConcluida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/DisciplinaConcluida.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/AcaoCadastrarDisciplina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/AcaoCadastrarDisciplina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/CadastroDisciplina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/CadastroDisciplina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/CadastroTurma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/CadastroTurma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/ClicouBotaoPesquisaAlunoHistorico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/ClicouBotaoPesquisaAlunoHistorico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/GerenciadorDisciplinas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/GerenciadorDisciplinas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/AcaoExcluirDisciplina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/AcaoExcluirDisciplina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/AcaoExcluirTurma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/AcaoExcluirTurma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/ClicouCelulaTurma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/ClicouCelulaTurma.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfacegrafica/HistoricoAluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/HistoricoAluno.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfacegrafica/JanelaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/JanelaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/PainelOpcoesAluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/PainelOpcoesAluno.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pessoas/classealuno/Aluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pessoas/classealuno/Aluno.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -122,7 +119,11 @@
       <workItem from="1573689854644" duration="391000" />
       <workItem from="1573748078950" duration="4616000" />
       <workItem from="1574110253445" duration="2629000" />
-      <workItem from="1574203236155" duration="1882000" />
+      <workItem from="1574203236155" duration="2274000" />
+      <workItem from="1574207985992" duration="54000" />
+      <workItem from="1574298014630" duration="571000" />
+      <workItem from="1574366317321" duration="2398000" />
+      <workItem from="1574380490404" duration="2883000" />
     </task>
     <servers />
   </component>

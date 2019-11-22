@@ -61,6 +61,14 @@ public class DisciplinaAplicada extends Disciplina {
 		}
 	}
 
+	private Boletim getBoletimFromAluno(Aluno aluno) {
+	    for(Boletim i: this.alunosMatriculados) {
+	        if(i.getAluno().equals(aluno))
+	            return i;
+        }
+	    return null;
+    }
+
 	public String[] getInfoBasicasArray() {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String[] infos = new String[5];
@@ -71,6 +79,19 @@ public class DisciplinaAplicada extends Disciplina {
 		infos[4] = formatador.format(this.dataFim);
 		return infos;
 	}
+
+    public String[] getInfoBasicasArrayAluno(Aluno aluno) {
+        String[] dados = new String[6];
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        Boletim boletim = this.getBoletimFromAluno(aluno);
+        dados[0] = this.codigoVigente;
+        dados[1] = this.professor;
+        dados[2] = formatador.format(this.dataInicio);
+        dados[3] = formatador.format(this.dataFim);
+        dados[4] = (boletim != null) ? Float.toString(boletim.getNota()) : "NAO ENCONTRADO";
+        dados[5] = (boletim != null) ? Integer.toString(boletim.getFaltas()) : "NAO ENCONTRADO";
+        return dados;
+    }
 
 	public ArrayList<Aluno> getArrayListAlunosMatriculados() {
 		ArrayList<Aluno> current = new ArrayList<Aluno>();

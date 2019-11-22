@@ -29,9 +29,6 @@ public class AcaoExcluirTurma implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         DisciplinaAplicada turmaPrevia = GerenciadorDisciplinas.pesquisaDisciplinaVigenteCodigo(Utilitario.formataCampo(this.codigoTurma));
         if(turmaPrevia != null) {
-//            if(GerenciadorAluno.verificaVinculoCurso(cursoPrevio)) {
-//                VERIFICAR EXISTENCIA DE VINCULOS COM TURMAS
-//            }
             ServidorArmazenamento.gerenciadorDisciplinas.excluirDisciplinaVigente(turmaPrevia);
             JOptionPane.showMessageDialog(this.parent, "Disciplina excluída com sucesso.", "INFO", JOptionPane.INFORMATION_MESSAGE);
             this.parent.cadastroTurma.setVisible(false);

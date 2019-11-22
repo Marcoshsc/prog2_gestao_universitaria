@@ -1,6 +1,7 @@
 package ensino.secaodisciplina;
 
 import contratos.ClassesGeral;
+import pessoas.classealuno.Aluno;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

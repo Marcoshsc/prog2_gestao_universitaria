@@ -3,6 +3,9 @@ package pessoas.classealuno;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import ensino.secaodisciplina.DisciplinaAplicada;
+import ensino.secaodisciplina.GerenciadorDisciplinas;
 import pessoas.superclasse.PessoaFisica;
 import ensino.classecurso.Curso;
 import assistenciaestudantil.BolsaVigente;
@@ -240,6 +243,31 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
             data = new String[this.disciplinasConcluidas.size()][6];
             for(int i = 0; i < this.disciplinasConcluidas.size(); i++) {
                 data[i] = this.disciplinasConcluidas.get(i).getInfoBasicasArray();
+            }
+        }
+        else {
+            data = null;
+        }
+        return new DefaultTableModel(data, header) {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+    }
+
+    public TableModel getDisciplinasCursadasTable() {
+        String[] header = {
+                "Código", "Professor", "Data Início", "Data Fim", "Nota", "Frequência"
+        };
+        String[][] data;
+        if(this.cursando.size() > 0) {
+            data = new String[this.cursando.size()][6];
+            for(int i = 0; i < this.cursando.size(); i++) {
+                DisciplinaAplicada turma = GerenciadorDisciplinas.pesquisaDisciplinaVigenteCodigo(this.cursando.get(i));
+                data[i] = turma.getInfoBasicasArrayAluno(this);
             }
         }
         else {

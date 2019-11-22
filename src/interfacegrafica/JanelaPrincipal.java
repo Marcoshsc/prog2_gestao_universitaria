@@ -40,7 +40,8 @@ public class JanelaPrincipal extends JFrame {
     protected PesquisaProfessor pesquisaProfessor = new PesquisaProfessor(this, this.painelOpcoesProfessor, this.cadastroProfessor);
     protected PesquisaDisciplina pesquisaDisciplina = new PesquisaDisciplina(this, this.painelOpcoesDisciplina, this.cadastroDisciplina);
     protected PesquisaTurma pesquisaTurma = new PesquisaTurma(this, this.painelOpcoesTurma, this.cadastroTurma);
-    protected HistoricoAluno historicoAluno = new HistoricoAluno(this, this.painelOpcoesAluno, this.cadastroAluno);
+    protected HistoricoAluno historicoAluno = new HistoricoAluno(this, this.painelOpcoesAluno);
+    protected DisciplinasCursadas disciplinasCursadas = new DisciplinasCursadas(this, this.painelOpcoesAluno);
 
     public JanelaPrincipal() {
         this.setSize(1000, 700);
@@ -49,6 +50,9 @@ public class JanelaPrincipal extends JFrame {
         this.setMinimumSize(new Dimension(1000, 700));
 
         this.painelOpcoesTurma.historico.addActionListener(new EntrarInterfaceHistorico(this.historicoAluno, this.painelOpcoesTurma));
+
+        this.painelOpcoesAluno.disciplinasCursadas.addActionListener(
+                new EntrarInterfaceDisciplinasCursadas(this.disciplinasCursadas, this.painelOpcoesAluno));
         
         this.cadastroCurso.botaoVolta.addActionListener(new TrocaTela(this.cadastroCurso, this.painelOpcoesCurso));
         this.painelOpcoesCurso.botaoVolta.addActionListener(new TrocaTela(this.painelOpcoesCurso, this.hubPrincipal));
@@ -76,6 +80,7 @@ public class JanelaPrincipal extends JFrame {
         this.add(this.pesquisaTurma);
 
         this.add(this.historicoAluno);
+        this.add(this.disciplinasCursadas);
 
         this.add(this.painelOpcoesAluno);
         this.add(this.painelOpcoesCurso);

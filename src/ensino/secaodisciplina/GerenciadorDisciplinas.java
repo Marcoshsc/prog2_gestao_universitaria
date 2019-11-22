@@ -10,6 +10,8 @@ import ensino.classecurso.Curso;
 import ensino.classecurso.GerenciadorCursos;
 import pessoas.classealuno.Aluno;
 import pessoas.classealuno.GerenciadorAluno;
+import pessoas.classeprofessor.GerenciadorProfessor;
+import pessoas.classeprofessor.Professor;
 import sistema.classes.ServidorArmazenamento;
 
 public class GerenciadorDisciplinas {
@@ -51,6 +53,15 @@ public class GerenciadorDisciplinas {
     }
 
     public void excluirDisciplinaVigente(DisciplinaAplicada disciplina) {
+        for(Aluno i: disciplina.getArrayListAlunosMatriculados()) {
+            i.getCursando().remove(disciplina.getCodigoVigente());
+        }
+        Professor prof = ServidorArmazenamento.gerenciadorProfessores.pesquisarProfessorCPF(disciplina.getProfessor());
+        if(prof != null) {
+            prof.getDisciplinasMinistradas().remove(disciplina.getProfessor());
+        }
+        else
+            System.out.println("Não encontrei o professor.");
         GerenciadorDisciplinas.disciplinasVigentes.remove(disciplina);
         try {
             GerenciadorDisciplinas.atualizaBancoDisciplinaVigente();
@@ -155,6 +166,14 @@ public class GerenciadorDisciplinas {
             System.out.println(exc.getMessage());
             exc.printStackTrace();
         }
+    }
+
+    public static boolean verificaVinculoTurma(Disciplina disc) {
+        for (Disciplina i : GerenciadorDisciplinas.disciplinasVigentes) {
+            if(disc.getCodigo().equals(i.getCodigo()))
+                return true;
+        }
+        return false;
     }
 
     public ArrayList<Disciplina> pesquisarDisciplinaCurso(Curso curso) {

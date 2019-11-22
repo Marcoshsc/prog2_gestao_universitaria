@@ -28,9 +28,10 @@ public class AcaoExcluirDisciplina implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Disciplina disciplinaPrevia = GerenciadorDisciplinas.pesquisaDisciplinaCodigo(Utilitario.formataCampo(this.codigoDisciplina));
         if(disciplinaPrevia != null) {
-//            if(GerenciadorAluno.verificaVinculoCurso(cursoPrevio)) {
-//                VERIFICAR EXISTENCIA DE VINCULOS COM TURMAS
-//            }
+            if(GerenciadorDisciplinas.verificaVinculoTurma(disciplinaPrevia)) {
+                this.parent.erroPreenchimento("Não é possível excluir pois existem vínculos com curso e/ou turmas.");
+                return;
+            }
             Curso cursoPrevio = GerenciadorCursos.pesquisaCursoCodigo(disciplinaPrevia.getCodigoCurso());
             cursoPrevio.getDisciplinasRelacionadas().remove(disciplinaPrevia);
             ServidorArmazenamento.gerenciadorDisciplinas.excluirDisciplina(disciplinaPrevia);

@@ -20,7 +20,7 @@ import complementares.Utilitario;
 import interfacegrafica.PainelOpcoesAluno;
 import sistema.classes.ServidorArmazenamento;
 
-public class HistoricoAluno extends JPanel {
+public class DisciplinasCursadas extends JPanel {
 
     protected PainelOpcoesAluno origem;
     protected JanelaPrincipal patern;
@@ -40,7 +40,7 @@ public class HistoricoAluno extends JPanel {
     protected JButton botaoVoltar = new JButton("VOLTAR");
     protected JButton botaoPesquisar = new JButton("PESQUISAR");
 
-    protected HistoricoAluno(JanelaPrincipal patern, PainelOpcoesAluno origem) {
+    protected DisciplinasCursadas(JanelaPrincipal patern, PainelOpcoesAluno origem) {
 
         this.patern = patern;
         this.origem = origem;
@@ -55,10 +55,12 @@ public class HistoricoAluno extends JPanel {
 
         this.alunosPesquisados.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         this.alunosPesquisados.setModel(this.retornaTabelaVazia());
+        this.alunosPesquisados.addMouseListener(new ClicouCelulaTurma("view", this.alunosPesquisados,
+                this.patern, this, this.patern.cadastroTurma));
         Utilitario.formataEspacamentoTabela(this.alunosPesquisados, 6);
 
         this.painelSegurador.setLayout(new GridBagLayout());
-        this.botaoPesquisar.addActionListener(new ClicouBotaoPesquisaAlunoHistorico(this));
+        this.botaoPesquisar.addActionListener(new ClicouBotaoPesquisaAlunoCursando(this));
         this.botaoVoltar.addActionListener(new TrocaTela(this, this.origem));
         this.constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
         Utilitario.geraCampoHorizontal(this.cpfLabel, this.cpfAluno, this.painelSegurador, this.constantes);
@@ -79,7 +81,7 @@ public class HistoricoAluno extends JPanel {
 
     protected TableModel retornaTabelaVazia() {
         String[] header = {
-                "Disciplina", "Data Conclusão", "Semestre", "Nota", "Frequência", "Aprovado"
+                "Código", "Professor", "Data Início", "Data Fim", "Nota", "Frequência"
         };
         return new DefaultTableModel(null, header) {
 
