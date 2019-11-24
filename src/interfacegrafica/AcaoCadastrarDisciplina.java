@@ -12,7 +12,6 @@ import ensino.secaodisciplina.Disciplina;
 import ensino.secaodisciplina.GerenciadorDisciplinas;
 import sistema.classes.ServidorArmazenamento;
 
-// FALTA ALTERAR AINDA QUE QUANDO ALTERA A DISCIPLINA TEM QUE VER SE O CURSO AINDA É O MESMO OU NAO
 
 public class AcaoCadastrarDisciplina implements ActionListener {
 

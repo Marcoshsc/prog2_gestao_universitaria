@@ -4,7 +4,6 @@ import complementares.Utilitario;
 import ensino.secaodisciplina.DisciplinaAplicada;
 import ensino.secaodisciplina.GerenciadorDisciplinas;
 import pessoas.classealuno.Aluno;
-import pessoas.classealuno.GerenciadorAluno;
 import sistema.classes.ServidorArmazenamento;
 
 import javax.swing.*;

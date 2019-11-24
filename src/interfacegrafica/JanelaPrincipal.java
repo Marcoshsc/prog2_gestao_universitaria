@@ -1,5 +1,6 @@
 package interfacegrafica;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -16,6 +17,7 @@ import java.awt.GridBagConstraints;
 
 public class JanelaPrincipal extends JFrame {
 
+    private static JanelaPrincipal instance = null;
     public static final int PROXIMA_LINHA = 1;
     public static final int PROXIMA_COLUNA = 0;
     public static final Dimension TAMANHO = new Dimension(120, 20);
@@ -29,8 +31,10 @@ public class JanelaPrincipal extends JFrame {
     protected PainelOpcoesDisciplina painelOpcoesDisciplina = new PainelOpcoesDisciplina(this);
     protected PainelOpcoesTurma painelOpcoesTurma = new PainelOpcoesTurma(this);
     protected CadastroTurma cadastroTurma = new CadastroTurma(this, this.painelOpcoesTurma);
+    protected ModuloColegiado moduloColegiado = new ModuloColegiado(this.painelOpcoesTurma);
+    protected HistoricoAluno historicoAluno = new HistoricoAluno(this, this.moduloColegiado);
     protected HubPrincipal hubPrincipal = new HubPrincipal(this.painelOpcoesAluno, this.painelOpcoesCurso, 
-    this.painelOpcoesProfessor, this.painelOpcoesDisciplina, this.painelOpcoesTurma);
+    this.painelOpcoesProfessor, this.painelOpcoesDisciplina, this.moduloColegiado);
     protected CadastroAluno cadastroAluno = new CadastroAluno(this, this.painelOpcoesAluno);
     protected CadastroCurso cadastroCurso = new CadastroCurso(this, this.painelOpcoesCurso);
     protected CadastroProfessor cadastroProfessor = new CadastroProfessor(this, this.painelOpcoesProfessor);
@@ -40,7 +44,6 @@ public class JanelaPrincipal extends JFrame {
     protected PesquisaProfessor pesquisaProfessor = new PesquisaProfessor(this, this.painelOpcoesProfessor, this.cadastroProfessor);
     protected PesquisaDisciplina pesquisaDisciplina = new PesquisaDisciplina(this, this.painelOpcoesDisciplina, this.cadastroDisciplina);
     protected PesquisaTurma pesquisaTurma = new PesquisaTurma(this, this.painelOpcoesTurma, this.cadastroTurma);
-    protected HistoricoAluno historicoAluno = new HistoricoAluno(this, this.painelOpcoesAluno);
     protected DisciplinasCursadas disciplinasCursadas = new DisciplinasCursadas(this, this.painelOpcoesAluno);
     protected DisciplinasMinistradas disciplinasMinistradas = new DisciplinasMinistradas(this, this.painelOpcoesProfessor);
 
@@ -50,7 +53,8 @@ public class JanelaPrincipal extends JFrame {
         this.setTitle("Sistema de Gestão Universitária");
         this.setMinimumSize(new Dimension(1000, 700));
 
-        this.painelOpcoesTurma.historico.addActionListener(new EntrarInterfaceHistorico(this.historicoAluno, this.painelOpcoesTurma));
+        this.moduloColegiado.historicoAlunoButton.addActionListener(new EntrarInterfaceHistorico(this.historicoAluno, this.moduloColegiado));
+        this.moduloColegiado.botaoVoltar.addActionListener(new TrocaTela(this.moduloColegiado, this.hubPrincipal));
 
         this.painelOpcoesAluno.disciplinasCursadas.addActionListener(
                 new EntrarInterfaceDisciplinasCursadas(this.disciplinasCursadas, this.painelOpcoesAluno));
@@ -86,6 +90,8 @@ public class JanelaPrincipal extends JFrame {
         this.add(this.disciplinasCursadas);
         this.add(this.disciplinasMinistradas);
 
+        this.add(this.moduloColegiado);
+
         this.add(this.painelOpcoesAluno);
         this.add(this.painelOpcoesCurso);
         this.add(this.painelOpcoesProfessor);
@@ -99,10 +105,6 @@ public class JanelaPrincipal extends JFrame {
         this.add(this.cadastroProfessor);
         this.add(this.cadastroDisciplina);
         this.add(this.cadastroTurma);
-        // this.add(this.telaInicial);
-        // this.telaInicial.setVisible(true);
-        // this.add(this.telaCadastro);
-        // this.add(this.telaLogin);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -112,111 +114,11 @@ public class JanelaPrincipal extends JFrame {
         JOptionPane.showMessageDialog(this, mensagem, "Erro de preenchimento", JOptionPane.ERROR_MESSAGE);
     }
 
-    // protected static JTextField geraField(String codigo) {
-    //     JFormattedTextField previo;
-    //     try {
-    //         switch(codigo) {
-    //             case "cpf": {
-    //                 previo = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
-    //                 previo.setColumns(20);
-    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-    //             } break;
-    //             case "matricula": {
-    //                 previo = new JFormattedTextField();
-    //                 previo.setColumns(20);
-    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-    //             } break;
-    //             case "data": {
-    //                 previo = new JFormattedTextField(new MaskFormatter("##/##/####"));
-    //                 previo.setColumns(20);
-    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-    //             } break;
-    //             case "rg": {
-    //                 previo = new JFormattedTextField(new MaskFormatter("UU-##########"));
-    //                 previo.setColumns(20);
-    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-    //             } break;
-    //             case "agencia": {
-    //                 previo = new JFormattedTextField(new MaskFormatter("####-#"));
-    //                 previo.setColumns(20);
-    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-    //             } break;
-    //             case "conta": {
-    //                 previo = new JFormattedTextField(new MaskFormatter("#####-#"));
-    //                 previo.setColumns(20);
-    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-    //             } break;
-    //             case "numeroCasa": {
-    //                 previo = new JFormattedTextField();
-    //                 previo.setColumns(20);
-    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-    //             } break;
-    //             case "cep": {
-    //                 previo = new JFormattedTextField(new MaskFormatter("#####-###"));
-    //                 previo.setColumns(20);
-    //                 previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-    //             } break;
-    //             default: {
-    //                 throw new Exception("Não foi possível criar o Campo.");
-    //             }
-    //         }
-    //         return previo;
-    //     } catch(Exception exc) {
-    //         System.out.println("Não foi possível criar o campo.");
-    //         return null;
-    //     }
-    // }
-
-    // protected static JTextField geraField() {
-    //     try {
-    //         JTextField previo = new JTextField(20);
-    //         previo.setMinimumSize(JanelaPrincipal.TAMANHO);
-    //         return previo;
-    //     } catch(Exception exc) {
-    //         System.out.println("Não foi possível criar o campo.");
-    //         return null;
-    //     }
-    // }
-    
-    // protected static JLabel geraTitulo(String texto) {
-    //     JLabel previo = new JLabel(texto);
-    //     previo.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
-    //         BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-    //     return previo;
-    // }
-
-    // protected static void geraCampoVertical(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
-    //     constantes.gridy++;
-    //     constantes.gridx = 0;
-    //     alvo.add(label, constantes);
-    //     constantes.gridx++;
-    //     alvo.add(campo, constantes);
-    // }
-
-    // protected static void geraCampoHorizontal(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
-    //     constantes.gridx++;
-    //     alvo.add(label, constantes);
-    //     constantes.gridx++;
-    //     alvo.add(campo, constantes);
-    // }
-
-    // protected static void geraCampoCentral(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
-    //     constantes.gridy++;
-    //     constantes.gridx = 1;
-    //     alvo.add(label, constantes);
-    //     constantes.gridx++;
-    //     alvo.add(campo, constantes);
-    // }
-
-    // protected static void posicionaTitulo(Component titulo, JPanel alvo, GridBagConstraints constantes) {
-    //     constantes.gridwidth = 4;
-    //     constantes.gridy++;
-    //     constantes.gridx = 0;
-    //     constantes.insets = new Insets(20, 0, 20, 0);
-    //     alvo.add(titulo, constantes);
-    //     constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
-    //     constantes.gridwidth = 1;
-    // }
+    public static JanelaPrincipal getInstance() {
+        if(instance == null)
+            instance = new JanelaPrincipal();
+        return instance;
+    }
 
     public class TelaInicial extends JPanel {
 

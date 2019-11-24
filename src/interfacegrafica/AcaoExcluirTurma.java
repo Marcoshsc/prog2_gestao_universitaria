@@ -7,12 +7,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import complementares.Utilitario;
-import ensino.classecurso.Curso;
-import ensino.classecurso.GerenciadorCursos;
-import ensino.secaodisciplina.Disciplina;
 import ensino.secaodisciplina.DisciplinaAplicada;
 import ensino.secaodisciplina.GerenciadorDisciplinas;
-import pessoas.classealuno.GerenciadorAluno;
 import sistema.classes.ServidorArmazenamento;
 
 public class AcaoExcluirTurma implements ActionListener {

@@ -2,8 +2,8 @@ package contratos;
 
 public interface OperacoesBasicas {
 
-    public abstract void adiciona(Object objeto);
-    public abstract void imprimeTodos();
-    public abstract void inicializa() throws Exception;
+    void adiciona(Object objeto);
+    void imprimeTodos();
+    void inicializa() throws Exception;
 
 }

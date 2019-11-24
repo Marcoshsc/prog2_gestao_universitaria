@@ -11,7 +11,6 @@ import ensino.classecurso.Curso;
 import ensino.classecurso.GerenciadorCursos;
 import ensino.secaodisciplina.Disciplina;
 import ensino.secaodisciplina.GerenciadorDisciplinas;
-import pessoas.classealuno.GerenciadorAluno;
 import sistema.classes.ServidorArmazenamento;
 
 public class AcaoExcluirDisciplina implements ActionListener {

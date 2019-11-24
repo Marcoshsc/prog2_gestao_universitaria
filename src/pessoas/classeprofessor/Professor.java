@@ -154,16 +154,6 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         return infos;
     }
 
-    protected void removeDisciplina(String codigo) {
-        for(String i: this.disciplinasMinistradas) {
-            if(i.equals(codigo)) {
-                this.disciplinasMinistradas.remove(i);
-                return;
-            }
-        }
-        System.out.println("Disciplina nao encontrada nao deu pra excluir");
-    }
-
     public TableModel getDisciplinasMinistradasTable() {
         String[] header = {
                 "Código", "Disciplina", "Data Início", "Data Fim"

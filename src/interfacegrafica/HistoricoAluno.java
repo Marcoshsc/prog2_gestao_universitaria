@@ -22,7 +22,7 @@ import sistema.classes.ServidorArmazenamento;
 
 public class HistoricoAluno extends JPanel {
 
-    protected PainelOpcoesAluno origem;
+    protected ModuloColegiado origem;
     protected JanelaPrincipal patern;
 
     protected GridBagConstraints constantes = new GridBagConstraints();
@@ -40,7 +40,7 @@ public class HistoricoAluno extends JPanel {
     protected JButton botaoVoltar = new JButton("VOLTAR");
     protected JButton botaoPesquisar = new JButton("PESQUISAR");
 
-    protected HistoricoAluno(JanelaPrincipal patern, PainelOpcoesAluno origem) {
+    protected HistoricoAluno(JanelaPrincipal patern, ModuloColegiado origem) {
 
         this.patern = patern;
         this.origem = origem;

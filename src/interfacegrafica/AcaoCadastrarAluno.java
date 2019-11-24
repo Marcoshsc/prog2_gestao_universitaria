@@ -15,39 +15,7 @@ import pessoas.classealuno.Aluno;
 import pessoas.classealuno.GerenciadorAluno;
 import sistema.classes.ServidorArmazenamento;
 
-/**
-     * Classe que implementa o botão de CONFIRMAR CADASTRO/ALTERAÇÃO
-     * -----VARIAVEIS INICIO-----
-     * CadastroAluno campos: Classe CadastroAluno que será usada.
-     * String acao: Pode ser "cadastrar" e "alterar", determina como será feita a leitura.
-     * -----VARIAVEIS FIM-----
-     * 
-     * -----FUNCIONAMENTO INICIO-----
-     * CADASTRO
-     * Caso os campos de Endereco ou Conta Bancaria (ou ambos) sejam deixados em branco, 
-     * será criado um Aluno sem tais campos. Porém, um único campo preenchido já faz com que
-     * o programa reconheça como uma tentativa de criação de aluno COM Endereco ou ContaBancaria
-     * (ou ambos).
-     * ALTERACAO
-     * Qualquer aluno pode ser alterado, com exceção do campo CPF, que é único.
-     * Ao apagar TODOS os campos de Endereco ou de ContaBancaria (ou ambos), o aluno selecionado
-     * terá seus dados alterados da mesma forma. Porém, um único campo preenchido de um dos dois
-     * significa uma tentativa de alteração desses campos, sem sua exclusão.
-     * -----FUNCIONAMENTO FIM-----
-     * 
-     * -----VALIDACOES INICIO-----
-     * CADASTRO
-     * Não é permitido o cadastro de dois alunos com o mesmo CPF.
-     * ALTERACAO
-     * Não é permitido a "alteração" de um aluno caso o CPF digitado não exista no sistema.
-     * GERAL
-     * Validação de CPF
-     * Validacao de Datas
-     * Nenhum campo pode estar vazio (A menos que TODOS os campos de Endereço ou TODOS os campos
-     * de ContaBancaria estejam vazios, como é dito acima)
-     * Todos esses erros mostrarão um JOptionPane de erro, não permitindo o cadastro.
-     * -----VALIDACOES FIM------
-     */
+
 public class AcaoCadastrarAluno implements ActionListener {
 
     private CadastroAluno campos;

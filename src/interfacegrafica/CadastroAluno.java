@@ -15,7 +15,6 @@ import sistema.classes.ServidorArmazenamento;
 import complementares.ContaBancaria;
 import complementares.Endereco;
 import complementares.Utilitario;
-import interfacegrafica.PainelOpcoesAluno;
 import pessoas.classealuno.Aluno;
 
 public class CadastroAluno extends JPanel {

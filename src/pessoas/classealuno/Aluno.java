@@ -8,13 +8,10 @@ import ensino.secaodisciplina.DisciplinaAplicada;
 import ensino.secaodisciplina.GerenciadorDisciplinas;
 import pessoas.superclasse.PessoaFisica;
 import ensino.classecurso.Curso;
-import assistenciaestudantil.BolsaVigente;
 import complementares.ContaBancaria;
 import complementares.Endereco;
 import contratos.ClassesGeral;
 import ensino.secaodisciplina.DisciplinaConcluida;
-import sistema.classes.Usuario;
-import excecoes.OperacaoNaoAutorizada;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -27,9 +24,7 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
     private ArrayList<String> cursando = new ArrayList<String>();
     private Float coeficienteSemestral = 0f;
     private LocalDate dataIngresso;
-    private ArrayList<BolsaVigente> bolsas = new ArrayList<BolsaVigente>();
     private ArrayList<DisciplinaConcluida> disciplinasConcluidas = new ArrayList<DisciplinaConcluida>();
-    private Usuario sistema;
     private boolean ativo = true;
     
     public Aluno(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
@@ -180,60 +175,6 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         this.disciplinasConcluidas.add(disc);
     }
 
-    public void adicionaBolsa(BolsaVigente bolsa) throws OperacaoNaoAutorizada {
-        if(this.bolsas.stream().filter(a -> bolsa == a).toArray().length == 0) {
-            this.bolsas.add(bolsa);
-        }
-        else
-            throw new OperacaoNaoAutorizada();
-    }
-
-    public boolean temBolsa() {
-        if(this.bolsas.size() > 0)
-            return true;
-        else
-            return false;
-    }
-
-    public BolsaVigente returnBolsaPorCodigo(String codigo) throws Exception {
-        if(!this.temBolsa())
-            throw new Exception(String.format("O aluno %s não possui Bolsas cadastradas.\n", this.getNome()));
-        else {
-            for(BolsaVigente i: this.bolsas) {
-                if(i.getCodigo().equals(codigo))
-                    return i;
-            }
-            throw new Exception(String.format("Bolsa não encontrada."));
-        }
-    }
-
-    /**
-     * @return the bolsas
-     */
-    public BolsaVigente[] getBolsasArray() {
-        if(!(this.bolsas.size() >= 0))
-            return null;
-        BolsaVigente[] bolsas = new BolsaVigente[this.bolsas.size()];
-        int cont = 0;
-        for(BolsaVigente i : this.bolsas) {
-            bolsas[cont] = i;
-            cont++;
-        }
-        return bolsas;
-    }
-
-    public String getBolsasString() {
-        if(this.bolsas.size() == 0)
-            return String.format("Não existem bolsas cadastradas para %s.\n",
-            this.getNome());
-        String acumuladora = "";
-        acumuladora += String.format("Bolsas de %s:\n", this.getNome());
-        for(BolsaVigente i : this.bolsas) {
-            acumuladora += i.toString();
-        }
-        return acumuladora;
-    }
-
     public TableModel getDisciplinasConcluidasTable() {
         String[] header = {
                 "Disciplina", "Data Conclusão", "Semestre", "Nota", "Frequência", "Aprovado"
@@ -289,13 +230,6 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
     public Curso getCurso() {
         return curso;
     }
-
-    /**
-     * @return the bolsas
-     */
-    public ArrayList<BolsaVigente> getBolsas() {
-        return bolsas;
-    }
     
     /**
      * @return the numeroMatricula
@@ -318,38 +252,11 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         return coeficienteSemestral;
     }
 
-    /**
-     * @return the sistema
-     */
-    public Usuario getSistema() {
-        return sistema;
-    }
-
-    /**
-     * @param sistema the sistema to set
-     */
-    public void setSistema(String permissao, Usuario sistema) throws Exception {
-        if(permissao == "servidor_armazenamento")
-            this.sistema = sistema;
-        else
-            throw new Exception("Tentativa não permitida de modificação de usuário.");
-    }
-
     public String getAtivo() {
         if(this.ativo)
-            return String.format("SIM");
+            return "SIM";
         else
-            return String.format("NÃO");
-    }
-
-    /**
-     * @param ativo the ativo to set
-     */
-    public void setAtivo(String permissao, boolean ativo) throws Exception {
-        if(permissao == "servidor_armazenamento")
-            this.ativo = ativo;
-        else
-            throw new Exception("Ação não autorizada.");
+            return "NÃO";
     }
 
     public ArrayList<String> getCursando() {
