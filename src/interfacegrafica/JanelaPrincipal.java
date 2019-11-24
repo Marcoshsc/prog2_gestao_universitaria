@@ -46,6 +46,7 @@ public class JanelaPrincipal extends JFrame {
     protected PesquisaTurma pesquisaTurma = new PesquisaTurma(this, this.painelOpcoesTurma, this.cadastroTurma);
     protected DisciplinasCursadas disciplinasCursadas = new DisciplinasCursadas(this, this.painelOpcoesAluno);
     protected DisciplinasMinistradas disciplinasMinistradas = new DisciplinasMinistradas(this, this.painelOpcoesProfessor);
+    protected RelatorioAprovacao relatorioAprovacao = new RelatorioAprovacao(this);
 
     public JanelaPrincipal() {
         this.setSize(1000, 700);
@@ -55,6 +56,9 @@ public class JanelaPrincipal extends JFrame {
 
         this.moduloColegiado.historicoAlunoButton.addActionListener(new EntrarInterfaceHistorico(this.historicoAluno, this.moduloColegiado));
         this.moduloColegiado.botaoVoltar.addActionListener(new TrocaTela(this.moduloColegiado, this.hubPrincipal));
+
+        this.relatorioAprovacao.botaoVolta.addActionListener(new TrocaTela(this.relatorioAprovacao, this.moduloColegiado));
+        this.moduloColegiado.relatoriosAprovacao.addActionListener(new EntrarInterfaceRelatorios(this.relatorioAprovacao, this.moduloColegiado));
 
         this.painelOpcoesAluno.disciplinasCursadas.addActionListener(
                 new EntrarInterfaceDisciplinasCursadas(this.disciplinasCursadas, this.painelOpcoesAluno));
@@ -89,6 +93,7 @@ public class JanelaPrincipal extends JFrame {
         this.add(this.historicoAluno);
         this.add(this.disciplinasCursadas);
         this.add(this.disciplinasMinistradas);
+        this.add(this.relatorioAprovacao);
 
         this.add(this.moduloColegiado);
 

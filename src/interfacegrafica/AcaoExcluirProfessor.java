@@ -25,6 +25,9 @@ public class AcaoExcluirProfessor implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Professor professorPrevio = ServidorArmazenamento.gerenciadorProfessores.pesquisarProfessorCPF(Utilitario.formataCampo(this.cpfProfessor));
         if(professorPrevio != null) {
+            if(professorPrevio.temVinculo()) {
+                this.parent.erroPreenchimento("Impossível excluir o professor pois há vínculos com disciplinas.");
+            }
             GerenciadorProfessor.excluir(professorPrevio);
             JOptionPane.showMessageDialog(this.parent, "Professor excluído com sucesso.", "INFO", JOptionPane.INFORMATION_MESSAGE);
             this.parent.cadastroProfessor.setVisible(false);

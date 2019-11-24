@@ -111,6 +111,10 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         this.dataIngresso = dataIngresso;
     }
 
+    public boolean temVinculo() {
+        return this.getCursando().size() != 0;
+    }
+
     public static Aluno fromStorageString(String[] campos, Curso curso) {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         if(campos.length == 8) {

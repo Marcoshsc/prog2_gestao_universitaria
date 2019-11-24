@@ -100,6 +100,10 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         this.salario = salario;
     }
 
+    public boolean temVinculo() {
+        return this.disciplinasMinistradas.size() != 0;
+    }
+
     public static Professor fromStorageString(String[] campos) {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         if(campos.length == 7) {

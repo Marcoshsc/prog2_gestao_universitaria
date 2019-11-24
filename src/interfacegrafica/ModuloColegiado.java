@@ -8,6 +8,7 @@ public class ModuloColegiado extends JPanel {
     private JButton opcoesTurma = new JButton("MODULO TURMA");
     protected JButton historicoAlunoButton = new JButton("HISTÓRICO ALUNO");
     protected JButton botaoVoltar = new JButton("VOLTAR");
+    protected JButton relatoriosAprovacao = new JButton("RELATORIO APROVAÇÕES");
     private GridBagConstraints constantes = new GridBagConstraints();
     private PainelOpcoesTurma nextTurma;
 
@@ -24,6 +25,9 @@ public class ModuloColegiado extends JPanel {
 
         this.constantes.gridy++;
         this.add(this.historicoAlunoButton, this.constantes);
+
+        this.constantes.gridy++;
+        this.add(this.relatoriosAprovacao, this.constantes);
 
         this.constantes.gridy++;
         this.add(this.botaoVoltar, this.constantes);

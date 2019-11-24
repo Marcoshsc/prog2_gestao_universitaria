@@ -168,7 +168,19 @@ public class GerenciadorDisciplinas {
         }
     }
 
+    public static boolean verificaVinculoAluno(Disciplina disc) {
+        for(Aluno i: GerenciadorAluno.getAlunosCadastrados()) {
+            for(DisciplinaConcluida j: i.getDisciplinasConcluidas()) {
+                if(j.getDisciplina().getCodigo().equals(disc.getCodigo()))
+                    return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean verificaVinculoTurma(Disciplina disc) {
+        if(verificaVinculoAluno(disc))
+            return true;
         for (Disciplina i : GerenciadorDisciplinas.disciplinasVigentes) {
             if(disc.getCodigo().equals(i.getCodigo()))
                 return true;

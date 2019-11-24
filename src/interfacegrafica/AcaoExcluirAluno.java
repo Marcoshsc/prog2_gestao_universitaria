@@ -25,6 +25,10 @@ public class AcaoExcluirAluno implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Aluno alunoPrevio = ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF(Utilitario.formataCampo(this.cpfCampo));
         if(alunoPrevio != null) {
+            if(alunoPrevio.temVinculo()) {
+                this.parent.erroPreenchimento("Não foi possível excluir aluno pois existe vínculo com disciplinas.");
+                return;
+            }
             GerenciadorAluno.excluir(alunoPrevio);
             JOptionPane.showMessageDialog(this.parent, "Aluno excluído com sucesso.", "INFO", JOptionPane.INFORMATION_MESSAGE);
             this.parent.cadastroAluno.setVisible(false);
