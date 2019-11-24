@@ -14,6 +14,7 @@ public class PainelOpcoesProfessor extends JPanel {
     protected JButton cadastrarProfessor = new JButton("CADASTRAR PROFESSOR");
     protected JButton visualizarProfessor = new JButton("VISUALIZAR PROFESSOR");
     protected JButton alterarProfessor = new JButton("ALTERAR PROFESSOR");
+    protected JButton disciplinasMinistradas = new JButton("DISCIPLINAS MINISTRADAS POR PROFESSOR");
     protected JButton botaoVoltar = new JButton("VOLTAR");
 
     public PainelOpcoesProfessor(JanelaPrincipal parent) {
@@ -29,6 +30,8 @@ public class PainelOpcoesProfessor extends JPanel {
         this.add(this.visualizarProfessor, this.constantes);
         this.constantes.gridy++;
         this.add(this.alterarProfessor, this.constantes);
+        this.constantes.gridy++;
+        this.add(this.disciplinasMinistradas, this.constantes);
         this.setVisible(false);
 
         this.constantes.gridy++;

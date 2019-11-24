@@ -42,6 +42,7 @@ public class JanelaPrincipal extends JFrame {
     protected PesquisaTurma pesquisaTurma = new PesquisaTurma(this, this.painelOpcoesTurma, this.cadastroTurma);
     protected HistoricoAluno historicoAluno = new HistoricoAluno(this, this.painelOpcoesAluno);
     protected DisciplinasCursadas disciplinasCursadas = new DisciplinasCursadas(this, this.painelOpcoesAluno);
+    protected DisciplinasMinistradas disciplinasMinistradas = new DisciplinasMinistradas(this, this.painelOpcoesProfessor);
 
     public JanelaPrincipal() {
         this.setSize(1000, 700);
@@ -53,6 +54,8 @@ public class JanelaPrincipal extends JFrame {
 
         this.painelOpcoesAluno.disciplinasCursadas.addActionListener(
                 new EntrarInterfaceDisciplinasCursadas(this.disciplinasCursadas, this.painelOpcoesAluno));
+        this.painelOpcoesProfessor.disciplinasMinistradas.addActionListener(
+                new EntrarInterfaceDisciplinasMinistradas(this.disciplinasMinistradas, this.painelOpcoesProfessor));
         
         this.cadastroCurso.botaoVolta.addActionListener(new TrocaTela(this.cadastroCurso, this.painelOpcoesCurso));
         this.painelOpcoesCurso.botaoVolta.addActionListener(new TrocaTela(this.painelOpcoesCurso, this.hubPrincipal));
@@ -81,6 +84,7 @@ public class JanelaPrincipal extends JFrame {
 
         this.add(this.historicoAluno);
         this.add(this.disciplinasCursadas);
+        this.add(this.disciplinasMinistradas);
 
         this.add(this.painelOpcoesAluno);
         this.add(this.painelOpcoesCurso);

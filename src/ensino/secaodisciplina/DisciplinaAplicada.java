@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import excecoes.TamanhoIncompativel;
 import pessoas.classealuno.Aluno;
 import pessoas.classealuno.GerenciadorAluno;
+import pessoas.classeprofessor.Professor;
 import sistema.classes.ServidorArmazenamento;
 
 import java.util.ArrayList;
@@ -81,17 +82,27 @@ public class DisciplinaAplicada extends Disciplina {
 	}
 
     public String[] getInfoBasicasArrayAluno(Aluno aluno) {
-        String[] dados = new String[6];
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        Boletim boletim = this.getBoletimFromAluno(aluno);
-        dados[0] = this.codigoVigente;
-        dados[1] = this.professor;
-        dados[2] = formatador.format(this.dataInicio);
-        dados[3] = formatador.format(this.dataFim);
-        dados[4] = (boletim != null) ? Float.toString(boletim.getNota()) : "NAO ENCONTRADO";
-        dados[5] = (boletim != null) ? Integer.toString(boletim.getFaltas()) : "NAO ENCONTRADO";
-        return dados;
-    }
+		String[] dados = new String[6];
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		Boletim boletim = this.getBoletimFromAluno(aluno);
+		dados[0] = this.codigoVigente;
+		dados[1] = this.professor;
+		dados[2] = formatador.format(this.dataInicio);
+		dados[3] = formatador.format(this.dataFim);
+		dados[4] = (boletim != null) ? Float.toString(boletim.getNota()) : "NAO ENCONTRADO";
+		dados[5] = (boletim != null) ? Integer.toString(boletim.getFaltas()) : "NAO ENCONTRADO";
+		return dados;
+	}
+
+	public String[] getInfoBasicasArrayProfessor(Professor professor) {
+		String[] dados = new String[4];
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		dados[0] = this.codigoVigente;
+		dados[1] = this.getCodigo();
+		dados[2] = formatador.format(this.dataInicio);
+		dados[3] = formatador.format(this.dataFim);
+		return dados;
+	}
 
 	public ArrayList<Aluno> getArrayListAlunosMatriculados() {
 		ArrayList<Aluno> current = new ArrayList<Aluno>();

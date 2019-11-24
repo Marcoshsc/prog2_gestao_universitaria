@@ -6,12 +6,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EntrarInterfaceDisciplinasCursadas implements ActionListener {
+public class EntrarInterfaceDisciplinasMinistradas implements ActionListener {
 
     private JPanel anterior;
-    private DisciplinasCursadas fonte;
+    private DisciplinasMinistradas fonte;
 
-    public EntrarInterfaceDisciplinasCursadas(DisciplinasCursadas fonte, JPanel anterior) {
+    public EntrarInterfaceDisciplinasMinistradas(DisciplinasMinistradas fonte, JPanel anterior) {
         this.fonte = fonte;
         this.anterior = anterior;
     }

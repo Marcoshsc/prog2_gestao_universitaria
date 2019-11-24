@@ -7,7 +7,12 @@ import java.util.ArrayList;
 import complementares.ContaBancaria;
 import complementares.Endereco;
 import contratos.ClassesGeral;
+import ensino.secaodisciplina.DisciplinaAplicada;
+import ensino.secaodisciplina.GerenciadorDisciplinas;
 import pessoas.superclasse.PessoaFisica;
+
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class Professor extends PessoaFisica implements ClassesGeral {
 
@@ -159,9 +164,29 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         System.out.println("Disciplina nao encontrada nao deu pra excluir");
     }
 
-    protected void adicionaDisciplina(String codigo) {
-        if(!codigo.equals(""))
-            this.disciplinasMinistradas.add(codigo);
+    public TableModel getDisciplinasMinistradasTable() {
+        String[] header = {
+                "Código", "Disciplina", "Data Início", "Data Fim"
+        };
+        String[][] data;
+        if(this.disciplinasMinistradas.size() > 0) {
+            data = new String[this.disciplinasMinistradas.size()][6];
+            for(int i = 0; i < this.disciplinasMinistradas.size(); i++) {
+                DisciplinaAplicada turma = GerenciadorDisciplinas.pesquisaDisciplinaVigenteCodigo(this.disciplinasMinistradas.get(i));
+                data[i] = turma.getInfoBasicasArrayProfessor(this);
+            }
+        }
+        else {
+            data = null;
+        }
+        return new DefaultTableModel(data, header) {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
     }
 
     /**
