@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import complementares.Utilitario;
+import ensino.secaodisciplina.GerenciadorDisciplinas;
 import pessoas.classealuno.Aluno;
 import pessoas.classealuno.GerenciadorAluno;
 import sistema.classes.ServidorArmazenamento;
@@ -25,8 +26,8 @@ public class AcaoExcluirAluno implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Aluno alunoPrevio = ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF(Utilitario.formataCampo(this.cpfCampo));
         if(alunoPrevio != null) {
-            if(alunoPrevio.temVinculo()) {
-                this.parent.erroPreenchimento("Não foi possível excluir aluno pois existe vínculo com disciplinas.");
+            if(alunoPrevio.temVinculo() || GerenciadorDisciplinas.verificaVinculoAluno(alunoPrevio)) {
+                this.parent.erroPreenchimento("Não foi possível excluir aluno pois existe vínculo com disciplinas concluídas e/ou turmas.");
                 return;
             }
             GerenciadorAluno.excluir(alunoPrevio);

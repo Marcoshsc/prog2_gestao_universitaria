@@ -168,10 +168,20 @@ public class GerenciadorDisciplinas {
         }
     }
 
-    public static boolean verificaVinculoAluno(Disciplina disc) {
+    private static boolean verificaVinculoAluno(Disciplina disc) {
         for(Aluno i: GerenciadorAluno.getAlunosCadastrados()) {
             for(DisciplinaConcluida j: i.getDisciplinasConcluidas()) {
                 if(j.getDisciplina().getCodigo().equals(disc.getCodigo()))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean verificaVinculoAluno(Aluno aluno) {
+        for(DisciplinaAplicada i: disciplinasVigentes) {
+            for(Aluno j: i.getArrayListAlunosMatriculados()) {
+                if(j.getCpf().equals(aluno.getCpf()))
                     return true;
             }
         }

@@ -68,6 +68,7 @@ public class CadastroCurso extends JPanel {
                 this.botaoConfirma.setText("ALTERAR CURSO");
                 this.acaoBotaoConfirma.setAcao("alterar");
                 this.acaoBotaoConfirma.codigoAnterior = curso.getCodigo();
+                this.acaoBotaoConfirma.nomeAnterior = curso.getNome();
                 this.botaoExcluir.setVisible(true);
                 this.botaoConfirma.setVisible(true);
             }

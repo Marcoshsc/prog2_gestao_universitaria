@@ -12,6 +12,5 @@ public class App {
             System.out.println("Erro Inesperado no funcionamento do programa.\n");
             erro.printStackTrace();
         }
-        
     }
 }

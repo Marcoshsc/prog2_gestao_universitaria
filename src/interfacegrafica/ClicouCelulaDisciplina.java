@@ -3,7 +3,7 @@ package interfacegrafica;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JTable;
+import javax.swing.*;
 
 import ensino.secaodisciplina.Disciplina;
 import ensino.secaodisciplina.GerenciadorDisciplinas;
@@ -12,11 +12,11 @@ public class ClicouCelulaDisciplina extends MouseAdapter {
     
     protected JTable tabela;
     protected JanelaPrincipal janelaPrincipal;
-    protected PesquisaDisciplina anterior;
+    protected JPanel anterior;
     protected CadastroDisciplina proximo;
     protected String acao;
 
-    public ClicouCelulaDisciplina(String acao, JTable tabela, JanelaPrincipal janelaPrincipal, PesquisaDisciplina anterior, CadastroDisciplina proximo) {
+    public ClicouCelulaDisciplina(String acao, JTable tabela, JanelaPrincipal janelaPrincipal, JPanel anterior, CadastroDisciplina proximo) {
         this.acao = acao;
         this.tabela = tabela;
         this.janelaPrincipal = janelaPrincipal;

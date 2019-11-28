@@ -65,6 +65,8 @@ public class CadastroDisciplina extends JPanel {
             this.cargaHorariaField.setText(Integer.toString(disciplina.getCargaHoraria()));
             this.maximoFaltasField.setText(Integer.toString(disciplina.getMaximoFaltas()));
             this.cursoField.setModel(new DefaultComboBoxModel<String>(ServidorArmazenamento.gerenciadorCursos.getNomeCursos()));
+            this.cursoField.addItem(null);
+            this.cursoField.setSelectedItem(null);
             this.cursoField.setSelectedItem(GerenciadorCursos.pesquisaCursoCodigo(disciplina.getCodigoCurso()).getNome());
             if(acao.equals("view")) {
                 this.botaoConfirma.setVisible(false);
@@ -80,6 +82,8 @@ public class CadastroDisciplina extends JPanel {
         }
         else {
             this.cursoField.setModel(new DefaultComboBoxModel<String>(ServidorArmazenamento.gerenciadorCursos.getNomeCursos()));
+            this.cursoField.addItem(null);
+            this.cursoField.setSelectedItem(null);
             this.codigoField.setText(null);
             this.nomeField.setText(null);
             this.cargaHorariaField.setText(null);

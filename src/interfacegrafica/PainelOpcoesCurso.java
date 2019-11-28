@@ -14,6 +14,7 @@ public class PainelOpcoesCurso extends JPanel {
     protected JButton cadastrarCurso = new JButton("CADASTRAR CURSO");
     protected JButton visualizarCurso = new JButton("PESQUISAR CURSO");
     protected JButton alterarCurso = new JButton("ALTERAR CURSO");
+    protected JButton disciplinasCurso = new JButton("CONSULTAR DISCIPLINAS CURSO");
     protected JButton botaoVolta = new JButton("VOLTAR");
 
     public PainelOpcoesCurso(JanelaPrincipal parent) {
@@ -31,6 +32,9 @@ public class PainelOpcoesCurso extends JPanel {
 
         this.constantes.gridy++;
         this.add(this.alterarCurso, this.constantes);
+
+        this.constantes.gridy++;
+        this.add(this.disciplinasCurso, this.constantes);
 
         this.constantes.gridy++;
         this.add(this.botaoVolta, this.constantes);

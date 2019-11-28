@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import contratos.ClassesGeral;
 import ensino.secaodisciplina.Disciplina;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 public class Curso implements ClassesGeral {
 
     private String codigo;
@@ -85,13 +88,28 @@ public class Curso implements ClassesGeral {
         return tempoConclusao;
     }
 
-    public boolean isDisciplinaInside(Disciplina disciplina) {
-        if(this.disciplinasRelacionadas.contains(disciplina)) {
-            return true;
+    public TableModel getDisciplinasRelacionadasTable() {
+        String[] header = {
+                "Codigo", "Nome", "Carga Horária", "Maximo Faltas"
+        };
+        String[][] data;
+        if(this.disciplinasRelacionadas.size() > 0) {
+            data = new String[this.disciplinasRelacionadas.size()][4];
+            for(int i = 0; i < this.disciplinasRelacionadas.size(); i++) {
+                data[i] = this.disciplinasRelacionadas.get(i).getInfoBasicasArray();
+            }
         }
         else {
-            return false;
+            data = null;
         }
+        return new DefaultTableModel(data, header) {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
     }
 
     public void adicionaDisciplina(Disciplina disciplina) {

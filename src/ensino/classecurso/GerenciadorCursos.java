@@ -70,6 +70,14 @@ public class GerenciadorCursos implements OperacoesBasicas {
 		else
 			return null;
 	}
+
+	public static boolean isNameAlreadyRegistered(String name) {
+    	for(Curso i: cursosCadastrados) {
+    		if(i.getNome().equals(name))
+    			return true;
+		}
+    	return false;
+	}
     
     public Curso pesquisaCursoNome(String nome) {
 		if(GerenciadorCursos.cursosCadastrados.size() >= 0) {
