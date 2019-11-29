@@ -69,18 +69,21 @@ public class CadastroDisciplina extends JPanel {
             this.cursoField.setSelectedItem(null);
             this.cursoField.setSelectedItem(GerenciadorCursos.pesquisaCursoCodigo(disciplina.getCodigoCurso()).getNome());
             if(acao.equals("view")) {
+                Utilitario.mudarVisualizacao(false, this.getComponents());
                 this.botaoConfirma.setVisible(false);
                 this.botaoExcluir.setVisible(false);
             }
             else if(acao.equals("change")) {
+                Utilitario.mudarVisualizacao(true, this.getComponents());
                 this.botaoConfirma.setText("ALTERAR DISCIPLINA");
+                this.codigoField.setEditable(false);
                 this.acaoBotaoConfirma.setAcao("alterar");
-                this.acaoBotaoConfirma.codigoAnterior = disciplina.getCodigo();
                 this.botaoExcluir.setVisible(true);
                 this.botaoConfirma.setVisible(true);
             }
         }
         else {
+            Utilitario.mudarVisualizacao(true, this.getComponents());
             this.cursoField.setModel(new DefaultComboBoxModel<String>(ServidorArmazenamento.gerenciadorCursos.getNomeCursos()));
             this.cursoField.addItem(null);
             this.cursoField.setSelectedItem(null);

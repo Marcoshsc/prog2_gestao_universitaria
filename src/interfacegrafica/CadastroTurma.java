@@ -144,15 +144,19 @@ public class CadastroTurma extends JPanel {
                         this.cpfProfessorField.getText()
                 ).getNome());
                 if(acao.equals("view")) {
+                    Utilitario.mudarVisualizacao(false, this.getComponents());
+                    this.alunosPesquisados.setEnabled(false);
                     this.botaoConfirma.setVisible(false);
                     this.botaoExcluir.setVisible(false);
                     this.botaoFinalizar.setVisible(false);
                 }
                 else if(acao.equals("change")) {
+                    Utilitario.mudarVisualizacao(true, this.getComponents());
+                    this.alunosPesquisados.setEnabled(true);
                     this.botaoConfirma.setText("ALTERAR TURMA");
+                    this.disciplinaField.setEnabled(false);
+                    this.codigoField.setEditable(false);
                     this.acaoBotaoConfirma.setAcao("alterar");
-                    this.acaoBotaoConfirma.codigoAnteriorTurma = disciplina.getCodigoVigente();
-                    this.acaoBotaoConfirma.codigoAnteriorDisc = disciplina.getCodigo();
                     this.excluirAlunoDaTabela.setCodigoPrevio(disciplina.getCodigoVigente());
                     this.botaoExcluir.setVisible(true);
                     this.botaoConfirma.setVisible(true);
@@ -160,6 +164,8 @@ public class CadastroTurma extends JPanel {
                 }
             }
             else {
+                Utilitario.mudarVisualizacao(true, this.getComponents());
+                this.alunosPesquisados.setEnabled(true);
                 this.codigoField.setText(null);
                 this.cpfProfessorField.setText(null);
                 this.nomeProfessor.setText(null);
@@ -176,6 +182,7 @@ public class CadastroTurma extends JPanel {
                 this.botaoExcluir.setVisible(false);
                 this.botaoFinalizar.setVisible(false);
             }
+            this.nomeProfessor.setEditable(false);
         }
 
     }

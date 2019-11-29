@@ -20,7 +20,6 @@ public class AcaoCadastrarAluno implements ActionListener {
 
     private CadastroAluno campos;
     private String acao;
-    protected String cpfPrevio;
 
     public AcaoCadastrarAluno(CadastroAluno campos) {
         this.campos = campos;
@@ -146,14 +145,6 @@ public class AcaoCadastrarAluno implements ActionListener {
                     this.campos.origem.setVisible(true);
                 }
                 else if(this.acao.equals("alterar")) {
-                    if(supostoExistente == null) {
-                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
-                        return;
-                    }
-                    else if(!supostoExistente.getCpf().equals(this.cpfPrevio)) {
-                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
-                        return;
-                    }
                     supostoExistente.alterar(this.campos.nomeField.getText(),
                     Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
                     (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
@@ -205,10 +196,6 @@ public class AcaoCadastrarAluno implements ActionListener {
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
-                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
-                        return;
-                    }
-                    else if(!supostoExistente.getCpf().equals(this.cpfPrevio)) {
                         this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
                         return;
                     }
@@ -268,10 +255,6 @@ public class AcaoCadastrarAluno implements ActionListener {
                         this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
                         return;
                     }
-                    else if(!supostoExistente.getCpf().equals(this.cpfPrevio)) {
-                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
-                        return;
-                    }
                     supostoExistente.alterar(this.campos.nomeField.getText(),
                     Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
                     (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
@@ -313,10 +296,6 @@ public class AcaoCadastrarAluno implements ActionListener {
                 }
                 else if(this.acao.equals("alterar")) {
                     if(supostoExistente == null) {
-                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
-                        return;
-                    }
-                    else if(!supostoExistente.getCpf().equals(this.cpfPrevio)) {
                         this.campos.patern.erroPreenchimento("Impossível alterar CPF de aluno, para fazê-lo, crie outro aluno.");
                         return;
                     }

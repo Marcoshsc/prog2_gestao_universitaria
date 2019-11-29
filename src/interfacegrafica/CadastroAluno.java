@@ -77,6 +77,7 @@ public class CadastroAluno extends JPanel {
     protected JButton botaoConfirma = new JButton("CONFIRMAR CADASTRO");
     protected JButton botaoVolta = new JButton("VOLTAR");
     protected AcaoCadastrarAluno acaoBotaoConfirma = new AcaoCadastrarAluno(this);
+    protected AcaoExcluirAluno acaoExcluirAluno;
     protected JButton botaoExcluir = new JButton("EXCLUIR ALUNO");
 
     public CadastroAluno(JanelaPrincipal patern, PainelOpcoesAluno origem) {
@@ -88,7 +89,7 @@ public class CadastroAluno extends JPanel {
         this.botaoConfirma.addActionListener(this.acaoBotaoConfirma);
         this.botaoVolta.addActionListener(new TrocaTela(this, this.origem));
         this.ativoField.setEnabled(false);
-
+        this.acaoExcluirAluno = new AcaoExcluirAluno(this.patern, this.cpfField);
         // campo das Informações gerais
         Utilitario.posicionaTitulo(this.informacoesGeraisLabel, this, this.constantes);
         //// campo do curso
@@ -162,7 +163,7 @@ public class CadastroAluno extends JPanel {
          this, this.constantes);
         
         this.constantes.gridx++;
-        this.botaoExcluir.addActionListener(new AcaoExcluirAluno(this.patern, this.cpfField));
+        this.botaoExcluir.addActionListener(this.acaoExcluirAluno);
         this.add(this.botaoExcluir, this.constantes);        
 
         this.setVisible(false);
@@ -188,13 +189,15 @@ public class CadastroAluno extends JPanel {
             this.dataNascimentoField.setText(formatador.format(aluno.getDataNascimento()));
             this.identidadeField.setText(aluno.getRg());
             if(acao.equals("view")) {
+                Utilitario.mudarVisualizacao(false, this.getComponents());
                 this.botaoConfirma.setVisible(false);
                 this.botaoExcluir.setVisible(false);
             }
             else if(acao.equals("change")) {
+                Utilitario.mudarVisualizacao(true, this.getComponents());
                 this.botaoConfirma.setText("ALTERAR ALUNO");
                 this.acaoBotaoConfirma.setAcao("alterar");
-                this.acaoBotaoConfirma.cpfPrevio = aluno.getCpf();
+                this.cpfField.setEditable(false);
                 this.botaoExcluir.setVisible(true);
                 this.botaoConfirma.setVisible(true);
             }
@@ -264,6 +267,8 @@ public class CadastroAluno extends JPanel {
             }
         }
         else {
+            Utilitario.mudarVisualizacao(true, this.getComponents());
+            this.cpfField.setEditable(true);
             this.nomeField.setText(null);
             this.cursoField.setSelectedItem(null);
             this.sexoField.setSelectedItem(null);

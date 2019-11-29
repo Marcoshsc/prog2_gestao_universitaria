@@ -18,7 +18,6 @@ public class AcaoCadastrarProfessor implements ActionListener {
 
     private CadastroProfessor campos;
     private String acao;
-    protected String cpfPrevio;
 
     public AcaoCadastrarProfessor(CadastroProfessor campos) {
         this.campos = campos;
@@ -137,14 +136,6 @@ public class AcaoCadastrarProfessor implements ActionListener {
                     this.campos.origem.setVisible(true);
                 }
                 else if(this.acao.equals("alterar")) {
-                    if(supostoExistente == null) {
-                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de Professor, para fazê-lo, crie outro Professor.");
-                        return;
-                    }
-                    else if(!supostoExistente.getCpf().equals(this.cpfPrevio)) {
-                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de Professor, para fazê-lo, crie outro Professor.");
-                        return;
-                    }
                     supostoExistente.alterar(this.campos.nomeField.getText(),
                     Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
                     (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
@@ -195,14 +186,6 @@ public class AcaoCadastrarProfessor implements ActionListener {
                     this.campos.origem.setVisible(true);
                 }
                 else if(this.acao.equals("alterar")) {
-                    if(supostoExistente == null) {
-                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de Professor, para fazê-lo, crie outro Professor.");
-                        return;
-                    }
-                    else if(!supostoExistente.getCpf().equals(this.cpfPrevio)) {
-                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de Professor, para fazê-lo, crie outro Professor.");
-                        return;
-                    }
                     supostoExistente.alterar(this.campos.nomeField.getText(),
                     Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
                     (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
@@ -255,14 +238,6 @@ public class AcaoCadastrarProfessor implements ActionListener {
                     this.campos.origem.setVisible(true);
                 }
                 else if(this.acao.equals("alterar")) {
-                    if(supostoExistente == null) {
-                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de Professor, para fazê-lo, crie outro Professor.");
-                        return;
-                    }
-                    else if(!supostoExistente.getCpf().equals(this.cpfPrevio)) {
-                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de Professor, para fazê-lo, crie outro Professor.");
-                        return;
-                    }
                     supostoExistente.alterar(this.campos.nomeField.getText(),
                     Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
                     (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),
@@ -303,14 +278,6 @@ public class AcaoCadastrarProfessor implements ActionListener {
                     this.campos.origem.setVisible(true);
                 }
                 else if(this.acao.equals("alterar")) {
-                    if(supostoExistente == null) {
-                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de Professor, para fazê-lo, crie outro Professor.");
-                        return;
-                    }
-                    else if(!supostoExistente.getCpf().equals(this.cpfPrevio)) {
-                        this.campos.patern.erroPreenchimento("Impossível alterar CPF de Professor, para fazê-lo, crie outro Professor.");
-                        return;
-                    }
                     supostoExistente.alterar(this.campos.nomeField.getText(),
                     Utilitario.formataCampo(this.campos.cpfField), Utilitario.formataCampo(this.campos.identidadeField),
                     (String)this.campos.sexoField.getSelectedItem(), LocalDate.parse(this.campos.dataNascimentoField.getText(),

@@ -176,13 +176,15 @@ public class CadastroProfessor extends JPanel {
             this.dataNascimentoField.setText(formatador.format(professor.getDataNascimento()));
             this.identidadeField.setText(professor.getRg());
             if(acao.equals("view")) {
+                Utilitario.mudarVisualizacao(false, this.getComponents());
                 this.botaoConfirma.setVisible(false);
                 this.botaoExcluir.setVisible(false);
             }
             else if(acao.equals("change")) {
+                Utilitario.mudarVisualizacao(true, this.getComponents());
                 this.botaoConfirma.setText("ALTERAR PROFESSOR");
+                this.cpfField.setEditable(false);
                 this.acaoBotaoConfirma.setAcao("alterar");
-                this.acaoBotaoConfirma.cpfPrevio = professor.getCpf();
                 this.botaoExcluir.setVisible(true);
                 this.botaoConfirma.setVisible(true);
             }
@@ -252,6 +254,7 @@ public class CadastroProfessor extends JPanel {
             }
         }
         else {
+            Utilitario.mudarVisualizacao(true, this.getComponents());
             this.nomeField.setText(null);
             this.sexoField.setSelectedItem(null);
             this.dataIngressoField.setText(null);

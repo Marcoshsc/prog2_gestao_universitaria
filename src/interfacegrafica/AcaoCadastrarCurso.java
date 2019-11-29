@@ -14,8 +14,6 @@ public class AcaoCadastrarCurso implements ActionListener {
 
     private CadastroCurso campos;
     private String acao;
-    protected String codigoAnterior;
-    protected String nomeAnterior;
 
     public AcaoCadastrarCurso(CadastroCurso campos) {
         this.campos = campos;
@@ -40,11 +38,6 @@ public class AcaoCadastrarCurso implements ActionListener {
             this.campos.parent.erroPreenchimento("Preencha os campos vazios.");
             return;
         }
-        if(!nomePrevio.equals(nomeAnterior))
-            if(GerenciadorCursos.isNameAlreadyRegistered(nomePrevio)) {
-                this.campos.parent.erroPreenchimento("Há cursos com o mesmo nome.");
-                return;
-            }
         try {
             tempoConclusaoPrevio = Integer.parseInt(Utilitario.formataCampo(campos.tempoConclusaoField));
         } catch(Exception exc) {
@@ -75,10 +68,6 @@ public class AcaoCadastrarCurso implements ActionListener {
         }
         else if(acao.equals("alterar")) {
             if(cursoPrevio == null) {
-                this.campos.parent.erroPreenchimento("Impossível alterar código de curso. Caso o deseje, crie um novo curso.");
-                return;
-            }
-            else if(!cursoPrevio.getCodigo().equals(this.codigoAnterior)) {
                 this.campos.parent.erroPreenchimento("Impossível alterar código de curso. Caso o deseje, crie um novo curso.");
                 return;
             }

@@ -17,7 +17,6 @@ public class AcaoCadastrarDisciplina implements ActionListener {
 
     private CadastroDisciplina campos;
     private String acao;
-    protected String codigoAnterior;
 
     public AcaoCadastrarDisciplina(CadastroDisciplina campos) {
         this.campos = campos;
@@ -79,10 +78,6 @@ public class AcaoCadastrarDisciplina implements ActionListener {
         }
         else if(acao.equals("alterar")) {
             if(disciplinaPrevia == null) {
-                this.campos.parent.erroPreenchimento("Impossível alterar código de Disciplina. Caso o deseje, crie uma nova Disciplina.");
-                return;
-            }
-            else if(!disciplinaPrevia.getCodigo().equals(this.codigoAnterior)) {
                 this.campos.parent.erroPreenchimento("Impossível alterar código de Disciplina. Caso o deseje, crie uma nova Disciplina.");
                 return;
             }

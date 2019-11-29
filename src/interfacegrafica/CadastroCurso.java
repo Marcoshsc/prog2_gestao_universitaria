@@ -61,19 +61,22 @@ public class CadastroCurso extends JPanel {
             this.cargaHorariaField.setText(Integer.toString(curso.getCargaHoraria()));
             this.tempoConclusaoField.setText(Integer.toString(curso.getTempoConclusao()));
             if(acao.equals("view")) {
+                Utilitario.mudarVisualizacao(false, this.getComponents());
                 this.botaoConfirma.setVisible(false);
                 this.botaoExcluir.setVisible(false);
             }
             else if(acao.equals("change")) {
+                Utilitario.mudarVisualizacao(true, this.getComponents());
                 this.botaoConfirma.setText("ALTERAR CURSO");
                 this.acaoBotaoConfirma.setAcao("alterar");
-                this.acaoBotaoConfirma.codigoAnterior = curso.getCodigo();
-                this.acaoBotaoConfirma.nomeAnterior = curso.getNome();
+                this.codigoField.setEditable(false);
+                this.nomeField.setEditable(false);
                 this.botaoExcluir.setVisible(true);
                 this.botaoConfirma.setVisible(true);
             }
         }
         else {
+            Utilitario.mudarVisualizacao(true, this.getComponents());
             this.codigoField.setText(null);
             this.nomeField.setText(null);
             this.cargaHorariaField.setText(null);

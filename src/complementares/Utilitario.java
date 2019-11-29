@@ -10,12 +10,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import javax.swing.BorderFactory;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.text.MaskFormatter;
@@ -252,6 +247,15 @@ public interface Utilitario {
             DefaultTableCellRenderer renderizador = new DefaultTableCellRenderer();
             renderizador.setHorizontalAlignment(JLabel.CENTER);
             coluna.setCellRenderer(renderizador);
+        }
+    }
+
+    public static void mudarVisualizacao(boolean escolha, Component[] componentes) {
+	    for(Component i: componentes) {
+	        if(i instanceof JTextField)
+	            ((JTextField) i).setEditable(escolha);
+	        else if(i instanceof JComboBox)
+	            i.setEnabled(escolha);
         }
     }
 

@@ -25,8 +25,6 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
 
     private CadastroTurma campos;
     private String acao;
-    protected String codigoAnteriorTurma;
-    protected String codigoAnteriorDisc;
 
     public AcaoCadastrarDisciplinaVigente(CadastroTurma campos) {
         this.campos = campos;
@@ -87,7 +85,7 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
         DisciplinaAplicada disciplinaPrevia = GerenciadorDisciplinas.pesquisaDisciplinaVigenteCodigo(codigoPrevio);
         if(this.acao.equals("cadastrar")) {
             if(disciplinaPrevia != null) {
-                this.campos.parent.erroPreenchimento("Disciplina já existe.");
+                this.campos.parent.erroPreenchimento("Turma já existe.");
                 return;
             }
             DisciplinaAplicada seraAdicionada = new DisciplinaAplicada(
@@ -129,19 +127,10 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
             this.campos.origem.setVisible(true);
         }
         else if(acao.equals("alterar")) {
-            if(disciplinaPrevia == null) {
-                this.campos.parent.erroPreenchimento("Impossível alterar código de Turma. Caso o deseje, crie uma nova Turma.");
-                return;
-            }
-            else if(!disciplinaPrevia.getCodigoVigente().equals(this.codigoAnteriorTurma)) {
-                this.campos.parent.erroPreenchimento("Impossível alterar código de Turma. Caso o deseje, crie uma nova Turma.");
-                return;
-            }
-            if(!((String)this.campos.disciplinaField.getSelectedItem()).equals(this.codigoAnteriorDisc)) {
-                this.campos.parent.erroPreenchimento("Não é possível trocar a disciplina de uma turma. Se necessário, crie uma nova turma.");
-                return;
-            }
-            disciplinaPrevia.alterar(professorPrevio, dataInicio, dataFim, vagasPrevias, semestrePrevio, codigoPrevio);
+            if(disciplinaPrevia != null)
+                disciplinaPrevia.alterar(professorPrevio, dataInicio, dataFim, vagasPrevias, semestrePrevio, codigoPrevio);
+            else
+                System.out.println("deu muito ruim algo e eu não sei o que aconteceu");
             for(int i = 0; i < campos.alunosAdicionados.size(); i++) {
                 float notaPrevia = Float.parseFloat((String)campos.alunosPesquisados.getValueAt(i, 4));
                 int faltasPrevias = Integer.parseInt((String)campos.alunosPesquisados.getValueAt(i, 5));
