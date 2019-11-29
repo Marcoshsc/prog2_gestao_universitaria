@@ -18,12 +18,17 @@ public class ExcluirAlunoDaTabela implements ActionListener {
     private ArrayList<Aluno> array;
     private CadastroTurma pai;
     private JTextField campoDisc;
+    private String codigoPrevio;
 
     public ExcluirAlunoDaTabela(JTable tabela, ArrayList<Aluno> array, CadastroTurma pai, JTextField campoDisc) {
         this.tabela = tabela;
         this.array = array;
         this.pai = pai;
         this.campoDisc = campoDisc;
+    }
+
+    protected void setCodigoPrevio(String codigoPrevio) {
+        this.codigoPrevio = codigoPrevio;
     }
 
     @Override
@@ -35,9 +40,18 @@ public class ExcluirAlunoDaTabela implements ActionListener {
         DisciplinaAplicada disc = GerenciadorDisciplinas.pesquisaDisciplinaVigenteCodigo(Utilitario.formataCampo(campoDisc));
         Aluno selected = ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF((String)tabela.getValueAt(
                 tabela.getSelectedRow(), 2));
-        System.out.println(array.size());
+        if(disc != null) {
+            if (!codigoPrevio.equals(disc.getCodigoVigente())) {
+                this.pai.parent.erroPreenchimento("NÃO É PERMITIDO ALTERAR O CÓDIGO DA DISCIPLINA");
+                return;
+            }
+        }
+        else {
+            this.pai.parent.erroPreenchimento("NÃO É PERMITIDO ALTERAR O CÓDIGO DA DISCIPLINA");
+            return;
+        }
+        this.pai.alunosExcluidos.add(selected);
         array.remove(selected);
-        System.out.println(array.size());
         tabela.setModel(ServidorArmazenamento.gerenciadorDisciplinas.getTableFromArray(array, disc));
         Utilitario.formataEspacamentoTabela(tabela, 5);
     }

@@ -13,6 +13,9 @@ public class RelatorioAprovacao extends JPanel {
     protected GridBagConstraints constantes = new GridBagConstraints();
     protected JLabel cursoLabel = new JLabel("Curso: ");
     protected JComboBox<String> cursoField = new JComboBox<>(ServidorArmazenamento.gerenciadorCursos.getNomeCursos());
+    protected JRadioButton alunosButton = new JRadioButton("Alunos do Curso");
+    protected JRadioButton disciplinasButton = new JRadioButton("Disciplinas do Curso");
+    protected ButtonGroup opcoesButtons = new ButtonGroup();
     protected JLabel dataLabel = new JLabel("Data de Filtragem: ");
     protected JTextField dataField = Utilitario.geraField("data");
     protected JLabel disciplinaLabel = new JLabel("Disciplina: ");
@@ -32,6 +35,9 @@ public class RelatorioAprovacao extends JPanel {
         this.setLayout(new GridBagLayout());
         this.constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
 
+        this.opcoesButtons.add(this.alunosButton);
+        this.opcoesButtons.add(this.disciplinasButton);
+
         this.gerarRelatorioButton.addActionListener(new GerarRelatorioAprovacao(this));
         this.cursoField.setSelectedItem(null);
         this.disciplinaField.setSelectedItem(null);
@@ -41,7 +47,8 @@ public class RelatorioAprovacao extends JPanel {
 
         Utilitario.geraCampoVertical(this.cursoLabel, this.cursoField, this, this.constantes);
         Utilitario.geraCampoHorizontal(this.disciplinaLabel, this.disciplinaField, this, this.constantes);
-        Utilitario.geraCampoCentral(this.dataLabel, this.dataField, this, this.constantes);
+        Utilitario.geraCampoVertical(this.alunosButton, this.disciplinasButton, this, this.constantes);
+        Utilitario.geraCampoHorizontal(this.dataLabel, this.dataField, this, this.constantes);
         Utilitario.geraCampoCentral(this.gerarRelatorioButton, this.botaoVolta, this, this.constantes);
         this.constantes.gridy++;
         this.constantes.gridx--;
@@ -57,9 +64,12 @@ public class RelatorioAprovacao extends JPanel {
 
     protected void setaCampos() {
         this.cursoField.setModel(new DefaultComboBoxModel<>(ServidorArmazenamento.gerenciadorCursos.getNomeCursos()));
+        this.cursoField.addItem(null);
         this.cursoField.setSelectedItem(null);
         this.dataField.setText(null);
+        this.alunosButton.setSelected(true);
         this.disciplinaField.setModel(new DefaultComboBoxModel<>(ServidorArmazenamento.gerenciadorDisciplinas.getCodigoDisciplinas()));
+        this.disciplinaField.addItem(null);
         this.disciplinaField.setSelectedItem(null);
         this.numeroAprovadosField.setText(null);
         this.numeroCursadosField.setText(null);

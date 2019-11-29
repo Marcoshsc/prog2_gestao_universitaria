@@ -43,11 +43,14 @@ public class CadastroTurma extends JPanel {
         protected JTable alunosPesquisados = new JTable();
         protected JScrollPane alunosContainer = new JScrollPane(this.alunosPesquisados);
         protected ArrayList<Aluno> alunosAdicionados = new ArrayList<Aluno>();
+        protected ArrayList<Aluno> alunosExcluidos = new ArrayList<>();
         protected JButton botaoConfirma = new JButton("CONFIRMAR CADASTRO");
         protected JButton botaoVolta = new JButton("VOLTAR");
         protected JButton botaoExcluir = new JButton("EXCLUIR TURMA");
         protected JButton botaoFinalizar = new JButton("FINALIZAR TURMA (ALTERAÇÕES NÃO SERÃO SALVAS)");
         protected AcaoCadastrarDisciplinaVigente acaoBotaoConfirma = new AcaoCadastrarDisciplinaVigente(this);
+        protected ExcluirAlunoDaTabela excluirAlunoDaTabela = new ExcluirAlunoDaTabela(this.alunosPesquisados,
+                this.alunosAdicionados, this, this.codigoField);
 
         public CadastroTurma(JanelaPrincipal parent, PainelOpcoesTurma origem) {
 
@@ -70,8 +73,7 @@ public class CadastroTurma extends JPanel {
             this.botaoConfirma.addActionListener(acaoBotaoConfirma);
             this.adicionarAlunoButton.addActionListener(new AdicionarAlunoNaTabela(this.alunosPesquisados, this.alunosField,
                     this.codigoField, this.alunosAdicionados, this));
-            this.excluirAlunoButton.addActionListener(new ExcluirAlunoDaTabela(this.alunosPesquisados,
-                    this.alunosAdicionados, this, this.codigoField));
+            this.excluirAlunoButton.addActionListener(this.excluirAlunoDaTabela);
             this.alunosPesquisados.setModel(ServidorArmazenamento.gerenciadorDisciplinas.getTableFromArray(
                     this.alunosAdicionados, null));
             Utilitario.formataEspacamentoTabela(this.alunosPesquisados, 5);
@@ -123,6 +125,7 @@ public class CadastroTurma extends JPanel {
         public void setaCampos(String acao, DisciplinaAplicada disciplina) {
             DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             this.disciplinaField.setModel(new DefaultComboBoxModel<String>(ServidorArmazenamento.gerenciadorDisciplinas.getCodigoDisciplinas()));
+            this.alunosExcluidos.clear();
             if(disciplina != null) {
                 this.codigoField.setText(disciplina.getCodigoVigente());
                 this.cpfProfessorField.setText(disciplina.getProfessor());
@@ -150,6 +153,7 @@ public class CadastroTurma extends JPanel {
                     this.acaoBotaoConfirma.setAcao("alterar");
                     this.acaoBotaoConfirma.codigoAnteriorTurma = disciplina.getCodigoVigente();
                     this.acaoBotaoConfirma.codigoAnteriorDisc = disciplina.getCodigo();
+                    this.excluirAlunoDaTabela.setCodigoPrevio(disciplina.getCodigoVigente());
                     this.botaoExcluir.setVisible(true);
                     this.botaoConfirma.setVisible(true);
                     this.botaoFinalizar.setVisible(true);

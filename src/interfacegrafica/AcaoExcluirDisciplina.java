@@ -28,7 +28,7 @@ public class AcaoExcluirDisciplina implements ActionListener {
         Disciplina disciplinaPrevia = GerenciadorDisciplinas.pesquisaDisciplinaCodigo(Utilitario.formataCampo(this.codigoDisciplina));
         if(disciplinaPrevia != null) {
             if(GerenciadorDisciplinas.verificaVinculoTurma(disciplinaPrevia)) {
-                this.parent.erroPreenchimento("Não é possível excluir pois existem vínculos com curso e/ou turmas.");
+                this.parent.erroPreenchimento("Não é possível excluir pois existem vínculos com turmas e/ou alunos.");
                 return;
             }
             Curso cursoPrevio = GerenciadorCursos.pesquisaCursoCodigo(disciplinaPrevia.getCodigoCurso());

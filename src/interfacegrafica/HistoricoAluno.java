@@ -79,7 +79,7 @@ public class HistoricoAluno extends JPanel {
 
     protected TableModel retornaTabelaVazia() {
         String[] header = {
-                "Disciplina", "Data Conclusão", "Semestre", "Nota", "Frequência", "Aprovado"
+                "Disciplina", "Data Conclusão", "Semestre", "Nota", "Faltas", "Aprovado"
         };
         return new DefaultTableModel(null, header) {
 
@@ -93,6 +93,7 @@ public class HistoricoAluno extends JPanel {
 
     public void setaCampos() {
         this.alunosPesquisados.setModel(this.retornaTabelaVazia());
+        Utilitario.formataEspacamentoTabela(this.alunosPesquisados, 6);
         this.cpfAluno.setText(null);
         this.nomeAluno.setText(null);
         this.matriculaAluno.setText(null);

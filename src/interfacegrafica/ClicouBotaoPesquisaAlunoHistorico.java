@@ -26,8 +26,7 @@ public class ClicouBotaoPesquisaAlunoHistorico implements ActionListener {
                 this.principal.nomeAluno.setText(null);
                 this.principal.cursoAluno.setText(null);
                 this.principal.matriculaAluno.setText(null);
-                this.principal.alunosPesquisados.setModel(this.principal.retornaTabelaVazia());
-                Utilitario.formataEspacamentoTabela(this.principal.alunosPesquisados, 5);
+                this.principal.setaCampos();
                 return;
             }
             this.principal.nomeAluno.setText(procurado.getNome());
@@ -41,8 +40,7 @@ public class ClicouBotaoPesquisaAlunoHistorico implements ActionListener {
             this.principal.nomeAluno.setText(null);
             this.principal.cursoAluno.setText(null);
             this.principal.matriculaAluno.setText(null);
-            this.principal.alunosPesquisados.setModel(this.principal.retornaTabelaVazia());
-            Utilitario.formataEspacamentoTabela(this.principal.alunosPesquisados, 6);
+            this.principal.setaCampos();
         }
     }
 }

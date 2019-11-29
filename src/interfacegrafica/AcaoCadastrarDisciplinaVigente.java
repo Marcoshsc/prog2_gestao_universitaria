@@ -113,7 +113,6 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
                         previo.setFaltas(faltasPrevias);
                     }
                 } catch(TamanhoIncompativel exc) {
-                    System.out.println("entrou aqui");
                     this.campos.parent.erroPreenchimento("Limite de capacidade da turma excedido.");
                     return;
                 } catch(Exception exc) {
@@ -184,13 +183,16 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
                     return;
                 }
             }
+            for(Aluno i: this.campos.alunosExcluidos) {
+                i.getCursando().remove(disciplinaPrevia.getCodigoVigente());
+            }
             try {
                 GerenciadorDisciplinas.atualizaBancoDisciplinaVigente();
             } catch(Exception exc) {
                 System.out.println(exc.getMessage());
                 exc.printStackTrace();
             }
-            JOptionPane.showMessageDialog(this.campos.parent, "Disciplina alterada com sucesso.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this.campos.parent, "Turma alterada com sucesso.", "INFO", JOptionPane.INFORMATION_MESSAGE);
             this.campos.setVisible(false);
             this.campos.origem.setVisible(true);
         }

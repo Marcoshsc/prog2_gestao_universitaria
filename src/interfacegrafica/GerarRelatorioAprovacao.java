@@ -49,7 +49,8 @@ public class GerarRelatorioAprovacao implements ActionListener {
                 this.principal.setaCampos();
                 return;
             }
-            this.setValores(this.getMetricas(cursoProcurado));
+            int acao = (this.principal.alunosButton.isSelected()) ? 0 : 1;
+            this.setValores(this.getMetricas(cursoProcurado, acao));
             return;
         }
         if(cursoPrevio != null && disciplinaPrevia == null && dataPrevia != null) {
@@ -59,7 +60,8 @@ public class GerarRelatorioAprovacao implements ActionListener {
                 this.principal.setaCampos();
                 return;
             }
-            this.setValores(this.getMetricas(cursoProcurado, dataPrevia));
+            int acao = (this.principal.alunosButton.isSelected()) ? 0 : 1;
+            this.setValores(this.getMetricas(cursoProcurado, dataPrevia, acao));
             return;
         }
         if((cursoPrevio == null && disciplinaPrevia != null && dataPrevia == null) || (cursoPrevio != null &&
@@ -74,7 +76,8 @@ public class GerarRelatorioAprovacao implements ActionListener {
             this.setValores(this.getMetricas(disciplinaProcurada));
             return;
         }
-        if(disciplinaPrevia != null && dataPrevia != null) {
+        if((cursoPrevio == null && disciplinaPrevia != null && dataPrevia != null) ||
+                (cursoPrevio != null && disciplinaPrevia != null && dataPrevia != null)) {
             Disciplina disciplinaProcurada = GerenciadorDisciplinas.pesquisaDisciplinaCodigo(disciplinaPrevia);
             if(disciplinaProcurada == null) {
                 this.principal.erroPreenchimento("Disciplina Inválida.");
@@ -94,7 +97,7 @@ public class GerarRelatorioAprovacao implements ActionListener {
         this.principal.numeroCursadosField.setText(Integer.toString(valores[0]));
         this.principal.numeroAprovadosField.setText(Integer.toString(valores[1]));
         if(valores[1] != 0)
-            this.principal.indiceAprovacaoField.setText(String.format("%.2f%%", ((float)valores[0] / (float)valores[1]) * 100));
+            this.principal.indiceAprovacaoField.setText(String.format("%.2f%%", ((float)valores[1] / (float)valores[0]) * 100));
         else
             this.principal.indiceAprovacaoField.setText("0.00%");
     }
@@ -125,14 +128,27 @@ public class GerarRelatorioAprovacao implements ActionListener {
         return metricas;
     }
 
-    private int[] getMetricas(Curso curso) {
+    private int[] getMetricas(Curso curso, int acao) {
         int[] metricas = new int[2];
-        for(Disciplina i: curso.getDisciplinasRelacionadas()) {
-            for(Aluno j: GerenciadorAluno.getAlunosCadastrados()) {
-                for(DisciplinaConcluida k: j.getDisciplinasConcluidas()) {
-                    if(k.getDisciplina().getCodigo().equals(i.getCodigo())) {
+        if(acao == 1) {
+            for (Disciplina i : curso.getDisciplinasRelacionadas()) {
+                for (Aluno j : GerenciadorAluno.getAlunosCadastrados()) {
+                    for (DisciplinaConcluida k : j.getDisciplinasConcluidas()) {
+                        if (k.getDisciplina().getCodigo().equals(i.getCodigo())) {
+                            metricas[0]++;
+                            if (k.getAprovado())
+                                metricas[1]++;
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            for(Aluno i: GerenciadorAluno.getAlunosCadastrados()) {
+                if(i.getCurso().getCodigo().equals(curso.getCodigo())) {
+                    for(DisciplinaConcluida j: i.getDisciplinasConcluidas()) {
                         metricas[0]++;
-                        if(k.getAprovado())
+                        if(j.getAprovado())
                             metricas[1]++;
                     }
                 }
@@ -141,15 +157,30 @@ public class GerarRelatorioAprovacao implements ActionListener {
         return metricas;
     }
 
-    private int[] getMetricas(Curso curso, LocalDate data) {
+    private int[] getMetricas(Curso curso, LocalDate data, int acao) {
         int[] metricas = new int[2];
-        for(Disciplina i: curso.getDisciplinasRelacionadas()) {
-            for(Aluno j: GerenciadorAluno.getAlunosCadastrados()) {
-                for(DisciplinaConcluida k: j.getDisciplinasConcluidas()) {
-                    if(k.getDisciplina().getCodigo().equals(i.getCodigo()) && k.getDataConclusao().compareTo(data) >= 0) {
-                        metricas[0]++;
-                        if(k.getAprovado())
-                            metricas[1]++;
+        if(acao == 1) {
+            for (Disciplina i : curso.getDisciplinasRelacionadas()) {
+                for (Aluno j : GerenciadorAluno.getAlunosCadastrados()) {
+                    for (DisciplinaConcluida k : j.getDisciplinasConcluidas()) {
+                        if (k.getDisciplina().getCodigo().equals(i.getCodigo()) && k.getDataConclusao().compareTo(data) >= 0) {
+                            metricas[0]++;
+                            if (k.getAprovado())
+                                metricas[1]++;
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            for(Aluno i: GerenciadorAluno.getAlunosCadastrados()) {
+                if(i.getCurso().getCodigo().equals(curso.getCodigo())) {
+                    for(DisciplinaConcluida j: i.getDisciplinasConcluidas()) {
+                        if (j.getDataConclusao().compareTo(data) >= 0) {
+                            metricas[0]++;
+                            if(j.getAprovado())
+                                metricas[1]++;
+                        }
                     }
                 }
             }

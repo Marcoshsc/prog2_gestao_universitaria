@@ -58,7 +58,7 @@ public class GerenciadorDisciplinas {
         }
         Professor prof = ServidorArmazenamento.gerenciadorProfessores.pesquisarProfessorCPF(disciplina.getProfessor());
         if(prof != null) {
-            prof.getDisciplinasMinistradas().remove(disciplina.getProfessor());
+            prof.getDisciplinasMinistradas().remove(disciplina.getCodigoVigente());
         }
         else
             System.out.println("Não encontrei o professor.");

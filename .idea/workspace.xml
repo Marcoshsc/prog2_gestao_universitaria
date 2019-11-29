@@ -3,24 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="b956ee20-0d1d-46b3-b669-c28ae838050a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosAlunos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosAlunos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosCursos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosCursos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosDisciplinas.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinas.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasConcluidas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasConcluidas.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasConcluidas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasConcluidas.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasVigentes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosProfessores.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/arquivos/registrosProfessores.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ensino/classecurso/Curso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/classecurso/Curso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ensino/classecurso/GerenciadorCursos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/classecurso/GerenciadorCursos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/GerenciadorDisciplinas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/GerenciadorDisciplinas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/AcaoCadastrarCurso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/AcaoCadastrarCurso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/AcaoExcluirAluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/AcaoExcluirAluno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/AcaoExcluirProfessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/AcaoExcluirProfessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/CadastroCurso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/CadastroCurso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/CadastroDisciplina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/CadastroDisciplina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/ClicouCelulaDisciplina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/ClicouCelulaDisciplina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/JanelaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/JanelaPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/PainelOpcoesCurso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/PainelOpcoesCurso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/excecoes/ItemNaoEncontrado.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/excecoes/OperacaoNaoAutorizada.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/AcaoCadastrarDisciplinaVigente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/AcaoCadastrarDisciplinaVigente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/AcaoExcluirDisciplina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/AcaoExcluirDisciplina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/CadastroTurma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/CadastroTurma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/ClicouBotaoPesquisaAlunoHistorico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/ClicouBotaoPesquisaAlunoHistorico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/ExcluirAlunoDaTabela.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/ExcluirAlunoDaTabela.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/GerarRelatorioAprovacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/GerarRelatorioAprovacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/HistoricoAluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/HistoricoAluno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfacegrafica/RelatorioAprovacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfacegrafica/RelatorioAprovacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pessoas/classealuno/Aluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pessoas/classealuno/Aluno.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +131,9 @@
       <workItem from="1574601883011" duration="9251000" />
       <workItem from="1574796268301" duration="219000" />
       <workItem from="1574877573581" duration="153000" />
-      <workItem from="1574891030353" duration="11492000" />
+      <workItem from="1574891030353" duration="11709000" />
+      <workItem from="1574999507770" duration="895000" />
+      <workItem from="1575033292246" duration="11144000" />
     </task>
     <servers />
   </component>
