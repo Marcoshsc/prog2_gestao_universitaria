@@ -14,12 +14,22 @@ public class AcaoPesquisarDisciplina implements ActionListener {
     private PesquisaDisciplina next;
     private String acao;
 
+    /**
+     *
+     * @param acao: view ou change
+     * @param origem: PainelOpcoesDisciplina referente
+     * @param next: proximo campo
+     */
     public AcaoPesquisarDisciplina(String acao, PainelOpcoesDisciplina origem, PesquisaDisciplina next) {
         this.acao = acao;
         this.origem = origem;
         this.next = next;
     }
 
+    /**
+     *
+     * @param e: clicar no botão visualizar disciplina
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         this.next.disciplinasPesquisadas.setModel(ServidorArmazenamento.gerenciadorDisciplinas.getDisciplinasTable());

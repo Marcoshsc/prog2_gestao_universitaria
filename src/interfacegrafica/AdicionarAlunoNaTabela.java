@@ -19,7 +19,14 @@ public class AdicionarAlunoNaTabela implements ActionListener {
     private ArrayList<Aluno> array;
     private CadastroTurma pai;
 
-
+    /**
+     *
+     * @param tabela: tabela a receber a adição
+     * @param campoCPF: campo referente ao cpf aluno
+     * @param campoDisc: campo referente ao codigo disciplina
+     * @param array: lista de alunos
+     * @param pai: CadastroTurma referente
+     */
     public AdicionarAlunoNaTabela(JTable tabela, JTextField campoCPF, JTextField campoDisc, ArrayList<Aluno> array,
                                   CadastroTurma pai) {
         this.tabela = tabela;
@@ -29,6 +36,10 @@ public class AdicionarAlunoNaTabela implements ActionListener {
         this.pai = pai;
     }
 
+    /**
+     *
+     * @param e: clicar no botão adicionar aluno, no painel de cadastro de turma
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         DisciplinaAplicada disc = GerenciadorDisciplinas.pesquisaDisciplinaVigenteCodigo(Utilitario.formataCampo(campoDisc));

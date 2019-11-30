@@ -14,12 +14,22 @@ public class AcaoPesquisarTurma implements ActionListener {
     private PesquisaTurma next;
     private String acao;
 
+    /**
+     *
+     * @param acao: view ou change
+     * @param origem: PainelOpcoesTurma referente
+     * @param next: proximo campo
+     */
     public AcaoPesquisarTurma(String acao, PainelOpcoesTurma origem, PesquisaTurma next) {
         this.acao = acao;
         this.origem = origem;
         this.next = next;
     }
 
+    /**
+     *
+     * @param e: clicar no botão visualizar turma
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         this.next.turmasPesquisadas.setModel(ServidorArmazenamento.gerenciadorDisciplinas.getDisciplinasVigentesTable());

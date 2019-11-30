@@ -12,12 +12,22 @@ public class AcaoPesquisarCurso implements ActionListener {
     private PesquisaCurso next;
     private String acao;
 
+    /**
+     *
+     * @param acao: view ou change
+     * @param origem: PainelOpcoesCurso referente
+     * @param next: proximo campo
+     */
     public AcaoPesquisarCurso(String acao, PainelOpcoesCurso origem, PesquisaCurso next) {
         this.acao = acao;
         this.origem = origem;
         this.next = next;
     }
 
+    /**
+     *
+     * @param e: clicar no botão visualizar curso
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         this.next.cursosPesquisados.setModel(ServidorArmazenamento.gerenciadorCursos.getCursosTable());

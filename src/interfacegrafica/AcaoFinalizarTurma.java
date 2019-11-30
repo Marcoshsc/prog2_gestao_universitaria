@@ -13,10 +13,18 @@ public class AcaoFinalizarTurma implements ActionListener {
 
     private CadastroTurma campos;
 
+    /**
+     *
+     * @param campos: CadastroTurma referente
+     */
     public AcaoFinalizarTurma(CadastroTurma campos) {
         this.campos = campos;
     }
 
+    /**
+     *
+     * @param e: clicar no botão de finalizar turma
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         DisciplinaAplicada turma = GerenciadorDisciplinas.pesquisaDisciplinaVigenteCodigo(

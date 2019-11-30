@@ -29,6 +29,11 @@ public class CadastroCurso extends JPanel {
     protected JButton botaoExcluir = new JButton("EXCLUIR CURSO");
     protected AcaoCadastrarCurso acaoBotaoConfirma = new AcaoCadastrarCurso(this);
 
+    /**
+     *
+     * @param parent: janela principal que possui o objeto
+     * @param origem: PainelOpcoesCurso onde ocorreu o clique
+     */
     public CadastroCurso(JanelaPrincipal parent, PainelOpcoesCurso origem) {
 
         this.parent = parent;
@@ -54,6 +59,11 @@ public class CadastroCurso extends JPanel {
         this.setVisible(false);
     }
 
+    /**
+     *
+     * @param acao: view ou change
+     * @param curso: curso cujas informações preencherão os campos
+     */
     public void setaCampos(String acao, Curso curso) {
         if(curso != null) {
             this.codigoField.setText(curso.getCodigo());

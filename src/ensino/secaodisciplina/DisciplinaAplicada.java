@@ -134,6 +134,11 @@ public class DisciplinaAplicada extends Disciplina {
 		return dados;
 	}
 
+    /**
+     *
+     * @param professor: professor que se quer as informações
+     * @return vetor com as informações básicas
+     */
 	public String[] getInfoBasicasArrayProfessor(Professor professor) {
 		String[] dados = new String[4];
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -144,6 +149,10 @@ public class DisciplinaAplicada extends Disciplina {
 		return dados;
 	}
 
+    /**
+     *
+     * @return arrayList com os alunos matriculados na turma.
+     */
 	public ArrayList<Aluno> getArrayListAlunosMatriculados() {
 		ArrayList<Aluno> current = new ArrayList<Aluno>();
 		for(Boletim i: this.alunosMatriculados) {
@@ -152,6 +161,10 @@ public class DisciplinaAplicada extends Disciplina {
 		return current;
 	}
 
+    /**
+     *
+     * @return informações da turma
+     */
 	@Override
 	public String getStorageString() {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -160,6 +173,11 @@ public class DisciplinaAplicada extends Disciplina {
 				this.semestre, this.codigoVigente);
 	}
 
+    /**
+     *
+     * @param aluno: aluno a ser adicionado
+     * @throws TamanhoIncompativel caso hajam mais alunos do que a turma permite
+     */
 	public void adicionaAluno(Boletim aluno) throws TamanhoIncompativel {
 		if(this.alunosMatriculados.size() < this.vagasDisponiveis) {
                 this.alunosMatriculados.add(aluno);
@@ -170,10 +188,18 @@ public class DisciplinaAplicada extends Disciplina {
 		}
 	}
 
+    /**
+     *
+     */
 	public void zerarMatriculados() {
 	    this.alunosMatriculados.clear();
     }
 
+    /**
+     *
+     * @param aluno: aluno que se quer o boletim
+     * @return boletim referente ao aluno
+     */
 	public Boletim pesquisaAluno(String aluno) {
 		if(this.alunosMatriculados.size() == 0)
 			return null;
@@ -185,6 +211,12 @@ public class DisciplinaAplicada extends Disciplina {
 		}
 	}
 
+    /**
+     *
+     * @param texto: informações do banco com informações da turma
+     * @return turma referente ao texto
+     * @throws Exception caso não seja encontrada a disciplina da turma.
+     */
 	public static DisciplinaAplicada fromStorageString(String texto) throws Exception {
 		String[] campos = texto.split("-");
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");

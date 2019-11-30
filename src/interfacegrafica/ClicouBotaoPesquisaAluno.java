@@ -10,10 +10,18 @@ public class ClicouBotaoPesquisaAluno implements ActionListener {
 
     private PesquisaAluno principal;
 
+    /**
+     *
+     * @param principal: PesquisaAluno que possui o botão.
+     */
     public ClicouBotaoPesquisaAluno(PesquisaAluno principal) {
         this.principal = principal;
     }
 
+    /**
+     *
+     * @param e: clicar no botão de pesquisar
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(!this.principal.cpfAluno.getText().equals("")) {

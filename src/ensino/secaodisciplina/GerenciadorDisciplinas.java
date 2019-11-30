@@ -22,6 +22,10 @@ public class GerenciadorDisciplinas {
     private static ArrayList<Disciplina> disciplinasCadastradas = new ArrayList<Disciplina>();
     private static ArrayList<DisciplinaAplicada> disciplinasVigentes = new ArrayList<DisciplinaAplicada>();
 
+    /**
+     *
+     * @param disciplina: disciplina a ser adicionada
+     */
     public void adicionaDisciplina(Disciplina disciplina) {
         GerenciadorDisciplinas.disciplinasCadastradas.add(disciplina);
         try {
@@ -32,6 +36,10 @@ public class GerenciadorDisciplinas {
         }
     }
 
+    /**
+     *
+     * @param disciplina: turma a ser adicionado
+     */
     public void adicionaDisciplinaVigente(DisciplinaAplicada disciplina) {
         GerenciadorDisciplinas.disciplinasVigentes.add(disciplina);
         try {
@@ -42,6 +50,10 @@ public class GerenciadorDisciplinas {
         }
     }
 
+    /**
+     *
+     * @param disciplina: disciplina a ser excluída
+     */
     public void excluirDisciplina(Disciplina disciplina) {
         GerenciadorDisciplinas.disciplinasCadastradas.remove(disciplina);
         try {
@@ -52,6 +64,10 @@ public class GerenciadorDisciplinas {
         }
     }
 
+    /**
+     *
+     * @param disciplina: turma a ser excluída
+     */
     public void excluirDisciplinaVigente(DisciplinaAplicada disciplina) {
         for(Aluno i: disciplina.getArrayListAlunosMatriculados()) {
             i.getCursando().remove(disciplina.getCodigoVigente());
@@ -71,14 +87,26 @@ public class GerenciadorDisciplinas {
         }
     }
 
+    /**
+     *
+     * @throws Exception caso não seja possível atualizar o banco
+     */
     public static void atualizaBancoDisciplina() throws Exception {
         Utilitario.atualizaBanco(GerenciadorDisciplinas.disciplinasCadastradas.toArray(), GerenciadorDisciplinas.PATH_DISC_BASE);
     }
 
+    /**
+     *
+     * @throws Exception caso não seja possível atualizar o banco
+     */
     public static void atualizaBancoDisciplinaVigente() throws Exception {
         Utilitario.atualizaBanco(GerenciadorDisciplinas.disciplinasVigentes.toArray(), GerenciadorDisciplinas.PATH_DISC_APLICADA);
     }
 
+    /**
+     *
+     * @throws Exception caso não seja possível atualizar o banco
+     */
     public static void atualizaBancoDisciplinaConcluida() throws Exception {
         ArrayList<DisciplinaConcluida> discs = new ArrayList<>();
         for(Aluno i: GerenciadorAluno.getAlunosCadastrados()) {
@@ -87,6 +115,11 @@ public class GerenciadorDisciplinas {
         Utilitario.atualizaBanco(discs.toArray(), GerenciadorDisciplinas.PATH_DISC_CONCLUIDA);
     }
 
+    /**
+     *
+     * @param codigo: código da disciplina desejada
+     * @return Disciplina caso seja encontrada, null caso contrário.
+     */
     public static Disciplina pesquisaDisciplinaCodigo(String codigo) {
 		if(GerenciadorDisciplinas.disciplinasCadastradas.size() > 0) {
 			for(Disciplina i: GerenciadorDisciplinas.disciplinasCadastradas) {
@@ -100,6 +133,11 @@ public class GerenciadorDisciplinas {
 			return null;
     }
 
+    /**
+     *
+     * @param codigo: código da turma a ser pesquisada
+     * @return turma referente ao código caso seja encontrada, null caso contrário.
+     */
     public static DisciplinaAplicada pesquisaDisciplinaVigenteCodigo(String codigo) {
         if(GerenciadorDisciplinas.disciplinasVigentes.size() > 0) {
             for(DisciplinaAplicada i: GerenciadorDisciplinas.disciplinasVigentes) {
@@ -113,6 +151,10 @@ public class GerenciadorDisciplinas {
             return null;
     }
 
+    /**
+     *
+     * @throws Exception caso não seja possível inicializar as classes do banco.
+     */
     private void inicializaDisciplina() throws Exception {
         String[] objetos = Utilitario.leArquivo(GerenciadorDisciplinas.PATH_DISC_BASE);
 		if(objetos == null)
@@ -128,6 +170,10 @@ public class GerenciadorDisciplinas {
 		}
 	}
 
+    /**
+     *
+     * @throws Exception caso não seja possível inicializar as classes do banco.
+     */
     private void inicializaDisciplinaVigente() throws Exception {
         String[] objetos = Utilitario.leArquivo(GerenciadorDisciplinas.PATH_DISC_APLICADA);
         if(objetos == null)
@@ -142,6 +188,10 @@ public class GerenciadorDisciplinas {
         }
     }
 
+    /**
+     *
+     * @throws Exception caso não seja possível inicializar as classes do banco.
+     */
     private void inicializaDisciplinaConcluida() throws Exception {
         String[] objetos = Utilitario.leArquivo(GerenciadorDisciplinas.PATH_DISC_CONCLUIDA);
         if(objetos == null)
@@ -157,6 +207,9 @@ public class GerenciadorDisciplinas {
         }
     }
 
+    /**
+     *
+     */
     public void inicializa() {
         try {
             inicializaDisciplina();
@@ -168,6 +221,11 @@ public class GerenciadorDisciplinas {
         }
     }
 
+    /**
+     *
+     * @param disc: disciplina que se quer verificar o vínculo
+     * @return true caso tenha vínculo, false caso contrário
+     */
     private static boolean verificaVinculoAluno(Disciplina disc) {
         for(Aluno i: GerenciadorAluno.getAlunosCadastrados()) {
             for(DisciplinaConcluida j: i.getDisciplinasConcluidas()) {
@@ -178,6 +236,11 @@ public class GerenciadorDisciplinas {
         return false;
     }
 
+    /**
+     *
+     * @param aluno: aluno que se quer verificar o vínculo
+     * @return true caso tenha vínculo, false caso contrário
+     */
     public static boolean verificaVinculoAluno(Aluno aluno) {
         for(DisciplinaAplicada i: disciplinasVigentes) {
             for(Aluno j: i.getArrayListAlunosMatriculados()) {
@@ -188,6 +251,11 @@ public class GerenciadorDisciplinas {
         return false;
     }
 
+    /**
+     *
+     * @param disc: disciplina que se quer verificar o vínculo
+     * @return true caso tenha vínculo, false caso contrário
+     */
     public static boolean verificaVinculoTurma(Disciplina disc) {
         if(verificaVinculoAluno(disc))
             return true;
@@ -198,17 +266,19 @@ public class GerenciadorDisciplinas {
         return false;
     }
 
-    public ArrayList<Disciplina> pesquisarDisciplinaCurso(Curso curso) {
-        ArrayList<Disciplina> procurados = new ArrayList<Disciplina>();
-        // RESOLVER ISSO AQUI PQ TEM QUE PEGAR DO CURSO
-//        if(curso.getDisciplinasRelacionadas().size() == 0)
-//            return null;
-//        for(Disciplina i: curso.getDisciplinasRelacionadas()) {
-//            procurados.add(i);
-//        }
+    /**
+     *
+     * @param curso: curso desejado
+     * @return arrayList disciplinas relacionadas ao curso.
+     */
+    private ArrayList<Disciplina> pesquisarDisciplinaCurso(Curso curso) {
         return (curso.getDisciplinasRelacionadas().size() == 0) ? null : curso.getDisciplinasRelacionadas();
     }
 
+    /**
+     *
+     * @return vetor de strings com todos os códigos das disciplinas
+     */
     public String[] getCodigoDisciplinas() {
         if(disciplinasCadastradas.size() == 0)
             return null;
@@ -221,6 +291,11 @@ public class GerenciadorDisciplinas {
         }
     }
 
+    /**
+     *
+     * @param codigo: código da disciplina
+     * @return arraylist de turmas que sejam de tal disciplina
+     */
     private ArrayList<DisciplinaAplicada> pesquisaDisciplinaVigenteCodigoArrayList(String codigo) {
         ArrayList<DisciplinaAplicada> achados = new ArrayList<>();
         for(DisciplinaAplicada i: GerenciadorDisciplinas.disciplinasVigentes) {
@@ -231,6 +306,12 @@ public class GerenciadorDisciplinas {
         return achados;
     }
 
+    /**
+     *
+     * @param arr: arraylist de alunos
+     * @param disc: turma a ser usada
+     * @return TableModel com os alunos e notas de uma turma.
+     */
     public TableModel getTableFromArray(ArrayList<Aluno> arr, DisciplinaAplicada disc) {
         String[] header = {
                 "Nome", "Curso", "CPF", "Matrícula", "Notas", "Faltas"
@@ -260,6 +341,10 @@ public class GerenciadorDisciplinas {
 
     }
 
+    /**
+     *
+     * @return TableModel com todas as disciplinas cadastradas.
+     */
     public TableModel getDisciplinasTable() {
 		String[] header = {
 			"Codigo", "Nome", "Carga Horária", "Maximo Faltas"
@@ -284,6 +369,10 @@ public class GerenciadorDisciplinas {
 		};
     }
 
+    /**
+     *
+     * @return TableModel com todas as turmas cadastradas.
+     */
     public TableModel getDisciplinasVigentesTable() {
         String[] header = {
                 "Codigo", "Semestre", "Professor", "Data Inicio", "Data Fim"
@@ -307,7 +396,12 @@ public class GerenciadorDisciplinas {
 
         };
     }
-    
+
+    /**
+     *
+     * @param curso: curso desejado
+     * @return TableModel com as disciplinas que pertencem a esse curso.
+     */
     public TableModel getDisciplinasTable(Curso curso) {
 		String[] header = {
 			"Codigo", "Nome", "Carga Horária", "Maximo Faltas"
@@ -334,6 +428,11 @@ public class GerenciadorDisciplinas {
 		};
     }
 
+    /**
+     *
+     * @param disc: código de uma disciplina
+     * @return TableModel com todas as turmas de tal disciplina
+     */
     public TableModel getDisciplinasVigentesTable(String disc) {
         String[] header = {
                 "Codigo", "Semestre", "Professor", "Data Inicio", "Data Fim"

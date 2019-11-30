@@ -1,11 +1,9 @@
 package ensino.secaodisciplina;
 
 import contratos.ClassesGeral;
-import pessoas.classealuno.Aluno;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class DisciplinaConcluida implements ClassesGeral {
 
@@ -17,6 +15,15 @@ public class DisciplinaConcluida implements ClassesGeral {
 	private LocalDate dataConclusao;
 	private boolean aprovado;
 
+	/**
+	 *
+	 * @param disciplina: a disciplina referente
+	 * @param cpfAluno: cpf do aluno que concluiu
+	 * @param semestre: semestre
+	 * @param nota: nota final
+	 * @param faltas: número de faltas final
+	 * @param dataConclusao: data de conclusão da disciplina concluída.
+	 */
 	public DisciplinaConcluida(Disciplina disciplina, String cpfAluno, int semestre, float nota,
                                int faltas, LocalDate dataConclusao) {
 		this.disciplina = disciplina;
@@ -28,6 +35,10 @@ public class DisciplinaConcluida implements ClassesGeral {
 		this.setAprovado(nota, faltas, disciplina);
 	}
 
+	/**
+	 *
+	 * @return informações sobre uma disciplina concluída para ser cadastrada no banco de dados.
+	 */
 	@Override
 	public String getStorageString() {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -35,6 +46,11 @@ public class DisciplinaConcluida implements ClassesGeral {
 				Float.toString(this.nota), formatador.format(this.dataConclusao), this.aprovado, this.faltas);
 	}
 
+	/**
+	 *
+	 * @param texto: informações sobre uma disciplina concluída do banco de dados
+	 * @return disciplina concluída relativa às informações
+	 */
 	public static DisciplinaConcluida fromStorageString(String texto) {
 		String[] campos = texto.split("-");
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -45,6 +61,10 @@ public class DisciplinaConcluida implements ClassesGeral {
 		return a;
 	}
 
+	/**
+	 *
+	 * @return vetor de informações básicas da discpilina concluída
+	 */
 	public String[] getInfoBasicasArray() {
 	    String[] dados = new String[6];
 	    DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -57,30 +77,44 @@ public class DisciplinaConcluida implements ClassesGeral {
 	    return dados;
     }
 
+	/**
+	 *
+	 * @param nota: nota do aluno
+	 * @param faltas: faltas do aluno
+	 * @param disc: disciplina para ser comparada
+	 */
 	private void setAprovado(float nota, int faltas, Disciplina disc) {
 		this.aprovado = nota >= 6 && faltas <= disc.getMaximoFaltas();
 	}
 
+	/**
+	 *
+	 * @return a disciplina
+	 */
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}
 
-	public float getNota() {
-		return nota;
-	}
-
-	public int getSemestre() {
-		return semestre;
-	}
-
+	/**
+	 *
+	 * @return se está aprovado ou não
+	 */
 	public boolean getAprovado() {
 		return this.aprovado;
 	}
 
+	/**
+	 *
+	 * @return data de conclusão
+	 */
 	public LocalDate getDataConclusao() {
 		return dataConclusao;
 	}
 
+	/**
+	 *
+	 * @return cpf aluno
+	 */
 	public String getCpfAluno() {
 		return cpfAluno;
 	}

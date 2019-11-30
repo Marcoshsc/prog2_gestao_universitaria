@@ -12,12 +12,22 @@ public class AcaoPesquisarProfessor implements ActionListener {
     private PesquisaProfessor next;
     private String acao;
 
+    /**
+     *
+     * @param acao: view ou change
+     * @param origem: PainelOpcoesProfessor referente
+     * @param next: proximo campo
+     */
     public AcaoPesquisarProfessor(String acao, PainelOpcoesProfessor origem, PesquisaProfessor next) {
         this.acao = acao;
         this.origem = origem;
         this.next = next;
     }
 
+    /**
+     *
+     * @param e: clicar no botão visualizar professor
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         this.next.professoresPesquisados.setModel(ServidorArmazenamento.gerenciadorProfessores.getProfessoresTable());

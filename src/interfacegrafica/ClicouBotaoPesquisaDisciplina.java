@@ -10,10 +10,18 @@ public class ClicouBotaoPesquisaDisciplina implements ActionListener {
 
     private PesquisaDisciplina principal;
 
+    /**
+     *
+     * @param principal: PesquisaDisciplina que possui o botão.
+     */
     public ClicouBotaoPesquisaDisciplina(PesquisaDisciplina principal) {
         this.principal = principal;
     }
 
+    /**
+     *
+     * @param e: clicar no botão de pesquisar
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(!(this.principal.opcaoCurso.getSelectedItem() == null)) {

@@ -31,6 +31,11 @@ public class CadastroDisciplina extends JPanel {
     protected JButton botaoExcluir = new JButton("EXCLUIR DISCIPLINA");
     protected AcaoCadastrarDisciplina acaoBotaoConfirma = new AcaoCadastrarDisciplina(this);
 
+    /**
+     *
+     * @param parent: janela principal que possui o objeto
+     * @param origem: PainelOpcoesDisciplina onde ocorreu o clique
+     */
     public CadastroDisciplina(JanelaPrincipal parent, PainelOpcoesDisciplina origem) {
 
         this.parent = parent;
@@ -58,6 +63,11 @@ public class CadastroDisciplina extends JPanel {
         this.setVisible(false);
     }
 
+    /**
+     *
+     * @param acao: view ou change
+     * @param disciplina: disciplina cujas informações preencherão os campos
+     */
     public void setaCampos(String acao, Disciplina disciplina) {
         if(disciplina != null) {
             this.codigoField.setText(disciplina.getCodigo());

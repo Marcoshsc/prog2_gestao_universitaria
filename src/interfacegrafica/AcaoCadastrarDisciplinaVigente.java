@@ -27,6 +27,10 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
     private CadastroTurma campos;
     private String acao;
 
+    /**
+     *
+     * @param campos: CadastroTurma referente
+     */
     public AcaoCadastrarDisciplinaVigente(CadastroTurma campos) {
         this.campos = campos;
     }
@@ -38,6 +42,10 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
         this.acao = acao;
     }
 
+    /**
+     *
+     * @param evento: clicar no botão de cadastrar/alterar turma
+     */
     @Override
     public void actionPerformed(ActionEvent evento) {
 

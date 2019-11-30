@@ -12,10 +12,18 @@ public class ClicouBotaoPesquisaProfessorMinistradas implements ActionListener {
 
     private DisciplinasMinistradas principal;
 
+    /**
+     *
+     * @param principal: DisciplinasMinistradas que possui o botão.
+     */
     public ClicouBotaoPesquisaProfessorMinistradas(DisciplinasMinistradas principal) {
         this.principal = principal;
     }
 
+    /**
+     *
+     * @param e: clicar no botão de pesquisar
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(!this.principal.cpfProfessor.getText().equals("")) {

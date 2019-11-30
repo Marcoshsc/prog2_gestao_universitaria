@@ -17,11 +17,20 @@ public class AcaoExcluirCurso implements ActionListener {
     private JanelaPrincipal parent;
     private JTextField codigoCurso;
 
+    /**
+     *
+     * @param parent: janela principal que possui o objeto
+     * @param codigoCurso: campo referente ao código do curso
+     */
     protected AcaoExcluirCurso(JanelaPrincipal parent, JTextField codigoCurso) {
         this.parent = parent;
         this.codigoCurso = codigoCurso;
     }
 
+    /**
+     *
+     * @param e: clicar no botão de excluir curso.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Curso cursoPrevio = GerenciadorCursos.pesquisaCursoCodigo(Utilitario.formataCampo(this.codigoCurso));

@@ -15,6 +15,10 @@ public class AcaoCadastrarCurso implements ActionListener {
     private CadastroCurso campos;
     private String acao;
 
+    /**
+     *
+     * @param campos: CadastroCurso referente
+     */
     public AcaoCadastrarCurso(CadastroCurso campos) {
         this.campos = campos;
     }
@@ -26,6 +30,10 @@ public class AcaoCadastrarCurso implements ActionListener {
         this.acao = acao;
     }
 
+    /**
+     *
+     * @param evento: clicar no botão de cadastrar/alterar curso
+     */
     @Override
     public void actionPerformed(ActionEvent evento) {
 

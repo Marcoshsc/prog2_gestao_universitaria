@@ -80,6 +80,11 @@ public class CadastroAluno extends JPanel {
     protected AcaoExcluirAluno acaoExcluirAluno;
     protected JButton botaoExcluir = new JButton("EXCLUIR ALUNO");
 
+    /**
+     *
+     * @param patern: janela principal que possui o objeto
+     * @param origem: PainelOpcoesAluno onde ocorreu o clique
+     */
     public CadastroAluno(JanelaPrincipal patern, PainelOpcoesAluno origem) {
 
         this.patern = patern;
@@ -176,6 +181,11 @@ public class CadastroAluno extends JPanel {
         return botaoConfirma;
     }
 
+    /**
+     *
+     * @param acao: view ou change
+     * @param aluno: aluno cujas informações preencherão os campos
+     */
     public void setaCampos(String acao, Aluno aluno) {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         if(aluno != null) {

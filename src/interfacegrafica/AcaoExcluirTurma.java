@@ -16,11 +16,20 @@ public class AcaoExcluirTurma implements ActionListener {
     private JanelaPrincipal parent;
     private JTextField codigoTurma;
 
+    /**
+     *
+     * @param parent: janela principal que possui o objeto
+     * @param codigoTurma: campo referente ao código da turma
+     */
     protected AcaoExcluirTurma(JanelaPrincipal parent, JTextField codigoTurma) {
         this.parent = parent;
         this.codigoTurma = codigoTurma;
     }
 
+    /**
+     *
+     * @param e: clicar no botão de excluir turma
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         DisciplinaAplicada turmaPrevia = GerenciadorDisciplinas.pesquisaDisciplinaVigenteCodigo(Utilitario.formataCampo(this.codigoTurma));

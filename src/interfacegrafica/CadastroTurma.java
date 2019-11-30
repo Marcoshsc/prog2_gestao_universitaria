@@ -53,6 +53,11 @@ public class CadastroTurma extends JPanel {
         protected ExcluirAlunoDaTabela excluirAlunoDaTabela = new ExcluirAlunoDaTabela(this.alunosPesquisados,
                 this.alunosAdicionados, this, this.codigoField);
 
+        /**
+         *
+         * @param parent: janela principal que possui o objeto
+         * @param origem: PainelOpcoesTurma onde ocorreu o clique
+         */
         public CadastroTurma(JanelaPrincipal parent, PainelOpcoesTurma origem) {
 
             this.parent = parent;
@@ -123,6 +128,11 @@ public class CadastroTurma extends JPanel {
             this.setVisible(false);
         }
 
+        /**
+         *
+         * @param acao: view ou change
+         * @param disciplina: turma cujas informações preencherão os campos
+         */
         public void setaCampos(String acao, DisciplinaAplicada disciplina) {
             DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             this.disciplinaField.setModel(new DefaultComboBoxModel<String>(ServidorArmazenamento.gerenciadorDisciplinas.getCodigoDisciplinas()));

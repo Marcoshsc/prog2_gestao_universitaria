@@ -19,6 +19,10 @@ public class AcaoCadastrarProfessor implements ActionListener {
     private CadastroProfessor campos;
     private String acao;
 
+    /**
+     *
+     * @param campos: CadastroProfessor referente
+     */
     public AcaoCadastrarProfessor(CadastroProfessor campos) {
         this.campos = campos;
     }
@@ -30,6 +34,10 @@ public class AcaoCadastrarProfessor implements ActionListener {
         this.acao = acao;
     }
 
+    /**
+     *
+     * @param evento: clicar no botão de cadastrar/alterar professor.
+     */
     @Override
     public void actionPerformed(ActionEvent evento) {
             DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");

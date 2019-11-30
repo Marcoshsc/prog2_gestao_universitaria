@@ -8,6 +8,11 @@ public class ClicouCadastrarAlterarProfessorButton implements ActionListener {
     private String acao;
     private JanelaPrincipal patern;
 
+    /**
+     *
+     * @param acao: cadastrar/alterar/normal
+     * @param patern: janela principal que possui o objeto
+     */
     public ClicouCadastrarAlterarProfessorButton(String acao, JanelaPrincipal patern) {
         this.acao = acao;
         this.patern = patern;
@@ -20,16 +25,17 @@ public class ClicouCadastrarAlterarProfessorButton implements ActionListener {
         this.acao = acao;
     }
 
+    /**
+     *
+     * @param evento: cliar no botão de entrar na interface de cadastrar professor
+     */
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(this.acao.equals("normal")) {
-            //this.patern.painelOpcoesProfessor.setVisible(false);
-            //this.patern.pesquisaProfessor.setVisible(true);
             return;
         }
         this.patern.painelOpcoesProfessor.setVisible(false);
         this.patern.cadastroProfessor.setVisible(true);
-        //this.patern.cadastroProfessor.acaoBotaoConfirma.setAcao((this.acao.equals("cadastrar")) ? "cadastrar" : "alterar");
         this.patern.cadastroProfessor.botaoConfirma.setText(
         (this.acao.equals("cadastrar")) ? "CONFIRMAR CADASTRO" : "CONFIRMAR ALTERAÇÃO");
         this.patern.cadastroProfessor.setaCampos(null, null);

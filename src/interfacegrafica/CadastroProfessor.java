@@ -76,6 +76,11 @@ public class CadastroProfessor extends JPanel {
     protected JButton botaoExcluir = new JButton("EXCLUIR PROFESSOR");
     protected AcaoCadastrarProfessor acaoBotaoConfirma = new AcaoCadastrarProfessor(this);
 
+    /**
+     *
+     * @param patern: janela principal que possui o objeto
+     * @param origem: PainelOpcoesProfessor onde ocorreu o clique
+     */
     public CadastroProfessor(JanelaPrincipal patern, PainelOpcoesProfessor origem) {
 
         this.patern = patern;
@@ -164,6 +169,11 @@ public class CadastroProfessor extends JPanel {
         this.setVisible(false);
     }
 
+    /**
+     *
+     * @param acao: view ou change
+     * @param professor: professor cujas informações preencherão os campos
+     */
     public void setaCampos(String acao, Professor professor) {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         if(professor != null) {

@@ -10,10 +10,18 @@ public class ClicouBotaoPesquisaProfessor implements ActionListener {
 
     private PesquisaProfessor principal;
 
+    /**
+     *
+     * @param principal: PesquisaProfessor que possui o botão.
+     */
     public ClicouBotaoPesquisaProfessor(PesquisaProfessor principal) {
         this.principal = principal;
     }
 
+    /**
+     *
+     * @param e: clicar no botão de pesquisar
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(!Utilitario.formataCampo(principal.cpfProfessor).equals("")) {

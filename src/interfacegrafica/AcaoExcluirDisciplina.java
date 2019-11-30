@@ -18,11 +18,20 @@ public class AcaoExcluirDisciplina implements ActionListener {
     private JanelaPrincipal parent;
     private JTextField codigoDisciplina;
 
+    /**
+     *
+     * @param parent: janela principal que possui o objeto
+     * @param codigoDisciplina: campo referente ao código da disciplina.
+     */
     protected AcaoExcluirDisciplina(JanelaPrincipal parent, JTextField codigoDisciplina) {
         this.parent = parent;
         this.codigoDisciplina = codigoDisciplina;
     }
 
+    /**
+     *
+     * @param e: clicar no botão de excluir disciplina
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Disciplina disciplinaPrevia = GerenciadorDisciplinas.pesquisaDisciplinaCodigo(Utilitario.formataCampo(this.codigoDisciplina));

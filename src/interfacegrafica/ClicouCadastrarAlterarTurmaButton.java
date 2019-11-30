@@ -12,6 +12,11 @@ public class ClicouCadastrarAlterarTurmaButton implements ActionListener {
     private String acao;
     private JanelaPrincipal patern;
 
+    /**
+     *
+     * @param acao: cadastrar/alterar/normal
+     * @param patern: janela principal que possui o objeto
+     */
     public ClicouCadastrarAlterarTurmaButton(String acao, JanelaPrincipal patern) {
         this.acao = acao;
         this.patern = patern;
@@ -24,11 +29,13 @@ public class ClicouCadastrarAlterarTurmaButton implements ActionListener {
         this.acao = acao;
     }
 
+    /**
+     *
+     * @param evento: cliar no botão de entrar na interface de cadastrar turma
+     */
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(this.acao.equals("normal")) {
-            //this.patern.painelOpcoesTurma.setVisible(false);
-            //this.patern.pesquisaTurma.setVisible(true);
             return;
         }
         this.patern.painelOpcoesTurma.setVisible(false);

@@ -16,11 +16,20 @@ public class AcaoExcluirProfessor implements ActionListener {
     private JanelaPrincipal parent;
     private JTextField cpfProfessor;
 
+    /**
+     *
+     * @param parent: janela principal que possui o objeto.
+     * @param cpfProfessor: campos referentes ao cpf do professor
+     */
     protected AcaoExcluirProfessor(JanelaPrincipal parent, JTextField cpfProfessor) {
         this.parent = parent;
         this.cpfProfessor = cpfProfessor;
     }
 
+    /**
+     *
+     * @param e: clicar no botão de excluir professor
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Professor professorPrevio = ServidorArmazenamento.gerenciadorProfessores.pesquisarProfessorCPF(Utilitario.formataCampo(this.cpfProfessor));

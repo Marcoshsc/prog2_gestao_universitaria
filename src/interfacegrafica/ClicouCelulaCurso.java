@@ -16,6 +16,14 @@ public class ClicouCelulaCurso extends MouseAdapter {
     protected CadastroCurso proximo;
     protected String acao;
 
+    /**
+     *
+     * @param acao: view/change
+     * @param tabela: tabela a ser escutada
+     * @param janelaPrincipal: janela principal que possui o objeto
+     * @param anterior: JPanel anterior
+     * @param proximo: próximo JPanel
+     */
     public ClicouCelulaCurso(String acao, JTable tabela, JanelaPrincipal janelaPrincipal, PesquisaCurso anterior, CadastroCurso proximo) {
         this.acao = acao;
         this.tabela = tabela;
@@ -31,6 +39,10 @@ public class ClicouCelulaCurso extends MouseAdapter {
         this.acao = acao;
     }
 
+    /**
+     *
+     * @param a: clicar duas vezes na célula da tabela de cursos
+     */
     @Override
     public void mouseClicked(MouseEvent a) {
         if(a.getClickCount() == 2 && !a.isConsumed()) {

@@ -17,11 +17,20 @@ public class AcaoExcluirAluno implements ActionListener {
     private JanelaPrincipal parent;
     private JTextField cpfCampo;
 
+    /**
+     *
+     * @param parent JanelaPrincipal que possui o objeto
+     * @param cpfCampo: JTextField referente ao CPF do aluno
+     */
     protected AcaoExcluirAluno(JanelaPrincipal parent, JTextField cpfCampo) {
         this.parent = parent;
         this.cpfCampo = cpfCampo;
     }
 
+    /**
+     *
+     * @param e: clicar no botão de excluir aluno.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Aluno alunoPrevio = ServidorArmazenamento.gerenciadorAlunos.pesquisarAlunoCPF(Utilitario.formataCampo(this.cpfCampo));
