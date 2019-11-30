@@ -18,10 +18,18 @@ public class GerarRelatorioAprovacao implements ActionListener {
 
     private RelatorioAprovacao principal;
 
+    /**
+     *
+     * @param principal: janela onde vai ser mostrado o relatório
+     */
     public GerarRelatorioAprovacao(RelatorioAprovacao principal) {
         this.principal = principal;
     }
 
+    /**
+     *
+     * @param e: clicar em gerar relatório
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");

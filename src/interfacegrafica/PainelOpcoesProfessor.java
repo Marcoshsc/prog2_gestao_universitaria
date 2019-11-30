@@ -17,10 +17,12 @@ public class PainelOpcoesProfessor extends JPanel {
     protected JButton disciplinasMinistradas = new JButton("DISCIPLINAS MINISTRADAS POR PROFESSOR");
     protected JButton botaoVoltar = new JButton("VOLTAR");
 
+    /**
+     *
+     * @param parent: janela principal que possui o objeto.
+     */
     public PainelOpcoesProfessor(JanelaPrincipal parent) {
         this.parent = parent;
-        // this.visualizarProfessor.addActionListener(new AcaoPesquisarProfessor(this, this.relacionado1));
-        // this.cadastrarProfessor.addActionListener(new ClicouCadastrarAlterarProfessorButton("cadastrar", this.parent));
         this.cadastrarProfessor.addActionListener(new ClicouCadastrarAlterarProfessorButton("cadastrar", this.parent));
         this.constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
         this.setLayout(new GridBagLayout());

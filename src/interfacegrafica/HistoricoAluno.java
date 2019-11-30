@@ -17,10 +17,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import complementares.Utilitario;
+import contratos.PrecisaZerarCampos;
 import interfacegrafica.PainelOpcoesAluno;
 import sistema.classes.ServidorArmazenamento;
 
-public class HistoricoAluno extends JPanel {
+public class HistoricoAluno extends JPanel implements PrecisaZerarCampos {
 
     protected ModuloColegiado origem;
     protected JanelaPrincipal patern;
@@ -40,6 +41,11 @@ public class HistoricoAluno extends JPanel {
     protected JButton botaoVoltar = new JButton("VOLTAR");
     protected JButton botaoPesquisar = new JButton("PESQUISAR");
 
+    /**
+     *
+     * @param patern: janela principal que possui o objeto
+     * @param origem: ModuloColegiado onde ocorreu o clique
+     */
     protected HistoricoAluno(JanelaPrincipal patern, ModuloColegiado origem) {
 
         this.patern = patern;
@@ -77,6 +83,10 @@ public class HistoricoAluno extends JPanel {
         this.add(this.alunosContainer);
     }
 
+    /**
+     *
+     * @return tabela vazia para ser mostrada na tela.
+     */
     protected TableModel retornaTabelaVazia() {
         String[] header = {
                 "Disciplina", "Data Conclusão", "Semestre", "Nota", "Faltas", "Aprovado"
@@ -91,6 +101,9 @@ public class HistoricoAluno extends JPanel {
         };
     }
 
+    /**
+     *
+     */
     public void setaCampos() {
         this.alunosPesquisados.setModel(this.retornaTabelaVazia());
         Utilitario.formataEspacamentoTabela(this.alunosPesquisados, 6);

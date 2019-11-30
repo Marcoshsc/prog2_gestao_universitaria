@@ -17,6 +17,10 @@ public class PainelOpcoesAluno extends JPanel {
     protected JButton disciplinasCursadas = new JButton("DISCIPLINAS CURSADAS POR ALUNO");
     protected JButton botaoVoltar = new JButton("VOLTAR");
 
+    /**
+     *
+     * @param parent: janela principal que possui o objeto.
+     */
     public PainelOpcoesAluno(JanelaPrincipal parent) {
         this.parent = parent;
         // this.visualizarAluno.addActionListener(new AcaoPesquisarAluno(this, this.relacionado1));

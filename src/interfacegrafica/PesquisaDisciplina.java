@@ -34,6 +34,12 @@ public class PesquisaDisciplina extends JPanel {
     protected JButton botaoPesquisar = new JButton("PESQUISAR");
     protected ClicouCelulaDisciplina clicouCelula;
 
+    /**
+     *
+     * @param patern: janela principal que possui o objeto.
+     * @param origem: interface onde aconteceu o clique
+     * @param relacionado1: interface onde serão mostrados os dados
+     */
     protected PesquisaDisciplina(JanelaPrincipal patern, PainelOpcoesDisciplina origem, CadastroDisciplina relacionado1) {
         this.opcaoCurso.addItem(null);
         this.patern = patern;
@@ -60,13 +66,9 @@ public class PesquisaDisciplina extends JPanel {
         this.constantes.gridy++;
         Utilitario.geraCampoCentral(this.botaoVoltar, this.botaoPesquisar, this.painelSegurador, this.constantes);
 
-        // this.setLayout(new GridBagLayout());
         this.setVisible(false);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(this.painelSegurador);
-        // Utilitario.geraCampoVertical(this.cpfLabel, this.cpfAluno, this, this.constantes);
-        // Utilitario.geraCampoHorizontal(this.cursoLabel, this.opcaoCurso, this, this.constantes);
-        // this.constantes.gridx++;
         this.add(this.disciplinasContainer);
     }
 

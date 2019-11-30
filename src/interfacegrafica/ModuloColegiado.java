@@ -12,6 +12,10 @@ public class ModuloColegiado extends JPanel {
     private GridBagConstraints constantes = new GridBagConstraints();
     private PainelOpcoesTurma nextTurma;
 
+    /**
+     *
+     * @param opcoesTurma: modulo de turmas
+     */
     public ModuloColegiado(PainelOpcoesTurma opcoesTurma) {
         this.nextTurma = opcoesTurma;
 

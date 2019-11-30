@@ -17,10 +17,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import complementares.Utilitario;
+import contratos.PrecisaZerarCampos;
 import interfacegrafica.PainelOpcoesAluno;
 import sistema.classes.ServidorArmazenamento;
 
-public class DisciplinasDoCurso extends JPanel {
+public class DisciplinasDoCurso extends JPanel implements PrecisaZerarCampos {
 
     protected PainelOpcoesCurso origem;
     protected JanelaPrincipal patern;
@@ -36,6 +37,11 @@ public class DisciplinasDoCurso extends JPanel {
     protected JButton botaoVoltar = new JButton("VOLTAR");
     protected JButton botaoPesquisar = new JButton("PESQUISAR");
 
+    /**
+     *
+     * @param patern: janela principal que possui o objeto
+     * @param origem: PainelOpcoesCurso onde aconteceu o clique
+     */
     protected DisciplinasDoCurso(JanelaPrincipal patern, PainelOpcoesCurso origem) {
 
         this.patern = patern;
@@ -71,6 +77,10 @@ public class DisciplinasDoCurso extends JPanel {
         this.add(this.cursosContainer);
     }
 
+    /**
+     *
+     * @return tabela vazia para mostrar na tela.
+     */
     protected TableModel retornaTabelaVazia() {
         String[] header = {
                 "Codigo", "Nome", "Carga Horária", "Maximo Faltas"
@@ -85,8 +95,12 @@ public class DisciplinasDoCurso extends JPanel {
         };
     }
 
+    /**
+     *
+     */
     public void setaCampos() {
         this.cursosPesquisados.setModel(this.retornaTabelaVazia());
+        Utilitario.formataEspacamentoTabela(this.cursosPesquisados, 4);
         this.codigoCurso.setText(null);
         this.nomeCurso.setText(null);
     }

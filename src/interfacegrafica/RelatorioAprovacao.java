@@ -1,12 +1,13 @@
 package interfacegrafica;
 
 import complementares.Utilitario;
+import contratos.PrecisaZerarCampos;
 import sistema.classes.ServidorArmazenamento;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class RelatorioAprovacao extends JPanel {
+public class RelatorioAprovacao extends JPanel implements PrecisaZerarCampos {
 
     protected JanelaPrincipal parent;
 
@@ -31,6 +32,10 @@ public class RelatorioAprovacao extends JPanel {
     protected JButton gerarRelatorioButton = new JButton("GERAR RELATORIO");
     protected JButton botaoVolta = new JButton("VOLTAR");
 
+    /**
+     *
+     * @param parent: janela principal que possui o objeto.
+     */
     public RelatorioAprovacao(JanelaPrincipal parent) {
         this.setLayout(new GridBagLayout());
         this.constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
@@ -62,7 +67,10 @@ public class RelatorioAprovacao extends JPanel {
         this.setVisible(false);
     }
 
-    protected void setaCampos() {
+    /**
+     *
+     */
+    public void setaCampos() {
         this.cursoField.setModel(new DefaultComboBoxModel<>(ServidorArmazenamento.gerenciadorCursos.getNomeCursos()));
         this.cursoField.addItem(null);
         this.cursoField.setSelectedItem(null);
@@ -76,6 +84,10 @@ public class RelatorioAprovacao extends JPanel {
         this.indiceAprovacaoField.setText(null);
     }
 
+    /**
+     *
+     * @param mensagem: mensagem a ser mostrada na tela.
+     */
     protected void erroPreenchimento(String mensagem) {
         JOptionPane.showMessageDialog(this.parent, mensagem, "Erro de preenchimento", JOptionPane.ERROR_MESSAGE);
     }

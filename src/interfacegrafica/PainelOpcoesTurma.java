@@ -16,9 +16,12 @@ public class PainelOpcoesTurma extends JPanel {
     protected JButton alterarTurma = new JButton("ALTERAR/ LANÇAR NOTAS/ FINALIZAR TURMA");
     protected JButton botaoVoltar = new JButton("VOLTAR");
 
+    /**
+     *
+     * @param parent: janela principal que possui o objeto.
+     */
     public PainelOpcoesTurma(JanelaPrincipal parent) {
         this.parent = parent;
-        // this.visualizarTurma.addActionListener(new AcaoPesquisarTurma(this, this.relacionado1));
         this.cadastrarTurma.addActionListener(new ClicouCadastrarAlterarTurmaButton("cadastrar", this.parent));
         this.constantes.insets = JanelaPrincipal.ESPACAMENTO_PADRAO;
         this.setLayout(new GridBagLayout());

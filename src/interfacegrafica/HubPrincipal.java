@@ -20,6 +20,14 @@ public class HubPrincipal extends JPanel {
     private JButton opcoesDisciplina = new JButton("MODULO DISCIPLINA");
     private JButton moduloColegiadoButton = new JButton(("MODULO COLEGIADO"));
 
+    /**
+     *
+     * @param nextAluno: PainelOpcoesAluno
+     * @param nextCurso: PainelOpcoesCurso
+     * @param nextProfessor: PainelOpcoesProfessor
+     * @param nextDisciplina: PainelOpcoesDisciplina
+     * @param moduloColegiado: ModuloColegiado
+     */
     protected HubPrincipal(PainelOpcoesAluno nextAluno, PainelOpcoesCurso nextCurso,
     PainelOpcoesProfessor nextProfessor, PainelOpcoesDisciplina nextDisciplina, ModuloColegiado moduloColegiado) {
         this.nextAluno = nextAluno;

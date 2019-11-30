@@ -20,6 +20,13 @@ public class ExcluirAlunoDaTabela implements ActionListener {
     private JTextField campoDisc;
     private String codigoPrevio;
 
+    /**
+     *
+     * @param tabela: tabela na qual se quer excluir o aluno
+     * @param array: array de alunos
+     * @param pai: componente que contém a tabela
+     * @param campoDisc: campo referente ao código da disciplina
+     */
     public ExcluirAlunoDaTabela(JTable tabela, ArrayList<Aluno> array, CadastroTurma pai, JTextField campoDisc) {
         this.tabela = tabela;
         this.array = array;
@@ -27,10 +34,18 @@ public class ExcluirAlunoDaTabela implements ActionListener {
         this.campoDisc = campoDisc;
     }
 
+    /**
+     *
+     * @param codigoPrevio codigoPrevio to set
+     */
     protected void setCodigoPrevio(String codigoPrevio) {
         this.codigoPrevio = codigoPrevio;
     }
 
+    /**
+     *
+     * @param e: clicar no botão de excluir aluno da tabela.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(tabela.getSelectedRow() == -1) {
