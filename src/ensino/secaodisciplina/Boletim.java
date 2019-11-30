@@ -20,21 +20,26 @@ public class Boletim implements ClassesGeral {
         this.nota = nota;
     }
 
+    /**
+     *
+     * @param faltas numero de faltas
+     */
     public void setFaltas(int faltas) {
         this.faltas = faltas;
     }
 
-    public boolean isAprovado(Disciplina disc) {
-        if(nota >= 60 && faltas <= disc.getMaximoFaltas())
-            return true;
-        else
-            return false;
-    }
-
+    /**
+     *
+     * @return numero de faltas
+     */
     public int getFaltas() {
         return faltas;
     }
 
+    /**
+     *
+     * @return string com informações a serem cadastradas no banco de dados txt.
+     */
     @Override
     public String getStorageString() {
         return String.format("%s-%.2f", this.aluno.getCpf(), this.nota);

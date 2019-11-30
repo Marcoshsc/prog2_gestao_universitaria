@@ -14,7 +14,11 @@ public class GerenciadorCursos implements OperacoesBasicas {
     private static ArrayList<Curso> cursosCadastrados = new ArrayList<Curso>();
     private static final String PATH = "src\\arquivos\\registrosCursos.txt";
 
-    @Override
+	/**
+	 *
+	 * @param objeto: Curso a ser adicionado
+	 */
+	@Override
     public void adiciona(Object objeto) {
         GerenciadorCursos.cursosCadastrados.add((Curso)objeto);
 		try {
@@ -25,10 +29,17 @@ public class GerenciadorCursos implements OperacoesBasicas {
         GerenciadorCursos.atualizaBanco();
     }
 
-    public static void atualizaBanco() {
+	/**
+	 *
+	 */
+	public static void atualizaBanco() {
         Utilitario.atualizaBanco(GerenciadorCursos.cursosCadastrados.toArray(), GerenciadorCursos.PATH);
 	}
 
+	/**
+	 *
+	 * @param curso: curso a ser excluído
+	 */
 	public static void excluir(Curso curso) {
 		GerenciadorCursos.cursosCadastrados.remove(curso);
 		try {
@@ -37,14 +48,21 @@ public class GerenciadorCursos implements OperacoesBasicas {
 			System.out.println("Não foi possível atualizar o banco de dados dos Cursos");
 		}
 	}
-	
+
+	/**
+	 *
+	 */
     @Override
     public void imprimeTodos() {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
+	/**
+	 *
+	 * @throws Exception caso não seja possível ler o arquivo.
+	 */
+	@Override
     public void inicializa() throws Exception {
         String[] objetos = Utilitario.leArquivo(GerenciadorCursos.PATH);
 		if(objetos == null)
@@ -58,7 +76,12 @@ public class GerenciadorCursos implements OperacoesBasicas {
 		}
     }
 
-    public static Curso pesquisaCursoCodigo(String codigo) {
+	/**
+	 *
+	 * @param codigo: codigo de um curso
+	 * @return null caso não encontrado, o curso referente ao código caso encontrado
+	 */
+	public static Curso pesquisaCursoCodigo(String codigo) {
 		if(GerenciadorCursos.cursosCadastrados.size() >= 0) {
 			for(Curso i: GerenciadorCursos.cursosCadastrados) {
 				if(i.getCodigo().equals(codigo)) {
@@ -71,14 +94,11 @@ public class GerenciadorCursos implements OperacoesBasicas {
 			return null;
 	}
 
-	public static boolean isNameAlreadyRegistered(String name) {
-    	for(Curso i: cursosCadastrados) {
-    		if(i.getNome().equals(name))
-    			return true;
-		}
-    	return false;
-	}
-    
+	/**
+	 *
+	 * @param nome: nome do curso
+	 * @return curso relativo ao nome, null caso não encontrado
+	 */
     public Curso pesquisaCursoNome(String nome) {
 		if(GerenciadorCursos.cursosCadastrados.size() >= 0) {
 			for(Curso i: GerenciadorCursos.cursosCadastrados) {
@@ -91,8 +111,12 @@ public class GerenciadorCursos implements OperacoesBasicas {
 		else
 			return null;
     }
-    
-    public String[] getNomeCursos() {
+
+	/**
+	 *
+	 * @return vetor com o nome de todos os cursos cadastrados
+	 */
+	public String[] getNomeCursos() {
 		if(GerenciadorCursos.cursosCadastrados.size() == 0) {
 			String[] vazia = {""};
 			return vazia;
@@ -106,6 +130,10 @@ public class GerenciadorCursos implements OperacoesBasicas {
 		}
 	}
 
+	/**
+	 *
+	 * @return TableModel com informações de todos os cursos cadastrados.
+	 */
 	public TableModel getCursosTable() {
 		String[] header = {
 			"Código", "Nome", "Carga Horária", "Tempo de Conclusão"
@@ -130,6 +158,11 @@ public class GerenciadorCursos implements OperacoesBasicas {
 		};
 	}
 
+	/**
+	 *
+	 * @param codigo: codigo de um curso
+	 * @return TableModel com informações do curso referente.
+	 */
 	public TableModel getCursosTable(String codigo) {
 		String[] header = {
 			"Código", "Nome", "Carga Horária", "Tempo de Conclusão"

@@ -8,15 +8,6 @@ import contratos.ClassesGeral;
 import complementares.ContaBancaria;
 
 public class PessoaFisica implements ClassesGeral {
-    
-    /**
-     * Não faz sentido que seja mudado nome, titulo
-     * de eleitor, rg e cpf. Portanto os únicos que
-     * podem ser alterados são endereço e contaBancaria.
-     * Caso seja necessária outra alteração, deve ser 
-     * criado outro objeto para sobrepor o antigo.
-     */
-
 
     private String nome;
     private String rg;

@@ -16,6 +16,13 @@ public class Curso implements ClassesGeral {
     private int cargaHoraria;
     private ArrayList<Disciplina> disciplinasRelacionadas = new ArrayList<Disciplina>();
 
+    /**
+     *
+     * @param codigo: codigo curso
+     * @param nome: nome curso
+     * @param tempoConclusao: tempo de conclusão curso
+     * @param cargaHoraria: carga horária do curso
+     */
     public Curso(String codigo, String nome, int tempoConclusao, int cargaHoraria) {
         this.codigo = codigo;
         this.nome = nome;
@@ -23,27 +30,50 @@ public class Curso implements ClassesGeral {
         this.cargaHoraria = cargaHoraria;
     }
 
+    /**
+     *
+     * @param nome: nome curso
+     * @param tempoConclusao: tempo de conclusão curso
+     * @param cargaHoraria: carga horária do curso
+     */
     public void alterar(String nome, int tempoConclusao, int cargaHoraria) {
         this.nome = nome;
         this.tempoConclusao = tempoConclusao;
         this.cargaHoraria = cargaHoraria;
     }
 
+    /**
+     *
+     * @return string para armazenamento do curso no banco de dados txt
+     */
     public String getStorageString() {
         return String.format("%s-%s-%d-%d", this.codigo, this.nome, this.tempoConclusao, this.cargaHoraria);
     }
 
+    /**
+     *
+     * @param texto: string com informações de um curso
+     * @return curso relativo às informações recebidas
+     */
     public static Curso fromStorageString(String texto) {
         String[] campos = texto.split("-");
         return new Curso(campos[0], campos[1], Integer.parseInt(campos[2]), Integer.parseInt(campos[3]));
     }
 
+    /**
+     *
+     * @return relatório escrito sobre o curso.
+     */
     @Override
     public String toString() {
         return String.format("\nCódigo: %s\nNome: %s\nTempo conclusão(Semestres): %d\nCarga Horária: %d\n", this.codigo,
         this.nome, this.tempoConclusao, this.cargaHoraria);
     }
 
+    /**
+     *
+     * @return vetor de informações básicas do curso.
+     */
     public String[] getInfoBasicasArray() {
         String[] infos = new String[4];
         infos[0] = this.codigo;
@@ -88,6 +118,10 @@ public class Curso implements ClassesGeral {
         return tempoConclusao;
     }
 
+    /**
+     *
+     * @return TableModel com disciplinas relacionadas ao curso.
+     */
     public TableModel getDisciplinasRelacionadasTable() {
         String[] header = {
                 "Codigo", "Nome", "Carga Horária", "Maximo Faltas"
@@ -112,6 +146,10 @@ public class Curso implements ClassesGeral {
         };
     }
 
+    /**
+     *
+     * @param disciplina: disciplina a ser adicionada
+     */
     public void adicionaDisciplina(Disciplina disciplina) {
         this.disciplinasRelacionadas.add(disciplina);
     }

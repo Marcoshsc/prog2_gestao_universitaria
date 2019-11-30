@@ -20,6 +20,11 @@ import interfacegrafica.JanelaPrincipal;
 
 public interface Utilitario {
 
+    /**
+     *
+     * @param cpf: cpf a ser validado
+     * @return resultado da validação
+     */
 	public static boolean validaCPF(String cpf) {
 
 		String[] cpfNumerico = cpf.split("");
@@ -57,6 +62,11 @@ public interface Utilitario {
 
     }
 
+    /**
+     *
+     * @param componente: caixa de texto
+     * @return texto formatado
+     */
 	public static String formataCampo(JTextField componente) {
 		return componente.getText().replace("-", "")
                 .replace(" ", "").replace(".", "").replace(";", "")
@@ -81,6 +91,11 @@ public interface Utilitario {
         }
     }
 
+    /**
+     *
+     * @param objetos: objetos a serem cadastrados no banco
+     * @param path: diretório para salvamento
+     */
     public static void atualizaBanco(Object[] objetos, String path) {
         final File documento = new File(path);
 		FileWriter printerBasico = null;
@@ -128,6 +143,11 @@ public interface Utilitario {
 		}
     }
 
+    /**
+     *
+     * @param codigo: tipo de campo
+     * @return campo gerado
+     */
     public static JTextField geraField(String codigo) {
         JFormattedTextField previo;
         try {
@@ -183,6 +203,10 @@ public interface Utilitario {
         }
     }
 
+    /**
+     *
+     * @return campo de texto padrão
+     */
     public static JTextField geraField() {
         try {
             JTextField previo = new JTextField(20);
@@ -193,7 +217,12 @@ public interface Utilitario {
             return null;
         }
     }
-    
+
+    /**
+     *
+     * @param texto: texto do título
+     * @return JLabel formatado com o título
+     */
     public static JLabel geraTitulo(String texto) {
         JLabel previo = new JLabel(texto);
         previo.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.BLACK),
@@ -201,6 +230,13 @@ public interface Utilitario {
         return previo;
     }
 
+    /**
+     *
+     * @param label: fica a esquerda
+     * @param campo: fica a direita
+     * @param alvo: JFrame
+     * @param constantes: constantes do GridBagLayout
+     */
     public static void geraCampoVertical(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
         constantes.gridy++;
         constantes.gridx = 0;
@@ -209,6 +245,13 @@ public interface Utilitario {
         alvo.add(campo, constantes);
     }
 
+    /**
+     *
+     * @param label: fica a esquerda
+     * @param campo: fica a direita
+     * @param alvo: JFrame
+     * @param constantes: constantes do GridBagLayout
+     */
     public static void geraCampoHorizontal(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
         constantes.gridx++;
         alvo.add(label, constantes);
@@ -216,6 +259,13 @@ public interface Utilitario {
         alvo.add(campo, constantes);
     }
 
+    /**
+     *
+     * @param label: fica a esquerda
+     * @param campo: fica a direita
+     * @param alvo: JFrame
+     * @param constantes: constantes do GridBagLayout
+     */
     public static void geraCampoCentral(Component label, Component campo, JPanel alvo, GridBagConstraints constantes) {
         constantes.gridy++;
         constantes.gridx = 1;
@@ -224,6 +274,12 @@ public interface Utilitario {
         alvo.add(campo, constantes);
     }
 
+    /**
+     *
+     * @param titulo: titulo a ser posicionado
+     * @param alvo: JPanel onde vai ser posicionado
+     * @param constantes: constantes do JPanel
+     */
     public static void posicionaTitulo(Component titulo, JPanel alvo, GridBagConstraints constantes) {
         constantes.gridwidth = 4;
         constantes.gridy++;
@@ -234,6 +290,11 @@ public interface Utilitario {
         constantes.gridwidth = 1;
     }
 
+    /**
+     *
+     * @param tabela: tabela a ser formatada
+     * @param tamanho: quantidade de colunas da tabela
+     */
     public static void formataEspacamentoTabela(JTable tabela, int tamanho) {
         for(int i = 0; i < tamanho; i++) {
             TableColumn coluna = tabela.getColumnModel().getColumn(i);
@@ -250,6 +311,11 @@ public interface Utilitario {
         }
     }
 
+    /**
+     *
+     * @param escolha: true para poder editar, false caso contrário.
+     * @param componentes: componentes do JPanel
+     */
     public static void mudarVisualizacao(boolean escolha, Component[] componentes) {
 	    for(Component i: componentes) {
 	        if(i instanceof JTextField)

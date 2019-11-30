@@ -4,10 +4,6 @@ import contratos.ClassesGeral;
 
 public class Endereco implements ClassesGeral {
 
-    /**
-     * Um endereço só pode ser alterado criando outro.
-     */
-
     private String rua;
     private int numero;
     private String complemento;
@@ -17,6 +13,17 @@ public class Endereco implements ClassesGeral {
     private String estado;
     private String pais;
 
+    /**
+     *
+     * @param rua: rua da pessoa
+     * @param numero: numero da casa
+     * @param complemento: casa/loja, apto, etc
+     * @param bairro: bairro de residência
+     * @param cep: CEP da residência
+     * @param cidade: cidade de residência
+     * @param estado: estado de residência
+     * @param pais: país de residência
+     */
     public Endereco(String rua, int numero, String complemento, String bairro, String cep, String cidade, String estado, String pais) {
         this.rua = rua;
         this.numero = numero;
@@ -28,16 +35,19 @@ public class Endereco implements ClassesGeral {
         this.pais = pais;
     }
 
+    /**
+     *
+     * @return String a ser armazenada no banco de dados txt.
+     */
     public String getStorageString() {
         return String.format("%s-%d-%s-%s-%s-%s-%s-%s", this.rua, this.numero, this.complemento, this.bairro, this.cep, this.cidade,
         this.estado, this.pais);
     }
 
-    public Endereco fromStorageString(String texto) {
-        String[] campos = texto.split("-");
-        return new Endereco(campos[0], Integer.parseInt(campos[1]), campos[2], campos[3], campos[4], campos[5], campos[6], campos[7]);
-    }
-
+    /**
+     *
+     * @return relatório do endereço
+     */
     @Override
     public String toString() {
         return String.format("\nRua: %s\nNúmero: %s\nComplemento: %s\nBairro: %s\nCEP: %s\nCidade: %s\nEstado: %s\nPais: %s\n",

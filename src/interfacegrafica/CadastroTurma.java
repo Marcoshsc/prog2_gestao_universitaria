@@ -44,6 +44,7 @@ public class CadastroTurma extends JPanel {
         protected JScrollPane alunosContainer = new JScrollPane(this.alunosPesquisados);
         protected ArrayList<Aluno> alunosAdicionados = new ArrayList<Aluno>();
         protected ArrayList<Aluno> alunosExcluidos = new ArrayList<>();
+        protected String professorAtual = null;
         protected JButton botaoConfirma = new JButton("CONFIRMAR CADASTRO");
         protected JButton botaoVolta = new JButton("VOLTAR");
         protected JButton botaoExcluir = new JButton("EXCLUIR TURMA");
@@ -129,6 +130,7 @@ public class CadastroTurma extends JPanel {
             if(disciplina != null) {
                 this.codigoField.setText(disciplina.getCodigoVigente());
                 this.cpfProfessorField.setText(disciplina.getProfessor());
+                this.professorAtual = disciplina.getProfessor();
                 this.dataInicioField.setText(formatador.format(disciplina.getDataInicio()));
                 this.dataFimField.setText(formatador.format(disciplina.getDataFim()));
                 this.vagasDisponiveisField.setText(Integer.toString(disciplina.getVagasDisponiveis()));

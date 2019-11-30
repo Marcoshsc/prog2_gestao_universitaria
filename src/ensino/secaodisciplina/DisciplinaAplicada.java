@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 import excecoes.TamanhoIncompativel;
 import pessoas.classealuno.Aluno;
-import pessoas.classealuno.GerenciadorAluno;
 import pessoas.classeprofessor.Professor;
 import sistema.classes.ServidorArmazenamento;
 
@@ -21,6 +20,16 @@ public class DisciplinaAplicada extends Disciplina {
 	private ArrayList<Boletim> alunosMatriculados = new ArrayList<Boletim>();
 	private int semestre;
 
+	/**
+	 *
+	 * @param disciplina: disciplina mãe
+	 * @param professor: professor turma
+	 * @param dataInicio: início turma
+	 * @param dataFim: fim turma
+	 * @param vagasDisponiveis: vagas disponíveis turma
+	 * @param semestre: semestre turma
+	 * @param codigoVigente: codigo turma
+	 */
 	public DisciplinaAplicada(Disciplina disciplina, String professor, LocalDate dataInicio, 
 	LocalDate dataFim, int vagasDisponiveis, int semestre, String codigoVigente) {
 		super(disciplina.getCodigo(), disciplina.getNome(), disciplina.getCargaHoraria(), disciplina.getMaximoFaltas());
@@ -32,6 +41,15 @@ public class DisciplinaAplicada extends Disciplina {
 		this.codigoVigente = codigoVigente;
 	}
 
+	/**
+	 *
+	 * @param professor: professor turma
+	 * @param dataInicio: início turma
+	 * @param dataFim: fim turma
+	 * @param vagasDisponiveis: vagas disponíveis turma
+	 * @param semestre: semestre turma
+	 * @param codigoVigente: codigo turma
+	 */
 	public void alterar(String professor, LocalDate dataInicio,
                         LocalDate dataFim, int vagasDisponiveis, int semestre, String codigoVigente) {
         this.professor = professor;
@@ -42,6 +60,10 @@ public class DisciplinaAplicada extends Disciplina {
         this.codigoVigente = codigoVigente;
     }
 
+	/**
+	 *
+	 * @return informações sobre uma turma
+	 */
 	@Override
 	public String toString() {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -50,6 +72,10 @@ public class DisciplinaAplicada extends Disciplina {
 		String.format("Vagas Disponíveis: %d\nSemestre: %d\nCodigo: %s\n", this.vagasDisponiveis, this.semestre, this.codigoVigente);
 	}
 
+	/**
+	 *
+	 * @return string com informações sobre uma turma, para ser gravada no banco de dados txt.
+	 */
 	private String getStorageStringAlunosMatriculados() {
 		if(this.alunosMatriculados.size() == 0)
 			return "none";
@@ -62,6 +88,11 @@ public class DisciplinaAplicada extends Disciplina {
 		}
 	}
 
+	/**
+	 *
+	 * @param aluno: aluno que se quer o boletim
+	 * @return boletim referente ao aluno
+	 */
 	private Boletim getBoletimFromAluno(Aluno aluno) {
 	    for(Boletim i: this.alunosMatriculados) {
 	        if(i.getAluno().equals(aluno))
@@ -70,6 +101,10 @@ public class DisciplinaAplicada extends Disciplina {
 	    return null;
     }
 
+	/**
+	 *
+	 * @return vetor de informações básicas sobre uma turma.
+	 */
 	public String[] getInfoBasicasArray() {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String[] infos = new String[5];
@@ -81,6 +116,11 @@ public class DisciplinaAplicada extends Disciplina {
 		return infos;
 	}
 
+	/**
+	 *
+	 * @param aluno: aluno desejado
+	 * @return informações básicas sobre um aluno numa determinada turma
+	 */
     public String[] getInfoBasicasArrayAluno(Aluno aluno) {
 		String[] dados = new String[6];
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");

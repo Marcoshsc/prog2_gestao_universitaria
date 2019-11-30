@@ -17,6 +17,7 @@ import ensino.secaodisciplina.GerenciadorDisciplinas;
 import excecoes.TamanhoIncompativel;
 import pessoas.classealuno.Aluno;
 import pessoas.classeprofessor.GerenciadorProfessor;
+import pessoas.classeprofessor.Professor;
 import sistema.classes.ServidorArmazenamento;
 
 // FALTA ALTERAR AINDA QUE QUANDO ALTERA A DISCIPLINA TEM QUE VER SE O CURSO AINDA É O MESMO OU NAO
@@ -171,6 +172,12 @@ public class AcaoCadastrarDisciplinaVigente implements ActionListener {
                     this.campos.parent.erroPreenchimento("Erro de preenchimento nas notas.");
                     return;
                 }
+            }
+            if(!this.campos.professorAtual.equals(disciplinaPrevia.getProfessor())) {
+                Professor antigoProfessor = ServidorArmazenamento.gerenciadorProfessores.pesquisarProfessorCPF(this.campos.professorAtual);
+                Professor novoProfessor = ServidorArmazenamento.gerenciadorProfessores.pesquisarProfessorCPF(disciplinaPrevia.getProfessor());
+                antigoProfessor.getDisciplinasMinistradas().remove(disciplinaPrevia.getCodigoVigente());
+                novoProfessor.getDisciplinasMinistradas().add(disciplinaPrevia.getCodigoVigente());
             }
             for(Aluno i: this.campos.alunosExcluidos) {
                 i.getCursando().remove(disciplinaPrevia.getCodigoVigente());
