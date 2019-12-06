@@ -26,7 +26,20 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
     private LocalDate dataIngresso;
     private ArrayList<DisciplinaConcluida> disciplinasConcluidas = new ArrayList<DisciplinaConcluida>();
     private boolean ativo = true;
-    
+
+    /**
+     *
+     * @param nome: nome do aluno
+     * @param cpf: cpf do aluno
+     * @param rg: rg do aluno
+     * @param sexo: sexo do aluno
+     * @param dataNascimento: data de nascimento do aluno
+     * @param endereco: endereço do aluno
+     * @param contaBancaria: número conta bancária do aluno
+     * @param numeroMatricula: numero de matrícula do aluno
+     * @param dataIngresso: data de ingresso do aluno
+     * @param curso: curso do aluno
+     */
     public Aluno(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     Endereco endereco, ContaBancaria contaBancaria, String numeroMatricula, LocalDate dataIngresso, Curso curso) {
         super(nome, rg, cpf, dataNascimento, endereco, contaBancaria, sexo);
@@ -35,6 +48,18 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         this.dataIngresso = dataIngresso;
     }
 
+    /**
+     *
+     * @param nome: nome do aluno
+     * @param cpf: cpf do aluno
+     * @param rg: rg do aluno
+     * @param sexo: sexo do aluno
+     * @param dataNascimento: data de nascimento do aluno
+     * @param endereco: endereço do aluno
+     * @param numeroMatricula: numero de matrícula do aluno
+     * @param dataIngresso: data de ingresso do aluno
+     * @param curso: curso do aluno
+     */
     public Aluno(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     Endereco endereco, String numeroMatricula, LocalDate dataIngresso, Curso curso) {
         super(nome, rg, cpf, dataNascimento, endereco, sexo);
@@ -43,6 +68,18 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         this.dataIngresso = dataIngresso;
     }
 
+    /**
+     *
+     * @param nome: nome do aluno
+     * @param cpf: cpf do aluno
+     * @param rg: rg do aluno
+     * @param sexo: sexo do aluno
+     * @param dataNascimento: data de nascimento do aluno
+     * @param contaBancaria: número conta bancária do aluno
+     * @param numeroMatricula: numero de matrícula do aluno
+     * @param dataIngresso: data de ingresso do aluno
+     * @param curso: curso do aluno
+     */
     public Aluno(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     ContaBancaria contaBancaria, String numeroMatricula, LocalDate dataIngresso, Curso curso) {
         super(nome, rg, cpf, dataNascimento, contaBancaria, sexo);
@@ -51,6 +88,17 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         this.dataIngresso = dataIngresso;
     }
 
+    /**
+     *
+     * @param nome: nome do aluno
+     * @param cpf: cpf do aluno
+     * @param rg: rg do aluno
+     * @param sexo: sexo do aluno
+     * @param dataNascimento: data de nascimento do aluno
+     * @param numeroMatricula: numero de matrícula do aluno
+     * @param dataIngresso: data de ingresso do aluno
+     * @param curso: curso do aluno
+     */
     public Aluno(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     String numeroMatricula, LocalDate dataIngresso, Curso curso) {
         super(nome, rg, cpf, dataNascimento, sexo);
@@ -59,6 +107,19 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         this.dataIngresso = dataIngresso;
     }
 
+    /**
+     *
+     * @param nome: nome do aluno
+     * @param cpf: cpf do aluno
+     * @param rg: rg do aluno
+     * @param sexo: sexo do aluno
+     * @param dataNascimento: data de nascimento do aluno
+     * @param endereco: endereço do aluno
+     * @param contaBancaria: número conta bancária do aluno
+     * @param numeroMatricula: numero de matrícula do aluno
+     * @param dataIngresso: data de ingresso do aluno
+     * @param curso: curso do aluno
+     */
     public void alterar(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     Endereco endereco, ContaBancaria contaBancaria, String numeroMatricula, LocalDate dataIngresso, Curso curso) {
         super.setNome(nome);
@@ -72,6 +133,18 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         this.dataIngresso = dataIngresso;
     }
 
+    /**
+     *
+     * @param nome: nome do aluno
+     * @param cpf: cpf do aluno
+     * @param rg: rg do aluno
+     * @param sexo: sexo do aluno
+     * @param dataNascimento: data de nascimento do aluno
+     * @param endereco: endereço do aluno
+     * @param numeroMatricula: numero de matrícula do aluno
+     * @param dataIngresso: data de ingresso do aluno
+     * @param curso: curso do aluno
+     */
     public void alterar(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     Endereco endereco, String numeroMatricula, LocalDate dataIngresso, Curso curso) {
         super.setNome(nome);
@@ -85,6 +158,18 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         this.dataIngresso = dataIngresso;
     }
 
+    /**
+     *
+     * @param nome: nome do aluno
+     * @param cpf: cpf do aluno
+     * @param rg: rg do aluno
+     * @param sexo: sexo do aluno
+     * @param dataNascimento: data de nascimento do aluno
+     * @param contaBancaria: número conta bancária do aluno
+     * @param numeroMatricula: numero de matrícula do aluno
+     * @param dataIngresso: data de ingresso do aluno
+     * @param curso: curso do aluno
+     */
     public void alterar(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     ContaBancaria contaBancaria, String numeroMatricula, LocalDate dataIngresso, Curso curso) {
         super.setNome(nome);
@@ -98,6 +183,17 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         this.dataIngresso = dataIngresso;
     }
 
+    /**
+     *
+     * @param nome: nome do aluno
+     * @param cpf: cpf do aluno
+     * @param rg: rg do aluno
+     * @param sexo: sexo do aluno
+     * @param dataNascimento: data de nascimento do aluno
+     * @param numeroMatricula: numero de matrícula do aluno
+     * @param dataIngresso: data de ingresso do aluno
+     * @param curso: curso do aluno
+     */
     public void alterar(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     String numeroMatricula, LocalDate dataIngresso, Curso curso) {
         super.setNome(nome);
@@ -111,10 +207,20 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         this.dataIngresso = dataIngresso;
     }
 
+    /**
+     *
+     * @return true caso tenha vínculo, false caso contrário.
+     */
     public boolean temVinculo() {
         return this.getCursando().size() != 0;
     }
 
+    /**
+     *
+     * @param campos: dados do aluno retirados do banco de dados
+     * @param curso: curso do aluno
+     * @return Aluno referente aos dados recebidos
+     */
     public static Aluno fromStorageString(String[] campos, Curso curso) {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         if(campos.length == 8) {
@@ -140,6 +246,10 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
 
     }
 
+    /**
+     *
+     * @return array de strings com as informações básicas do aluno
+     */
     public String[] getInfoBasicasArray() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String[] infos = new String[7];
@@ -153,15 +263,10 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         return infos;
     }
 
-    public String[] getInfoBasicasArrayTurma() {
-        String[] infos = new String[4];
-        infos[0] = this.getNome();
-        infos[1] = this.curso.getNome();
-        infos[2] = this.getCpf();
-        infos[3] = this.numeroMatricula;
-        return infos;
-    }
-
+    /**
+     *
+     * @return informações de um aluno
+     */
     @Override
     public String toString() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -169,16 +274,28 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         this.numeroMatricula, this.curso, formatador.format(this.dataIngresso)) + super.toString();
     }
 
+    /**
+     *
+     * @return string para ser armazenada no banco de dados, referente a um aluno
+     */
     public String getStorageString() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return super.getStorageString() + '-' + String.format("%s-%s", this.numeroMatricula,
         formatador.format(this.dataIngresso)) + '-' + this.curso.getCodigo();
     }
 
+    /**
+     *
+     * @param disc: disciplina a ser adicionada
+     */
     public void adicionaDisciplinaConcluida(DisciplinaConcluida disc) {
         this.disciplinasConcluidas.add(disc);
     }
 
+    /**
+     *
+     * @return TableModel com todas as disciplinas concluídas pelo aluno
+     */
     public TableModel getDisciplinasConcluidasTable() {
         String[] header = {
                 "Disciplina", "Data Conclusão", "Semestre", "Nota", "Faltas", "Aprovado"
@@ -203,6 +320,10 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
         };
     }
 
+    /**
+     *
+     * @return TableModel com todas as disciplinas cursadas pelo aluno
+     */
     public TableModel getDisciplinasCursadasTable() {
         String[] header = {
                 "Código", "Professor", "Data Início", "Data Fim", "Nota", "Frequência"
@@ -250,12 +371,9 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
     }
 
     /**
-     * @return the coeficienteSemestral
+     *
+     * @return SIM caso ativo == true, NÃO caso ativo == false
      */
-    public Float getCoeficienteSemestral() {
-        return coeficienteSemestral;
-    }
-
     public String getAtivo() {
         if(this.ativo)
             return "SIM";
@@ -263,10 +381,18 @@ public class Aluno extends PessoaFisica implements ClassesGeral {
             return "NÃO";
     }
 
+    /**
+     *
+     * @return the cursando
+     */
     public ArrayList<String> getCursando() {
         return cursando;
     }
 
+    /**
+     *
+     * @return the disciplinasConcluidas
+     */
     public ArrayList<DisciplinaConcluida> getDisciplinasConcluidas() {
         return disciplinasConcluidas;
     }

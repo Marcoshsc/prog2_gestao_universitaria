@@ -17,6 +17,16 @@ public class PessoaFisica implements ClassesGeral {
     private Endereco endereco;
     private ContaBancaria contaBancaria;
 
+    /**
+     *
+     * @param nome: nome da pessoa
+     * @param rg: rg da pessoa
+     * @param cpf: cpf da pessoa
+     * @param dataNascimento: data Nascimento da pessoa
+     * @param endereco: endereço da pessoa
+     * @param contaBancaria: conta bancária da pessoa
+     * @param sexo: sexo da pessoa
+     */
     protected PessoaFisica(String nome, String rg, String cpf, LocalDate dataNascimento,
     Endereco endereco, ContaBancaria contaBancaria, String sexo) {
         this.sexo = sexo;
@@ -28,6 +38,15 @@ public class PessoaFisica implements ClassesGeral {
         this.contaBancaria = contaBancaria;
     }
 
+    /**
+     *
+     * @param nome: nome da pessoa
+     * @param rg: rg da pessoa
+     * @param cpf: cpf da pessoa
+     * @param dataNascimento: data Nascimento da pessoa
+     * @param endereco: endereço da pessoa
+     * @param sexo: sexo da pessoa
+     */
     protected PessoaFisica(String nome, String rg, String cpf, LocalDate dataNascimento, Endereco endereco, String sexo) {
         this.sexo = sexo;
         this.nome = nome;
@@ -37,6 +56,15 @@ public class PessoaFisica implements ClassesGeral {
         this.endereco = endereco;
     }
 
+    /**
+     *
+     * @param nome: nome da pessoa
+     * @param rg: rg da pessoa
+     * @param cpf: cpf da pessoa
+     * @param dataNascimento: data Nascimento da pessoa
+     * @param contaBancaria: conta bancária da pessoa
+     * @param sexo: sexo da pessoa
+     */
     protected PessoaFisica(String nome, String rg, String cpf, LocalDate dataNascimento, ContaBancaria contaBancaria, String sexo) {
         this.sexo = sexo;
         this.nome = nome;
@@ -46,6 +74,14 @@ public class PessoaFisica implements ClassesGeral {
         this.contaBancaria = contaBancaria;
     }
 
+    /**
+     *
+     * @param nome: nome da pessoa
+     * @param rg: rg da pessoa
+     * @param cpf: cpf da pessoa
+     * @param dataNascimento: data Nascimento da pessoa
+     * @param sexo: sexo da pessoa
+     */
     protected PessoaFisica(String nome, String rg, String cpf, LocalDate dataNascimento, String sexo) {
         this.sexo = sexo;
         this.nome = nome;
@@ -54,12 +90,20 @@ public class PessoaFisica implements ClassesGeral {
         this.dataNascimento = dataNascimento;
     }
 
+    /**
+     *
+     * @return informações de uma pessoa
+     */
     private String escreveOBasico() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return String.format("Nome: %s\nSexo: %s\nRG: %s\nCPF: %s\nData de Nascimento: %s\n", this.nome, this.sexo, this.rg, this.cpf,
         formatador.format(this.dataNascimento));
     }
 
+    /**
+     *
+     * @return informações de uma pessoa, para ser cadastradas no banco de dados
+     */
     public String getStorageString() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         if(this.endereco != null && this.contaBancaria != null) {
@@ -79,6 +123,10 @@ public class PessoaFisica implements ClassesGeral {
         }
     }
 
+    /**
+     *
+     * @return informações de uma pessoa
+     */
     @Override
     public String toString() {
         if(this.endereco != null && this.contaBancaria != null) {

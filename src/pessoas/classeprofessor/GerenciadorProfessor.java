@@ -13,7 +13,11 @@ public class GerenciadorProfessor implements OperacoesBasicas {
     private static ArrayList<Professor> professoresCadastrados = new ArrayList<Professor>();
     private static final String PATH = "src\\arquivos\\registrosProfessores.txt";
 
-    @Override
+	/**
+	 *
+	 * @param objeto: Objeto a ser adicionado
+	 */
+	@Override
     public void adiciona(Object objeto) {
         GerenciadorProfessor.professoresCadastrados.add((Professor)objeto);
         try {
@@ -23,10 +27,18 @@ public class GerenciadorProfessor implements OperacoesBasicas {
 		}
     }
 
-    public static void atualizaBanco() throws Exception {
+	/**
+	 *
+	 * @throws Exception: caso não seja possível atualizar o banco de dados
+	 */
+	public static void atualizaBanco() throws Exception {
         Utilitario.atualizaBanco(GerenciadorProfessor.professoresCadastrados.toArray(), GerenciadorProfessor.PATH);
 	}
-	
+
+	/**
+	 *
+	 * @param professor: professor a ser excluido
+	 */
 	public static void excluir(Professor professor) {
 		GerenciadorProfessor.professoresCadastrados.remove(professor);
 		try {
@@ -36,6 +48,9 @@ public class GerenciadorProfessor implements OperacoesBasicas {
 		}
 	}
 
+	/**
+	 *
+	 */
     @Override
     public void imprimeTodos() {
         for(Professor i: GerenciadorProfessor.professoresCadastrados) {
@@ -44,7 +59,11 @@ public class GerenciadorProfessor implements OperacoesBasicas {
 
     }
 
-    @Override
+	/**
+	 *
+	 * @throws Exception: caso não seja possível ler os dados do banco
+	 */
+	@Override
     public void inicializa() throws Exception {
         String[] objetos = Utilitario.leArquivo(GerenciadorProfessor.PATH);
 		if(objetos == null)
@@ -58,8 +77,13 @@ public class GerenciadorProfessor implements OperacoesBasicas {
 			}
         }
     }
-    
-    public Professor pesquisarProfessorCPF(String cpf) {
+
+	/**
+	 *
+	 * @param cpf: cpf a ser procurado
+	 * @return professor procurado
+	 */
+	public Professor pesquisarProfessorCPF(String cpf) {
 		if(GerenciadorProfessor.professoresCadastrados.size() == 0) {
 			return null;
 		}
@@ -72,7 +96,11 @@ public class GerenciadorProfessor implements OperacoesBasicas {
 			return null;
 		}
 	}
-	
+
+	/**
+	 *
+	 * @return tabela com todos os professores cadastrados
+	 */
 	public TableModel getProfessoresTable() {
 		String[] header = {
 			"Nome", "CPF", "Salário", "RG", "Data Nascimento", "Data Ingresso"
@@ -97,6 +125,11 @@ public class GerenciadorProfessor implements OperacoesBasicas {
 		};
 	}
 
+	/**
+	 *
+	 * @param cpf: cpf do professor a ser procurado
+	 * @return tabela com o professor procurado
+	 */
 	public TableModel getProfessoresTable(String cpf) {
 		String[] header = {
 			"Nome", "CPF", "Salário", "RG", "Data Nascimento", "Data Ingresso"

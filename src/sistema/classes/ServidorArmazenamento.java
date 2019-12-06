@@ -5,8 +5,6 @@ import ensino.secaodisciplina.GerenciadorDisciplinas;
 import pessoas.classealuno.GerenciadorAluno;
 import pessoas.classeprofessor.GerenciadorProfessor;
 
-import java.util.ArrayList;
-
 
 public class ServidorArmazenamento {
 
@@ -15,6 +13,10 @@ public class ServidorArmazenamento {
 	public static GerenciadorProfessor gerenciadorProfessores = new GerenciadorProfessor();
 	public static GerenciadorDisciplinas gerenciadorDisciplinas = new GerenciadorDisciplinas();
 
+	/**
+	 *
+	 * @throws Exception caso não seja possível inicializar algum dos bancos de dados.
+	 */
 	public static void inicializaTodos() throws Exception {
 		ServidorArmazenamento.gerenciadorProfessores.inicializa();
 		ServidorArmazenamento.gerenciadorCursos.inicializa();

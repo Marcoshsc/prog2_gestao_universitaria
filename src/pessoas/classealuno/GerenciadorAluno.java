@@ -15,7 +15,11 @@ public class GerenciadorAluno implements OperacoesBasicas {
     private static ArrayList<Aluno> alunosCadastrados = new ArrayList<Aluno>();
     private static final String PATH = "src\\arquivos\\registrosAlunos.txt";
 
-    @Override
+	/**
+	 *
+	 * @param objeto: Objeto a ser adicionado
+	 */
+	@Override
     public void adiciona(Object objeto) {
         GerenciadorAluno.alunosCadastrados.add((Aluno)objeto);
 		try {
@@ -25,6 +29,11 @@ public class GerenciadorAluno implements OperacoesBasicas {
 		}
 	}
 
+	/**
+	 *
+	 * @param curso: curso que se quer verificar o vínculo
+	 * @return true caso tenha vínculo, false caso contrário
+	 */
 	public static boolean verificaVinculoCurso(Curso curso) {
 		if(GerenciadorAluno.alunosCadastrados.size() == 0) {
 			return false;
@@ -37,6 +46,10 @@ public class GerenciadorAluno implements OperacoesBasicas {
 		return false;
 	}
 
+	/**
+	 *
+	 * @param aluno: aluno para ser excluído
+	 */
 	public static void excluir(Aluno aluno) {
 		GerenciadorAluno.alunosCadastrados.remove(aluno);
 		try {
@@ -46,16 +59,24 @@ public class GerenciadorAluno implements OperacoesBasicas {
 		}
 	}
 
+	/**
+	 *
+	 * @throws Exception: caso não seja possível atualizar o banco de dados
+	 */
     public static void atualizaBanco() throws Exception {
         Utilitario.atualizaBanco(GerenciadorAluno.alunosCadastrados.toArray(), GerenciadorAluno.PATH);
     }
 
     @Override
     public void imprimeTodos() {
-        GerenciadorAluno.alunosCadastrados.forEach(a -> System.out.println(a));
+        GerenciadorAluno.alunosCadastrados.forEach(System.out::println);
     }
 
-    @Override
+	/**
+	 *
+	 * @throws Exception: caso não seja possível ler o banco de dados
+	 */
+	@Override
     public void inicializa() throws Exception {
         String[] objetos = Utilitario.leArquivo(GerenciadorAluno.PATH);
 		if(objetos == null)
@@ -74,6 +95,11 @@ public class GerenciadorAluno implements OperacoesBasicas {
 		}
 	}
 
+	/**
+	 *
+	 * @param cpf: cpf do aluno que se quer achar
+	 * @return Aluno encontrado
+	 */
     public Aluno pesquisarAlunoCPF(String cpf) {
 		if(GerenciadorAluno.alunosCadastrados.size() == 0)
 			return null;
@@ -85,8 +111,13 @@ public class GerenciadorAluno implements OperacoesBasicas {
 			return null;
 		}
     }
-    
-    public ArrayList<Aluno> pesquisarAlunoCurso(Curso curso) {
+
+	/**
+	 *
+	 * @param curso: curso referente à pesquisa
+	 * @return arrayList de alunos que fazem o curso.
+	 */
+	public ArrayList<Aluno> pesquisarAlunoCurso(Curso curso) {
         ArrayList<Aluno> procurados = new ArrayList<Aluno>();
         if(GerenciadorAluno.alunosCadastrados.size() == 0)
             return null;
@@ -97,7 +128,11 @@ public class GerenciadorAluno implements OperacoesBasicas {
         return (procurados.size() == 0) ? null : procurados;
     }
 
-    public TableModel getAlunosTable() {
+	/**
+	 *
+	 * @return tabela com todos os alunos cadastrados.
+	 */
+	public TableModel getAlunosTable() {
 		String[] header = {
 			"Nome", "Curso", "CPF", "Matrícula", "RG", "Data Nascimento", "Data Ingresso"
 		};
@@ -121,6 +156,11 @@ public class GerenciadorAluno implements OperacoesBasicas {
 		};
 	}
 
+	/**
+	 *
+	 * @param cpf: cpf do aluno a ser pesquisado
+	 * @return tabela com o aluno referente ao cpf
+	 */
 	public TableModel getAlunosTable(String cpf) {
 		String[] header = {
 			"Nome", "Curso", "CPF", "Matrícula", "RG", "Data Nascimento", "Data Ingresso"
@@ -144,8 +184,13 @@ public class GerenciadorAluno implements OperacoesBasicas {
 
 		};
     }
-    
-    public TableModel getAlunosTable(Curso curso) {
+
+	/**
+	 *
+	 * @param curso: curso a ser pesquisado
+	 * @return tablea com alunos referentes ao curso
+	 */
+	public TableModel getAlunosTable(Curso curso) {
 		String[] header = {
 			"Nome", "Curso", "CPF", "Matrícula", "RG", "Data Nascimento", "Data Ingresso"
 		};
@@ -171,6 +216,10 @@ public class GerenciadorAluno implements OperacoesBasicas {
 		};
     }
 
+	/**
+	 *
+	 * @return arraylist de alunos cadastrados
+	 */
 	public static ArrayList<Aluno> getAlunosCadastrados() {
 		return alunosCadastrados;
 	}

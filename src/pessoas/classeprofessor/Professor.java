@@ -20,6 +20,18 @@ public class Professor extends PessoaFisica implements ClassesGeral {
     private LocalDate dataIngresso;
     private float salario = 0f;
 
+    /**
+     *
+     * @param nome: nome do professor
+     * @param cpf: cpf do professor
+     * @param rg: rg do professor
+     * @param sexo: sexo do professor
+     * @param dataNascimento: data Nascimento do professor
+     * @param endereco: endereço do professor
+     * @param contaBancaria: número da conta bancária do professor
+     * @param dataIngresso: data de Ingresso do professor na universidade
+     * @param salario: salário do professor
+     */
     public Professor(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     Endereco endereco, ContaBancaria contaBancaria, LocalDate dataIngresso, float salario) {
         super(nome, rg, cpf, dataNascimento, endereco, contaBancaria, sexo);
@@ -27,6 +39,17 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         this.salario = salario;
     }
 
+    /**
+     *
+     * @param nome: nome do professor
+     * @param cpf: cpf do professor
+     * @param rg: rg do professor
+     * @param sexo: sexo do professor
+     * @param dataNascimento: data Nascimento do professor
+     * @param endereco: endereço do professor
+     * @param dataIngresso: data de Ingresso do professor na universidade
+     * @param salario: salário do professor
+     */
     public Professor(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     Endereco endereco, LocalDate dataIngresso, float salario) {
         super(nome, rg, cpf, dataNascimento, endereco, sexo);
@@ -34,6 +57,17 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         this.salario = salario;
     }
 
+    /**
+     *
+     * @param nome: nome do professor
+     * @param cpf: cpf do professor
+     * @param rg: rg do professor
+     * @param sexo: sexo do professor
+     * @param dataNascimento: data Nascimento do professor
+     * @param contaBancaria: número da conta bancária do professor
+     * @param dataIngresso: data de Ingresso do professor na universidade
+     * @param salario: salário do professor
+     */
     public Professor(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     ContaBancaria contaBancaria, LocalDate dataIngresso, float salario) {
         super(nome, rg, cpf, dataNascimento, contaBancaria, sexo);
@@ -41,6 +75,16 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         this.salario = salario;
     }
 
+    /**
+     *
+     * @param nome: nome do professor
+     * @param cpf: cpf do professor
+     * @param rg: rg do professor
+     * @param sexo: sexo do professor
+     * @param dataNascimento: data Nascimento do professor
+     * @param dataIngresso: data de Ingresso do professor na universidade
+     * @param salario: salário do professor
+     */
     public Professor(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     LocalDate dataIngresso, float salario) {
         super(nome, rg, cpf, dataNascimento, sexo);
@@ -48,6 +92,18 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         this.salario = salario;
     }
 
+    /**
+     *
+     * @param nome: nome do professor
+     * @param cpf: cpf do professor
+     * @param rg: rg do professor
+     * @param sexo: sexo do professor
+     * @param dataNascimento: data Nascimento do professor
+     * @param endereco: endereço do professor
+     * @param contaBancaria: número da conta bancária do professor
+     * @param dataIngresso: data de Ingresso do professor na universidade
+     * @param salario: salário do professor
+     */
     public void alterar(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     Endereco endereco, ContaBancaria contaBancaria, LocalDate dataIngresso, float salario) {
         super.setNome(nome);
@@ -61,6 +117,17 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         this.salario = salario;
     }
 
+    /**
+     *
+     * @param nome: nome do professor
+     * @param cpf: cpf do professor
+     * @param rg: rg do professor
+     * @param sexo: sexo do professor
+     * @param dataNascimento: data Nascimento do professor
+     * @param endereco: endereço do professor
+     * @param dataIngresso: data de Ingresso do professor na universidade
+     * @param salario: salário do professor
+     */
     public void alterar(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     Endereco endereco, LocalDate dataIngresso, float salario) {
         super.setNome(nome);
@@ -74,6 +141,17 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         this.salario = salario;
     }
 
+    /**
+     *
+     * @param nome: nome do professor
+     * @param cpf: cpf do professor
+     * @param rg: rg do professor
+     * @param sexo: sexo do professor
+     * @param dataNascimento: data Nascimento do professor
+     * @param contaBancaria: número da conta bancária do professor
+     * @param dataIngresso: data de Ingresso do professor na universidade
+     * @param salario: salário do professor
+     */
     public void alterar(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     ContaBancaria contaBancaria, LocalDate dataIngresso, float salario) {
         super.setNome(nome);
@@ -87,6 +165,16 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         this.salario = salario;
     }
 
+    /**
+     *
+     * @param nome: nome do professor
+     * @param cpf: cpf do professor
+     * @param rg: rg do professor
+     * @param sexo: sexo do professor
+     * @param dataNascimento: data Nascimento do professor
+     * @param dataIngresso: data de Ingresso do professor na universidade
+     * @param salario: salário do professor
+     */
     public void alterar(String nome, String cpf, String rg, String sexo, LocalDate dataNascimento,
     LocalDate dataIngresso, float salario) {
         super.setNome(nome);
@@ -100,10 +188,19 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         this.salario = salario;
     }
 
+    /**
+     *
+     * @return true caso tenha vínculo, false caso contrário
+     */
     public boolean temVinculo() {
         return this.disciplinasMinistradas.size() != 0;
     }
 
+    /**
+     *
+     * @param campos informações sobre um professor retiradas do banco de dados
+     * @return Professor correspondente
+     */
     public static Professor fromStorageString(String[] campos) {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         if(campos.length == 7) {
@@ -128,6 +225,10 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         }
     }
 
+    /**
+     *
+     * @return informações do professor
+     */
     @Override
     public String toString() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -135,6 +236,10 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         this.salario, formatador.format(this.dataIngresso)) + super.toString();
     }
 
+    /**
+     *
+     * @return informações de um professor para serem cadastradas no banco de dados
+     */
     @Override
     public String getStorageString() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -142,10 +247,18 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         formatador.format(this.dataIngresso), Float.toString(this.salario));
     }
 
+    /**
+     *
+     * @return disciplinas ministradas pelo professor
+     */
     public ArrayList<String> getDisciplinasMinistradas() {
         return this.disciplinasMinistradas;
     }
 
+    /**
+     *
+     * @return array de strings com informações básicas de um professor
+     */
     public String[] getInfoBasicasArray() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String[] infos = new String[6];
@@ -158,6 +271,10 @@ public class Professor extends PessoaFisica implements ClassesGeral {
         return infos;
     }
 
+    /**
+     *
+     * @return tabela com todas as disciplinas ministradas pelo professor
+     */
     public TableModel getDisciplinasMinistradasTable() {
         String[] header = {
                 "Código", "Disciplina", "Data Início", "Data Fim"
