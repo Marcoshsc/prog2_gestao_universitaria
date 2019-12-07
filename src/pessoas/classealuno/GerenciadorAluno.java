@@ -61,7 +61,7 @@ public class GerenciadorAluno implements OperacoesBasicas {
 
 	/**
 	 *
-	 * @throws Exception: caso não seja possível atualizar o banco de dados
+	 * @throws Exception caso não seja possível atualizar o banco de dados
 	 */
     public static void atualizaBanco() throws Exception {
         Utilitario.atualizaBanco(GerenciadorAluno.alunosCadastrados.toArray(), GerenciadorAluno.PATH);
@@ -74,7 +74,7 @@ public class GerenciadorAluno implements OperacoesBasicas {
 
 	/**
 	 *
-	 * @throws Exception: caso não seja possível ler o banco de dados
+	 * @throws Exception caso não seja possível ler o banco de dados
 	 */
 	@Override
     public void inicializa() throws Exception {

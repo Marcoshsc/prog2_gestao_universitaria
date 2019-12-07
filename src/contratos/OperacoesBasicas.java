@@ -15,7 +15,7 @@ public interface OperacoesBasicas {
 
     /**
      *
-     * @throws Exception
+     * @throws Exception caso não seja possível inicializar o banco de dados
      */
     void inicializa() throws Exception;
 

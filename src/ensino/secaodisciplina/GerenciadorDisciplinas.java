@@ -280,8 +280,10 @@ public class GerenciadorDisciplinas {
      * @return vetor de strings com todos os códigos das disciplinas
      */
     public String[] getCodigoDisciplinas() {
-        if(disciplinasCadastradas.size() == 0)
-            return null;
+        if(disciplinasCadastradas.size() == 0) {
+            String[] vazia = {""};
+            return vazia;
+        }
         else {
             String[] disc = new String[disciplinasCadastradas.size()];
             for(int i = 0; i < disciplinasCadastradas.size(); i++) {

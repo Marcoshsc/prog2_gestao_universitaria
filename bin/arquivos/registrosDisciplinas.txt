@@ -1,1 +1,3 @@
-CSI030-Programação de Computadores I-72-18-codigo4
+CSI032-Programação de Computadores II-72-18-EC
+CC394-Compiladores I-72-18-CC
+CEA030-Cálculo Diferencial e Integral I-72-18-EP

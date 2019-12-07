@@ -2,13 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b956ee20-0d1d-46b3-b669-c28ae838050a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pessoas/classealuno/Aluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pessoas/classealuno/Aluno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosAlunos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosAlunos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosCursos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosCursos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinas.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasConcluidas.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosProfessores.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosProfessores.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosAlunos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosCursos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinas.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasConcluidas.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosProfessores.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contratos/OperacoesBasicas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/contratos/OperacoesBasicas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/Disciplina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/Disciplina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/GerenciadorDisciplinas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/GerenciadorDisciplinas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pessoas/classealuno/GerenciadorAluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pessoas/classealuno/GerenciadorAluno.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pessoas/classeprofessor/GerenciadorProfessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pessoas/classeprofessor/GerenciadorProfessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pessoas/classeprofessor/Professor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pessoas/classeprofessor/Professor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pessoas/superclasse/PessoaFisica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pessoas/superclasse/PessoaFisica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sistema/classes/ServidorArmazenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sistema/classes/ServidorArmazenamento.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,13 +63,13 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568243052850" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Exericio_02" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -127,7 +140,8 @@
       <workItem from="1575073715091" duration="7137000" />
       <workItem from="1575130556482" duration="8949000" />
       <workItem from="1575399119149" duration="515000" />
-      <workItem from="1575644988206" duration="3561000" />
+      <workItem from="1575644988206" duration="5980000" />
+      <workItem from="1575728577380" duration="2513000" />
     </task>
     <servers />
   </component>

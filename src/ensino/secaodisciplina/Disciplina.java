@@ -60,6 +60,7 @@ public class Disciplina implements ClassesGeral {
 	/**
 	 *
 	 * @param texto: texto recebido do banco de dados txt com informação de disciplina
+	 * @throws Exception caso não seja possível instanciar a Disciplina
 	 * @return disciplina referente ao texto recebido.
 	 */
 	public static Disciplina fromStorageString(String texto) throws Exception {
