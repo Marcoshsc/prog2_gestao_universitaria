@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b956ee20-0d1d-46b3-b669-c28ae838050a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosAlunos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosAlunos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosCursos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosCursos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinas.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasConcluidas.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosDisciplinasVigentes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/arquivos/registrosProfessores.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/arquivos/registrosProfessores.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosAlunos.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosCursos.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinas.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasConcluidas.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosDisciplinasVigentes.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/arquivos/registrosProfessores.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contratos/OperacoesBasicas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/contratos/OperacoesBasicas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/Disciplina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/Disciplina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ensino/secaodisciplina/GerenciadorDisciplinas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ensino/secaodisciplina/GerenciadorDisciplinas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pessoas/classealuno/GerenciadorAluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pessoas/classealuno/GerenciadorAluno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pessoas/classeprofessor/GerenciadorProfessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pessoas/classeprofessor/GerenciadorProfessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +123,7 @@
       <workItem from="1575130556482" duration="8949000" />
       <workItem from="1575399119149" duration="515000" />
       <workItem from="1575644988206" duration="5980000" />
-      <workItem from="1575728577380" duration="2804000" />
+      <workItem from="1575728577380" duration="3077000" />
     </task>
     <servers />
   </component>
